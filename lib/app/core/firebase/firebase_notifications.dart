@@ -38,27 +38,6 @@ class FirebaseNotifications {
     _saveDeviceToken();
   }
 
-  /// Subscribe to topic by their name
-  void subscribeToTopic(String topic) async {
-    final FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
-    final String userId = await secureStorage.read(key: 'userId');
-    print("Subscribed to channel " + topic);
-    await _fcm.subscribeToTopic(userId + "_" + topic);
-  }
-
-  /// Unsubscribe to topic by their name
-  void unsubscribeToTopic(String topic) async {
-    final FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
-    final String userId = await secureStorage.read(key: 'userId');
-    print("Unsubscribed to channel: " + topic);
-    await _fcm.unsubscribeFromTopic(userId + "_" + topic);
-  }
-
-  /// Unsubscribe to all topics
-  void unsubscribeAllTopics() {
-    //this.unsubscribeToTopic("bi-webhook-callback");
-  }
-
   /// Save device token
   Future<void> _saveDeviceToken() async {
     final String deviceToken = await _fcm.getToken();
@@ -71,7 +50,6 @@ class FirebaseNotifications {
 
   /// Dispose and unsubscribe ios settings registration
   void dispose() {
-    this.unsubscribeAllTopics();
     if (_iosSubscription != null) {
       _iosSubscription.cancel();
     }

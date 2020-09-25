@@ -46,7 +46,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   Stream<ProfileState> _mapRegisterNewDeviceToState(RegisterNewDevice event) async* {
-    FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+    print("Save token");
+    /*FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
     String jwtToken = await secureStorage.read(key: 'uuid');
     if (jwtToken == null) {
       print("[WARN] JWToken not found, skipped.");
@@ -57,6 +58,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       print("[DEBUG] Token saved successfully.");
       return;
     }
-    print("[DEBUG] Unable to save device token.");
+    print("[DEBUG] Unable to save device token.");*/
   }
 }
