@@ -153,11 +153,6 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
   }
 
   Widget _buildSingleProfileItem(VoidCallback callback, String name, String id, {String avatarUrl = null}) {
-    if (_selectedProfile == id) {
-      print(id);
-    }
-
-    // TODO: See selection
     return GestureDetector(
       onTap: callback,
       child: Column(

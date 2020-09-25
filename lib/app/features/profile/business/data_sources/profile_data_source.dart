@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -42,7 +44,8 @@ class ProfileDataSource {
 
   /// Register new device
   Future<bool> registerNewDevice(String token) async {
-    String identifier = (await DeviceUtils.getDeviceDetails())['identifier'];
+    FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+    String identifier = await secureStorage.read(key: 'uuid');
     final QueryResult result = await client.mutate(
       MutationOptions(
         documentNode: gql(registerDeviceMutation),

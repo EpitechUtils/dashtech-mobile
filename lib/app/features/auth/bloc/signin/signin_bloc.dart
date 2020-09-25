@@ -1,9 +1,12 @@
 import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/widgets/webview_intra_auth_widget.dart';
+import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_event.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_translate/global.dart';
 import 'package:injectable/injectable.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/toast_utils.dart';
@@ -13,7 +16,6 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/signin/signin_eve
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/signin/signin_state.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/signin_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_bloc.dart';
-import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_event.dart';
 
 @injectable
 class SigninBloc extends Bloc<SigninEvent, SigninState> {
@@ -39,11 +41,15 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
   Stream<SigninState> _mapSigninToState(Signin event) async* {
     yield SigninState.signinLoading();
     try {
-      final String identifier = (await DeviceUtils.getDeviceDetails())['identifier'];
-      final ProfileModel authProfile =
-          await signinUseCase(Credentials.fromRaw(event.profileName, event.autologUrl, identifier));
-      //authBloc.add(AuthEvent.loggedIn(authProfile: authProfile));
-      //profileBloc.add(ProfileEvent.loadProfile(profile: authProfile));
+      FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+      String identifier = await secureStorage.read(key: 'uuid');
+      final ProfileModel authProfile = await signinUseCase(Credentials.fromRaw(
+        event.profileName,
+        event.autologUrl,
+        identifier,
+      ));
+      authBloc.add(AuthEvent.loggedIn(authProfile: authProfile));
+      profileBloc.add(ProfileEvent.loadProfile(profile: authProfile));
       yield SigninState.signinInitial();
     } catch (failure) {
       ToastUtils.error(failure.message);

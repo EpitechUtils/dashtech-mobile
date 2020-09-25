@@ -1,3 +1,5 @@
+import 'package:basic_utils/basic_utils.dart';
+import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/keyboard_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_event.dart';
@@ -11,8 +13,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:uuid/uuid.dart';
 
 class EpitechIntraMobileApp extends StatefulWidget {
   @override
@@ -60,7 +64,7 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
               child: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) => state.when(
                   uninitialized: (_) => SplashPage(),
-                  authenticated: (_) => Container(),
+                  authenticated: (_) => SplashPage(),
                   unAuthenticated: (_) => AuthPage(),
                 ),
               ),
