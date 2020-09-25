@@ -26,7 +26,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     yield* event.when(
       loadProfile: (e) => _mapLoadToState(e),
       forceLoadProfile: (e) => _mapForceLoadToState(),
-      forceLoadProfileAndAccounts: (e) => _mapForceAccountsLoadToState(),
       registerNewDevice: (e) => _mapRegisterNewDeviceToState(e),
     );
   }
@@ -46,20 +45,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  Stream<ProfileState> _mapForceAccountsLoadToState() async* {
-    yield ProfileState.loading();
-    try {
-      final ProfileModel profile = await findProfileUseCase();
-      yield ProfileState.loaded(profile: profile);
-    } catch (failure) {
-      ToastUtils.error(failure.message);
-      yield ProfileState.error();
-    }
-  }
-
   Stream<ProfileState> _mapRegisterNewDeviceToState(RegisterNewDevice event) async* {
     FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
-    String jwtToken = await secureStorage.read(key: 'token');
+    String jwtToken = await secureStorage.read(key: 'uuid');
     if (jwtToken == null) {
       print("[WARN] JWToken not found, skipped.");
       return;

@@ -20,7 +20,7 @@ class AuthDataSource {
     final QueryResult result = await client.mutate(MutationOptions(
       documentNode: gql(authCreateProfile),
       variables: {
-        'input': {
+        'profileInput': {
           'deviceIdentifier': credentials.identifier,
           'profileName': credentials.profileName,
           'autologUrl': credentials.autologUrl,

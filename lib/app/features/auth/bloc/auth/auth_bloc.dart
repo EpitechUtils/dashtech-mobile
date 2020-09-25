@@ -5,10 +5,12 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_state.d
 import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/logout_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_event.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 @injectable
 @lazySingleton
@@ -33,8 +35,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapAppStartedToState() async* {
-    final String token = await secureStorage.read(key: 'token');
-    if (StringUtils.isNotNullOrEmpty(token)) {
+    final String uuidVal = await secureStorage.read(key: 'uuid');
+    if (StringUtils.isNullOrEmpty(uuidVal)) {
+      secureStorage.write(key: 'uuid', value: Uuid().v4());
+    }
+
+    final String profileId = await secureStorage.read(key: 'profileId');
+    final String profileAutolog = await secureStorage.read(key: 'profileAutologUrl');
+    if (StringUtils.isNotNullOrEmpty(profileId) && StringUtils.isNotNullOrEmpty(profileAutolog)) {
       profileBloc.add(ProfileEvent.forceLoadProfile());
       yield AuthState.authenticated();
     } else {
@@ -50,7 +58,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLogoutToState() async* {
     try {
-      String identifier = (await DeviceUtils.getDeviceDetails())['identifier'];
+      FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+      String identifier = await secureStorage.read(key: 'uuid');
       final bool loggedOut = await logoutUseCase(identifier);
       print("logged out: " + loggedOut.toString());
     } catch (err) {

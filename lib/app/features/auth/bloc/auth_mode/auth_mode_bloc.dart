@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/load_profiles_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -32,7 +33,8 @@ class AuthModeBloc extends Bloc<AuthModeEvent, AuthModeState> {
 
   Stream<AuthModeState> _mapShowSigninFormToState() async* {
     try {
-      final String deviceId = (await DeviceUtils.getDeviceDetails())['identifier'];
+      FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+      String deviceId = await secureStorage.read(key: 'uuid');
       final List<ProfileModel> profiles = await loadProfilesUseCase(deviceId);
       profiles.asMap().forEach((key, value) {
         secureStorage.write(key: 'profile' + key.toString(), value: jsonEncode(value));
