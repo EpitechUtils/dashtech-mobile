@@ -37,7 +37,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription </key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save courses or generate QRCode by photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Determine student campus city</string>
