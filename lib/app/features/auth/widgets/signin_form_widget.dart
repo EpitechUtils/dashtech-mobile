@@ -1,4 +1,5 @@
 import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,16 +10,13 @@ import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/signin/signin_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/signin/signin_event.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/signin/signin_state.dart';
-import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/signin_usecase.dart';
-import 'package:epitech_intranet_mobile/app/shared/validators/custom_form_validators.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/delayed_animation_widget.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/rounded_button_widget.dart';
 
 class SigninFormWidget extends StatefulWidget {
-  final String signingUsername;
+  final List<ProfileModel> profiles;
 
-  const SigninFormWidget({Key key, this.signingUsername}) : super(key: key);
+  const SigninFormWidget({Key key, this.profiles}) : super(key: key);
 
   @override
   _SigninFormWidgetState createState() => _SigninFormWidgetState();
@@ -26,11 +24,14 @@ class SigninFormWidget extends StatefulWidget {
 
 class _SigninFormWidgetState extends State<SigninFormWidget> {
   final GlobalKey<FormBuilderState> _signinForm = GlobalKey<FormBuilderState>();
+  final GlobalKey _globalKey = GlobalKey();
   bool _autoValidate = false;
+  String _selectedProfile;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
+      key: _globalKey,
       builder: (BuildContext context, BoxConstraints viewportConstraints) {
         return DelayedAnimation(
           delay: 50,
@@ -59,14 +60,13 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
     return Padding(
       padding: EdgeInsets.only(left: 50, right: 50, bottom: 40),
       child: BlocBuilder<SigninBloc, SigninState>(
-        builder: (context, state) => state is SigninLoading
-            ? LoadingWidget()
-            : RoundedButtonWidget(
-                label: translate(Keys.Auth_Signin_Submit).toUpperCase(),
-                onPressed: () => _dispatchSignin(context),
-                isRaised: true,
-                color: Theme.of(context).primaryColor,
-              ),
+        builder: (context, state) => RoundedButtonWidget(
+          loading: state is SigninLoading,
+          label: translate(Keys.Auth_Signin_Submit).toUpperCase(),
+          onPressed: () => _dispatchSignin(context),
+          isRaised: true,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }
@@ -78,19 +78,24 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           FormBuilderTextField(
-            attribute: 'email',
-            initialValue: widget.signingUsername,
-            autocorrect: false,
+            attribute: 'profile_name',
+            autocorrect: true,
             decoration: InputDecoration(
-              labelText: translate(Keys.Auth_Form_Email),
-              prefixIcon: Icon(Icons.mail_outline),
+              labelText: translate(Keys.Auth_Form_Profile_Name),
+              prefixIcon: Icon(Icons.person_pin),
             ),
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
             validators: [
               FormBuilderValidators.required(
                 errorText: translate(Keys.Forms_Error_Required),
               ),
-              FormBuilderValidators.email(),
+              FormBuilderValidators.maxLength(
+                20,
+                errorText: translate(
+                  Keys.Forms_Error_Maxlength,
+                  args: {'maxLength': '20'},
+                ),
+              )
             ],
           ),
         ],
@@ -119,45 +124,59 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 85),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: _buildProfilesItems(),
+      ),
+    );
+  }
+
+  List<Widget> _buildProfilesItems() {
+    Widget emptyProfile;
+    Function toggleProfile = (id) => () {
+          this.setState(() {
+            _selectedProfile = id;
+          });
+        };
+
+    if (widget.profiles.isEmpty) {
+      return ["empty1", "empty2"].map((id) {
+        return _buildSingleProfileItem(toggleProfile(id), "Profil vide", id);
+      }).toList();
+    } else if (widget.profiles.length == 1) {
+      emptyProfile = _buildSingleProfileItem(toggleProfile('empty2'), "Profil vide", 'empty2');
+    }
+
+    List<Widget> profilesList = widget.profiles.map((ProfileModel profile) {
+      return _buildSingleProfileItem(toggleProfile(profile.id), profile.profileName, profile.id);
+    }).toList();
+    profilesList.add(emptyProfile);
+    return profilesList;
+  }
+
+  Widget _buildSingleProfileItem(VoidCallback callback, String name, String id, {String avatarUrl = null}) {
+    if (_selectedProfile == id) {
+      print(id);
+    }
+
+    // TODO: See selection
+    return GestureDetector(
+      onTap: callback,
+      child: Column(
         children: [
-          Column(
-            children: [
-              SvgPicture.asset(
-                AssetsUtils.svg('user'),
-                width: MediaQuery.of(context).size.width / 5,
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: Text(
-                  "Profil vide",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
-                ),
-              )
-            ],
+          SvgPicture.asset(
+            AssetsUtils.svg(_selectedProfile == id ? 'user_selected' : 'user'),
+            width: MediaQuery.of(context).size.width / 5,
           ),
-          Column(
-            children: [
-              SvgPicture.asset(
-                AssetsUtils.svg('user'),
-                width: MediaQuery.of(context).size.width / 5,
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Text(
+              name,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: Text(
-                  "Profil vide",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+          )
         ],
       ),
     );
@@ -181,7 +200,10 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
   void _dispatchSignin(BuildContext context) {
     if (_signinForm.currentState.validate()) {
       BlocProvider.of<SigninBloc>(context).add(
-        SigninEvent.signin(credentials: Credentials.fromForm(_signinForm)),
+        SigninEvent.intranetSignin(
+          globalKey: _globalKey,
+          profileName: _signinForm.currentState.fields['profile_name'].currentState.value.toString(),
+        ),
       );
     } else {
       setState(() => _autoValidate = true);

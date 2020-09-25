@@ -43,10 +43,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapLoggedInToState(LoggedIn e) async* {
-    secureStorage.write(key: 'token', value: e.authProfile.jwtToken);
-    secureStorage.write(key: 'csrf', value: e.authProfile.csrf);
-    secureStorage.write(key: 'userId', value: e.authProfile.profile.id);
-    secureStorage.write(key: 'email', value: e.authProfile.profile.email);
+    secureStorage.write(key: 'profileId', value: e.authProfile.id);
+    secureStorage.write(key: 'profileAutologUrl', value: e.authProfile.autologUrl);
     yield AuthState.authenticated();
   }
 

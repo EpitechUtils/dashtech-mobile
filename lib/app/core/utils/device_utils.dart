@@ -26,6 +26,7 @@ class DeviceUtils {
       print('Failed to get platform version');
     }
 
+    print(identifier);
     return {'name': deviceName, 'version': deviceVersion, 'identifier': identifier};
   }
 }

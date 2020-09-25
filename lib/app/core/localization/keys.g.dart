@@ -29,7 +29,7 @@ class Keys {
 
   static const String Auth_Signin_Submit = 'auth.signin.submit';
 
-  static const String Auth_Form_Email = 'auth.form.email';
+  static const String Auth_Form_Profile_Name = 'auth.form.profile_name';
 
   static const String Auth_Form_Reset = 'auth.form.reset';
 
@@ -663,7 +663,7 @@ class Keys {
   static const String Httperror_Epitech_Intranet_Mobile_Wallet_Is_Empty =
       'httpError.epitech_intranet_mobile_wallet_is_empty';
 
-  static const String Httperror_Auth_Godfathernotfound = 'httpError.auth.godFatherNotFound';
+  static const String Httperror_Auth_Failed = 'httpError.auth.failed';
 
   static const String Httperror_Auth_User_Not_Found = 'httpError.auth.user_not_found';
 

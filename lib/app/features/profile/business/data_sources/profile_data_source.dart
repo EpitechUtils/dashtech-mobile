@@ -8,7 +8,7 @@ import 'package:epitech_intranet_mobile/app/core/error/exceptions.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/profile_mutations.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/profile_queries.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/register_device_mutations.dart';
-import 'package:epitech_intranet_mobile/app/features/profile/models/profile_model.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 
 @injectable

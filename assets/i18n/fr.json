@@ -24,7 +24,7 @@
             "submit": "Connexion intranet"
         },
         "form": {
-            "email": "Adresse e-mail",
+            "profile_name": "Nom du profil",
             "reset": "Oublié ?"
         },
         "logout": "Vous avez été déconnecté, à bientôt."
@@ -459,7 +459,7 @@
         "prize_pool_must_be_empty": "Pour supprimer votre espace epitech_intranet_mobile, vous devez distribuer l’intégralité de votre cagnotte de dons",
         "epitech_intranet_mobile_wallet_is_empty": "Une erreur est survenue",
         "auth": {
-            "godFatherNotFound": "Le code parrain ne correspond pas à un code existant, veuillez vérifier votre saisie.",
+            "failed": "Une erreur est survenue lors de la connexion. Réessayez plus tard.",
             "user_not_found": "cet utilisateur n'existe pas, veuillez vérifier votre e-mail.",
             "not_found": "Adresse e-mail ou mot de passe incorrect.",
             "mismatched_password": "Mots de passe non identiques.",

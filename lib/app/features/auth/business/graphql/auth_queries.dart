@@ -1,6 +1,11 @@
-final String checkResetCodeQuery = """
-  query checkResetCodeQuery(\$email: String!, \$code: String!) {
-    authCheckResetCode(email: \$email, code: \$code)
+final String authGetProfiles = """
+  query authGetProfiles(\$deviceIdentifier: String!) {
+    authGetProfiles(deviceIdentifier: \$deviceIdentifier) {
+      id
+      profileName
+      deviceIdentifier
+      autologUrl
+    }
   }
 """;
 

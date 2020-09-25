@@ -50,10 +50,11 @@ class AuthPage extends StatelessWidget {
           ),
         ),
         child: BlocBuilder<AuthModeBloc, AuthModeState>(
-            builder: (context, state) => state.when(
-                  init: (_) => PresentationWidget(),
-                  signinMode: (e) => SigninFormWidget(signingUsername: e.signingUsername),
-                )),
+          builder: (context, state) => state.when(
+            init: (_) => PresentationWidget(),
+            signinMode: (e) => SigninFormWidget(profiles: e.profiles),
+          ),
+        ),
       ),
     );
   }

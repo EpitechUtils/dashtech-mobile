@@ -7,6 +7,7 @@ class RoundedButtonWidget extends StatelessWidget {
   final Function onPressed;
   final bool isRaised;
   final bool noBorder;
+  final bool loading;
   final Color color;
 
   const RoundedButtonWidget({
@@ -16,6 +17,7 @@ class RoundedButtonWidget extends StatelessWidget {
     this.height,
     this.fontSize,
     this.isRaised,
+    this.loading = false,
     this.noBorder = false,
     this.color,
   }) : super(key: key);
@@ -69,6 +71,31 @@ class RoundedButtonWidget extends StatelessWidget {
             fontSize: this.fontSize != null ? this.fontSize : 16,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _textOrLoading() {
+    if (loading) {
+      return Row(
+        children: [
+          CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(color)),
+          Text(
+            this.label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: this.fontSize != null ? this.fontSize : 16,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Text(
+      this.label,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: this.fontSize != null ? this.fontSize : 16,
       ),
     );
   }

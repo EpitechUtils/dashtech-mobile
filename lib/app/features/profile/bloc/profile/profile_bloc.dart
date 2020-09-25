@@ -7,7 +7,7 @@ import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profil
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_state.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/use_cases/find_profile_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/use_cases/register_device_usecase.dart';
-import 'package:epitech_intranet_mobile/app/features/profile/models/profile_model.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
 
 @injectable

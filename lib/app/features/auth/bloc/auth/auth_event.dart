@@ -1,5 +1,5 @@
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:super_enum/super_enum.dart';
-import 'package:epitech_intranet_mobile/app/features/auth/models/auth_profile_model.dart';
 
 part 'auth_event.g.dart';
 
@@ -10,7 +10,7 @@ enum _AuthEvent {
   @object
   Logout,
   @Data(fields: [
-    DataField<AuthProfileModel>('authProfile'),
+    DataField<ProfileModel>('authProfile'),
   ])
   LoggedIn,
 }

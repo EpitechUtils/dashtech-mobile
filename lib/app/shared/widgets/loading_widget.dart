@@ -1,5 +1,8 @@
+import 'dart:math';
+
+import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -9,8 +12,18 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(width: 65, height: 65, child: Lottie.asset(AssetsUtils.animation('loader'), repeat: true)),
+    return Animator(
+      tween: Tween<double>(begin: 0.8, end: 2 * pi),
+      duration: Duration(milliseconds: 1500),
+      curve: Curves.elasticOut,
+      cycles: 0,
+      builder: (context, anim, child) => Transform.rotate(
+        angle: anim.value,
+        child: SvgPicture.asset(
+          AssetsUtils.svg('logo_block'),
+          width: 50,
+        ),
+      ),
     );
   }
 }
