@@ -37,8 +37,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>Purpose</key>
-	<string>Epitech Intranet</string>
+	<key>NSPhotoLibraryUsageDescription </key>
+	<string>Save courses or generate QRCode by photo</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Determine student campus city</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
