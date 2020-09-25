@@ -14,7 +14,7 @@ abstract class AuthEvent extends Equatable {
 
   factory AuthEvent.logout() = Logout;
 
-  factory AuthEvent.loggedIn({@required AuthProfileModel authProfile}) = LoggedIn;
+  factory AuthEvent.loggedIn({@required ProfileModel authProfile}) = LoggedIn;
 
   final _AuthEvent _type;
 
@@ -166,7 +166,7 @@ class Logout extends AuthEvent {
 class LoggedIn extends AuthEvent {
   const LoggedIn({@required this.authProfile}) : super(_AuthEvent.LoggedIn);
 
-  final AuthProfileModel authProfile;
+  final ProfileModel authProfile;
 
   @override
   String toString() => 'LoggedIn(authProfile:${this.authProfile})';

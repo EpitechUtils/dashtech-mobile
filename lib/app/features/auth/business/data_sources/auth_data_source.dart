@@ -1,3 +1,4 @@
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -6,8 +7,6 @@ import 'package:epitech_intranet_mobile/app/core/error/exceptions.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/graphql/auth_mutations.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/graphql/auth_queries.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/signin_usecase.dart';
-import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/signup_usecase.dart';
-import 'package:epitech_intranet_mobile/app/features/auth/models/auth_profile_model.dart';
 
 @injectable
 @lazySingleton
@@ -16,39 +15,34 @@ class AuthDataSource {
 
   AuthDataSource({@required this.client}) : assert(client != null);
 
-  /// Create account
-  Future<AuthProfileModel> signup(UserRegister userRegister) async {
+  /// Login into application
+  Future<ProfileModel> signin(Credentials credentials) async {
     final QueryResult result = await client.mutate(MutationOptions(
-      documentNode: gql(signupMutation),
+      documentNode: gql(authCreateProfile),
       variables: {
-        'username': userRegister.username,
-        'lastName': userRegister.lastName,
-        'firstName': userRegister.firstName,
-        'email': userRegister.email,
-        'password': userRegister.password,
-        'gender': userRegister.gender,
-        'birthDate': userRegister.birthDate,
+        'input': {
+          'deviceIdentifier': credentials.identifier,
+          'profileName': credentials.profileName,
+          'autologUrl': credentials.autologUrl,
+        },
       },
     ));
     if (result.hasException) {
       manageError(result);
     }
-    return AuthProfileModel.fromJson(result.data['authRegister']);
+    return ProfileModel.fromJson(result.data['authCreateProfile']);
   }
 
-  /// Login into application
-  Future<AuthProfileModel> signin(Credentials credentials) async {
-    final QueryResult result = await client.mutate(MutationOptions(
-      documentNode: gql(signinMutation),
-      variables: {
-        'username': credentials.username,
-        'password': credentials.password,
-      },
+  Future<List<ProfileModel>> getRegisteredProfiles(String deviceIdentifier) async {
+    final QueryResult result = await client.query(QueryOptions(
+      documentNode: gql(authGetProfiles),
+      variables: {'deviceIdentifier': deviceIdentifier},
     ));
     if (result.hasException) {
       manageError(result);
     }
-    return AuthProfileModel.fromJson(result.data['authLogin']);
+    final json = result.data['authGetProfiles'] as List;
+    return json.map((dynamic model) => ProfileModel.fromJson(model)).toList();
   }
 
   /// Logout user

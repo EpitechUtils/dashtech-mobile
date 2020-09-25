@@ -7,18 +7,16 @@ part 'profile_model.g.dart';
 class ProfileModel extends Equatable {
   @JsonKey(nullable: true)
   final String id;
-  final String firstName;
-  final String lastName;
-  final String email;
+  final String profileName;
+  final String deviceIdentifier;
   final String autologUrl;
-  final String avatarUrl;
 
-  ProfileModel(this.id, this.firstName, this.lastName, this.email, this.autologUrl, this.avatarUrl);
+  ProfileModel(this.id, this.profileName, this.deviceIdentifier, this.autologUrl);
 
   factory ProfileModel.fromJson(Map<dynamic, dynamic> json) => _$ProfileModelFromJson(json);
 
   Map<dynamic, dynamic> toJson() => _$ProfileModelToJson(this);
 
   @override
-  List<Object> get props => [id, firstName, lastName, email, autologUrl, avatarUrl];
+  List<Object> get props => [id, profileName, deviceIdentifier, autologUrl];
 }

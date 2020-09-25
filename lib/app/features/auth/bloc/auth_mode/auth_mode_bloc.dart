@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/load_profiles_usecase.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,8 +14,9 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mo
 @lazySingleton
 class AuthModeBloc extends Bloc<AuthModeEvent, AuthModeState> {
   final FlutterSecureStorage secureStorage;
+  final LoadProfilesUseCase loadProfilesUseCase;
 
-  AuthModeBloc({@required this.secureStorage}) : super(AuthModeState.init());
+  AuthModeBloc({@required this.secureStorage, @required this.loadProfilesUseCase}) : super(AuthModeState.init());
 
   @override
   Stream<AuthModeState> mapEventToState(AuthModeEvent event) async* {
@@ -26,10 +32,14 @@ class AuthModeBloc extends Bloc<AuthModeEvent, AuthModeState> {
 
   Stream<AuthModeState> _mapShowSigninFormToState() async* {
     try {
-      final String signingUsername = await secureStorage.read(key: 'email');
-      yield AuthModeState.signinMode(signingUsername: signingUsername);
+      final String deviceId = (await DeviceUtils.getDeviceDetails())['identifier'];
+      final List<ProfileModel> profiles = await loadProfilesUseCase(deviceId);
+      profiles.asMap().forEach((key, value) {
+        secureStorage.write(key: 'profile' + key.toString(), value: jsonEncode(value));
+      });
+      yield AuthModeState.signinMode(profiles: profiles);
     } catch (e) {
-      yield AuthModeState.signinMode(signingUsername: "");
+      yield AuthModeState.signinMode(profiles: []);
     }
   }
 }
