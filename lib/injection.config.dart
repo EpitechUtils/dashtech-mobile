@@ -20,6 +20,7 @@ import 'app/core/graphql/graphql_injectable_module.dart';
 import 'app/core/http_client/http_client_injectable_module.dart';
 import 'app/features/auth/business/use_cases/load_profiles_usecase.dart';
 import 'app/features/auth/business/use_cases/logout_usecase.dart';
+import 'app/features/navigation/bloc/navigation_bloc.dart';
 import 'app/features/profile/bloc/profile/profile_bloc.dart';
 import 'app/features/profile/business/data_sources/profile_data_source.dart';
 import 'app/features/profile/bloc/profile_delete/profile_delete_bloc.dart';
@@ -43,6 +44,7 @@ GetIt $initGetIt(
   gh.lazySingleton<Dio>(() => httpClientInjectableModule.dio);
   gh.lazySingleton<FlutterSecureStorage>(() => secureStorageInjectableModule.flutterSecureStorage);
   gh.lazySingleton<GraphQLClient>(() => graphqlInjectableModule.graphqlClient);
+  gh.factory<NavigationBloc>(() => NavigationBloc());
   gh.factory<ProfileDataSource>(() => ProfileDataSource(client: get<GraphQLClient>()));
   gh.factory<RegisterDeviceUseCase>(() => RegisterDeviceUseCase(get<ProfileDataSource>()));
   gh.factory<AuthDataSource>(() => AuthDataSource(client: get<GraphQLClient>()));
