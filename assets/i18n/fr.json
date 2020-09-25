@@ -1,4 +1,11 @@
 {
+    "tabs": {
+        "home": {
+            "activities": "Activités",
+            "modules": "Modules",
+            "projects": "Projets"
+        }
+    },
     "auth": {
         "carousel": {
             "first": {

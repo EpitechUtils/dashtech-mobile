@@ -8,6 +8,7 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mo
 import 'package:epitech_intranet_mobile/app/features/auth/pages/auth_page.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/pages/splash_page.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/pages/dash_week_planning_page.dart';
+import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/pages/main_navigator_page.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_bloc.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
@@ -40,6 +41,9 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
         ),
         BlocProvider<ProfileBloc>(
           create: (BuildContext context) => getIt<ProfileBloc>(),
+        ),
+        BlocProvider<NavigationBloc>(
+          create: (BuildContext context) => getIt<NavigationBloc>(),
         ),
       ],
       child: LocalizationProvider(
