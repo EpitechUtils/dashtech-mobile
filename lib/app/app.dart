@@ -7,6 +7,8 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_state.d
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mode_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/pages/auth_page.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/pages/splash_page.dart';
+import 'package:epitech_intranet_mobile/app/features/dashboard/pages/dash_week_planning_page.dart';
+import 'package:epitech_intranet_mobile/app/features/navigation/pages/main_navigator_page.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_bloc.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,7 +66,7 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
               child: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) => state.when(
                   uninitialized: (_) => SplashPage(),
-                  authenticated: (_) => SplashPage(),
+                  authenticated: (_) => MainNavigatorPage(),
                   unAuthenticated: (_) => AuthPage(),
                 ),
               ),
