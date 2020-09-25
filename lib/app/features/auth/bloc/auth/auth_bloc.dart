@@ -41,8 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     final String profileId = await secureStorage.read(key: 'profileId');
-    final String profileAutolog = await secureStorage.read(key: 'profileAutologUrl');
-    if (StringUtils.isNotNullOrEmpty(profileId) && StringUtils.isNotNullOrEmpty(profileAutolog)) {
+    if (StringUtils.isNotNullOrEmpty(profileId)) {
       profileBloc.add(ProfileEvent.forceLoadProfile());
       yield AuthState.authenticated();
     } else {
@@ -52,7 +51,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLoggedInToState(LoggedIn e) async* {
     secureStorage.write(key: 'profileId', value: e.authProfile.id);
-    secureStorage.write(key: 'profileAutologUrl', value: e.authProfile.autologUrl);
     yield AuthState.authenticated();
   }
 
