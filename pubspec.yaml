@@ -61,6 +61,7 @@ dependencies:
   flutter_staggered_animations: ^0.1.2
   carousel_pro: ^1.0.0
   animator: ^2.0.1
+  animated_bottom_navigation_bar: ^0.1.2+2
 
 dev_dependencies:
   flutter_translate_gen: ^1.2.4
