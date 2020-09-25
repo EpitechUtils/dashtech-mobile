@@ -37,12 +37,10 @@ class Graphql {
   static CustomAuthLink authLink() {
     return CustomAuthLink(getHeaders: () async {
       final FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
-      final String csrf = await secureStorage.read(key: 'csrf');
-      final String jwtToken = await secureStorage.read(key: 'token');
+      final String profile = await secureStorage.read(key: 'profileId');
 
       return {
-        'x-csrf-token': StringUtils.isNotNullOrEmpty(csrf) ? csrf : '',
-        'authorization': StringUtils.isNotNullOrEmpty(jwtToken) ? "Bearer " + jwtToken : '',
+        'x-profile-identifier': StringUtils.isNotNullOrEmpty(profile) ? profile : '',
       };
     });
   }
