@@ -13,6 +13,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'app/features/auth/bloc/auth/auth_bloc.dart';
 import 'app/features/auth/business/data_sources/auth_data_source.dart';
 import 'app/features/auth/bloc/auth_mode/auth_mode_bloc.dart';
+import 'app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'app/features/dashboard/business/data_sources/dashboard_data_source.dart';
 import 'app/features/profile/business/use_cases/delete_profile_usecase.dart';
 import 'app/features/profile/business/use_cases/find_profile_usecase.dart';
@@ -67,6 +68,7 @@ GetIt $initGetIt(
       ));
   gh.factory<AuthModeBloc>(
       () => AuthModeBloc(secureStorage: get<FlutterSecureStorage>(), loadProfilesUseCase: get<LoadProfilesUseCase>()));
+  gh.factory<DashActivitiesBloc>(() => DashActivitiesBloc(findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
   gh.factory<ProfileDeleteBloc>(
       () => ProfileDeleteBloc(deleteProfileUseCase: get<DeleteProfileUseCase>(), authBloc: get<AuthBloc>()));
   gh.factory<SigninBloc>(() => SigninBloc(

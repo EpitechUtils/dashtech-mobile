@@ -68,7 +68,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
           backgroundColor: Color(0xff2979ff),
           tooltip: "Absences",
           child: Icon(
-            Icons.playlist_add_check,
+            Icons.code,
             color: Colors.white,
           ),
           onPressed: () {},
@@ -105,9 +105,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
             return LoadingWidget();
           },
           loading: (e) => LoadingWidget(),
-          home: (e) => DashInitialPage(
-            weekActivities: e.weekActivities,
-          ),
+          home: (e) => DashInitialPage(),
           planning: (e) => Container(),
           notifications: (e) => Container(),
           settings: (e) => Container(),
