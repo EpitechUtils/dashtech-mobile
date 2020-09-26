@@ -16,6 +16,11 @@ final String planningWeekActivities = """
       is_rdv
       type_title
       type_code
+      room {
+        code
+        type
+        seats
+      }
     }
   }
 """;

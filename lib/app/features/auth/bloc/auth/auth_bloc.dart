@@ -36,13 +36,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapAppStartedToState() async* {
     final String uuidVal = await secureStorage.read(key: 'uuid');
+    print(uuidVal);
     if (StringUtils.isNullOrEmpty(uuidVal)) {
       secureStorage.write(key: 'uuid', value: Uuid().v4());
     }
 
     final String profileId = await secureStorage.read(key: 'profileId');
     if (StringUtils.isNotNullOrEmpty(profileId)) {
-      profileBloc.add(ProfileEvent.forceLoadProfile());
+      //profileBloc.add(ProfileEvent.forceLoadProfile());
       yield AuthState.authenticated();
     } else {
       yield AuthState.unAuthenticated();

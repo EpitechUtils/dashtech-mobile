@@ -25,7 +25,6 @@ class _DashInitialPage extends State<DashInitialPage> with SingleTickerProviderS
   void dispose() {
     super.dispose();
     _tabController.dispose();
-    ;
   }
 
   @override
@@ -33,9 +32,12 @@ class _DashInitialPage extends State<DashInitialPage> with SingleTickerProviderS
     return Column(
       children: [
         TabBarSubHeaderWidget(
-            _tabController, [Keys.Tabs_Home_Activities, Keys.Tabs_Home_Modules, Keys.Tabs_Home_Projects]),
+          _tabController,
+          [Keys.Tabs_Home_Activities, Keys.Tabs_Home_Modules, Keys.Tabs_Home_Projects],
+        ),
         Expanded(
           child: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
               ActivitiesListWidget(widget.weekActivities),
