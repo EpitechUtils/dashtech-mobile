@@ -30,6 +30,7 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
   @override
   Widget build(BuildContext context) {
     LocalizationDelegate localDelegate = LocalizedApp.of(context).delegate;
+    getIt<FlutterSecureStorage>().write(key: 'profileId', value: '7b3b4a06-0436-400c-9c92-046665b33507');
 
     return MultiBlocProvider(
       providers: [

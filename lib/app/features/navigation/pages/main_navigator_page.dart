@@ -1,8 +1,14 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_bloc.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_event.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mode_bloc.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mode_event.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/pages/dash_initial_page.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_bloc.dart';
+import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_event.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_state.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +18,13 @@ class MainNavigatorPage extends StatefulWidget {
 }
 
 class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderStateMixin {
+  final List<NavigationEvent> bottomNavEvents = [
+    NavigationEvent.goHome(),
+    NavigationEvent.goPlanning(),
+    NavigationEvent.goNotifications(),
+    NavigationEvent.goSettings(),
+  ];
+
   var _bottomNavIndex = 0; //default index of first screen
 
   AnimationController _animationController;
@@ -63,7 +76,12 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: [Icons.home, Icons.calendar_today, Icons.notifications_active, Icons.settings],
+        icons: [
+          Icons.home,
+          Icons.calendar_today,
+          Icons.notifications_active,
+          Icons.settings,
+        ],
         backgroundColor: Theme.of(context).primaryColor,
         activeIndex: _bottomNavIndex,
         activeColor: Colors.white,
@@ -75,11 +93,21 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
         gapLocation: GapLocation.center,
         leftCornerRadius: 25,
         rightCornerRadius: 25,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
+        onTap: (index) {
+          setState(() => _bottomNavIndex = index);
+          BlocProvider.of<NavigationBloc>(context).add(bottomNavEvents[index]);
+        },
       ),
       body: BlocBuilder<NavigationBloc, NavigationState>(
         builder: (context, state) => state.when(
-          home: (e) => DashInitialPage(),
+          init: (e) {
+            BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.goHome());
+            return LoadingWidget();
+          },
+          loading: (e) => LoadingWidget(),
+          home: (e) => DashInitialPage(
+            weekActivities: e.weekActivities,
+          ),
           planning: (e) => Container(),
           notifications: (e) => Container(),
           settings: (e) => Container(),
@@ -94,7 +122,10 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
       actions: [
         IconButton(
           icon: Icon(Icons.power_settings_new),
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<AuthBloc>(context).add(AuthEvent.logout());
+            BlocProvider.of<AuthModeBloc>(context).add(AuthModeEvent.showSigninForm());
+          },
           color: Colors.white,
         )
       ],
