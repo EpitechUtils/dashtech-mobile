@@ -27,7 +27,8 @@ platform :ios do
         }
     )
     upload_to_testflight
-    upload_dsyms
+    #upload_dsyms
+    clean_build_artifacts
   end
 
   desc "Just push a new beta build to TestFlight"
@@ -38,6 +39,5 @@ platform :ios do
   desc "Refresh DSYMs files from iTunes Connect and upload symbols to Crashlytics"
   lane :upload_dsyms do
     upload_symbols_to_crashlytics(gsp_path: "./Runner/GoogleService-Info.plist")
-    clean_build_artifacts
   end
 end

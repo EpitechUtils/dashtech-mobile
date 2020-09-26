@@ -462,7 +462,7 @@
     },
     "httpError": {
         "unavailable": "Services actuellement en maintenance. Veuillez réessayer plus tard.",
-        "internal": "Une erreur inconnue est survenue. Le problème a été remonté aux développeurs.",
+        "internal": "Une erreur inconnue est survenue. Veuillez réessayer ultérieurement.",
         "prize_pool_must_be_empty": "Pour supprimer votre espace epitech_intranet_mobile, vous devez distribuer l’intégralité de votre cagnotte de dons",
         "epitech_intranet_mobile_wallet_is_empty": "Une erreur est survenue",
         "auth": {
@@ -480,7 +480,7 @@
             "unvailable": "Impossible de contacter le serveur. Veuillez réessayer ultérieurement.",
             "tokenExpired": "Votre session a expiré, merci de vous reconnecter"
         },
-        "general": "Une erreur est survenue lors de la mise à jour des données depuis nos serveurs. Veuillez réessayer utltérieurement.",
+        "general": "Une erreur est survenue lors de la mise à jour des données depuis les serveurs d'Epitech. Veuillez réessayer utltérieurement.",
         "tax_receipt": "Une erreur lors du téléchargement de vos reçu fiscaux est survenue. Veuillez réessayer ultérieurement."
     },
     "forms": {

@@ -69,6 +69,8 @@ class DashActivitiesBloc extends Bloc<DashActivitiesEvent, DashActivitiesState> 
     final List<PlanningActivityModel> rawActivities = await findWeekActivitiesUseCase();
     final SplayTreeMap<String, List<PlanningActivityModel>> weekActivities =
         SplayTreeMap<String, List<PlanningActivityModel>>();
+
+    rawActivities.sort((a, b) => DateTime.parse(a.start).compareTo(DateTime.parse(b.start)));
     rawActivities.forEach((activity) {
       String key = activity.start.split(" ")[0];
       if (!weekActivities.containsKey(key)) {

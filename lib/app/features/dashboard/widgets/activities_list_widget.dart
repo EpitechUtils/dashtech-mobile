@@ -3,8 +3,10 @@ import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activit
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_event.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_state.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/activities_list_loading_widget.dart';
+import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/empty_activities_widget.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:epitech_intranet_mobile/app/shared/utils/activity_color_utils.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -30,8 +32,10 @@ class ActivitiesListWidget extends StatelessWidget {
   }
 
   _buildContent(BuildContext context, ActivitiesList e) {
-    if (e.weekActivities == null || e.weekActivities.isEmpty) {
-      return Text("error or empty");
+    if (e.weekActivities == null) {
+      return CustomErrorWidget();
+    } else if (e.weekActivities.isEmpty) {
+      return EmptyActivitiesWidget();
     }
 
     return SmartRefresher(
@@ -41,6 +45,7 @@ class ActivitiesListWidget extends StatelessWidget {
       },
       controller: _refreshController,
       child: ListView.builder(
+        padding: const EdgeInsets.only(bottom: 130),
         itemCount: e.weekActivities.length,
         itemBuilder: (BuildContext ctxt, int index) {
           return Container(
