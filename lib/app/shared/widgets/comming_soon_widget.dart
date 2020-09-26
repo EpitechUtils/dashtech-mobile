@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class CustomErrorWidget extends StatelessWidget {
+class CommingSoonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,12 +14,12 @@ class CustomErrorWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            AssetsUtils.svg('browser'),
+            AssetsUtils.svg('cpu'),
             width: MediaQuery.of(context).size.width / 3,
           ),
           SizedBox(height: 20),
           Text(
-            translate(Keys.Toastr_Error).toUpperCase(),
+            "Bientôt disponible".toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class CustomErrorWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: Text(
-              translate(Keys.Httperror_General),
+              "Cette fonctionnalité n'est pas encore déployée sur cette application.\nActives les notifications pour être averti d'une nouvelle mise à jour !",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,

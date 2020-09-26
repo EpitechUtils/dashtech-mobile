@@ -7,21 +7,17 @@ import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_state.d
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth_mode/auth_mode_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/pages/auth_page.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/pages/splash_page.dart';
-import 'package:epitech_intranet_mobile/app/features/dashboard/pages/dash_week_planning_page.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/pages/main_navigator_page.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profile_bloc.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:uuid/uuid.dart';
 
 class EpitechIntraMobileApp extends StatefulWidget {
   @override
@@ -32,7 +28,7 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
   @override
   Widget build(BuildContext context) {
     LocalizationDelegate localDelegate = LocalizedApp.of(context).delegate;
-    //getIt<FlutterSecureStorage>().write(key: 'profileId', value: '7b3b4a06-0436-400c-9c92-046665b33507');
+    //getIt<FlutterSecureStorage>().write(key: 'profileId', value: 'bcd8e6f5-53d0-4b2f-97ee-0095f6eb1c71');
 
     return MultiBlocProvider(
       providers: [

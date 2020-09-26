@@ -13,7 +13,7 @@ final DefaultPolicies defaultPolicies = DefaultPolicies(
   ),
   query: Policies(
     error: ErrorPolicy.all,
-    fetch: FetchPolicy.noCache,
+    fetch: FetchPolicy.cacheAndNetwork,
   ),
   watchQuery: Policies(
     error: ErrorPolicy.ignore,

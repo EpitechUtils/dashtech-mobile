@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class CustomErrorWidget extends StatelessWidget {
+class EmptyActivitiesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +19,7 @@ class CustomErrorWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            translate(Keys.Toastr_Error).toUpperCase(),
+            "Aucune activités".toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class CustomErrorWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: Text(
-              translate(Keys.Httperror_General),
+              "Il semblerait que rien ne soit encore programmé cette semaine et la semaine prochaine.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,

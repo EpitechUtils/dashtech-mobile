@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (err) {
       print(err);
     }*/
-    secureStorage.deleteAll();
+    secureStorage.delete(key: 'profileId');
     yield AuthState.unAuthenticated();
   }
 }
