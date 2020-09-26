@@ -7,7 +7,7 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
     return Expanded(
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        highlightColor: Colors.grey[200],
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
@@ -19,13 +19,43 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(bottom: 3),
-                      width: 58,
+                      margin: const EdgeInsets.only(bottom: 5),
+                      width: 75,
                       height: 18,
                       color: Colors.white,
                     ),
                     Container(
-                      width: 29,
+                      width: 96,
+                      height: 14,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Container(
+                    height: 80,
+                    color: Colors.white,
+                    child: Container(),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 10, top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 5),
+                      width: 75,
+                      height: 18,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      width: 96,
                       height: 14,
                       color: Colors.white,
                     ),
@@ -33,9 +63,10 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                 ),
               ),
               ListView.builder(
+                padding: EdgeInsets.zero,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 7,
+                itemCount: 3,
                 itemBuilder: (BuildContext ctxt2, int index2) {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 10),
@@ -49,7 +80,45 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                     ),
                   );
                 },
-              )
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 10, top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 5),
+                      width: 75,
+                      height: 18,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      width: 96,
+                      height: 14,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+              ListView.builder(
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 2,
+                itemBuilder: (BuildContext ctxt2, int index2) {
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Container(
+                        height: 80,
+                        color: Colors.white,
+                        child: Container(),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
