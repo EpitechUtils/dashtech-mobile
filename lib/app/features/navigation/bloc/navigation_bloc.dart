@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:basic_utils/basic_utils.dart';
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/toast_utils.dart';
@@ -43,7 +45,8 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     yield NavigationState.loading();
     try {
       final List<PlanningActivityModel> rawActivities = await findWeekActivitiesUseCase();
-      final Map<String, List<PlanningActivityModel>> weekActivities = {};
+      final SplayTreeMap<String, List<PlanningActivityModel>> weekActivities =
+          SplayTreeMap<String, List<PlanningActivityModel>>();
       rawActivities.forEach((activity) {
         String key = activity.start.split(" ")[0];
         if (!weekActivities.containsKey(key)) {

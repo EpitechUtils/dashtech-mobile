@@ -1,3 +1,4 @@
+import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_room_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -31,6 +32,7 @@ class PlanningActivityModel extends Equatable {
   String type_code;
   @JsonKey(nullable: true)
   bool past;
+  PlanningActivityRoomModel room;
 
   PlanningActivityModel(
       this.scolaryear,
@@ -53,7 +55,8 @@ class PlanningActivityModel extends Equatable {
       this.is_rdv,
       this.type_title,
       this.type_code,
-      this.past);
+      this.past,
+      this.room);
 
   factory PlanningActivityModel.fromJson(Map<dynamic, dynamic> json) => _$PlanningActivityModelFromJson(json);
 
@@ -81,6 +84,7 @@ class PlanningActivityModel extends Equatable {
         is_rdv,
         type_title,
         type_code,
-        past
+        past,
+        room
       ];
 }

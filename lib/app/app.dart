@@ -14,11 +14,13 @@ import 'package:epitech_intranet_mobile/app/features/profile/bloc/profile/profil
 import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:uuid/uuid.dart';
 
 class EpitechIntraMobileApp extends StatefulWidget {
@@ -49,30 +51,41 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
       ],
       child: LocalizationProvider(
         state: LocalizationProvider.of(context).state,
-        child: StyledToast(
-          movingOnWindowChange: true,
-          locale: const Locale('fr', 'FR'),
-          child: MaterialApp(
-            title: 'ZAYBE',
-            theme: _defaultThemeData(),
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              DefaultCupertinoLocalizations.delegate,
-              localDelegate
-            ],
-            supportedLocales: localDelegate.supportedLocales,
-            locale: localDelegate.currentLocale,
-            color: Color(0xff2196f3),
-            home: GestureDetector(
-              onTap: () => KeyboardUtils.hide(context),
-              child: BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) => state.when(
-                  uninitialized: (_) => SplashPage(),
-                  authenticated: (_) => MainNavigatorPage(),
-                  unAuthenticated: (_) => AuthPage(),
+        child: RefreshConfiguration(
+          headerBuilder: () => WaterDropHeader(),
+          headerTriggerDistance: 80,
+          springDescription: SpringDescription(stiffness: 170, damping: 16, mass: 1.9),
+          maxOverScrollExtent: 100,
+          maxUnderScrollExtent: 0,
+          enableScrollWhenRefreshCompleted: true,
+          enableLoadingWhenFailed: true,
+          hideFooterWhenNotFull: false,
+          enableBallisticLoad: true,
+          child: StyledToast(
+            movingOnWindowChange: true,
+            locale: const Locale('fr', 'FR'),
+            child: MaterialApp(
+              title: 'ZAYBE',
+              theme: _defaultThemeData(),
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                DefaultCupertinoLocalizations.delegate,
+                localDelegate
+              ],
+              supportedLocales: localDelegate.supportedLocales,
+              locale: localDelegate.currentLocale,
+              color: Color(0xff2196f3),
+              home: GestureDetector(
+                onTap: () => KeyboardUtils.hide(context),
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) => state.when(
+                    uninitialized: (_) => SplashPage(),
+                    authenticated: (_) => MainNavigatorPage(),
+                    unAuthenticated: (_) => AuthPage(),
+                  ),
                 ),
               ),
             ),

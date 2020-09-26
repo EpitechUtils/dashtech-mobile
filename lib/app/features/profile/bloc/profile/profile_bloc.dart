@@ -25,24 +25,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     yield* event.when(
       loadProfile: (e) => _mapLoadToState(e),
-      forceLoadProfile: (e) => _mapForceLoadToState(),
       registerNewDevice: (e) => _mapRegisterNewDeviceToState(e),
     );
   }
 
   Stream<ProfileState> _mapLoadToState(LoadProfile event) async* {
     yield ProfileState.loaded(profile: event.profile);
-  }
-
-  Stream<ProfileState> _mapForceLoadToState() async* {
-    yield ProfileState.loading();
-    try {
-      final ProfileModel profile = await findProfileUseCase();
-      yield ProfileState.loaded(profile: profile);
-    } catch (failure) {
-      ToastUtils.error(failure.message);
-      yield ProfileState.error();
-    }
   }
 
   Stream<ProfileState> _mapRegisterNewDeviceToState(RegisterNewDevice event) async* {

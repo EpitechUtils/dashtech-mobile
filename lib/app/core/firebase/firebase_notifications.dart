@@ -42,9 +42,9 @@ class FirebaseNotifications {
   Future<void> _saveDeviceToken() async {
     final String deviceToken = await _fcm.getToken();
     if (StringUtils.isNotNullOrEmpty(deviceToken)) {
-      getIt<ProfileBloc>().add(
+      /*getIt<ProfileBloc>().add(
         ProfileEvent.registerNewDevice(token: deviceToken),
-      );
+      );*/
     }
   }
 
