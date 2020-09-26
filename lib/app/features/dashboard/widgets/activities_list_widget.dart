@@ -1,4 +1,5 @@
 import 'package:basic_utils/basic_utils.dart';
+import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_event.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_state.dart';
@@ -46,7 +47,7 @@ class ActivitiesListWidget extends StatelessWidget {
       },
       controller: _refreshController,
       child: ListView.builder(
-        padding: const EdgeInsets.only(bottom: 130),
+        padding: const EdgeInsets.only(bottom: 130, top: 20),
         itemCount: e.weekActivities.length,
         itemBuilder: (BuildContext ctxt, int index) {
           return Container(
@@ -124,7 +125,8 @@ class ActivitiesListWidget extends StatelessWidget {
             actionPane: SlidableBehindActionPane(),
             secondaryActions: [
               IconSlideAction(
-                caption: activity.event_registered == "registered" ? "Se désinscrire" : "S'inscrire",
+                caption: translate(
+                    activity.event_registered == "registered" ? Keys.Actions_Unregister : Keys.Actions_Register),
                 color: activity.event_registered == "registered" ? Colors.red : Colors.green,
                 icon: activity.event_registered == "registered" ? Icons.maximize : Icons.add,
                 onTap: () => {
