@@ -10,7 +10,6 @@ class TabBarSubHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: TabBar(
         controller: _controller,

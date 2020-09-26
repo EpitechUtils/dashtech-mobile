@@ -8,6 +8,7 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
       baseColor: Colors.grey[300],
       highlightColor: Colors.grey[200],
       child: Container(
+        padding: const EdgeInsets.only(top: 20),
         margin: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,12 +22,18 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5),
                     width: 75,
                     height: 20,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                   Container(
                     width: 96,
                     height: 14,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                 ],
               ),
@@ -51,12 +58,18 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5),
                     width: 75,
                     height: 20,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                   Container(
                     width: 96,
                     height: 14,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                 ],
               ),
@@ -89,12 +102,18 @@ class ActivitiesListLoadingWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5),
                     width: 75,
                     height: 20,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                   Container(
                     width: 96,
                     height: 14,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                 ],
               ),

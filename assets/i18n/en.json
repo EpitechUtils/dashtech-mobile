@@ -65,7 +65,9 @@
     "reset": "Réinitialiser",
     "next": "Suivant",
     "cancel": "Retour",
-    "confirm": "Confirmer"
+    "confirm": "Confirmer",
+    "register": "Register",
+    "unregister": "Unregister"
   },
   "toastr": {
     "success": "Success",
