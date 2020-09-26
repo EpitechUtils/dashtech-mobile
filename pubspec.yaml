@@ -52,6 +52,7 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
   flutter_svg: ^0.19.0
   uuid: ^2.2.2
+  intl: ^0.16.1
 
   # Design elements
   flutter_styled_toast: ^1.4.0+1

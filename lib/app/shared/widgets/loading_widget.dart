@@ -12,16 +12,18 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Animator(
-      tween: Tween<double>(begin: 0.8, end: 2 * pi),
-      duration: Duration(milliseconds: 1500),
-      curve: Curves.elasticOut,
-      cycles: 0,
-      builder: (context, anim, child) => Transform.rotate(
-        angle: anim.value,
-        child: SvgPicture.asset(
-          AssetsUtils.svg('logo_block'),
-          width: 50,
+    return Center(
+      child: Animator(
+        tween: Tween<double>(begin: 0.8, end: 2 * pi),
+        duration: Duration(milliseconds: 1500),
+        curve: Curves.elasticOut,
+        cycles: 0,
+        builder: (context, anim, child) => Transform.rotate(
+          angle: anim.value,
+          child: SvgPicture.asset(
+            AssetsUtils.svg('logo_block'),
+            width: 50,
+          ),
         ),
       ),
     );

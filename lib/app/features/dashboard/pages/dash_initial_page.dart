@@ -1,9 +1,14 @@
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
+import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/activities_list_widget.dart';
+import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/tabbar_subheader_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 
 class DashInitialPage extends StatefulWidget {
+  final Map<String, List<PlanningActivityModel>> weekActivities;
+
+  DashInitialPage({@required this.weekActivities});
+
   State<StatefulWidget> createState() => _DashInitialPage();
 }
 
@@ -33,7 +38,7 @@ class _DashInitialPage extends State<DashInitialPage> with SingleTickerProviderS
           child: TabBarView(
             controller: _tabController,
             children: [
-              Icon(Icons.apps),
+              ActivitiesListWidget(widget.weekActivities),
               Icon(Icons.movie),
               Icon(Icons.games),
             ],

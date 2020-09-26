@@ -55,14 +55,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapLogoutToState() async* {
-    try {
+    /*try {
       FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
       String identifier = await secureStorage.read(key: 'uuid');
       final bool loggedOut = await logoutUseCase(identifier);
       print("logged out: " + loggedOut.toString());
     } catch (err) {
       print(err);
-    }
+    }*/
     secureStorage.deleteAll();
     yield AuthState.unAuthenticated();
   }
