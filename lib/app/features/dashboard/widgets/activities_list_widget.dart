@@ -2,9 +2,9 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_event.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_state.dart';
+import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/activities_list_loading_widget.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:epitech_intranet_mobile/app/shared/utils/activity_color_utils.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -21,9 +21,9 @@ class ActivitiesListWidget extends StatelessWidget {
       builder: (context, state) => state.when(
         init: (e) {
           BlocProvider.of<DashActivitiesBloc>(context).add(DashActivitiesEvent.listActivities());
-          return LoadingWidget();
+          return ActivitiesListLoadingWidget();
         },
-        loading: (e) => LoadingWidget(),
+        loading: (e) => ActivitiesListLoadingWidget(),
         activitiesList: (e) => _buildContent(context, e),
       ),
     );
