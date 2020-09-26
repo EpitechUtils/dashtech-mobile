@@ -1,8 +1,6 @@
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/activities_list_widget.dart';
-import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/empty_activities_widget.dart';
-import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/tabbar_subheader_widget.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
@@ -43,7 +41,11 @@ class _DashInitialPage extends State<DashInitialPage> with SingleTickerProviderS
             child: FadeInAnimation(
               child: TabBarSubHeaderWidget(
                 _tabController,
-                [Keys.Tabs_Home_Activities, Keys.Tabs_Home_Modules, Keys.Tabs_Home_Projects],
+                [
+                  Keys.Dashboard_Tabs_Home_Activities,
+                  Keys.Dashboard_Tabs_Home_Modules,
+                  Keys.Dashboard_Tabs_Home_Projects
+                ],
               ),
             ),
           ),

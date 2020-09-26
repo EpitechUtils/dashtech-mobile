@@ -1,9 +1,31 @@
 {
-    "tabs": {
-        "home": {
-            "activities": "Activités",
-            "modules": "Modules",
-            "projects": "Projets"
+    "common": {
+        "coming_soon": {
+            "title": "Coming Soon",
+            "text": "This feature is not yet deployed on this application. Enable notifications to be notified when a new update occurs."
+        }
+    },
+    "settings": {
+        "common": {
+            "title": "Paramètres généraux",
+            "language": "Langue",
+            "profile": "Profil"
+        },
+        "notifications": {
+            "title": "Notifications",
+            "enable": "Activer les notifications",
+            "settings": ""
+        }
+    },
+    "dashboard": {
+        "empty_activities_title": "Aucune activité",
+        "empty_activities_text": "Il semblerait qu'aucune activité n'est été programmée cette semaine ou la semaine prochaine.",
+        "tabs": {
+            "home": {
+                "activities": "Activités",
+                "modules": "Modules",
+                "projects": "Projets"
+            }
         }
     },
     "auth": {
@@ -36,417 +58,6 @@
         },
         "logout": "Vous avez été déconnecté, à bientôt."
     },
-    "menu": {
-        "profile": "Profil et réglages",
-        "home": "Accueil",
-        "friends": "Mes amis",
-        "buy_pack": "Achat de packs",
-        "inbox": "Messagerie",
-        "statistics": "Statistiques",
-        "contact": "Contact",
-        "rewards": "Récompenses",
-        "logout": "Déconnexion",
-        "converter": "Convertir mes crédits",
-        "submenu": {
-            "profile": {
-                "coords": "Informations",
-                "password": "Mon mot de passe",
-                "bank_accounts": "Coordonées bancaires",
-                "delete": "Supprimer mon compte"
-            },
-            "inbox": {
-                "messages_from_epitech_intranet_mobile": "Messages",
-                "game_invite": "Invitations de jeu",
-                "friend_requests": "Demandes d'amis"
-            },
-            "statistics": {
-                "global": "Globales"
-            }
-        }
-    },
-    "profile": {
-        "contact": {
-            "title": "Contactez-nous",
-            "submit": "Envoyer",
-            "object": "Objet de ma demande",
-            "select_object": "Selectionner un type de demande",
-            "select_object_contact": "Contact",
-            "select_object_suggest": "Suggestion",
-            "select_object_subscription": "Inscription et profil",
-            "select_object_donation": "Faire un don",
-            "select_object_connection": "Connexion de comptes",
-            "select_object_account": "Piloter mes comptes",
-            "select_object_security": "Sécurité et confidentialité",
-            "select_object_other": "Autre",
-            "message": "Message"
-        },
-        "bank_accounts": {
-            "link_new": "Lier un compte bancaire"
-        },
-        "edit": {
-            "title": "Mes coordonnées",
-            "submit": "Modifier",
-            "errorAddress": "Les champs \"adresse\", \"code postal\" et \"ville\" sont obligatoires si au moins un des 3 est renseigné",
-            "form": {
-                "address": "Adresse postale",
-                "code": "Code postal",
-                "city": "Ville"
-            }
-        },
-        "legal": {
-            "title": "Charte des données personnelles",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo mi ante, at suscipit ipsum maximus a. Ut faucibus egestas urna sit amet placerat. Curabitur lacinia pretium laoreet. Vestibulum egestas arcu quis pharetra sagittis. Integer non tempus nulla, venenatis finibus dui. Aenean id lectus vitae risus molestie eleifend at ut ipsum. Quisque nec magna eu lectus interdum congue. Ut luctus bibendum libero, et bibendum odio vehicula in. Quisque ultrices cursus ipsum tincidunt accumsan. Nunc sit amet lorem diam. Integer a sagittis velit. Nunc dapibus scelerisque risus, at ultricies leo auctor vitae. Nunc nisi nibh, tincidunt ac diam in, ullamcorper eleifend mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam porttitor scelerisque diam. Duis quis massa commodo, ullamcorper risus vitae, iaculis lectus.\n\nVivamus a efficitur diam. Mauris tempor dolor tincidunt purus dictum, eget vulputate nisi eleifend. Nulla sed molestie nunc. Etiam finibus accumsan euismod. Nam tempus vestibulum sem, id euismod ipsum auctor non. Phasellus faucibus ac risus sit amet tincidunt. Sed id mattis eros. Vivamus volutpat mi vel purus vulputate, eget fermentum dui fringilla. Quisque condimentum neque blandit, varius nisl a, rhoncus justo.\n\nCurabitur dictum nisl sed purus maximus, et lacinia magna tristique. Ut aliquet venenatis urna, iaculis rhoncus lacus mattis nec. Morbi suscipit eros quis purus lacinia luctus. Cras facilisis sit amet odio ut tincidunt. Fusce consectetur nibh at eros ornare luctus. Aliquam viverra metus vel tempus sollicitudin. Morbi non ligula elit. Mauris a sem id felis vestibulum fringilla ac ac ipsum.\n\nUt at ipsum at magna pulvinar rhoncus. Integer vulputate ipsum sit amet velit cursus, a aliquet mauris mattis. Mauris interdum auctor molestie. In sit amet facilisis nisl, nec accumsan odio. Pellentesque sed diam non libero fermentum tincidunt at non felis. Nulla facilisi. Donec ac elit quis mi convallis euismod. Cras urna nisi, accumsan id fermentum quis, tristique ut dolor. Vestibulum auctor, elit at rutrum vestibulum, diam odio imperdiet mauris, a pellentesque massa ligula eu dui.\n\nAliquam non risus gravida, fringilla ipsum vitae, aliquam urna. Donec tempus dui a arcu volutpat, quis dapibus arcu imperdiet. Aliquam felis felis, auctor at dui ut, pulvinar convallis orci. Ut nec fermentum erat. Integer sit amet lectus arcu. Aliquam ac tortor turpis. Phasellus et vulputate eros. Proin nisi ligula, congue ut tellus vel, tincidunt rhoncus turpis. Nulla elementum nisi id arcu congue, sit amet rutrum lorem luctus. Mauris scelerisque arcu vitae hendrerit ultrices. Maecenas et nibh et dui cursus hendrerit et nec augue. Nullam ornare quam metus, et consectetur ex gravida sit amet. Sed quis iaculis ligula, tincidunt tincidunt mauris. Nunc vel erat quam. Curabitur mattis efficitur nisi ut aliquam. Ut ut vulputate felis, condimentum gravida justo."
-        },
-        "resetpassword": {
-            "title": "Modification de mot de passe",
-            "submit": "Modifier",
-            "old": "Ancien mot de passe",
-            "new": "Nouveau mot de passe"
-        },
-        "edit_success": "Votre profil a été mis à jour avec succès !",
-        "edit_password_success": "Votre mot de passe a été mis à jour avec succès !",
-        "form": {
-            "firstname": "Prénom",
-            "lastname": "Nom",
-            "email": "Adresse e-mail",
-            "cp": "Code postal",
-            "city": "Ville",
-            "address": "Adresse postale",
-            "old_password": "Ancien mot de passe",
-            "new_password": "Nouveau mot de passe",
-            "confirm_password": "Confirmation du nouveau mot de passe"
-        },
-        "delete": {
-            "message": "La suppression de votre compte entraîne la suppression de toutes les données associées à celui-ci.",
-            "confirm": "Confirmez-vous la suppression de votre espace ZAYBE ?"
-        }
-    },
-    "buy_pack": {
-        "title": "Choisis un pack",
-        "gives_x_credits": "Donne {credits} crédits"
-    },
-    "title": {
-        "choose_game": "Choisis un jeu",
-        "choose_platform": "Choisis une plateforme",
-        "choose_room": "Choisis un salon",
-        "choose_opponent": "Choisis un adversaire",
-        "select_amount": "Selectionne un montant",
-        "select_bank_account": "Selectionne un compte",
-        "last_step": "Dernière étape...",
-        "friends_list": "Liste de vos amis",
-        "friend_requests_list": "Demandes d'amis reçues",
-        "match_chat": "Chat de partie",
-        "match_winner_choice": "Choix du gagnant",
-        "match_rewarding": "Récompense",
-        "match_investigation": "Investigation"
-    },
-    "room": {
-        "waiting_response_from": "En attente d'une réponse de la part de {username}...",
-        "cancel_invite": "Annuler l'invitation",
-        "chat_room": {
-            "join": "a rejoint le salon de discussion."
-        }
-    },
-    "accounts": {
-        "message": {
-            "empty": "Vous n’avez pas encore connecté de compte bancaire.&#xA;&#xA; Connectez au moins un compte pour commencer à cagnotter des dons pour des associations.",
-            "add": "Connecter mon compte",
-            "myConnectedAccounts": "Mes comptes connectés",
-            "noConnectedAccount": "Vous n'avez pas encore connecté de compte bancaire.",
-            "noConnectedAccountInstructions": "Ajoutez au moins un compte afin de cagnotter des dons pour des associations.",
-            "errorAction": "Gérer mes comptes"
-        },
-        "types": {
-            "checking": "Compte courant",
-            "card": "Compte carte",
-            "savings": "Compte épargne",
-            "lifeinsurance": "Assurance vie",
-            "market": "Compte titres",
-            "pee": "Plan d'épargne entreprise",
-            "loan": "Compte prêt",
-            "perco": "Compte Perco"
-        },
-        "add": {
-            "success": "Votre banque a été connectée avec succès !",
-            "addAnother": "Connecter une autre banque",
-            "finish": "J'ai terminé",
-            "select": {
-                "title": "Selectionnez une banque",
-                "textview": "Nom de la banque",
-                "emptyList": "Aucune banque ne correspond à votre recherche.",
-                "emptySelected": "Aucune banque sélectionnée."
-            },
-            "form": {
-                "title": "Connectez-vous à votre compte",
-                "search": {
-                    "title": "Compte Bancaire",
-                    "subTitle": "Selectionnez le compte correspondant à votre recherche",
-                    "cancel": "Annuler"
-                },
-                "login": "Identifiant",
-                "password": "Mot de passe",
-                "birthdate": {
-                    "validate": "Ok",
-                    "cancel": "Annuler"
-                }
-            },
-            "sync": {
-                "validation": {
-                    "title": "Synchronisation de vos compte en cours, Veuillez patienter..."
-                },
-                "success": {
-                    "title": "Vos comptes ont été synchronisés avec succès.",
-                    "back": "Voir mes comptes"
-                }
-            }
-        }
-    },
-    "charity": {
-        "title": "Associations",
-        "menu": {
-            "all": "Les associations",
-            "favorites": "Ma sélection"
-        },
-        "list": {
-            "more": "En savoir +",
-            "count_singular": "Vous avez {{value}} association dans votre sélection",
-            "count_plural": "Vous avez {{value}} associations dans votre sélection",
-            "empty": "Pour ajouter des associations à votre sélection, activez le symbole ★ sur les fiches des associations."
-        },
-        "detail": {
-            "action": "Nos actions",
-            "about": {
-                "title": "À propos",
-                "creation_date": "Date de création",
-                "founder_name": "Fondateur",
-                "president_name": "Président",
-                "staff": "Effectif",
-                "volunteers": "Bénévoles",
-                "scope": "Lieu d'action"
-            },
-            "button": "Faire un don"
-        },
-        "favorite_modal": {
-            "message": "Êtes-vous sûr de vouloir supprimer cette association de votre sélection ?",
-            "validate": "Supprimer",
-            "cancel": "Annuler"
-        },
-        "delete": {
-            "sure": "Etes-vous sûr de vouloir enlever cette association de votre sélection ?",
-            "confirm": "Confirmer",
-            "cancel": "Annuler"
-        }
-    },
-    "payment": {
-        "title": "Informations bancaires",
-        "subtitle": "Veuillez saisir les informations de votre carte bancaire afin de valider le paiement de votre don.",
-        "accepted_cards": "Cartes acceptées",
-        "donation_amount": "Montant de votre don",
-        "form": {
-            "name": "Nom du porteur",
-            "num": "Numéro de carte",
-            "exp": "Date exp MM/AA",
-            "ccv": "CVV",
-            "ccv_info": "3 derniers chiffres inscrits au dos de votre carte",
-            "validate": "Valider le paiement"
-        },
-        "mongopay_error_code": {
-            "001999": "Transaction refusée. Veuillez contacter votre banque.",
-            "001002": "Transaction refusée. Veuillez contacter votre banque.",
-            "001011": "Transaction amount is higher than maximum permitted amount",
-            "001012": "Transaction refusée. Veuillez contacter votre banque.",
-            "001013": "Transaction refusée. Veuillez contacter votre banque.",
-            "001014": "CreditedFunds must be more than 0 (DebitedFunds can not equal Fees)",
-            "001030": "User has not been redirected",
-            "001031": "User canceled the payment",
-            "101002": "The transaction has been cancelled by the user",
-            "001032": "User is filling in the payment card details",
-            "001033": "User has not been redirected then the payment session has expired",
-            "001034": "User has let the payment session expire without paying",
-            "101001": "The user does not complete transaction",
-            "105101": "Invalid card number",
-            "105102": "Invalid cardholder name",
-            "105103": "Invalid PIN code",
-            "105104": "Invalid PIN format",
-            "101101": "Transaction refusée. Veuillez contacter votre banque.",
-            "101102": "Transaction refusée. Veuillez contacter votre banque.",
-            "101103": "Transaction refusée. Veuillez contacter votre banque.",
-            "101104": "Transaction refusée. Veuillez contacter votre banque.",
-            "101105": "Transaction refusée. Veuillez contacter votre banque.",
-            "101106": "Transaction refusée. Veuillez contacter votre banque.",
-            "101108": "Transaction refused: the Debited Wallet and the Credited Wallet must be different",
-            "101109": "The payment period has expired",
-            "101110": "The payment has been refused",
-            "101410": "The card is not active",
-            "101111": "Maximum number of attempts reached",
-            "101112": "Maximum amount exceeded",
-            "101113": "Maximum Uses Exceeded",
-            "101115": "Debit limit exceeded",
-            "101116": "Amount limit",
-            "101118": "An initial transaction with the same card is still pending",
-            "002996": "Blocked due to User Balance limitations (maximum owned amount reached)",
-            "101199": "Transaction refused",
-            "205001": "Paypal Data validation error",
-            "101399": "Transaction refusée. Veuillez contacter votre banque.",
-            "101304": "Transaction refusée. Veuillez contacter votre banque.",
-            "101303": "Transaction refusée. Veuillez contacter votre banque.",
-            "101302": "Transaction refusée. Veuillez contacter votre banque.",
-            "101301": "Transaction refusée. Veuillez contacter votre banque.",
-            "001599": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "105299": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "105202": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "105203": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "105204": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "105205": "Callback URL: Invalid format",
-            "105206": "Registration data : Invalid format",
-            "02625": "Invalid card number",
-            "02626": "Invalid date. Use MMYY format",
-            "02627": "Invalid CCV number",
-            "02628": "Transaction refused",
-            "02101": "Internal Error",
-            "09101": "Username/Password is incorrect",
-            "09102": "Account is locked or inactive",
-            "01902": "This card is not active",
-            "02624": "Card expired",
-            "09104": "Client certificate is disabled",
-            "09201": "You do not have permissions to make this API call",
-            "02631": "Delay exceeded",
-            "008999": "Transaction refusée. Veuillez contacter votre banque.",
-            "008001": "Transaction refusée. Veuillez contacter votre banque.",
-            "008002": "Transaction refusée. Veuillez contacter votre banque.",
-            "008003": "Transaction refusée. Veuillez contacter votre banque.",
-            "008004": "Transaction refusée. Veuillez contacter votre banque.",
-            "008005": "Transaction refusée. Veuillez contacter votre banque.",
-            "008006": "Transaction refusée. Veuillez contacter votre banque.",
-            "008007": "Transaction refusée. Veuillez contacter votre banque.",
-            "008500": "Transaction refusée. Veuillez contacter votre banque.",
-            "008504": "Transaction refusée. Veuillez contacter votre banque.",
-            "008505": "Transaction refusée. Veuillez contacter votre banque.",
-            "008506": "Unauthorized IP address country",
-            "008507": "Cumulative value of transactions exceeded",
-            "008508": "Unauthorized Card issuer country",
-            "008509": "Number of bank cards allowed is exceeded",
-            "008510": "Number of clients per card is exceeded",
-            "008511": "Transaction refusée. Veuillez contacter votre banque.",
-            "008512": "IP location different than card issuer country",
-            "008513": "Number of device fingerprints allowed is exceeded",
-            "008515": "Transaction refusée. Veuillez contacter votre banque.",
-            "008514": "Transaction refusée. Veuillez contacter votre banque.",
-            "008600": "Transaction refusée.",
-            "008700": "Transaction refusée.",
-            "009103": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "009199": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "009499": "Transaction refusée. Veuillez contacter votre banque.",
-            "009999": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "009101": "Une erreur technique est survenue. Veuillez essayer à nouveau.",
-            "101202": "Bank not supported for Giropay",
-            "121999": "Generic withdrawal error",
-            "121001": "The bank wire has been refused",
-            "121002": "The author is not the wallet owner",
-            "121003": "Transaction refusée.",
-            "001001": "Transaction refusée.",
-            "121004": "Transaction refusée.",
-            "121005": "Transaction refusée.",
-            "121006": "Transaction refusée.",
-            "002998": "Blocked due to the Bank Account Owner’s KYC limitations (maximum debited or credited amount reached)",
-            "002999": "Blocked due to a Debited User’s KYC limitations (maximum debited or credited amount reached)",
-            "common": "Une erreur est survenue"
-        }
-    },
-    "donation": {
-        "success": {
-            "thanks": "Merci pour elles !",
-            "thanksDesc": "Vos dons seront investis avec bienveillance et précautions dans de grands projets.",
-            "back": "Retour à ma cagnotte",
-            "continue": "Continuer"
-        },
-        "confirm": {
-            "recap": "Récapitulatif de dons",
-            "continue": "Confirmer mes dons",
-            "payment": "Passer au paiement",
-            "back": "Retour",
-            "total": "Total des dons"
-        },
-        "menu": {
-            "jackpot": "Ma cagnotte",
-            "donation": "Don libre",
-            "partners": "Partenaires"
-        },
-        "jackpot": {
-            "amount": {
-                "title": "Distribution de la cagnotte",
-                "donate": "Faire don de ma cagnotte"
-            },
-            "history": {
-                "title": "Historique des mouvements",
-                "infos": "Les montants inférieurs à 1 centime sont cumulés et ajoutés à la cagnotte",
-                "origin": "versé par",
-                "giveback": "Giveback commerçant partenaire",
-                "payment": "Paiement",
-                "donationOfJackpot": "Don de ma cagnotte",
-                "welcome": "Offre de bienvenue",
-                "sponsor": "Parrainage",
-                "doneByepitech_intranet_mobile": "versé par epitech_intranet_mobile"
-            },
-            "empty": "Pour commencer à cagnotter des dons, connectez un compte bancaire.\n\n5€ offerts seront crédités dans votre cagnotte."
-        },
-        "donation": {
-            "free": {
-                "success": "Votre don d'une valeur de {amount} pour l'assocation {charity} a bien été envoyé.",
-                "title": "Don par CB",
-                "donate": "Faire un don",
-                "support": "Association à soutenir",
-                "amount": "Montant",
-                "message": "Pour obtenir vos reçus fiscaux, merci de bien vouloir renseigner votre adresse postale dans la rubrique 'mes coordonnées'",
-                "next": "Suivant",
-                "date": "Date du don",
-                "donationamount": "Montant du don",
-                "beneficiary": "Bénéficiaire",
-                "confirm": "Confirmer",
-                "return": "Retour",
-                "other": "Autre",
-                "empty": "Vous pouvez à tout moment effectuer ici un don libre avec votre carte bancaire."
-            },
-            "frame": {
-                "title": "Don par CB",
-                "donate": "Faire un don"
-            },
-            "history": {
-                "title": "Opérations",
-                "sum": "TOTAL",
-                "ONETIME": "don ponctuel",
-                "MONTHLY": "don récurrent mensuel"
-            }
-        },
-        "partner": {
-            "cashback": "% de don dans votre cagnotte"
-        },
-        "give_out": {
-            "amount": {
-                "title": "Il vous reste à distribuer",
-                "remain": "sur"
-            },
-            "form": {
-                "title": "Associations à soutenir",
-                "selectOne": "Une association au choix",
-                "favorites": "Ma sélection d'associations",
-                "textfield": "Sélectionner une association",
-                "search": {
-                    "title": "Liste des assocations",
-                    "select": "Sélectionnez l'association de votre choix",
-                    "cancel": "Annuler"
-                },
-                "allocate": {
-                    "title": "Reste à répartir",
-                    "button": "Répartir équitablement",
-                    "empty": "Aucune association n'a été à ajoutée à votre sélection."
-                },
-                "donate": "Valider mon don",
-                "disabled_label": "Vous devez distribuer toute la cagnotte",
-                "empty_fav_charity": "Vous n'avez aucune association dans votre sélection"
-            }
-        }
-    },
     "actions": {
         "save": "Enregistrer",
         "edit": "Modifier",
@@ -461,6 +72,7 @@
         "error": "Erreur"
     },
     "httpError": {
+        "sync_failed": "Impossible de contacter les serveurs d'Epitech. Veuillez réessayer ultérieurement.",
         "unavailable": "Services actuellement en maintenance. Veuillez réessayer plus tard.",
         "internal": "Une erreur inconnue est survenue. Veuillez réessayer ultérieurement.",
         "prize_pool_must_be_empty": "Pour supprimer votre espace epitech_intranet_mobile, vous devez distribuer l’intégralité de votre cagnotte de dons",
@@ -508,35 +120,5 @@
         "in_two_days": "dans 2 jours",
         "two_days_ago": "il y a 2 jours",
         "on": "le"
-    },
-    "partner": {
-        "header": "Commerçants partenaires",
-        "category": {
-            "FOOD": "Alimentation et vins",
-            "FASHION": "Mode",
-            "TRAVEL": "Voyage & location",
-            "SUBSCRIPTIONS": "Abonnements",
-            "AUTOMOBILE": "Autos & Motos",
-            "HEALTH": "Beauté & santé",
-            "HIGH-TECH": "High-Tech & Electroménager",
-            "HOUSEHOLD": "Cadeaux, Box & Fleurs",
-            "CULTURE": "Culture & loisir",
-            "HOUSE": "Maison & Jardin",
-            "SPORT": "Sport"
-        },
-        "card": {
-            "cashBackTitle": "{cashbackValue}{cashbackSign} de giveback"
-        }
-    },
-    "documents": {
-        "tax_receipt": {
-            "title": "Reçus fiscaux",
-            "year_receive": "Tout recevoir par e-mail",
-            "sync_pending": "en cours",
-            "free_donation": "don libre de ",
-            "jackpot_donation": "don de cagnotte de ",
-            "empty": "Vous n'avez aucun reçu fiscal disponible.",
-            "send_success": "Vos reçus fiscaux de l'année {year} on bien été envoyé par mail."
-        }
     }
 }

@@ -1,0 +1,124 @@
+{
+  "common": {
+    "coming_soon": {
+      "title": "Coming Soon",
+      "text": "This feature is not yet deployed on this application. Enable notifications to be notified when a new update occurs."
+    }
+  },
+  "settings": {
+    "common": {
+      "title": "Common settings",
+      "language": "Language",
+      "profile": "Profile"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "enable": "Enable notifications",
+      "settings": ""
+    }
+  },
+  "dashboard": {
+    "empty_activities_title": "No activity scheduled",
+    "empty_activities_text": "It seems that nothing is scheduled yet this week and next week.",
+    "tabs": {
+      "home": {
+        "activities": "Activities",
+        "modules": "Modules",
+        "projects": "Projects"
+      }
+    }
+  },
+  "auth": {
+    "carousel": {
+      "first": {
+        "title": "Always up to date",
+        "text": "Don’t miss any activities thanks to the real-time synchronization with the Epitech intranet.\nAll you have to do is connect and let the magic work!"
+      },
+      "second": {
+        "title": "Multi-account support",
+        "text": "Are you from the administration, AER or with a particular rank? It’s not serious, nothing prevents you from connecting to both, and switch account. It’s three clicks away."
+      },
+      "third": {
+        "title": "Electronic Attendance",
+        "text": "If your administration uses this application to do business attendance, they will simply scan your unique QRCode.\nOtherwise, tell them, it’s so simple!"
+      },
+      "fourth": {
+        "title": "Security and safety",
+        "text": "GDPR requires it, we don’t store anything without your agreement. Everything is kept on your smartphone and nothing on our servers."
+      }
+    },
+    "signin": {
+      "title": "Liaison Intranet",
+      "title_profile": "Choix du profil",
+      "submit": "Connexion intranet"
+    },
+    "form": {
+      "profile_name": "Nom du profil",
+      "reset": "Oublié ?"
+    },
+    "logout": "Vous avez été déconnecté, à bientôt."
+  },
+  "actions": {
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "validate": "Valider",
+    "reset": "Réinitialiser",
+    "next": "Suivant",
+    "cancel": "Retour",
+    "confirm": "Confirmer"
+  },
+  "toastr": {
+    "success": "Success",
+    "error": "Error"
+  },
+  "httpError": {
+    "sync_failed": "Unable to join Epitech servers. Please try again later.",
+    "unavailable": "Services actuellement en maintenance. Veuillez réessayer plus tard.",
+    "internal": "Internal error occurred. Please try again later.",
+    "prize_pool_must_be_empty": "Pour supprimer votre espace epitech_intranet_mobile, vous devez distribuer l’intégralité de votre cagnotte de dons",
+    "epitech_intranet_mobile_wallet_is_empty": "Une erreur est survenue",
+    "auth": {
+      "failed": "Une erreur est survenue lors de la connexion. Réessayez plus tard.",
+      "user_not_found": "cet utilisateur n'existe pas, veuillez vérifier votre e-mail.",
+      "not_found": "Adresse e-mail ou mot de passe incorrect.",
+      "mismatched_password": "Mots de passe non identiques.",
+      "already_exist": "Un compte a déjà été créé à l'aide de cette adresse mail.",
+      "email_required": "Une adresse e-mail est requise pour créer un compte.",
+      "reset_code_invalid": "Ce code est erroné ou a expiré.",
+      "old_password_mismatched": "L'ancien mot de passe est incorrect",
+      "new_password_same_as_old": "Le nouveau mot de passe doit être différent de l'ancien mot de passe"
+    },
+    "network": {
+      "unvailable": "Impossible de contacter le serveur. Veuillez réessayer ultérieurement.",
+      "tokenExpired": "Votre session a expiré, merci de vous reconnecter"
+    },
+    "general": "Une erreur est survenue lors de la mise à jour des données depuis les serveurs d'Epitech. Veuillez réessayer utltérieurement.",
+    "tax_receipt": "Une erreur lors du téléchargement de vos reçu fiscaux est survenue. Veuillez réessayer ultérieurement."
+  },
+  "forms": {
+    "error": {
+      "required": "Required field",
+      "email": "Email needed",
+      "minLength": "{minLength} characters min",
+      "maxLength": "{maxLength} characters max",
+      "exact": "{length} characters",
+      "minAmount": "{minAmount} € minimum",
+      "maxAmount": "{maxAmount} € maximum",
+      "mismatchedPasswordsError": "Les mots de passes ne correspondent pas",
+      "pattern": "Format incorrect",
+      "postalCode": "Code postal invalide",
+      "unauthorizeDomain": "Adresse mail non autorisée",
+      "number": "Champ incorrect",
+      "credit_card": "Numéro de carte invalide",
+      "birthdate": "Vous devez au moins avoir 18 ans"
+    }
+  },
+  "date": {
+    "today": "aujourd'hui",
+    "tomorrow": "demain",
+    "yesterday": "hier",
+    "in_two_days": "dans 2 jours",
+    "two_days_ago": "il y a 2 jours",
+    "on": "le"
+  }
+}

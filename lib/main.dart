@@ -11,7 +11,7 @@ void main() async {
   //Routes.createRoutes();
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
     fallbackLocale: 'fr',
-    supportedLocales: ['fr'],
+    supportedLocales: ['fr', 'en'],
   );
   runApp(LocalizedApp(delegate, EpitechIntraMobileApp()));
 }

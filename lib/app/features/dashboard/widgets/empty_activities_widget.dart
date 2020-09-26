@@ -19,7 +19,7 @@ class EmptyActivitiesWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            "Aucune activités".toUpperCase(),
+            translate(Keys.Dashboard_Empty_Activities_Title).toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class EmptyActivitiesWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: Text(
-              "Il semblerait que rien ne soit encore programmé cette semaine et la semaine prochaine.",
+              translate(Keys.Dashboard_Empty_Activities_Text),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,

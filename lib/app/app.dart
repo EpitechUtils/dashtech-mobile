@@ -49,9 +49,9 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
         state: LocalizationProvider.of(context).state,
         child: StyledToast(
           movingOnWindowChange: true,
-          locale: const Locale('fr', 'FR'),
+          locale: localDelegate.currentLocale,
           child: MaterialApp(
-            title: 'ZAYBE',
+            title: 'DashTech',
             theme: _defaultThemeData(),
             debugShowCheckedModeBanner: false,
             localizationsDelegates: [
