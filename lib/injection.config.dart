@@ -45,32 +45,47 @@ GetIt $initGetIt(
   final secureStorageInjectableModule = _$SecureStorageInjectableModule();
   final graphqlInjectableModule = _$GraphqlInjectableModule();
   gh.lazySingleton<Dio>(() => httpClientInjectableModule.dio);
-  gh.lazySingleton<FlutterSecureStorage>(() => secureStorageInjectableModule.flutterSecureStorage);
+  gh.lazySingleton<FlutterSecureStorage>(
+      () => secureStorageInjectableModule.flutterSecureStorage);
   gh.lazySingleton<GraphQLClient>(() => graphqlInjectableModule.graphqlClient);
-  gh.factory<ProfileDataSource>(() => ProfileDataSource(client: get<GraphQLClient>()));
-  gh.factory<RegisterDeviceUseCase>(() => RegisterDeviceUseCase(get<ProfileDataSource>()));
-  gh.factory<AuthDataSource>(() => AuthDataSource(client: get<GraphQLClient>()));
-  gh.factory<DashboardDataSource>(() => DashboardDataSource(client: get<GraphQLClient>()));
-  gh.factory<DeleteProfileUseCase>(() => DeleteProfileUseCase(get<ProfileDataSource>()));
-  gh.factory<FindProfileUseCase>(() => FindProfileUseCase(get<ProfileDataSource>()));
-  gh.factory<FindWeekActivitiesUseCase>(() => FindWeekActivitiesUseCase(get<DashboardDataSource>()));
-  gh.factory<FriendDataSource>(() => FriendDataSource(client: get<GraphQLClient>()));
-  gh.factory<LoadProfilesUseCase>(() => LoadProfilesUseCase(get<AuthDataSource>()));
+  gh.factory<ProfileDataSource>(
+      () => ProfileDataSource(client: get<GraphQLClient>()));
+  gh.factory<RegisterDeviceUseCase>(
+      () => RegisterDeviceUseCase(get<ProfileDataSource>()));
+  gh.factory<AuthDataSource>(
+      () => AuthDataSource(client: get<GraphQLClient>()));
+  gh.factory<DashboardDataSource>(
+      () => DashboardDataSource(client: get<GraphQLClient>()));
+  gh.factory<DeleteProfileUseCase>(
+      () => DeleteProfileUseCase(get<ProfileDataSource>()));
+  gh.factory<FindProfileUseCase>(
+      () => FindProfileUseCase(get<ProfileDataSource>()));
+  gh.factory<FindWeekActivitiesUseCase>(
+      () => FindWeekActivitiesUseCase(get<DashboardDataSource>()));
+  gh.factory<FriendDataSource>(
+      () => FriendDataSource(client: get<GraphQLClient>()));
+  gh.factory<LoadProfilesUseCase>(
+      () => LoadProfilesUseCase(get<AuthDataSource>()));
   gh.factory<LogoutUseCase>(() => LogoutUseCase(get<AuthDataSource>()));
-  gh.factory<NavigationBloc>(() => NavigationBloc(findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
-  gh.factory<ProfileBloc>(() =>
-      ProfileBloc(findProfileUseCase: get<FindProfileUseCase>(), registerDeviceUseCase: get<RegisterDeviceUseCase>()));
+  gh.factory<NavigationBloc>(() => NavigationBloc(
+      findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
+  gh.factory<ProfileBloc>(() => ProfileBloc(
+      findProfileUseCase: get<FindProfileUseCase>(),
+      registerDeviceUseCase: get<RegisterDeviceUseCase>()));
   gh.factory<SigninUseCase>(() => SigninUseCase(get<AuthDataSource>()));
   gh.factory<AuthBloc>(() => AuthBloc(
         secureStorage: get<FlutterSecureStorage>(),
         profileBloc: get<ProfileBloc>(),
         logoutUseCase: get<LogoutUseCase>(),
       ));
-  gh.factory<AuthModeBloc>(
-      () => AuthModeBloc(secureStorage: get<FlutterSecureStorage>(), loadProfilesUseCase: get<LoadProfilesUseCase>()));
-  gh.factory<DashActivitiesBloc>(() => DashActivitiesBloc(findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
-  gh.factory<ProfileDeleteBloc>(
-      () => ProfileDeleteBloc(deleteProfileUseCase: get<DeleteProfileUseCase>(), authBloc: get<AuthBloc>()));
+  gh.factory<AuthModeBloc>(() => AuthModeBloc(
+      secureStorage: get<FlutterSecureStorage>(),
+      loadProfilesUseCase: get<LoadProfilesUseCase>()));
+  gh.factory<DashActivitiesBloc>(() => DashActivitiesBloc(
+      findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
+  gh.factory<ProfileDeleteBloc>(() => ProfileDeleteBloc(
+      deleteProfileUseCase: get<DeleteProfileUseCase>(),
+      authBloc: get<AuthBloc>()));
   gh.factory<SigninBloc>(() => SigninBloc(
         signinUseCase: get<SigninUseCase>(),
         authBloc: get<AuthBloc>(),

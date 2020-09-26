@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -83,8 +84,9 @@ class ActivitiesListWidget extends StatelessWidget {
   }
 
   _buildDateActivity(BuildContext ctxt, String date) {
-    DateFormat format = DateFormat.EEEE('fr_FR');
-    DateFormat formatDate = DateFormat.yMMMd('fr_FR');
+    LocalizationDelegate localDelegate = LocalizedApp.of(ctxt).delegate;
+    DateFormat format = DateFormat.EEEE(localDelegate.currentLocale.toLanguageTag());
+    DateFormat formatDate = DateFormat.yMMMd(localDelegate.currentLocale.toLanguageTag());
 
     return Container(
       margin: EdgeInsets.only(bottom: 10, top: 10),

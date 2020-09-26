@@ -19,7 +19,7 @@ class CommingSoonWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            "Bientôt disponible".toUpperCase(),
+            translate(Keys.Common_Coming_Soon_Title).toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class CommingSoonWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: Text(
-              "Cette fonctionnalité n'est pas encore déployée sur cette application.\nActives les notifications pour être averti d'une nouvelle mise à jour !",
+              translate(Keys.Common_Coming_Soon_Text),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,
