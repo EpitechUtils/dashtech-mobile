@@ -35,7 +35,11 @@ class ActivitiesListWidget extends StatelessWidget {
 
   _buildContent(BuildContext context, ActivitiesList e) {
     if (e.weekActivities == null) {
-      return CustomErrorWidget();
+      return CustomErrorWidget(
+        refresh: () {
+          BlocProvider.of<DashActivitiesBloc>(context).add(DashActivitiesEvent.listActivities());
+        },
+      );
     } else if (e.weekActivities.isEmpty) {
       return EmptyActivitiesWidget();
     }

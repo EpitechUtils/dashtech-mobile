@@ -67,7 +67,8 @@
         "cancel": "Retour",
         "confirm": "Confirmer",
         "register": "S'inscrire",
-        "unregister": "Se désinscrire"
+        "unregister": "Se désinscrire",
+        "try_again": "Réessayer"
     },
     "toastr": {
         "success": "Succès",
@@ -75,27 +76,16 @@
     },
     "httpError": {
         "sync_failed": "Impossible de contacter les serveurs d'Epitech. Veuillez réessayer ultérieurement.",
-        "unavailable": "Services actuellement en maintenance. Veuillez réessayer plus tard.",
+        "unavailable": "Services actuellement en maintenance. Veuillez réessayer ultérieurement.",
         "internal": "Une erreur inconnue est survenue. Veuillez réessayer ultérieurement.",
-        "prize_pool_must_be_empty": "Pour supprimer votre espace epitech_intranet_mobile, vous devez distribuer l’intégralité de votre cagnotte de dons",
-        "epitech_intranet_mobile_wallet_is_empty": "Une erreur est survenue",
         "auth": {
-            "failed": "Une erreur est survenue lors de la connexion. Réessayez plus tard.",
-            "user_not_found": "cet utilisateur n'existe pas, veuillez vérifier votre e-mail.",
-            "not_found": "Adresse e-mail ou mot de passe incorrect.",
-            "mismatched_password": "Mots de passe non identiques.",
-            "already_exist": "Un compte a déjà été créé à l'aide de cette adresse mail.",
-            "email_required": "Une adresse e-mail est requise pour créer un compte.",
-            "reset_code_invalid": "Ce code est erroné ou a expiré.",
-            "old_password_mismatched": "L'ancien mot de passe est incorrect",
-            "new_password_same_as_old": "Le nouveau mot de passe doit être différent de l'ancien mot de passe"
+            "same_profile_name": "Tu ass déjà un profil avec ce nom."
         },
         "network": {
             "unvailable": "Impossible de contacter le serveur. Veuillez réessayer ultérieurement.",
-            "tokenExpired": "Votre session a expiré, merci de vous reconnecter"
+            "invalid_autolog": "Perte de connexion avec l'intranet, merci de te reconnecter."
         },
         "general": "Une erreur est survenue lors de la mise à jour des données depuis les serveurs d'Epitech. Veuillez réessayer utltérieurement.",
-        "tax_receipt": "Une erreur lors du téléchargement de vos reçu fiscaux est survenue. Veuillez réessayer ultérieurement."
     },
     "forms": {
         "error": {
