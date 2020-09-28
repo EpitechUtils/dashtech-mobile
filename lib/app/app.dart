@@ -18,6 +18,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class EpitechIntraMobileApp extends StatefulWidget {
   @override
@@ -59,6 +60,7 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               DefaultCupertinoLocalizations.delegate,
+              //RefreshLocalizations.delegate,
               localDelegate
             ],
             supportedLocales: localDelegate.supportedLocales,

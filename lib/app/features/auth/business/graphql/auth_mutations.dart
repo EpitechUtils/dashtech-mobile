@@ -8,3 +8,9 @@ final String authCreateProfile = """
     }
   }
 """;
+
+final String authRegisterDevice = """
+mutation authRegisterDevice(\$platform: String!, \$token: String!, \$deviceUuid: String!) {
+  authRegisterDevice(platform: \$platform, token: \$token, deviceUuid: \$deviceUuid)
+}
+""";

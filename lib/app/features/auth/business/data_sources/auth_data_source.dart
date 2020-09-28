@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -59,5 +61,23 @@ class AuthDataSource {
       manageError(result);
     }
     return result.data['authLogout'];
+  }
+
+  /// Register new device
+  Future<bool> registerNewDevice(Map<String, String> data) async {
+    final QueryResult result = await client.mutate(
+      MutationOptions(
+        documentNode: gql(authRegisterDevice),
+        variables: {
+          'platform': Platform.operatingSystem,
+          'token': data['token'],
+          'deviceUuid': data['deviceUuid'],
+        },
+      ),
+    );
+    if (result.hasException) {
+      manageError(result);
+    }
+    return result.data['userRegisterDevice'] as bool;
   }
 }

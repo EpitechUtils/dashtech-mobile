@@ -40,9 +40,9 @@ dependencies:
   super_enum: ^0.4.2
   flutter_translate_annotations: ^1.0.1
   graphql_flutter: ^3.0.0
-  firebase_messaging: ^7.0.0
   flutter_webview_plugin: ^0.3.11
   dio: ^3.0.10
+  firebase_messaging: ^7.0.0
 
   # Utilities
   basic_utils: ^2.6.2
