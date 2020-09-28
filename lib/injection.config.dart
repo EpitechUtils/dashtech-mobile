@@ -17,10 +17,10 @@ import 'app/features/auth/bloc/auth_mode/auth_mode_bloc.dart';
 import 'app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'app/features/dashboard/business/data_sources/dashboard_data_source.dart';
 import 'app/features/profile/business/use_cases/delete_profile_usecase.dart';
+import 'app/features/setting/business/use_cases/find_profile_settings_usecase.dart';
 import 'app/features/profile/business/use_cases/find_profile_usecase.dart';
 import 'app/features/dashboard/business/use_cases/find_week_activities_usecase.dart';
 import 'app/core/firebase/firebase_injectable_module.dart';
-import 'app/features/profile/business/data_sources/friend_data_source.dart';
 import 'app/core/graphql/graphql_injectable_module.dart';
 import 'app/core/http_client/http_client_injectable_module.dart';
 import 'app/features/auth/business/use_cases/load_profiles_usecase.dart';
@@ -30,6 +30,8 @@ import 'app/features/profile/bloc/profile/profile_bloc.dart';
 import 'app/features/profile/business/data_sources/profile_data_source.dart';
 import 'app/features/auth/business/use_cases/register_device_usecase.dart';
 import 'app/core/secure_storage/secure_storage_injectable_module.dart';
+import 'app/features/setting/bloc/settings_bloc.dart';
+import 'app/features/setting/business/data_sources/settings_data_source.dart';
 import 'app/features/auth/bloc/signin/signin_bloc.dart';
 import 'app/features/auth/business/use_cases/signin_usecase.dart';
 
@@ -51,17 +53,19 @@ GetIt $initGetIt(
   gh.lazySingleton<FlutterSecureStorage>(() => secureStorageInjectableModule.flutterSecureStorage);
   gh.lazySingleton<GraphQLClient>(() => graphqlInjectableModule.graphqlClient);
   gh.factory<ProfileDataSource>(() => ProfileDataSource(client: get<GraphQLClient>()));
+  gh.factory<SettingsDataSource>(() => SettingsDataSource(client: get<GraphQLClient>()));
   gh.factory<AuthDataSource>(() => AuthDataSource(client: get<GraphQLClient>()));
   gh.factory<DashboardDataSource>(() => DashboardDataSource(client: get<GraphQLClient>()));
   gh.factory<DeleteProfileUseCase>(() => DeleteProfileUseCase(get<ProfileDataSource>()));
+  gh.factory<FindProfileSettingsUseCase>(() => FindProfileSettingsUseCase(get<SettingsDataSource>()));
   gh.factory<FindProfileUseCase>(() => FindProfileUseCase(get<ProfileDataSource>()));
   gh.factory<FindWeekActivitiesUseCase>(() => FindWeekActivitiesUseCase(get<DashboardDataSource>()));
-  gh.factory<FriendDataSource>(() => FriendDataSource(client: get<GraphQLClient>()));
   gh.factory<LoadProfilesUseCase>(() => LoadProfilesUseCase(get<AuthDataSource>()));
   gh.factory<LogoutUseCase>(() => LogoutUseCase(get<AuthDataSource>()));
   gh.factory<NavigationBloc>(() => NavigationBloc(findWeekActivitiesUseCase: get<FindWeekActivitiesUseCase>()));
   gh.factory<ProfileBloc>(() => ProfileBloc(findProfileUseCase: get<FindProfileUseCase>()));
   gh.factory<RegisterDeviceUseCase>(() => RegisterDeviceUseCase(get<AuthDataSource>()));
+  gh.factory<SettingsBloc>(() => SettingsBloc(findProfileSettingsUseCase: get<FindProfileSettingsUseCase>()));
   gh.factory<SigninUseCase>(() => SigninUseCase(get<AuthDataSource>()));
   gh.factory<AuthBloc>(() => AuthBloc(
         secureStorage: get<FlutterSecureStorage>(),

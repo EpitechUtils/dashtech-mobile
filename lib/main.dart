@@ -10,7 +10,7 @@ void main() async {
   configureInjection();
   //Routes.createRoutes();
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
-    fallbackLocale: 'fr',
+    fallbackLocale: 'en',
     supportedLocales: ['fr', 'en'],
   );
   runApp(LocalizedApp(delegate, EpitechIntraMobileApp()));
