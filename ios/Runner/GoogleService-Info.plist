@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>4092665923-amc94e70sbg52qk91se1ve5mtp0fumbf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.4092665923-amc94e70sbg52qk91se1ve5mtp0fumbf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBhvNLqqRup9yBnRNlv9rnn48OwaqPh6iM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>4092665923</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>eu.epitech.mrlizzard.intranet</string>
+	<key>PROJECT_ID</key>
+	<string>dashtech-3198a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dashtech-3198a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:4092665923:ios:25a5059368736fbab174f6</string>
+	<key>DATABASE_URL</key>
+	<string>https://dashtech-3198a.firebaseio.com</string>
+</dict>
+</plist>
