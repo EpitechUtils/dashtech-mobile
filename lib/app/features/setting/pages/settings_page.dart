@@ -1,64 +1,36 @@
-import 'package:epitech_intranet_mobile/app/shared/utils/language_utils.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/bloc/settings_bloc.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/bloc/settings_event.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/bloc/settings_state.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/widgets/common_settings_widget.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/widgets/notification_settings_widget.dart';
+import 'package:epitech_intranet_mobile/app/features/setting/widgets/planning_settings_widget.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/custom_error_widget.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/global.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SettingsList(
-      sections: [
-        SettingsSection(
-          title: translate(Keys.Settings_Common_Title).toUpperCase(),
-          titleTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).primaryColor,
+    return BlocProvider<SettingsBloc>(
+      create: (BuildContext context) => getIt<SettingsBloc>(),
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (context, state) => state.when(
+          init: (e) {
+            BlocProvider.of<SettingsBloc>(context).add(SettingsEvent.loadSettings());
+            return LoadingWidget();
+          },
+          loading: (e) => LoadingWidget(),
+          error: (e) => CustomErrorWidget(),
+          loaded: (e) => SettingsList(
+            sections: [
+              CustomSection(child: CommonSettingsWidget(e.settings)),
+              CustomSection(child: NotificationSettingsWidget(e.settings)),
+              CustomSection(child: PlanningSettingsWidget(e.settings)),
+            ],
           ),
-          tiles: [
-            SettingsTile(
-              enabled: false,
-              title: translate(Keys.Settings_Common_Language),
-              subtitle: LanguageUtils.getDisplayLanguage(Localizations.localeOf(context).toLanguageTag())['name'] +
-                  " (System)",
-              leading: Icon(Icons.language),
-            ),
-            SettingsTile(
-              title: translate(Keys.Settings_Common_Profile),
-              subtitle: 'Test',
-              leading: Icon(Icons.person),
-              onTap: () {},
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: translate(Keys.Settings_Notifications_Title).toUpperCase(),
-          titleTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).primaryColor,
-          ),
-          tiles: [
-            SettingsTile.switchTile(
-              title: translate(Keys.Settings_Notifications_Enable),
-              leading: Icon(Icons.notifications),
-              switchValue: true,
-              onToggle: (bool value) {},
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  _buildSettingsTitle(BuildContext context, String text) {
-    return Container(
-      margin: const EdgeInsets.only(top: 10, bottom: 10),
-      child: Text(
-        text.toUpperCase(),
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).primaryColor,
         ),
       ),
     );

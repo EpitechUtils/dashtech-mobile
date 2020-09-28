@@ -9,8 +9,8 @@ void main() async {
   await DotEnv().load('assets/.env.prod');
   configureInjection();
   final LocalizationDelegate delegate = await LocalizationDelegate.create(
-    fallbackLocale: 'fr',
-    supportedLocales: ['fr'],
+    fallbackLocale: 'en',
+    supportedLocales: ['fr', 'en'],
   );
   runApp(LocalizedApp(delegate, EpitechIntraMobileApp()));
 }

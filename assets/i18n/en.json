@@ -14,7 +14,14 @@
     "notifications": {
       "title": "Notifications",
       "enable": "Enable notifications",
-      "settings": ""
+      "activity_reminder": "Activity reminder",
+      "project_reminder": "Project reminder",
+      "reminder": "Reminder"
+    },
+    "planning": {
+      "title": "Schedule",
+      "language": "Language",
+      "profile": "Profile"
     }
   },
   "dashboard": {
