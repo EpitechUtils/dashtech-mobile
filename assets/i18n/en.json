@@ -15,8 +15,9 @@
       "title": "Notifications",
       "enable": "Enable notifications",
       "activity_reminder": "Activity reminder",
+      "activity_reminder_val": "Reminder",
       "project_reminder": "Project reminder",
-      "reminder": "Reminder"
+      "project_reminder_val": "Reminder"
     },
     "planning": {
       "title": "Schedule",

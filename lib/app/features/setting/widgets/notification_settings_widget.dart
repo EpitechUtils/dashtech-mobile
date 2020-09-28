@@ -59,10 +59,10 @@ class _NotificationSettingsWidget extends SettingsAbstractWidget {
           },
         ),
         SettingsTile(
-          title: translate(Keys.Settings_Notifications_Reminder),
+          title: translate(Keys.Settings_Notifications_Activity_Reminder_Val),
           enabled: _notificationEnabled() && _parentEnabled(Keys.Settings_Notifications_Activity_Reminder, "true"),
           subtitle: parseSetting(
-            Keys.Settings_Notifications_Reminder,
+            Keys.Settings_Notifications_Activity_Reminder_Val,
             '5_min_before',
           ),
           leading: Icon(Icons.watch),
@@ -81,10 +81,10 @@ class _NotificationSettingsWidget extends SettingsAbstractWidget {
           },
         ),
         SettingsTile(
-          title: translate(Keys.Settings_Notifications_Reminder),
+          title: translate(Keys.Settings_Notifications_Project_Reminder_Val),
           enabled: _notificationEnabled() && _parentEnabled(Keys.Settings_Notifications_Project_Reminder, "true"),
           subtitle: parseSetting(
-            Keys.Settings_Notifications_Reminder,
+            Keys.Settings_Notifications_Project_Reminder_Val,
             '1_day_before',
           ),
           leading: Icon(Icons.watch),
