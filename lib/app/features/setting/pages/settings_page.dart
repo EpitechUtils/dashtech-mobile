@@ -4,7 +4,6 @@ import 'package:epitech_intranet_mobile/app/features/setting/bloc/settings_state
 import 'package:epitech_intranet_mobile/app/features/setting/widgets/common_settings_widget.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/widgets/notification_settings_widget.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/widgets/planning_settings_widget.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/custom_error_widget.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/material.dart';
@@ -23,16 +22,20 @@ class SettingsPage extends StatelessWidget {
             return LoadingWidget();
           },
           loading: (e) => LoadingWidget(),
-          error: (e) => CustomErrorWidget(),
-          loaded: (e) => SettingsList(
-            sections: [
-              CustomSection(child: CommonSettingsWidget(e.settings)),
-              CustomSection(child: NotificationSettingsWidget(e.settings)),
-              CustomSection(child: PlanningSettingsWidget(e.settings)),
-            ],
-          ),
+          error: (e) => _buildContent({}),
+          loaded: (e) => _buildContent(e.settings),
         ),
       ),
+    );
+  }
+
+  Widget _buildContent(Map<String, String> settings) {
+    return SettingsList(
+      sections: [
+        CustomSection(child: CommonSettingsWidget(settings)),
+        CustomSection(child: NotificationSettingsWidget(settings)),
+        CustomSection(child: PlanningSettingsWidget(settings)),
+      ],
     );
   }
 }
