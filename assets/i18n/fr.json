@@ -85,7 +85,7 @@
             "unvailable": "Impossible de contacter le serveur. Veuillez réessayer ultérieurement.",
             "invalid_autolog": "Perte de connexion avec l'intranet, merci de te reconnecter."
         },
-        "general": "Une erreur est survenue lors de la mise à jour des données depuis les serveurs d'Epitech. Veuillez réessayer utltérieurement.",
+        "general": "Une erreur est survenue lors de la mise à jour des données depuis les serveurs d'Epitech. Veuillez réessayer utltérieurement."
     },
     "forms": {
         "error": {

@@ -44,7 +44,7 @@ class CustomErrorWidget extends StatelessWidget {
           ),
           this.refresh != null
               ? Container(
-                  margin: const EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 30),
                   child: RoundedButtonWidget(
                     isRaised: true,
                     onPressed: this.refresh,

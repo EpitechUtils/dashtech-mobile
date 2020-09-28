@@ -1,17 +1,11 @@
-import 'dart:io';
-
-import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:epitech_intranet_mobile/app/core/error/exceptions.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/profile_mutations.dart';
 import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/profile_queries.dart';
-import 'package:epitech_intranet_mobile/app/features/profile/business/graphql/register_device_mutations.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
-import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 
 @injectable
 @lazySingleton
@@ -40,26 +34,5 @@ class ProfileDataSource {
       manageError(result);
     }
     return result.data['userDelete'];
-  }
-
-  /// Register new device
-  Future<bool> registerNewDevice(String token) async {
-    FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
-    String identifier = await secureStorage.read(key: 'uuid');
-    final QueryResult result = await client.mutate(
-      MutationOptions(
-        documentNode: gql(registerDeviceMutation),
-        variables: {
-          'platform': Platform.operatingSystem,
-          'token': token,
-          'deviceIdentifier': identifier,
-        },
-      ),
-    );
-    if (result.hasException) {
-      manageError(result);
-      print(result.exception.graphqlErrors.first.message);
-    }
-    return result.data['userRegisterDevice'] as bool;
   }
 }

@@ -14,7 +14,7 @@ class EmptyActivitiesWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            AssetsUtils.svg('browser'),
+            AssetsUtils.svg('palm-tree'),
             width: MediaQuery.of(context).size.width / 3,
           ),
           SizedBox(height: 20),

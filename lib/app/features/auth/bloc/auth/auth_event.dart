@@ -13,4 +13,9 @@ enum _AuthEvent {
     DataField<ProfileModel>('authProfile'),
   ])
   LoggedIn,
+  @Data(fields: [
+    DataField<String>('deviceUuid'),
+    DataField<String>('token'),
+  ])
+  RegisterNewDevice,
 }

@@ -7,6 +7,4 @@ part 'profile_event.g.dart';
 enum _ProfileEvent {
   @Data(fields: [DataField<ProfileModel>('profile')])
   LoadProfile,
-  @Data(fields: [DataField<String>('token')])
-  RegisterNewDevice,
 }
