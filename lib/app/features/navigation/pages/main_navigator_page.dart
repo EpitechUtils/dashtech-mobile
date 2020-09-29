@@ -8,6 +8,7 @@ import 'package:epitech_intranet_mobile/app/features/dashboard/pages/dash_initia
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_event.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_state.dart';
+import 'package:epitech_intranet_mobile/app/features/notification/pages/notifications_page.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/pages/settings_page.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
@@ -109,7 +110,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
           loading: (e) => LoadingWidget(),
           home: (e) => DashInitialPage(),
           planning: (e) => CommingSoonWidget(),
-          notifications: (e) => CommingSoonWidget(),
+          notifications: (e) => NotificationsPage(),
           settings: (e) => SettingsPage(),
         ),
       ),
