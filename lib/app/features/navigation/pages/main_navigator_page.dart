@@ -11,7 +11,6 @@ import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_
 import 'package:epitech_intranet_mobile/app/features/notification/pages/notifications_page.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/pages/settings_page.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +23,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
   final List<NavigationEvent> bottomNavEvents = [
     NavigationEvent.goHome(),
     NavigationEvent.goPlanning(),
-    NavigationEvent.goNotifications(),
+    NavigationEvent.goProfile(),
     NavigationEvent.goSettings(),
   ];
 
@@ -82,7 +81,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
         icons: [
           Icons.home,
           Icons.calendar_today,
-          Icons.notifications_active,
+          Icons.person,
           Icons.settings,
         ],
         backgroundColor: Theme.of(context).primaryColor,
@@ -103,15 +102,11 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
       ),
       body: BlocBuilder<NavigationBloc, NavigationState>(
         builder: (context, state) => state.when(
-          init: (e) {
-            BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.goHome());
-            return LoadingWidget();
-          },
-          loading: (e) => LoadingWidget(),
           home: (e) => DashInitialPage(),
           planning: (e) => CommingSoonWidget(),
           notifications: (e) => NotificationsPage(),
           settings: (e) => SettingsPage(),
+          profile: (e) => CommingSoonWidget(),
         ),
       ),
     );
@@ -122,18 +117,47 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
       elevation: 0,
       actions: [
         IconButton(
-          icon: Icon(Icons.power_settings_new),
+          icon: Stack(
+            children: <Widget>[
+              Icon(Icons.notifications),
+              Positioned(
+                right: 0,
+                child: new Container(
+                  padding: EdgeInsets.all(1),
+                  decoration: new BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 12,
+                    minHeight: 12,
+                  ),
+                  child: new Text(
+                    '13',
+                    style: new TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            ],
+          ),
           onPressed: () {
-            BlocProvider.of<AuthBloc>(context).add(AuthEvent.logout());
-            BlocProvider.of<AuthModeBloc>(context).add(AuthModeEvent.showSigninForm());
+            setState(() => _bottomNavIndex = -1);
+            BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.goNotifications());
           },
           color: Colors.white,
         )
       ],
       leading: IconButton(
-        icon: Icon(Icons.traffic),
-        onPressed: () {},
-        color: Color(0xff00a152),
+        icon: Icon(Icons.favorite),
+        color: Colors.redAccent,
+        onPressed: () {
+          BlocProvider.of<AuthBloc>(context).add(AuthEvent.logout());
+          BlocProvider.of<AuthModeBloc>(context).add(AuthModeEvent.showSigninForm());
+        },
       ),
       title: SvgPicture.asset(
         AssetsUtils.svg('logo_line_1'),

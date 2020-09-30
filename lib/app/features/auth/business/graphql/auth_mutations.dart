@@ -1,6 +1,6 @@
 final String authCreateProfile = """
-  mutation authCreateProfile(\$profileInput: NewProfileInput!) {
-    authCreateProfile(profileInput: \$profileInput) {
+  mutation authCreateProfile(\$profileInput: NewProfileInput!, \$secureHash: String!) {
+    authCreateProfile(profileInput: \$profileInput, secureHash: \$secureHash) {
       id
       profileName
       deviceIdentifier

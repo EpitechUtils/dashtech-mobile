@@ -4,6 +4,7 @@ import 'package:epitech_intranet_mobile/app/features/notification/bloc/notificat
 import 'package:epitech_intranet_mobile/app/features/notification/bloc/notifications_state.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/business/use_cases/find_notifications_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/models/notification_model.dart';
+import 'package:epitech_intranet_mobile/app/features/profile/business/use_cases/find_profile_autolog_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:injectable/injectable.dart';
@@ -12,8 +13,9 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FindNotificationsUseCase findNotificationsUseCase;
+  FindProfileAutologUseCase findProfileAutologUseCase;
 
-  NotificationsBloc({this.findNotificationsUseCase}) : super(NotificationsState.init());
+  NotificationsBloc({this.findNotificationsUseCase, this.findProfileAutologUseCase}) : super(NotificationsState.init());
 
   @override
   Stream<NotificationsState> mapEventToState(NotificationsEvent event) async* {
@@ -27,7 +29,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     yield NotificationsState.loading();
     try {
       List<NotificationModel> notifications = await findNotificationsUseCase();
-      yield NotificationsState.loaded(notifications: notifications);
+      String autolog = await findProfileAutologUseCase();
+      yield NotificationsState.loaded(notifications: notifications, autologUrl: autolog);
     } catch (err) {
       ToastUtils.error(translate(Keys.Httperror_Internal));
       yield NotificationsState.error();
@@ -37,8 +40,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   Stream<NotificationsState> _mapRefreshToState(Refresh e) async* {
     try {
       List<NotificationModel> notifications = await findNotificationsUseCase();
+      String autolog = await findProfileAutologUseCase();
       e.refreshController.refreshCompleted();
-      yield NotificationsState.loaded(notifications: notifications);
+      yield NotificationsState.loaded(notifications: notifications, autologUrl: autolog);
     } catch (err) {
       print(err);
       e.refreshController.refreshFailed();

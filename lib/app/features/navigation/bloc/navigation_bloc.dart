@@ -9,26 +9,17 @@ import 'package:injectable/injectable.dart';
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   final FindWeekActivitiesUseCase findWeekActivitiesUseCase;
 
-  NavigationBloc({this.findWeekActivitiesUseCase}) : super(NavigationState.init());
+  NavigationBloc({this.findWeekActivitiesUseCase}) : super(NavigationState.home());
 
   @override
   Stream<NavigationState> mapEventToState(NavigationEvent event) async* {
     yield* event.when(
-      init: (e) => _mapInitToState(),
-      loading: (e) => _mapLoadingToState(),
       goHome: (e) => _mapGoHomeToState(e),
       goPlanning: (e) => _mapGoPlanningToState(e),
       goNotifications: (e) => _mapGoNotificationsToState(e),
       goSettings: (e) => _mapGoSettingsToState(e),
+      goProfile: (e) => _mapGoProfileToState(e),
     );
-  }
-
-  Stream<NavigationState> _mapInitToState() async* {
-    yield NavigationState.init();
-  }
-
-  Stream<NavigationState> _mapLoadingToState() async* {
-    yield NavigationState.loading();
   }
 
   Stream<NavigationState> _mapGoHomeToState(GoHome e) async* {
@@ -45,5 +36,9 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
 
   Stream<NavigationState> _mapGoSettingsToState(GoSettings e) async* {
     yield NavigationState.settings();
+  }
+
+  Stream<NavigationState> _mapGoProfileToState(GoProfile e) async* {
+    yield NavigationState.profile();
   }
 }

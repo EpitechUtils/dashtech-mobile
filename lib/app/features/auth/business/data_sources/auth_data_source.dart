@@ -1,14 +1,16 @@
 import 'dart:io';
 
-import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:epitech_intranet_mobile/app/core/error/exceptions.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/graphql/auth_mutations.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/graphql/auth_queries.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/business/use_cases/signin_usecase.dart';
+import 'package:epitech_intranet_mobile/app/features/auth/models/profile_model.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:injectable/injectable.dart';
+import 'package:meta/meta.dart';
 
 @injectable
 @lazySingleton
@@ -19,9 +21,12 @@ class AuthDataSource {
 
   /// Login into application
   Future<ProfileModel> signin(Credentials credentials) async {
+    final FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
+    final String secureHash = await secureStorage.read(key: 'secureHash');
     final QueryResult result = await client.mutate(MutationOptions(
       documentNode: gql(authCreateProfile),
       variables: {
+        'secureHash': secureHash,
         'profileInput': {
           'deviceIdentifier': credentials.identifier,
           'profileName': credentials.profileName,
