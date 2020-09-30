@@ -36,6 +36,13 @@
       }
     }
   },
+  "planning": {
+    "tabs": {
+      "today": "Today",
+      "week": "Week",
+      "month": "Month"
+    }
+  },
   "auth": {
     "carousel": {
       "first": {

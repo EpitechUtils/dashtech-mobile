@@ -9,5 +9,5 @@ enum _PlanningEvent {
   @object
   Loading,
   @object
-  ListActivities
+  ListMonthActivities,
 }

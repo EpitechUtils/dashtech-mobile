@@ -11,7 +11,7 @@ import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_
 import 'package:epitech_intranet_mobile/app/features/notification/pages/notifications_page.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/pages/planning_page.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/pages/settings_page.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/coming_soon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -107,7 +107,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
           planning: (e) => PlanningPage(),
           notifications: (e) => NotificationsPage(),
           settings: (e) => SettingsPage(),
-          profile: (e) => CommingSoonWidget(),
+          profile: (e) => ComingSoonWidget(),
         ),
       ),
     );

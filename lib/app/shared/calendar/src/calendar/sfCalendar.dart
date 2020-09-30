@@ -464,8 +464,7 @@ class _SfCalendarState extends State<SfCalendar> {
 
   /// loads the time zone data base to handle the time zone for calendar
   Future<bool> _loadDataBase() async {
-    final dynamic byteData = await rootBundle.load('packages/timezone/data/2019c.tzf');
-    initializeDatabase(byteData.buffer.asUint8List());
+    tz.initializeTimeZones();
     _timeZoneLoaded = true;
     return true;
   }

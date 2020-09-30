@@ -8,6 +8,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:timezone/timezone.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 part './src/calendar/appointment_engine/appointment.dart';
 part './src/calendar/appointment_engine/appointment_helper.dart';

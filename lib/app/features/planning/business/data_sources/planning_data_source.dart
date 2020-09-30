@@ -13,15 +13,27 @@ class PlanningDataSource {
 
   PlanningDataSource({@required this.client}) : assert(client != null);
 
-  /// Get week planning with events
-  Future<List<PlanningActivityModel>> weekActivities() async {
+  /// Get list planning with events
+  Future<List<PlanningActivityModel>> listActivities() async {
     final QueryResult result = await client.query(QueryOptions(
-      documentNode: gql(planningWeekActivities),
+      documentNode: gql(planningListActivities),
     ));
     if (result.hasException) {
       manageError(result);
     }
-    final json = result.data['planningWeekActivities'] as List;
+    final json = result.data['planningListActivities'] as List;
+    return json.map((dynamic model) => PlanningActivityModel.fromJson(model)).toList();
+  }
+
+  /// Get week planning with events
+  Future<List<PlanningActivityModel>> listMonthActivities() async {
+    final QueryResult result = await client.query(QueryOptions(
+      documentNode: gql(planningMonthActivities),
+    ));
+    if (result.hasException) {
+      manageError(result);
+    }
+    final json = result.data['planningMonthActivities'] as List;
     return json.map((dynamic model) => PlanningActivityModel.fromJson(model)).toList();
   }
 }

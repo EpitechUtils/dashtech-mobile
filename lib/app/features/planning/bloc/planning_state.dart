@@ -10,7 +10,7 @@ enum _PlanningState {
   @object
   Loading,
   @Data(fields: [
-    DataField<Map<String, List<PlanningActivityModel>>>('weekActivities'),
+    DataField<List<PlanningActivityModel>>('activities'), // used for all
   ])
   ActivitiesList,
 }
