@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class CommingSoonWidget extends StatelessWidget {
+class ComingSoonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

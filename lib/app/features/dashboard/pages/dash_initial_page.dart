@@ -1,7 +1,7 @@
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/widgets/activities_list_widget.dart';
-import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
+import 'package:epitech_intranet_mobile/app/shared/widgets/coming_soon_widget.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/tabbar_subheader_widget.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +55,8 @@ class _DashInitialPage extends State<DashInitialPage> with SingleTickerProviderS
               controller: _tabController,
               children: [
                 ActivitiesListWidget(),
-                CommingSoonWidget(),
-                CommingSoonWidget(),
+                ComingSoonWidget(),
+                ComingSoonWidget(),
               ],
             ),
           )

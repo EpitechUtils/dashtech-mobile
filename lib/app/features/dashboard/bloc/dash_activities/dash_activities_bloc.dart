@@ -4,7 +4,7 @@ import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/toast_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_event.dart';
 import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_state.dart';
-import 'package:epitech_intranet_mobile/app/features/planning/business/use_cases/find_week_activities_usecase.dart';
+import 'package:epitech_intranet_mobile/app/features/planning/business/use_cases/find_list_activities_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 @lazySingleton
 class DashActivitiesBloc extends Bloc<DashActivitiesEvent, DashActivitiesState> {
-  final FindWeekActivitiesUseCase findWeekActivitiesUseCase;
+  final FindListActivitiesUseCase findWeekActivitiesUseCase;
 
   DashActivitiesBloc({this.findWeekActivitiesUseCase}) : super(DashActivitiesState.init());
 

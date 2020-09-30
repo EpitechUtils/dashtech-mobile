@@ -5,13 +5,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 @lazySingleton
-class FindWeekActivitiesUseCase implements UseCase<List<PlanningActivityModel>> {
+class FindListActivitiesUseCase implements UseCase<List<PlanningActivityModel>> {
   final PlanningDataSource dataSource;
 
-  FindWeekActivitiesUseCase(this.dataSource);
+  FindListActivitiesUseCase(this.dataSource);
 
   @override
   Future<List<PlanningActivityModel>> call() async {
-    return dataSource.weekActivities();
+    return dataSource.listActivities();
   }
 }
