@@ -22,24 +22,8 @@ final String profileQuery = """
   }
 """;
 
-final String getFriends = """
-  query userFriends {
-    userFriends() {
-      id
-      username
-      avatarUrl
-      gentlemanPercent
-    }
-  }
-""";
-
-final String getFriendRequests = """
-  query userFriendRequests {
-    userFriendRequests() {
-      id
-      username
-      avatarUrl
-      gentlemanPercent
-    }
+final String authGetAutolog = """
+  query authGetAutolog {
+    authGetAutolog
   }
 """;

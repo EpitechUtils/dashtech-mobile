@@ -5,10 +5,6 @@ part 'navigation_state.g.dart';
 @superEnum
 enum _NavigationState {
   @object
-  Init,
-  @object
-  Loading,
-  @object
   Home,
   @object
   Planning,
@@ -16,4 +12,6 @@ enum _NavigationState {
   Notifications,
   @object
   Settings,
+  @object
+  Profile,
 }

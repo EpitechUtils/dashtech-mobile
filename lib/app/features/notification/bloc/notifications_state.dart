@@ -13,6 +13,7 @@ enum _NotificationsState {
   Error,
   @Data(fields: [
     DataField<List<NotificationModel>>('notifications'),
+    DataField<String>('autologUrl'),
   ])
   Loaded,
 }

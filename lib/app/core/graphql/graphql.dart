@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:basic_utils/basic_utils.dart';
+import 'package:epitech_intranet_mobile/injection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:epitech_intranet_mobile/injection.dart';
 
 final DefaultPolicies defaultPolicies = DefaultPolicies(
   mutate: Policies(
@@ -38,9 +38,11 @@ class Graphql {
     return CustomAuthLink(getHeaders: () async {
       final FlutterSecureStorage secureStorage = getIt<FlutterSecureStorage>();
       final String profile = await secureStorage.read(key: 'profileId');
+      final String secureHash = await secureStorage.read(key: 'secureHash');
 
       return {
-        'x-profile-identifier': StringUtils.isNotNullOrEmpty(profile) ? profile : '',
+        'x-profile-id': StringUtils.isNotNullOrEmpty(profile) ? profile : '',
+        'x-profile-hash': StringUtils.isNotNullOrEmpty(secureHash) ? secureHash : '',
       };
     });
   }

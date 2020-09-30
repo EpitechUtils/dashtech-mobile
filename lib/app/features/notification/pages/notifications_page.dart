@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/bloc/notifications_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/bloc/notifications_event.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/bloc/notifications_state.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shimmer/shimmer.dart';
 
 class NotificationsPage extends StatelessWidget {
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
@@ -24,14 +27,14 @@ class NotificationsPage extends StatelessWidget {
             return LoadingWidget();
           },
           loading: (e) => LoadingWidget(),
-          error: (e) => _buildContent(context, []),
-          loaded: (e) => _buildContent(context, e.notifications),
+          error: (e) => _buildContent(context, [], null),
+          loaded: (e) => _buildContent(context, e.notifications, e.autologUrl),
         ),
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context, List<NotificationModel> notifications) {
+  Widget _buildContent(BuildContext context, List<NotificationModel> notifications, String autolog) {
     return SmartRefresher(
       onRefresh: () {
         BlocProvider.of<NotificationsBloc>(context)
@@ -48,11 +51,44 @@ class NotificationsPage extends StatelessWidget {
             child: SlideAnimation(
               verticalOffset: 50.0,
               child: FadeInAnimation(
-                child: ListTile(
-                  enabled: true,
-                  title: Text(TagUtils.removeHtmlTags(notifications[index].title)),
-                  leading: Icon(Icons.notifications_active),
-                  onTap: () {},
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: ClipRRect(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: notifications[index].user.picture != null
+                                    ? CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: autolog + notifications[index].user.picture,
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(AssetsUtils.image('default-user-image')),
+                                        placeholder: (context, url) => Shimmer.fromColors(
+                                          baseColor: Colors.grey[300],
+                                          highlightColor: Colors.grey[200],
+                                          child: Container(color: Colors.white),
+                                        ),
+                                      )
+                                    : Image.asset(AssetsUtils.image('default-user-image')),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(TagUtils.removeHtmlTags(notifications[index].title).replaceAll('\\s', " ")),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

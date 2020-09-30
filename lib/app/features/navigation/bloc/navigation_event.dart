@@ -5,10 +5,6 @@ part 'navigation_event.g.dart';
 @superEnum
 enum _NavigationEvent {
   @object
-  Init,
-  @object
-  Loading,
-  @object
   GoHome,
   @object
   GoPlanning,
@@ -16,4 +12,6 @@ enum _NavigationEvent {
   GoNotifications,
   @object
   GoSettings,
+  @object
+  GoProfile,
 }
