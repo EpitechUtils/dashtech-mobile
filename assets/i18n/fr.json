@@ -14,7 +14,15 @@
         "notifications": {
             "title": "Notifications",
             "enable": "Activer les notifications",
-            "settings": ""
+            "activity_reminder": "Rappel d'activité",
+            "activity_reminder_val": "Rappel",
+            "project_reminder": "Rappel de rendu",
+            "project_reminder_val": "Rappel"
+        },
+        "planning": {
+            "title": "Planning",
+            "language": "Language",
+            "profile": "Profil"
         }
     },
     "dashboard": {
@@ -26,6 +34,13 @@
                 "modules": "Modules",
                 "projects": "Projets"
             }
+        }
+    },
+    "planning": {
+        "tabs": {
+            "today": "Jour",
+            "week": "Semaine",
+            "month": "Mois"
         }
     },
     "auth": {
