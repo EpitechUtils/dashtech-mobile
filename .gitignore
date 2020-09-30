@@ -76,6 +76,6 @@
 lib/generated_plugin_registrant.dart
 
 *.g.dart
-lib/injection.iconfig.dart
+lib/injection.config.dart
 .env.dev
 .flutter-plugins-dependencies
