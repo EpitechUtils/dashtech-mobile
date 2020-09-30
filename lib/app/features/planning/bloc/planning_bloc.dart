@@ -2,8 +2,8 @@ import 'dart:collection';
 
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/toast_utils.dart';
-import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_event.dart';
-import 'package:epitech_intranet_mobile/app/features/dashboard/bloc/dash_activities/dash_activities_state.dart';
+import 'package:epitech_intranet_mobile/app/features/planning/bloc/planning_event.dart';
+import 'package:epitech_intranet_mobile/app/features/planning/bloc/planning_state.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/business/use_cases/find_week_activities_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/planning/models/planning_activity_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,50 +12,37 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 @lazySingleton
-class DashActivitiesBloc extends Bloc<DashActivitiesEvent, DashActivitiesState> {
+class PlanningBloc extends Bloc<PlanningEvent, PlanningState> {
   final FindWeekActivitiesUseCase findWeekActivitiesUseCase;
 
-  DashActivitiesBloc({this.findWeekActivitiesUseCase}) : super(DashActivitiesState.init());
+  PlanningBloc({this.findWeekActivitiesUseCase}) : super(PlanningState.init());
 
   @override
-  Stream<DashActivitiesState> mapEventToState(DashActivitiesEvent event) async* {
+  Stream<PlanningState> mapEventToState(PlanningEvent event) async* {
     yield* event.when(
       init: (e) => _mapInitToState(),
       loading: (e) => _mapLoadingToState(),
       listActivities: (e) => _mapListActivitiesToState(e),
-      refresh: (e) => _mapRefreshToState(e),
     );
   }
 
-  Stream<DashActivitiesState> _mapInitToState() async* {
-    yield DashActivitiesState.init();
+  Stream<PlanningState> _mapInitToState() async* {
+    yield PlanningState.init();
   }
 
-  Stream<DashActivitiesState> _mapLoadingToState() async* {
-    yield DashActivitiesState.loading();
+  Stream<PlanningState> _mapLoadingToState() async* {
+    yield PlanningState.loading();
   }
 
-  Stream<DashActivitiesState> _mapListActivitiesToState(ListActivities e) async* {
-    yield DashActivitiesState.loading();
+  Stream<PlanningState> _mapListActivitiesToState(ListActivities e) async* {
+    yield PlanningState.loading();
     try {
       final SplayTreeMap<String, List<PlanningActivityModel>> weekActivities = await getData();
-      yield DashActivitiesState.activitiesList(weekActivities: weekActivities);
+      yield PlanningState.activitiesList(weekActivities: weekActivities);
     } catch (err) {
       print(err);
       ToastUtils.error(translate(Keys.Httperror_General));
-      yield DashActivitiesState.activitiesList(weekActivities: null);
-    }
-  }
-
-  Stream<DashActivitiesState> _mapRefreshToState(Refresh e) async* {
-    try {
-      final SplayTreeMap<String, List<PlanningActivityModel>> weekActivities = await getData();
-      e.refreshController.refreshCompleted();
-      yield DashActivitiesState.activitiesList(weekActivities: weekActivities);
-    } catch (err) {
-      print(err);
-      e.refreshController.refreshFailed();
-      ToastUtils.error(translate(Keys.Httperror_General));
+      yield PlanningState.activitiesList(weekActivities: null);
     }
   }
 

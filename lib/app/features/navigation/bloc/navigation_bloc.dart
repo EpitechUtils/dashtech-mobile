@@ -1,4 +1,3 @@
-import 'package:epitech_intranet_mobile/app/features/dashboard/business/use_cases/find_week_activities_usecase.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_event.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +6,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 @lazySingleton
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
-  final FindWeekActivitiesUseCase findWeekActivitiesUseCase;
-
-  NavigationBloc({this.findWeekActivitiesUseCase}) : super(NavigationState.home());
+  NavigationBloc() : super(NavigationState.home());
 
   @override
   Stream<NavigationState> mapEventToState(NavigationEvent event) async* {
