@@ -1,5 +1,3 @@
-import 'package:basic_utils/basic_utils.dart';
-import 'package:epitech_intranet_mobile/app/core/utils/device_utils.dart';
 import 'package:epitech_intranet_mobile/app/core/utils/keyboard_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_event.dart';
@@ -15,10 +13,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class EpitechIntraMobileApp extends StatefulWidget {
   @override
@@ -29,7 +25,12 @@ class _EpitechIntraMobileApp extends State<EpitechIntraMobileApp> {
   @override
   Widget build(BuildContext context) {
     LocalizationDelegate localDelegate = LocalizedApp.of(context).delegate;
-    //getIt<FlutterSecureStorage>().write(key: 'profileId', value: 'bcd8e6f5-53d0-4b2f-97ee-0095f6eb1c71');
+    /*getIt<FlutterSecureStorage>().write(key: 'profileId', value: '5bcf0551-b77c-4bca-904b-29119a9388a5');
+    getIt<FlutterSecureStorage>().write(
+      key: 'secureHash',
+      value:
+          '40813f8fc1ad5cb7c8e87f37cc527a8d5dbd0ca2f1649db2910c6d3c7dbaf0fb61cb37d8e5abb9477a7dcda0dbc9e36d7d5a98397d1e453c02ac42bd7909ea25',
+    );*/
 
     return MultiBlocProvider(
       providers: [

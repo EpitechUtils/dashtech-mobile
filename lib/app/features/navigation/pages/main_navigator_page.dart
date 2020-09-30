@@ -9,6 +9,7 @@ import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_event.dart';
 import 'package:epitech_intranet_mobile/app/features/navigation/bloc/navigation_state.dart';
 import 'package:epitech_intranet_mobile/app/features/notification/pages/notifications_page.dart';
+import 'package:epitech_intranet_mobile/app/features/planning/pages/planning_page.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/pages/settings_page.dart';
 import 'package:epitech_intranet_mobile/app/shared/widgets/comming_soon_widget.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
       body: BlocBuilder<NavigationBloc, NavigationState>(
         builder: (context, state) => state.when(
           home: (e) => DashInitialPage(),
-          planning: (e) => CommingSoonWidget(),
+          planning: (e) => PlanningPage(),
           notifications: (e) => NotificationsPage(),
           settings: (e) => SettingsPage(),
           profile: (e) => CommingSoonWidget(),
@@ -125,7 +126,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
                 child: new Container(
                   padding: EdgeInsets.all(1),
                   decoration: new BoxDecoration(
-                    color: Colors.redAccent,
+                    color: Colors.red,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   constraints: BoxConstraints(
@@ -133,7 +134,7 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
                     minHeight: 12,
                   ),
                   child: new Text(
-                    '13',
+                    'NaN',
                     style: new TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -152,8 +153,8 @@ class _MainNavigatorPage extends State<MainNavigatorPage> with TickerProviderSta
         )
       ],
       leading: IconButton(
-        icon: Icon(Icons.favorite),
-        color: Colors.redAccent,
+        icon: Icon(Icons.power_settings_new),
+        color: Colors.red,
         onPressed: () {
           BlocProvider.of<AuthBloc>(context).add(AuthEvent.logout());
           BlocProvider.of<AuthModeBloc>(context).add(AuthModeEvent.showSigninForm());
