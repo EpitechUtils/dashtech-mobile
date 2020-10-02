@@ -55,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     FirebaseNotifications().listen(uuidVal);
     final String profileId = await secureStorage.read(key: 'profileId');
+    await Future.delayed(const Duration(seconds: 5), () {});
     if (StringUtils.isNotNullOrEmpty(profileId)) {
       //profileBloc.add(ProfileEvent.forceLoadProfile());
       yield AuthState.authenticated();

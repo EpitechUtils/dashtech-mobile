@@ -11,29 +11,32 @@ class MonthViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfCalendar(
-      initialSelectedDate: DateTime.now(),
-      //onViewChanged: this.onViewChanged,
-      view: CalendarView.month,
-      dataSource: PlanningCalendarDataSource(PlanningCalendarDataSource.parseFromModel(activities)),
-      onTap: (CalendarTapDetails details) {
-        List<dynamic> appointmentsList = details.appointments;
-        if (appointmentsList == null) return;
+    return Container(
+      margin: const EdgeInsets.only(left: 5),
+      child: SfCalendar(
+        initialSelectedDate: DateTime.now(),
+        //onViewChanged: this.onViewChanged,
+        view: CalendarView.month,
+        dataSource: PlanningCalendarDataSource(PlanningCalendarDataSource.parseFromModel(activities)),
+        onTap: (CalendarTapDetails details) {
+          List<dynamic> appointmentsList = details.appointments;
+          if (appointmentsList == null) return;
 
-        // Get meeting 0
-        PlanningActivity meeting = appointmentsList[0];
-        if (meeting == null) return;
+          // Get meeting 0
+          PlanningActivity meeting = appointmentsList[0];
+          if (meeting == null) return;
 
-        print(meeting.eventName);
-      },
-      todayHighlightColor: Theme.of(context).primaryColor,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      timeSlotViewSettings: TimeSlotViewSettings(startHour: 7, timeFormat: "Hm"),
-      headerStyle: CalendarHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
-      viewHeaderStyle: ViewHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
-      monthViewSettings: MonthViewSettings(
-        appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-        navigationDirection: MonthNavigationDirection.vertical,
+          print(meeting.eventName);
+        },
+        todayHighlightColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        timeSlotViewSettings: TimeSlotViewSettings(timeFormat: "Hm"),
+        headerStyle: CalendarHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+        viewHeaderStyle: ViewHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+        monthViewSettings: MonthViewSettings(
+          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+          navigationDirection: MonthNavigationDirection.vertical,
+        ),
       ),
     );
   }

@@ -30,7 +30,7 @@ class DayViewWidget extends StatelessWidget {
       headerStyle: CalendarHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       viewHeaderStyle: ViewHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      timeSlotViewSettings: TimeSlotViewSettings(startHour: 7, timeFormat: "Hm"),
+      timeSlotViewSettings: TimeSlotViewSettings(timeFormat: "Hm"),
     );
   }
 }
