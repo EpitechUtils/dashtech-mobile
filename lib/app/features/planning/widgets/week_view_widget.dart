@@ -26,14 +26,11 @@ class WeekViewWidget extends StatelessWidget {
 
         print(meeting.eventName);
       },
-      viewHeaderHeight: 0,
-      headerHeight: 0,
-      todayHighlightColor: Color(0xFF0072ff),
+      todayHighlightColor: Theme.of(context).primaryColor,
+      headerStyle: CalendarHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+      viewHeaderStyle: ViewHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       timeSlotViewSettings: TimeSlotViewSettings(startHour: 7, timeFormat: "Hm"),
-      monthViewSettings: MonthViewSettings(
-        appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-      ),
     );
   }
 }

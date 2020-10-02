@@ -6,6 +6,7 @@ part 'planning_activity_room_model.g.dart';
 @JsonSerializable(nullable: false)
 class PlanningActivityRoomModel extends Equatable {
   String code;
+  @JsonKey(nullable: true)
   String type;
   int seats;
 

@@ -4,8 +4,9 @@ import 'package:flutter_translate/flutter_translate.dart';
 class TabBarSubHeaderWidget extends StatelessWidget {
   final TabController _controller;
   final List<String> _labelKeys;
+  final Color backColor;
 
-  TabBarSubHeaderWidget(this._controller, this._labelKeys);
+  TabBarSubHeaderWidget(this._controller, this._labelKeys, {this.backColor});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class TabBarSubHeaderWidget extends StatelessWidget {
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
-          color: Color(0xFFF4F4F4),
+          color: this.backColor != null ? this.backColor : Theme.of(context).scaffoldBackgroundColor,
         ),
         tabs: _labelKeys
             .map((key) => Tab(

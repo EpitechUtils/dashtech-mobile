@@ -26,13 +26,14 @@ class MonthViewWidget extends StatelessWidget {
 
         print(meeting.eventName);
       },
-      viewHeaderHeight: 0,
-      headerHeight: 0,
-      todayHighlightColor: Color(0xFF0072ff),
+      todayHighlightColor: Theme.of(context).primaryColor,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       timeSlotViewSettings: TimeSlotViewSettings(startHour: 7, timeFormat: "Hm"),
+      headerStyle: CalendarHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+      viewHeaderStyle: ViewHeaderStyle(backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       monthViewSettings: MonthViewSettings(
         appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+        navigationDirection: MonthNavigationDirection.vertical,
       ),
     );
   }
