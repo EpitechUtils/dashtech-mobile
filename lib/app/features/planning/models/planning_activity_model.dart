@@ -32,6 +32,7 @@ class PlanningActivityModel extends Equatable {
   String type_code;
   @JsonKey(nullable: true)
   bool past;
+  @JsonKey(nullable: true)
   PlanningActivityRoomModel room;
 
   PlanningActivityModel(
