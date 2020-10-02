@@ -21,8 +21,9 @@
     },
     "planning": {
       "title": "Schedule",
-      "language": "Language",
-      "profile": "Profile"
+      "only_registered": "Only registered events",
+      "only_own": "My activities only (as speaker)",
+      "cached": "Keep in cache"
     }
   },
   "dashboard": {

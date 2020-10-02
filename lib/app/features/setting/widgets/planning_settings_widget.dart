@@ -1,7 +1,5 @@
 import 'package:epitech_intranet_mobile/app/core/localization/keys.dart';
-import 'package:epitech_intranet_mobile/app/features/setting/models/setting_model.dart';
 import 'package:epitech_intranet_mobile/app/features/setting/widgets/abstract/settings_abstract_widget.dart';
-import 'package:epitech_intranet_mobile/app/shared/utils/language_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -26,18 +24,36 @@ class _PlanningSettingsWidget extends SettingsAbstractWidget {
         color: Theme.of(context).primaryColor,
       ),
       tiles: [
-        SettingsTile(
-          enabled: false,
-          title: translate(Keys.Settings_Common_Language),
-          subtitle:
-              LanguageUtils.getDisplayLanguage(Localizations.localeOf(context).toLanguageTag())['name'] + " (System)",
-          leading: Icon(Icons.language),
+        SettingsTile.switchTile(
+          title: translate(Keys.Settings_Planning_Only_Registered),
+          leading: Icon(Icons.calendar_today),
+          switchValue: parseSetting(
+            Keys.Settings_Planning_Only_Registered,
+            "false",
+          ).parseBool(),
+          onToggle: (bool value) {
+            updateSetting<bool>(Keys.Settings_Planning_Only_Registered, value);
+            if (value) updateSetting<bool>(Keys.Settings_Planning_Only_Own, !value);
+          },
         ),
-        SettingsTile(
-          title: translate(Keys.Settings_Common_Profile),
-          subtitle: 'Test',
-          leading: Icon(Icons.person),
-          onTap: () {},
+        SettingsTile.switchTile(
+          title: translate(Keys.Settings_Planning_Only_Own),
+          leading: Icon(Icons.mic),
+          switchValue: parseSetting(
+            Keys.Settings_Planning_Only_Own,
+            "false",
+          ).parseBool(),
+          onToggle: (bool value) {
+            updateSetting<bool>(Keys.Settings_Planning_Only_Own, value);
+            if (value) updateSetting<bool>(Keys.Settings_Planning_Only_Registered, !value);
+          },
+        ),
+        SettingsTile.switchTile(
+          title: translate(Keys.Settings_Planning_Cached),
+          leading: Icon(Icons.save_alt),
+          switchValue: false,
+          enabled: false,
+          onToggle: (bool value) {},
         ),
       ],
     );

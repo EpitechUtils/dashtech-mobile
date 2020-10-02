@@ -21,8 +21,9 @@
         },
         "planning": {
             "title": "Planning",
-            "language": "Language",
-            "profile": "Profil"
+            "only_registered": "Activités inscrites seulement",
+            "only_own": "Mes activités seulement (intervenant)",
+            "cached": "Conserver dans le cache"
         }
     },
     "dashboard": {
