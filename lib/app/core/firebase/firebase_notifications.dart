@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:basic_utils/basic_utils.dart';
+import 'package:epitech_intranet_mobile/app/core/utils/toast_utils.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_bloc.dart';
 import 'package:epitech_intranet_mobile/app/features/auth/bloc/auth/auth_event.dart';
 import 'package:epitech_intranet_mobile/injection.dart';
@@ -19,7 +20,7 @@ class FirebaseNotifications {
   void listen(String deviceUuid) {
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
-        print(message);
+        ToastUtils.info(message.toString());
       },
     );
 
