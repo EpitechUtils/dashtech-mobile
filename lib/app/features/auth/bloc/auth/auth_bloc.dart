@@ -83,11 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapRegisterNewDeviceToState(RegisterNewDevice event) async* {
-    bool result = await registerDeviceUseCase({'token': event.token, 'deviceUuid': event.deviceUuid});
-    if (result) {
-      print("[DEBUG] Token saved successfully.");
-      return;
-    }
-    print("[DEBUG] Unable to save device token.");
+    await registerDeviceUseCase({'token': event.token, 'deviceUuid': event.deviceUuid});
+    print("[DEBUG] Save token.");
   }
 }

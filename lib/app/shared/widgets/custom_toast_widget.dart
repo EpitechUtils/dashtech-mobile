@@ -1,6 +1,6 @@
+import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:epitech_intranet_mobile/app/core/utils/assets_utils.dart';
 
 class IconToastWidget extends StatefulWidget {
   final Key key;
@@ -24,6 +24,13 @@ class IconToastWidget extends StatefulWidget {
         assetName: 'error',
         lottieLoop: true,
         backgroundColor: Colors.red,
+      );
+
+  factory IconToastWidget.info({String msg}) => IconToastWidget(
+        message: msg,
+        assetName: 'success',
+        lottieLoop: true,
+        backgroundColor: Colors.blue,
       );
 
   factory IconToastWidget.success({String msg}) => IconToastWidget(
