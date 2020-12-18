@@ -50,6 +50,7 @@ class AuthRepository implements IAuthRepository {
   Future<Either<AuthFailure, bool>> sendEmailCode(String email) async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
+        fetchPolicy: FetchPolicy.noCache,
         documentNode: gql(authSendEmailConfirmationQuery),
         variables: {'email': email},
       ),

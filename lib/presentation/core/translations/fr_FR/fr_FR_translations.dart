@@ -2,7 +2,11 @@ final Map<String, String> frFR = {
   // Auth
   'signin': 'Connexion',
   'i_connect': 'Je me connecte',
-  'has_already_account': "Déjà enregistré",
+  'synchronization': 'Synchronisation du compte...',
+  'synchronization_desc':
+      'Laisse nous un peu de temps pour vérifier et terminer la connexion avec l\'intranet, faire deux trois vérifications...\nUne fois fait tu seras automatiquement dirigé sur l\'application.',
+  'has_already_account': "Etudiant Epitech",
+  'intranet_signin': "Connexion intranet",
   'epitech_email_only': "Uniquement une adresse terminant par @epitech.eu.",
   'email_signin_process':
       "En appuyant sur \"Connexion\", tu vas recevoir un e-mail avec un code de validation à 8 chiffres.\nLors de ta première connexion tu seras simplement redirigé vers l'intranet pour te connecter.\nAutrement, directement sur l'application.",
@@ -65,18 +69,17 @@ final Map<String, String> frFR = {
       "Quel est votre secteur d’activité ?",
 
   // Snack Bar
-  "error": "Erreur",
-  "success": "Succès",
+  "error": "Whoops...",
+  "info": "Information",
+  "success": "Bravo !",
 
   // Http Errors
-  "http_auth_not_found":
-      "L’email et le mot de passe ne correspondent pas. Veuillez réessayer !",
-  "http_auth_already_exist": "Cet utilisateur existe déjà !",
-  "http_user_not_found": "Aucun utilisateur n'a été trouvé",
+  "http_profile_login_fail": "Connexion à l'intranet Epitech interompue.",
+  "http_profile_not_found": "Aucun profil avec cet adresse email n'existe.",
+  "http_profile_invalid_code": "Le code n'est pas correct.",
+  "http_profile_expired_code": "La validité de ce code a expiré.",
   "http_common": "Une erreur est survenue",
   "http_auth_domain_unauthorized": "Domaine non autorisé",
-  "http_auth_wrong_email_code":
-      "Le code n'est pas correct. \nVeuillez vérifier votre saisie.",
 
 // Common Actions
   'next': 'Suivant',

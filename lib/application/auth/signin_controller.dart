@@ -1,8 +1,9 @@
 import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
 import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
-import 'package:flutter_file_store/domain/auth/models/credentials.dart';
+import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
 import "package:flutter_file_store/presentation/core/utils/snack_bar_utils.dart";
+import 'package:flutter_file_store/presentation/pages/auth/sign_in/widgets/sign_in_intranet_webview.dart';
 import 'package:flutter_file_store/presentation/pages/auth/sign_in/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dartz/dartz.dart';
 import "package:flutter/material.dart";
@@ -10,6 +11,8 @@ import "package:get/get.dart";
 import "package:get/state_manager.dart";
 
 class SigninController extends GetxController {
+  final StorageService storageService = Get.find();
+
   SigninController({@required this.authRepository});
 
   final IAuthRepository authRepository;
@@ -45,6 +48,8 @@ class SigninController extends GetxController {
     codes.forEach((TextEditingController controller) => controller.dispose());
     focusNodes.forEach((FocusNode focusNode) => focusNode.dispose());
     codeWorker.dispose();
+
+    super.onClose();
   }
 
   // Send email code by email
@@ -83,20 +88,34 @@ class SigninController extends GetxController {
       (AuthFailure left) {
         isLoading.value = false;
         left.map(
-          unexpected: (_) => SnackBarUtils.error(message: 'unexpected'),
+          unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
           profileNotFound: (_) =>
-              SnackBarUtils.error(message: 'profileNotFound'),
-          invalidCode: (_) => SnackBarUtils.error(message: 'invalidCode'),
-          expiredCode: (_) => SnackBarUtils.error(message: 'expiredCode'),
+              SnackBarUtils.error(message: 'http_profile_not_found'),
+          invalidCode: (_) =>
+              SnackBarUtils.error(message: 'http_profile_invalid_code'),
+          expiredCode: (_) =>
+              SnackBarUtils.error(message: 'http_profile_expired_code'),
         );
       },
       (AuthProfile right) {
         isLoading.value = false;
-        SnackBarUtils.success(message: 'cOk');
+        storageService.box.write('profileId', right.id);
+        if (right.status == "creating") {
+          Get.bottomSheet(
+            SingInIntranetWebview(),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+          );
+        }
       },
     );
   }
 
+  void openWebviewBottomSheet() {}
+
+  // Reset the fields
   void resetFields() {
     isWaitingForCode.value = false;
     codes.forEach((controller) => controller.text = '');
