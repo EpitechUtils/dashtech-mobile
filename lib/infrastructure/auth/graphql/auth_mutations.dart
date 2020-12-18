@@ -4,6 +4,14 @@ mutation authRegisterDevice(\$platform: String!, \$token: String!, \$identifier:
 }
 """;
 
+const String authSendEmailConfirmation = """
+query authSendEmailConfirmation(\$email: String!) {
+  authSendEmailConfirmation(email: \$email)
+}
+""";
+
+// fill on top of this
+
 const String registerAsPersonalMutation = """
   mutation registerAsPersonal(\$personalRegistrationInput: PersonalRegistrationInput!) {
     registerAsPersonal(personalRegistrationInput: \$personalRegistrationInput) {

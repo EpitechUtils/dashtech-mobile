@@ -6,6 +6,9 @@ final Map<String, String> frFR = {
   'epitech_email_only': "Uniquement une adresse terminant par @epitech.eu.",
   'email_signin_process':
       "En appuyant sur \"Connexion\", tu vas recevoir un e-mail avec un code de validation à 8 chiffres.\nLors de ta première connexion tu seras simplement redirigé vers l'intranet pour te connecter.\nAutrement, directement sur l'application.",
+  "signin_mail_sent_1": "Un email a été envoyé à ton adresse Epitech",
+  "signin_mail_sent_2":
+      "N'hésites pas à regarder dans les spams, il se peut parfois qu'ils se cachent dedans...",
   'to_connect': 'Me connecter',
   'how_it_works': 'Comment ça marche ?',
   'already_have_account': "Vous avez déjà un compte ReservEat ?",
@@ -15,6 +18,7 @@ final Map<String, String> frFR = {
   'form_email': "Email",
   'form_password': "Mot de passe",
   'or': "ou",
+  'previous': 'Retourner en arrière',
 
   // Form
   "error_form_required": "Champs requis",

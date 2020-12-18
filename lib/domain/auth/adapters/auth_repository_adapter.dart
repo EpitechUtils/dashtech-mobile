@@ -13,8 +13,9 @@ abstract class IAuthRepository {
     String platform,
   );
 
+  Future<Either<AuthFailure, bool>> sendEmailCode(String email);
+
   Future<void> logout();
-  Future<Either<AuthFailure, AuthProfile>> signin(Credentials credentials);
   Future<Either<AuthFailure, Unit>> registerAsPersonal(String email);
   Future<Either<AuthFailure, Restorer>> registerAsRestorer(
     RestorerRegistrationInput input,

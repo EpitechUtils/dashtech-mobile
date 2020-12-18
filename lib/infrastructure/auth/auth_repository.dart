@@ -45,24 +45,32 @@ class AuthRepository implements IAuthRepository {
       ),
     );
 
-    if (result.hasException) print(result.exception);
-
     return right(!result.hasException);
   }
 
+  // Send email verification to user
   @override
-  Future<Either<AuthFailure, AuthProfile>> signin(
-    Credentials credentials,
-  ) async {
-    try {
-      // TODO: Implement login
-      return right(null);
-    } on http.DioError catch (e) {
-      if (e.response.statusCode == HttpStatus.unauthorized) {
-        return left(const AuthFailure.unauthorized());
+  Future<Either<AuthFailure, bool>> sendEmailCode(String email) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        documentNode: gql(authSendEmailConfirmation),
+        variables: {'email': email},
+      ),
+    );
+
+    if (result.hasException) {
+      print(result.exception);
+      switch (result.exception.statusCode) {
+        case HttpStatus.unauthorized:
+          return left(const AuthFailure.domainUnauthorized());
+        case HttpStatus.conflict:
+          return left(const AuthFailure.alreadyExist());
+        default:
+          return left(const AuthFailure.unexpected());
       }
-      return left(const AuthFailure.unexpected());
     }
+
+    return right(true);
   }
 
   @override
