@@ -8,17 +8,27 @@ part of 'auth_profile.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+AuthProfile _$AuthProfileFromJson(Map<String, dynamic> json) {
+  return _AuthProfile.fromJson(json);
+}
 
 /// @nodoc
 class _$AuthProfileTearOff {
   const _$AuthProfileTearOff();
 
 // ignore: unused_element
-  _AuthProfile call({@required String id, @required String email}) {
+  _AuthProfile call(
+      {@required String id, @required String email, @required String status}) {
     return _AuthProfile(
       id: id,
       email: email,
+      status: status,
     );
+  }
+
+// ignore: unused_element
+  AuthProfile fromJson(Map<String, Object> json) {
+    return AuthProfile.fromJson(json);
   }
 }
 
@@ -30,7 +40,9 @@ const $AuthProfile = _$AuthProfileTearOff();
 mixin _$AuthProfile {
   String get id;
   String get email;
+  String get status;
 
+  Map<String, dynamic> toJson();
   $AuthProfileCopyWith<AuthProfile> get copyWith;
 }
 
@@ -39,7 +51,7 @@ abstract class $AuthProfileCopyWith<$Res> {
   factory $AuthProfileCopyWith(
           AuthProfile value, $Res Function(AuthProfile) then) =
       _$AuthProfileCopyWithImpl<$Res>;
-  $Res call({String id, String email});
+  $Res call({String id, String email, String status});
 }
 
 /// @nodoc
@@ -54,10 +66,12 @@ class _$AuthProfileCopyWithImpl<$Res> implements $AuthProfileCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object email = freezed,
+    Object status = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       email: email == freezed ? _value.email : email as String,
+      status: status == freezed ? _value.status : status as String,
     ));
   }
 }
@@ -69,7 +83,7 @@ abstract class _$AuthProfileCopyWith<$Res>
           _AuthProfile value, $Res Function(_AuthProfile) then) =
       __$AuthProfileCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String email});
+  $Res call({String id, String email, String status});
 }
 
 /// @nodoc
@@ -86,29 +100,40 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object email = freezed,
+    Object status = freezed,
   }) {
     return _then(_AuthProfile(
       id: id == freezed ? _value.id : id as String,
       email: email == freezed ? _value.email : email as String,
+      status: status == freezed ? _value.status : status as String,
     ));
   }
 }
 
+@JsonSerializable()
+
 /// @nodoc
 class _$_AuthProfile extends _AuthProfile {
-  const _$_AuthProfile({@required this.id, @required this.email})
+  const _$_AuthProfile(
+      {@required this.id, @required this.email, @required this.status})
       : assert(id != null),
         assert(email != null),
+        assert(status != null),
         super._();
+
+  factory _$_AuthProfile.fromJson(Map<String, dynamic> json) =>
+      _$_$_AuthProfileFromJson(json);
 
   @override
   final String id;
   @override
   final String email;
+  @override
+  final String status;
 
   @override
   String toString() {
-    return 'AuthProfile(id: $id, email: $email)';
+    return 'AuthProfile(id: $id, email: $email, status: $status)';
   }
 
   @override
@@ -118,29 +143,44 @@ class _$_AuthProfile extends _AuthProfile {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(email);
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(status);
 
   @override
   _$AuthProfileCopyWith<_AuthProfile> get copyWith =>
       __$AuthProfileCopyWithImpl<_AuthProfile>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_AuthProfileToJson(this);
+  }
 }
 
 abstract class _AuthProfile extends AuthProfile {
   const _AuthProfile._() : super._();
-  const factory _AuthProfile({@required String id, @required String email}) =
-      _$_AuthProfile;
+  const factory _AuthProfile(
+      {@required String id,
+      @required String email,
+      @required String status}) = _$_AuthProfile;
+
+  factory _AuthProfile.fromJson(Map<String, dynamic> json) =
+      _$_AuthProfile.fromJson;
 
   @override
   String get id;
   @override
   String get email;
+  @override
+  String get status;
   @override
   _$AuthProfileCopyWith<_AuthProfile> get copyWith;
 }

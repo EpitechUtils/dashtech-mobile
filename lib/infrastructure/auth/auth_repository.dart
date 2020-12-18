@@ -4,16 +4,13 @@ import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.
 import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
 import 'package:flutter_file_store/domain/auth/failures/email_verification_failure.dart';
 import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
-import 'package:flutter_file_store/domain/auth/models/credentials.dart';
 import 'package:flutter_file_store/domain/restorer/models/restorer.dart';
 import 'package:flutter_file_store/domain/restorer/models/restorer_registration_input.dart';
-import 'package:flutter_file_store/infrastructure/auth/dto/auth_profile_dto.dart';
 import 'package:flutter_file_store/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:flutter_file_store/infrastructure/core/graphql_service.dart';
 import 'package:flutter_file_store/infrastructure/core/token_service.dart';
 import 'package:flutter_file_store/infrastructure/restorer/dto/restorer_dto.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -36,7 +33,7 @@ class AuthRepository implements IAuthRepository {
   ) async {
     final QueryResult result = await graphqlService.client.mutate(
       MutationOptions(
-        documentNode: gql(authRegisterDevice),
+        documentNode: gql(authRegisterDeviceMutation),
         variables: {
           'token': token,
           'platform': platform,
@@ -53,24 +50,52 @@ class AuthRepository implements IAuthRepository {
   Future<Either<AuthFailure, bool>> sendEmailCode(String email) async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(authSendEmailConfirmation),
+        documentNode: gql(authSendEmailConfirmationQuery),
         variables: {'email': email},
       ),
     );
 
     if (result.hasException) {
-      print(result.exception);
+      return left(const AuthFailure.unexpected());
+    }
+
+    return right(true);
+  }
+
+  // Validate code sent by email
+  @override
+  Future<Either<AuthFailure, AuthProfile>> confirmEmailCode(
+    String email,
+    String code,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        fetchPolicy: FetchPolicy.noCache,
+        documentNode: gql(authConfirmEmailCodeQuery),
+        variables: {
+          'email': email,
+          'code': code,
+        },
+      ),
+    );
+
+    if (result.hasException) {
       switch (result.exception.statusCode) {
-        case HttpStatus.unauthorized:
-          return left(const AuthFailure.domainUnauthorized());
+        case HttpStatus.notFound:
+          return left(const AuthFailure.profileNotFound());
         case HttpStatus.conflict:
-          return left(const AuthFailure.alreadyExist());
+          return left(const AuthFailure.invalidCode());
+        case HttpStatus.unauthorized:
+          return left(const AuthFailure.expiredCode());
         default:
           return left(const AuthFailure.unexpected());
       }
     }
 
-    return right(true);
+    final Map<String, dynamic> json =
+        result.data['authConfirmEmailCode'] as Map<String, dynamic>;
+    print(json);
+    return right(AuthProfile.fromJson(json));
   }
 
   @override
@@ -93,10 +118,10 @@ class AuthRepository implements IAuthRepository {
 
     if (result.hasException) {
       switch (result.exception.statusCode) {
-        case HttpStatus.unauthorized:
+        /*case HttpStatus.unauthorized:
           return left(const AuthFailure.domainUnauthorized());
         case HttpStatus.conflict:
-          return left(const AuthFailure.alreadyExist());
+          return left(const AuthFailure.alreadyExist());*/
         default:
           return left(const AuthFailure.unexpected());
       }
@@ -120,10 +145,10 @@ class AuthRepository implements IAuthRepository {
     ));
     if (result.hasException) {
       switch (result.exception.statusCode) {
-        case HttpStatus.unauthorized:
+        /*case HttpStatus.unauthorized:
           return left(const AuthFailure.domainUnauthorized());
         case HttpStatus.conflict:
-          return left(const AuthFailure.alreadyExist());
+          return left(const AuthFailure.alreadyExist());*/
         default:
           return left(const AuthFailure.unexpected());
       }

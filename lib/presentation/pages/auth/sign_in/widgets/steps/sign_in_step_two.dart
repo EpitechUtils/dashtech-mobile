@@ -91,9 +91,7 @@ class SignInStepTwo extends GetView<SigninController> {
             () => Visibility(
               visible: !controller.isLoading.value && !keyboardIsOpen,
               child: RoundedButton(
-                onPressed: () {
-                  controller.isWaitingForCode.value = false;
-                },
+                onPressed: controller.resetFields,
                 label: 'previous'.tr,
               ),
             ),

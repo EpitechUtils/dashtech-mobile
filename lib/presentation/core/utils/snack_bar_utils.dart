@@ -20,7 +20,7 @@ class SnackBarUtils {
       _translateIt(message),
       backgroundColor: const Color(successColor),
       colorText: Colors.white,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       margin: EdgeInsets.symmetric(
@@ -49,6 +49,7 @@ class SnackBarUtils {
       _translateIt(message),
       backgroundColor: const Color(infoColor),
       colorText: Colors.white,
+      snackPosition: SnackPosition.TOP,
       overlayBlur: 0,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -76,8 +77,9 @@ class SnackBarUtils {
     Get.snackbar(
       _translateIt(title),
       _translateIt(message),
-      backgroundColor: const Color(warnColor),
+      backgroundColor: const Color(errorColor),
       colorText: Colors.white,
+      snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       margin: EdgeInsets.symmetric(

@@ -50,10 +50,10 @@ class SigninController extends GetxController {
   // Send email code by email
   Future<void> sendEmailCode() async {
     isLoading.value = true;
-    final Either<AuthFailure, bool> failureOrAuthProfile = await authRepository
+    final Either<AuthFailure, bool> failureOrYes = await authRepository
         .sendEmailCode(emailTextController.text.toLowerCase());
 
-    failureOrAuthProfile.fold(
+    failureOrYes.fold(
       (AuthFailure left) => SnackBarUtils.error(message: 'http_common'),
       (bool _) {
         isLoading.value = false;
@@ -72,8 +72,35 @@ class SigninController extends GetxController {
   }
 
   // Send request to API to validate the verification code previously sent
-  void validateVerificationCode(String code) {
+  void validateVerificationCode(String code) async {
     isLoading.value = true;
+
+    final Either<AuthFailure, AuthProfile> failureOrAuthProfile =
+        await authRepository.confirmEmailCode(
+            emailTextController.text.toLowerCase(), code);
+
+    failureOrAuthProfile.fold(
+      (AuthFailure left) {
+        isLoading.value = false;
+        left.map(
+          unexpected: (_) => SnackBarUtils.error(message: 'unexpected'),
+          profileNotFound: (_) =>
+              SnackBarUtils.error(message: 'profileNotFound'),
+          invalidCode: (_) => SnackBarUtils.error(message: 'invalidCode'),
+          expiredCode: (_) => SnackBarUtils.error(message: 'expiredCode'),
+        );
+      },
+      (AuthProfile right) {
+        isLoading.value = false;
+        SnackBarUtils.success(message: 'cOk');
+      },
+    );
+  }
+
+  void resetFields() {
+    isWaitingForCode.value = false;
+    codes.forEach((controller) => controller.text = '');
+    emailTextController.text = '';
   }
 
   String get code => codes.map((controller) => controller.text).join('');

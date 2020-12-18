@@ -1,12 +1,22 @@
-const String authRegisterDevice = """
+const String authRegisterDeviceMutation = """
 mutation authRegisterDevice(\$platform: String!, \$token: String!, \$identifier: String!) {
   authRegisterDevice(platform: \$platform, token: \$token, identifier: \$identifier)
 }
 """;
 
-const String authSendEmailConfirmation = """
+const String authSendEmailConfirmationQuery = """
 query authSendEmailConfirmation(\$email: String!) {
   authSendEmailConfirmation(email: \$email)
+}
+""";
+
+const String authConfirmEmailCodeQuery = """
+query authConfirmEmailCode(\$email: String!, \$code: String!) {
+  authConfirmEmailCode(email: \$email, code: \$code) {
+    id
+    status
+    email
+  }
 }
 """;
 
