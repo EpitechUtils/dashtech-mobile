@@ -1,8 +1,5 @@
 import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
-import 'package:flutter_file_store/domain/auth/failures/email_verification_failure.dart';
 import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
-import 'package:flutter_file_store/domain/restorer/models/restorer.dart';
-import 'package:flutter_file_store/domain/restorer/models/restorer_registration_input.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IAuthRepository {
@@ -18,11 +15,13 @@ abstract class IAuthRepository {
     String code,
   );
 
-  Future<void> logout();
-  Future<Either<AuthFailure, Unit>> registerAsPersonal(String email);
-  Future<Either<AuthFailure, Restorer>> registerAsRestorer(
-    RestorerRegistrationInput input,
+  Future<Either<AuthFailure, bool>> setProfileAutolog(
+    String profileId,
+    String autologUrl,
   );
-  Future<Either<EmailVerificationFailure, bool>> verifyEmailCode(String code);
-  Future<Either<AuthFailure, Unit>> sendBackEmail();
+
+  Future<Either<AuthFailure, bool>> login(
+    String profileId,
+    String email,
+  );
 }

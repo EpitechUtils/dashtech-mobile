@@ -83,23 +83,23 @@ class SigninController extends GetxController {
     final Either<AuthFailure, AuthProfile> failureOrAuthProfile =
         await authRepository.confirmEmailCode(
             emailTextController.text.toLowerCase(), code);
-
     failureOrAuthProfile.fold(
       (AuthFailure left) {
         isLoading.value = false;
         left.map(
           unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
-          profileNotFound: (_) =>
+          notFound: (_) =>
               SnackBarUtils.error(message: 'http_profile_not_found'),
-          invalidCode: (_) =>
+          conflict: (_) =>
               SnackBarUtils.error(message: 'http_profile_invalid_code'),
-          expiredCode: (_) =>
+          unauthorized: (_) =>
               SnackBarUtils.error(message: 'http_profile_expired_code'),
         );
       },
       (AuthProfile right) {
         isLoading.value = false;
         storageService.box.write('profileId', right.id);
+        storageService.box.write('profileEmail', right.email);
         if (right.status == "creating") {
           Get.bottomSheet(
             SingInIntranetWebview(),

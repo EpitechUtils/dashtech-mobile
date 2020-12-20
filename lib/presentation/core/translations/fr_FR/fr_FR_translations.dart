@@ -78,6 +78,8 @@ final Map<String, String> frFR = {
   "http_profile_not_found": "Aucun profil avec cet adresse email n'existe.",
   "http_profile_invalid_code": "Le code n'est pas correct.",
   "http_profile_expired_code": "La validité de ce code a expiré.",
+  "http_profile_email_missmatch":
+      "L'adresse email et le login Epitech ne sont pas identiques.\nTu dois te connecter avec TON compte.",
   "http_common": "Une erreur est survenue",
   "http_auth_domain_unauthorized": "Domaine non autorisé",
 

@@ -19,18 +19,18 @@ class _$AuthFailureTearOff {
   }
 
 // ignore: unused_element
-  _ProfileNotFound profileNotFound() {
-    return const _ProfileNotFound();
+  _NotFound notFound() {
+    return const _NotFound();
   }
 
 // ignore: unused_element
-  _InvalidCode invalidCode() {
-    return const _InvalidCode();
+  _Conflict conflict() {
+    return const _Conflict();
   }
 
 // ignore: unused_element
-  _ExpiredCode expiredCode() {
-    return const _ExpiredCode();
+  _Unauthorized unauthorized() {
+    return const _Unauthorized();
   }
 }
 
@@ -43,31 +43,31 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult unexpected(),
-    @required TResult profileNotFound(),
-    @required TResult invalidCode(),
-    @required TResult expiredCode(),
+    @required TResult notFound(),
+    @required TResult conflict(),
+    @required TResult unauthorized(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
-    TResult profileNotFound(),
-    TResult invalidCode(),
-    TResult expiredCode(),
+    TResult notFound(),
+    TResult conflict(),
+    TResult unauthorized(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult unexpected(_Unexpected value),
-    @required TResult profileNotFound(_ProfileNotFound value),
-    @required TResult invalidCode(_InvalidCode value),
-    @required TResult expiredCode(_ExpiredCode value),
+    @required TResult notFound(_NotFound value),
+    @required TResult conflict(_Conflict value),
+    @required TResult unauthorized(_Unauthorized value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
-    TResult profileNotFound(_ProfileNotFound value),
-    TResult invalidCode(_InvalidCode value),
-    TResult expiredCode(_ExpiredCode value),
+    TResult notFound(_NotFound value),
+    TResult conflict(_Conflict value),
+    TResult unauthorized(_Unauthorized value),
     @required TResult orElse(),
   });
 }
@@ -127,14 +127,14 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult unexpected(),
-    @required TResult profileNotFound(),
-    @required TResult invalidCode(),
-    @required TResult expiredCode(),
+    @required TResult notFound(),
+    @required TResult conflict(),
+    @required TResult unauthorized(),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
     return unexpected();
   }
 
@@ -142,9 +142,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
-    TResult profileNotFound(),
-    TResult invalidCode(),
-    TResult expiredCode(),
+    TResult notFound(),
+    TResult conflict(),
+    TResult unauthorized(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -158,14 +158,14 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult unexpected(_Unexpected value),
-    @required TResult profileNotFound(_ProfileNotFound value),
-    @required TResult invalidCode(_InvalidCode value),
-    @required TResult expiredCode(_ExpiredCode value),
+    @required TResult notFound(_NotFound value),
+    @required TResult conflict(_Conflict value),
+    @required TResult unauthorized(_Unauthorized value),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
     return unexpected(this);
   }
 
@@ -173,9 +173,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
-    TResult profileNotFound(_ProfileNotFound value),
-    TResult invalidCode(_InvalidCode value),
-    TResult expiredCode(_ExpiredCode value),
+    TResult notFound(_NotFound value),
+    TResult conflict(_Conflict value),
+    TResult unauthorized(_Unauthorized value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -191,36 +191,33 @@ abstract class _Unexpected implements AuthFailure {
 }
 
 /// @nodoc
-abstract class _$ProfileNotFoundCopyWith<$Res> {
-  factory _$ProfileNotFoundCopyWith(
-          _ProfileNotFound value, $Res Function(_ProfileNotFound) then) =
-      __$ProfileNotFoundCopyWithImpl<$Res>;
+abstract class _$NotFoundCopyWith<$Res> {
+  factory _$NotFoundCopyWith(_NotFound value, $Res Function(_NotFound) then) =
+      __$NotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ProfileNotFoundCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$ProfileNotFoundCopyWith<$Res> {
-  __$ProfileNotFoundCopyWithImpl(
-      _ProfileNotFound _value, $Res Function(_ProfileNotFound) _then)
-      : super(_value, (v) => _then(v as _ProfileNotFound));
+class __$NotFoundCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$NotFoundCopyWith<$Res> {
+  __$NotFoundCopyWithImpl(_NotFound _value, $Res Function(_NotFound) _then)
+      : super(_value, (v) => _then(v as _NotFound));
 
   @override
-  _ProfileNotFound get _value => super._value as _ProfileNotFound;
+  _NotFound get _value => super._value as _NotFound;
 }
 
 /// @nodoc
-class _$_ProfileNotFound implements _ProfileNotFound {
-  const _$_ProfileNotFound();
+class _$_NotFound implements _NotFound {
+  const _$_NotFound();
 
   @override
   String toString() {
-    return 'AuthFailure.profileNotFound()';
+    return 'AuthFailure.notFound()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ProfileNotFound);
+    return identical(this, other) || (other is _NotFound);
   }
 
   @override
@@ -230,29 +227,29 @@ class _$_ProfileNotFound implements _ProfileNotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult unexpected(),
-    @required TResult profileNotFound(),
-    @required TResult invalidCode(),
-    @required TResult expiredCode(),
+    @required TResult notFound(),
+    @required TResult conflict(),
+    @required TResult unauthorized(),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return profileNotFound();
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return notFound();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
-    TResult profileNotFound(),
-    TResult invalidCode(),
-    TResult expiredCode(),
+    TResult notFound(),
+    TResult conflict(),
+    TResult unauthorized(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (profileNotFound != null) {
-      return profileNotFound();
+    if (notFound != null) {
+      return notFound();
     }
     return orElse();
   }
@@ -261,68 +258,66 @@ class _$_ProfileNotFound implements _ProfileNotFound {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult unexpected(_Unexpected value),
-    @required TResult profileNotFound(_ProfileNotFound value),
-    @required TResult invalidCode(_InvalidCode value),
-    @required TResult expiredCode(_ExpiredCode value),
+    @required TResult notFound(_NotFound value),
+    @required TResult conflict(_Conflict value),
+    @required TResult unauthorized(_Unauthorized value),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return profileNotFound(this);
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return notFound(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
-    TResult profileNotFound(_ProfileNotFound value),
-    TResult invalidCode(_InvalidCode value),
-    TResult expiredCode(_ExpiredCode value),
+    TResult notFound(_NotFound value),
+    TResult conflict(_Conflict value),
+    TResult unauthorized(_Unauthorized value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (profileNotFound != null) {
-      return profileNotFound(this);
+    if (notFound != null) {
+      return notFound(this);
     }
     return orElse();
   }
 }
 
-abstract class _ProfileNotFound implements AuthFailure {
-  const factory _ProfileNotFound() = _$_ProfileNotFound;
+abstract class _NotFound implements AuthFailure {
+  const factory _NotFound() = _$_NotFound;
 }
 
 /// @nodoc
-abstract class _$InvalidCodeCopyWith<$Res> {
-  factory _$InvalidCodeCopyWith(
-          _InvalidCode value, $Res Function(_InvalidCode) then) =
-      __$InvalidCodeCopyWithImpl<$Res>;
+abstract class _$ConflictCopyWith<$Res> {
+  factory _$ConflictCopyWith(_Conflict value, $Res Function(_Conflict) then) =
+      __$ConflictCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InvalidCodeCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$InvalidCodeCopyWith<$Res> {
-  __$InvalidCodeCopyWithImpl(
-      _InvalidCode _value, $Res Function(_InvalidCode) _then)
-      : super(_value, (v) => _then(v as _InvalidCode));
+class __$ConflictCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$ConflictCopyWith<$Res> {
+  __$ConflictCopyWithImpl(_Conflict _value, $Res Function(_Conflict) _then)
+      : super(_value, (v) => _then(v as _Conflict));
 
   @override
-  _InvalidCode get _value => super._value as _InvalidCode;
+  _Conflict get _value => super._value as _Conflict;
 }
 
 /// @nodoc
-class _$_InvalidCode implements _InvalidCode {
-  const _$_InvalidCode();
+class _$_Conflict implements _Conflict {
+  const _$_Conflict();
 
   @override
   String toString() {
-    return 'AuthFailure.invalidCode()';
+    return 'AuthFailure.conflict()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InvalidCode);
+    return identical(this, other) || (other is _Conflict);
   }
 
   @override
@@ -332,29 +327,29 @@ class _$_InvalidCode implements _InvalidCode {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult unexpected(),
-    @required TResult profileNotFound(),
-    @required TResult invalidCode(),
-    @required TResult expiredCode(),
+    @required TResult notFound(),
+    @required TResult conflict(),
+    @required TResult unauthorized(),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return invalidCode();
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return conflict();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
-    TResult profileNotFound(),
-    TResult invalidCode(),
-    TResult expiredCode(),
+    TResult notFound(),
+    TResult conflict(),
+    TResult unauthorized(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (invalidCode != null) {
-      return invalidCode();
+    if (conflict != null) {
+      return conflict();
     }
     return orElse();
   }
@@ -363,68 +358,68 @@ class _$_InvalidCode implements _InvalidCode {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult unexpected(_Unexpected value),
-    @required TResult profileNotFound(_ProfileNotFound value),
-    @required TResult invalidCode(_InvalidCode value),
-    @required TResult expiredCode(_ExpiredCode value),
+    @required TResult notFound(_NotFound value),
+    @required TResult conflict(_Conflict value),
+    @required TResult unauthorized(_Unauthorized value),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return invalidCode(this);
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return conflict(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
-    TResult profileNotFound(_ProfileNotFound value),
-    TResult invalidCode(_InvalidCode value),
-    TResult expiredCode(_ExpiredCode value),
+    TResult notFound(_NotFound value),
+    TResult conflict(_Conflict value),
+    TResult unauthorized(_Unauthorized value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (invalidCode != null) {
-      return invalidCode(this);
+    if (conflict != null) {
+      return conflict(this);
     }
     return orElse();
   }
 }
 
-abstract class _InvalidCode implements AuthFailure {
-  const factory _InvalidCode() = _$_InvalidCode;
+abstract class _Conflict implements AuthFailure {
+  const factory _Conflict() = _$_Conflict;
 }
 
 /// @nodoc
-abstract class _$ExpiredCodeCopyWith<$Res> {
-  factory _$ExpiredCodeCopyWith(
-          _ExpiredCode value, $Res Function(_ExpiredCode) then) =
-      __$ExpiredCodeCopyWithImpl<$Res>;
+abstract class _$UnauthorizedCopyWith<$Res> {
+  factory _$UnauthorizedCopyWith(
+          _Unauthorized value, $Res Function(_Unauthorized) then) =
+      __$UnauthorizedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ExpiredCodeCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$ExpiredCodeCopyWith<$Res> {
-  __$ExpiredCodeCopyWithImpl(
-      _ExpiredCode _value, $Res Function(_ExpiredCode) _then)
-      : super(_value, (v) => _then(v as _ExpiredCode));
+class __$UnauthorizedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$UnauthorizedCopyWith<$Res> {
+  __$UnauthorizedCopyWithImpl(
+      _Unauthorized _value, $Res Function(_Unauthorized) _then)
+      : super(_value, (v) => _then(v as _Unauthorized));
 
   @override
-  _ExpiredCode get _value => super._value as _ExpiredCode;
+  _Unauthorized get _value => super._value as _Unauthorized;
 }
 
 /// @nodoc
-class _$_ExpiredCode implements _ExpiredCode {
-  const _$_ExpiredCode();
+class _$_Unauthorized implements _Unauthorized {
+  const _$_Unauthorized();
 
   @override
   String toString() {
-    return 'AuthFailure.expiredCode()';
+    return 'AuthFailure.unauthorized()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ExpiredCode);
+    return identical(this, other) || (other is _Unauthorized);
   }
 
   @override
@@ -434,29 +429,29 @@ class _$_ExpiredCode implements _ExpiredCode {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult unexpected(),
-    @required TResult profileNotFound(),
-    @required TResult invalidCode(),
-    @required TResult expiredCode(),
+    @required TResult notFound(),
+    @required TResult conflict(),
+    @required TResult unauthorized(),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return expiredCode();
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return unauthorized();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
-    TResult profileNotFound(),
-    TResult invalidCode(),
-    TResult expiredCode(),
+    TResult notFound(),
+    TResult conflict(),
+    TResult unauthorized(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (expiredCode != null) {
-      return expiredCode();
+    if (unauthorized != null) {
+      return unauthorized();
     }
     return orElse();
   }
@@ -465,34 +460,34 @@ class _$_ExpiredCode implements _ExpiredCode {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult unexpected(_Unexpected value),
-    @required TResult profileNotFound(_ProfileNotFound value),
-    @required TResult invalidCode(_InvalidCode value),
-    @required TResult expiredCode(_ExpiredCode value),
+    @required TResult notFound(_NotFound value),
+    @required TResult conflict(_Conflict value),
+    @required TResult unauthorized(_Unauthorized value),
   }) {
     assert(unexpected != null);
-    assert(profileNotFound != null);
-    assert(invalidCode != null);
-    assert(expiredCode != null);
-    return expiredCode(this);
+    assert(notFound != null);
+    assert(conflict != null);
+    assert(unauthorized != null);
+    return unauthorized(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
-    TResult profileNotFound(_ProfileNotFound value),
-    TResult invalidCode(_InvalidCode value),
-    TResult expiredCode(_ExpiredCode value),
+    TResult notFound(_NotFound value),
+    TResult conflict(_Conflict value),
+    TResult unauthorized(_Unauthorized value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (expiredCode != null) {
-      return expiredCode(this);
+    if (unauthorized != null) {
+      return unauthorized(this);
     }
     return orElse();
   }
 }
 
-abstract class _ExpiredCode implements AuthFailure {
-  const factory _ExpiredCode() = _$_ExpiredCode;
+abstract class _Unauthorized implements AuthFailure {
+  const factory _Unauthorized() = _$_Unauthorized;
 }
