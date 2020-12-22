@@ -30,7 +30,7 @@ const String loginQuery = """
 query login(\$profileId: String!, \$email: String!) {
   login(profileId: \$profileId, email: \$email) {
     accessToken
-    expirationDate
+    expirationTime
   }
 }
 """;

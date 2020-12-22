@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
+import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
 import 'package:flutter_file_store/infrastructure/core/http_service.dart';
 import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
 import "package:flutter/material.dart";
@@ -122,7 +123,7 @@ class SigninWebviewController extends GetxController {
   // Login from current profile id
   void performLoginFromCurrentProfileId(String profileId) async {
     final String profileEmail = storageService.box.read('profileEmail');
-    final Either<AuthFailure, bool> failureOrYes =
+    final Either<AuthFailure, AuthProfile> failureOrYes =
         await authRepository.login(profileId, profileEmail);
     failureOrYes.fold(
       (AuthFailure left) => left.map(
@@ -132,7 +133,8 @@ class SigninWebviewController extends GetxController {
             SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
-      (_) {
+      (AuthProfile right) {
+        print(right.toJson());
         Get.toNamed(Routes.home);
       },
     );

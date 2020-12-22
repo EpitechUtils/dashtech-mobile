@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
 import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
+import 'package:flutter_file_store/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:flutter_file_store/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:flutter_file_store/infrastructure/core/graphql_service.dart';
 import 'package:flutter_file_store/infrastructure/core/token_service.dart';
@@ -129,7 +130,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, bool>> login(
+  Future<Either<AuthFailure, AuthProfile>> login(
     String profileId,
     String email,
   ) async {
@@ -157,6 +158,11 @@ class AuthRepository implements IAuthRepository {
       }
     }
 
-    return right(result.data['login'] as bool);
+    final AuthProfileTokenDto tokenDto =
+        AuthProfileTokenDto.fromJson(result.data['login']);
+    tokenService.expirationDate.value = tokenDto.expirationTime.toLocal();
+    tokenService.token.value = tokenDto.accessToken;
+
+    return right(tokenDto.toDomain());
   }
 }

@@ -20,7 +20,7 @@ abstract class IAuthRepository {
     String autologUrl,
   );
 
-  Future<Either<AuthFailure, bool>> login(
+  Future<Either<AuthFailure, AuthProfile>> login(
     String profileId,
     String email,
   );
