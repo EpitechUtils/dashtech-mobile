@@ -76,6 +76,7 @@
 lib/generated_plugin_registrant.dart
 
 *.g.dart
+*.freezed.dart
 lib/injection.config.dart
 .env.dev
 .flutter-plugins-dependencies
