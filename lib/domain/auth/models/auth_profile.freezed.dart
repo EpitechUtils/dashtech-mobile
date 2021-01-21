@@ -43,6 +43,7 @@ mixin _$AuthProfile {
   String get status;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $AuthProfileCopyWith<AuthProfile> get copyWith;
 }
 
@@ -155,6 +156,7 @@ class _$_AuthProfile extends _AuthProfile {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(status);
 
+  @JsonKey(ignore: true)
   @override
   _$AuthProfileCopyWith<_AuthProfile> get copyWith =>
       __$AuthProfileCopyWithImpl<_AuthProfile>(this, _$identity);
@@ -182,5 +184,6 @@ abstract class _AuthProfile extends AuthProfile {
   @override
   String get status;
   @override
+  @JsonKey(ignore: true)
   _$AuthProfileCopyWith<_AuthProfile> get copyWith;
 }

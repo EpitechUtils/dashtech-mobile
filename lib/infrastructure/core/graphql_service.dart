@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter_file_store/infrastructure/core/token_service.dart';
-import 'package:flutter_file_store/presentation/core/utils/logger_utils.dart';
+import 'package:dashtech/infrastructure/core/token_service.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

@@ -40,6 +40,7 @@ mixin _$JwtPayloadDto {
   String get email;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith;
 }
 
@@ -143,6 +144,7 @@ class _$_JwtPayloadDto extends _JwtPayloadDto {
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(email);
 
+  @JsonKey(ignore: true)
   @override
   _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith =>
       __$JwtPayloadDtoCopyWithImpl<_JwtPayloadDto>(this, _$identity);
@@ -166,5 +168,6 @@ abstract class _JwtPayloadDto extends JwtPayloadDto {
   @override
   String get email;
   @override
+  @JsonKey(ignore: true)
   _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith;
 }

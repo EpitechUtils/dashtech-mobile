@@ -4,8 +4,8 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_file_store/infrastructure/core/token_service.dart';
-import 'package:flutter_file_store/presentation/core/utils/logger_utils.dart';
+import 'package:dashtech/infrastructure/core/token_service.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

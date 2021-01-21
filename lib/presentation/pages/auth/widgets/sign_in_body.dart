@@ -1,7 +1,7 @@
-import 'package:flutter_file_store/application/auth/signin_controller.dart';
-import 'package:flutter_file_store/presentation/pages/auth/widgets/steps/sign_in_step_one.dart';
-import 'package:flutter_file_store/presentation/pages/auth/widgets/steps/sign_in_step_two.dart';
-import 'package:flutter_file_store/presentation/shared/auth_title_subtitle.dart';
+import 'package:dashtech/application/auth/signin_controller.dart';
+import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_one.dart';
+import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_two.dart';
+import 'package:dashtech/presentation/shared/auth_title_subtitle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,10 +1,10 @@
-import 'package:flutter_file_store/infrastructure/core/firebase_service.dart';
-import 'package:flutter_file_store/infrastructure/core/graphql_service.dart';
-import 'package:flutter_file_store/infrastructure/core/http_service.dart';
-import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
-import 'package:flutter_file_store/infrastructure/core/token_service.dart';
-import 'package:flutter_file_store/presentation/app_widget.dart';
-import 'package:flutter_file_store/presentation/core/utils/logger_utils.dart';
+import 'package:dashtech/infrastructure/core/firebase_service.dart';
+import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/http_service.dart';
+import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/infrastructure/core/token_service.dart';
+import 'package:dashtech/presentation/app_widget.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,8 @@
-import 'package:flutter_file_store/application/dashboard/dashboard_controller.dart';
-import 'package:flutter_file_store/application/home/home_controller.dart';
-import 'package:flutter_file_store/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:flutter_file_store/infrastructure/planning/planning_repository.dart';
+import 'package:dashtech/application/dashboard/activities_controller.dart';
+import 'package:dashtech/application/dashboard/dashboard_controller.dart';
+import 'package:dashtech/application/home/home_controller.dart';
+import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
+import 'package:dashtech/infrastructure/planning/planning_repository.dart';
 import 'package:get/get.dart';
 
 class HomeBinding implements Bindings {
@@ -13,8 +14,11 @@ class HomeBinding implements Bindings {
       ),
     );
     Get.put<HomeController>(HomeController());
-    Get.put<DashboardController>(DashboardController(
-      planningRepository: Get.find(),
-    ));
+    Get.put<DashboardController>(DashboardController());
+    Get.lazyPut<ActivitiesController>(
+      () => ActivitiesController(
+        planningRepository: Get.find(),
+      ),
+    );
   }
 }

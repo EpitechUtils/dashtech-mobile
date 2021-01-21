@@ -31,6 +31,7 @@ mixin _$UploadDocument {
   String get id;
   File get file;
 
+  @JsonKey(ignore: true)
   $UploadDocumentCopyWith<UploadDocument> get copyWith;
 }
 
@@ -129,6 +130,7 @@ class _$_UploadDocument extends _UploadDocument {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(file);
 
+  @JsonKey(ignore: true)
   @override
   _$UploadDocumentCopyWith<_UploadDocument> get copyWith =>
       __$UploadDocumentCopyWithImpl<_UploadDocument>(this, _$identity);
@@ -144,5 +146,6 @@ abstract class _UploadDocument extends UploadDocument {
   @override
   File get file;
   @override
+  @JsonKey(ignore: true)
   _$UploadDocumentCopyWith<_UploadDocument> get copyWith;
 }

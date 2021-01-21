@@ -1,6 +1,6 @@
-import 'package:flutter_file_store/application/auth/signin_webview_controller.dart';
-import 'package:flutter_file_store/presentation/core/utils/snack_bar_utils.dart';
-import 'package:flutter_file_store/presentation/pages/auth/widgets/sign_in_intranet_syncing.dart';
+import 'package:dashtech/application/auth/signin_webview_controller.dart';
+import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
+import 'package:dashtech/presentation/pages/auth/widgets/sign_in_intranet_syncing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';

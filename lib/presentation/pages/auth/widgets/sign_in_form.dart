@@ -1,7 +1,7 @@
-import 'package:flutter_file_store/application/auth/signin_controller.dart';
-import 'package:flutter_file_store/presentation/core/theme/app_colors.dart';
-import 'package:flutter_file_store/presentation/core/theme/app_fonts.dart';
-import 'package:flutter_file_store/presentation/core/utils/keyboard_utils.dart';
+import 'package:dashtech/application/auth/signin_controller.dart';
+import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/theme/app_fonts.dart';
+import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

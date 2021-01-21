@@ -1,9 +1,9 @@
-import 'package:flutter_file_store/presentation/core/bindings/app_bindings.dart';
-import 'package:flutter_file_store/presentation/core/theme/app_colors.dart';
-import 'package:flutter_file_store/presentation/core/theme/app_theme.dart';
-import 'package:flutter_file_store/presentation/core/translations/app_translations.dart';
-import 'package:flutter_file_store/presentation/core/utils/logger_utils.dart';
-import 'package:flutter_file_store/presentation/routes/app_pages.dart';
+import 'package:dashtech/presentation/core/bindings/app_bindings.dart';
+import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/theme/app_theme.dart';
+import 'package:dashtech/presentation/core/translations/app_translations.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

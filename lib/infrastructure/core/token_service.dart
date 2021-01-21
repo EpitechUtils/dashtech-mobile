@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
-import 'package:flutter_file_store/presentation/core/utils/date_utils.dart';
-import 'package:flutter_file_store/presentation/core/utils/logger_utils.dart';
+import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/presentation/core/utils/date_utils.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 

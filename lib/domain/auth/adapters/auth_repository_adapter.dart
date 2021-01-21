@@ -1,5 +1,5 @@
-import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
-import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
+import 'package:dashtech/domain/auth/failures/auth_failure.dart';
+import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IAuthRepository {

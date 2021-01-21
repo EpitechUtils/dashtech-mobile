@@ -1,9 +1,9 @@
-import 'package:flutter_file_store/presentation/pages/auth/bindings/signin_binding.dart';
-import 'package:flutter_file_store/presentation/pages/auth/sign_in_page.dart';
-import 'package:flutter_file_store/presentation/pages/home/bindings/home_binding.dart';
-import 'package:flutter_file_store/presentation/pages/home/home_page.dart';
-import 'package:flutter_file_store/presentation/pages/splash/bindings/splash_binding.dart';
-import 'package:flutter_file_store/presentation/pages/splash/splash_page.dart';
+import 'package:dashtech/presentation/pages/auth/bindings/signin_binding.dart';
+import 'package:dashtech/presentation/pages/auth/sign_in_page.dart';
+import 'package:dashtech/presentation/pages/home/bindings/home_binding.dart';
+import 'package:dashtech/presentation/pages/home/home_page.dart';
+import 'package:dashtech/presentation/pages/splash/bindings/splash_binding.dart';
+import 'package:dashtech/presentation/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';

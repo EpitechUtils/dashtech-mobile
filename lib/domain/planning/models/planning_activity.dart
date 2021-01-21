@@ -1,4 +1,4 @@
-import 'package:flutter_file_store/domain/planning/models/planning_activity_room.dart';
+import 'package:dashtech/domain/planning/models/planning_activity_room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 

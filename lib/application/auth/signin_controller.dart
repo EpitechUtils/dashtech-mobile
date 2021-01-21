@@ -1,13 +1,13 @@
-import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
-import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
-import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
-import "package:flutter_file_store/presentation/core/utils/snack_bar_utils.dart";
-import 'package:flutter_file_store/presentation/pages/auth/widgets/sign_in_intranet_webview.dart';
-import 'package:flutter_file_store/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
+import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
+import 'package:dashtech/domain/auth/failures/auth_failure.dart';
+import 'package:dashtech/domain/auth/models/auth_profile.dart';
+import 'package:dashtech/infrastructure/core/storage_service.dart';
+import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
+import 'package:dashtech/presentation/pages/auth/widgets/sign_in_intranet_webview.dart';
+import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dartz/dartz.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_file_store/presentation/routes/app_pages.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import "package:get/get.dart";
 import "package:get/state_manager.dart";
 

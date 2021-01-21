@@ -1,5 +1,5 @@
-import 'package:flutter_file_store/presentation/pages/auth/widgets/sign_in_body.dart';
-import 'package:flutter_file_store/presentation/shared/auth_layout.dart';
+import 'package:dashtech/presentation/pages/auth/widgets/sign_in_body.dart';
+import 'package:dashtech/presentation/shared/auth_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 

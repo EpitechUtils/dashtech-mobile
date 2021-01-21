@@ -1,4 +1,4 @@
-package com.example.flutter_file_store
+package com.example.dashtech
 
 import io.flutter.embedding.android.FlutterActivity
 

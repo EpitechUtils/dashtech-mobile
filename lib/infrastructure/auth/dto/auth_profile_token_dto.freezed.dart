@@ -41,6 +41,7 @@ mixin _$AuthProfileTokenDto {
   String get accessToken;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $AuthProfileTokenDtoCopyWith<AuthProfileTokenDto> get copyWith;
 }
 
@@ -153,6 +154,7 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
       const DeepCollectionEquality().hash(expirationTime) ^
       const DeepCollectionEquality().hash(accessToken);
 
+  @JsonKey(ignore: true)
   @override
   _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith =>
       __$AuthProfileTokenDtoCopyWithImpl<_AuthProfileTokenDto>(
@@ -178,5 +180,6 @@ abstract class _AuthProfileTokenDto extends AuthProfileTokenDto {
   @override
   String get accessToken;
   @override
+  @JsonKey(ignore: true)
   _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith;
 }

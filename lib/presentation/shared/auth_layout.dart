@@ -1,5 +1,5 @@
-import 'package:flutter_file_store/presentation/core/utils/keyboard_utils.dart';
-import 'package:flutter_file_store/presentation/shared/auth_app_bar.dart';
+import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
+import 'package:dashtech/presentation/shared/auth_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

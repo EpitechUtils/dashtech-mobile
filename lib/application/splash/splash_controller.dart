@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_file_store/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
-import 'package:flutter_file_store/infrastructure/auth/auth_repository.dart';
-import 'package:flutter_file_store/infrastructure/core/firebase_service.dart';
-import 'package:flutter_file_store/infrastructure/core/token_service.dart';
-import 'package:flutter_file_store/presentation/core/utils/device_utils.dart';
-import 'package:flutter_file_store/presentation/routes/app_pages.dart';
+import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
+import 'package:dashtech/domain/auth/failures/auth_failure.dart';
+import 'package:dashtech/infrastructure/auth/auth_repository.dart';
+import 'package:dashtech/infrastructure/core/firebase_service.dart';
+import 'package:dashtech/infrastructure/core/token_service.dart';
+import 'package:dashtech/presentation/core/utils/device_utils.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
