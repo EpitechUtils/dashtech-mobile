@@ -133,10 +133,7 @@ class SigninWebviewController extends GetxController {
             SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
-      (AuthProfile right) {
-        print(right.toJson());
-        Get.toNamed(Routes.home);
-      },
+      (AuthProfile right) => Get.toNamed(Routes.home),
     );
   }
 }

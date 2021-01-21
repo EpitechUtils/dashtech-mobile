@@ -1,65 +1,60 @@
-import 'package:flutter_file_store/presentation/core/icons/cajole_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_file_store/application/home/home_controller.dart';
 import 'package:flutter_file_store/presentation/core/theme/app_colors.dart';
+import 'package:flutter_file_store/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:flutter_file_store/presentation/pages/home/widgets/bottom_bar_widget.dart';
 import 'package:flutter_file_store/presentation/shared/hooks/use_curve_animation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomePage extends HookWidget {
+  final HomeController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      context,
+      allowFontScaling: true,
+      designSize: const Size(1080, 2160),
+    );
     final AnimationController _controller = useAnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 1500),
     );
     final Animation<double> _animation = useCurve(_controller);
-    final ValueNotifier<PageController> _pageController = useState(
-      PageController(),
-    );
-    final ValueNotifier<int> _currentIndex = useState(0);
 
-    return Scaffold(
-      backgroundColor: const Color(fillColor),
-      body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController.value,
-          onPageChanged: (index) {
-            _currentIndex.value = index;
-          },
+    return Obx(
+      () => Scaffold(
+        backgroundColor: const Color(fillColor),
+        extendBody: true,
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller.pageController,
+          onPageChanged: (int index) => controller.onPageChanged(index),
           children: <Widget>[
-            Container(
-              color: const Color(fillColor),
-            ),
-            Container(
-              color: const Color(fillColor),
-            ),
-            Container(
-              color: const Color(fillColor),
-            ),
-            Container(
-              color: const Color(fillColor),
-            ),
+            DashboardPage(),
+            Container(color: const Color(fillColor)),
+            Container(color: const Color(fillColor)),
+            Container(color: const Color(fillColor)),
           ],
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: ScaleTransition(
-        scale: _animation,
-        child: FloatingActionButton(
-          backgroundColor: const Color(primaryColor),
-          onPressed: () {},
-          child: const Icon(
-            CustomIcons.o,
-            color: Colors.white,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: ScaleTransition(
+          scale: _animation,
+          child: FloatingActionButton(
+            backgroundColor: const Color(primaryColor),
+            onPressed: () {},
+            child: const Icon(
+              Icons.calendar_today,
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomBarWidget(
-        index: _currentIndex.value,
-        controller: _controller,
-        onTap: (int index) {
-          _currentIndex.value = index;
-          _pageController.value.jumpToPage(index);
-        },
+        bottomNavigationBar: BottomBar(
+          index: controller.index.value,
+          controller: _controller,
+          onTap: (int index) => controller.onPageChanged(index),
+        ),
       ),
     );
   }

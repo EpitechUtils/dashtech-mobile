@@ -3,10 +3,11 @@ import 'package:flutter_file_store/domain/auth/failures/auth_failure.dart';
 import 'package:flutter_file_store/domain/auth/models/auth_profile.dart';
 import 'package:flutter_file_store/infrastructure/core/storage_service.dart';
 import "package:flutter_file_store/presentation/core/utils/snack_bar_utils.dart";
-import 'package:flutter_file_store/presentation/pages/auth/sign_in/widgets/sign_in_intranet_webview.dart';
-import 'package:flutter_file_store/presentation/pages/auth/sign_in/widgets/steps/sign_in_step_two_code_fields.dart';
+import 'package:flutter_file_store/presentation/pages/auth/widgets/sign_in_intranet_webview.dart';
+import 'package:flutter_file_store/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dartz/dartz.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_file_store/presentation/routes/app_pages.dart';
 import "package:get/get.dart";
 import "package:get/state_manager.dart";
 
@@ -96,7 +97,7 @@ class SigninController extends GetxController {
               SnackBarUtils.error(message: 'http_profile_expired_code'),
         );
       },
-      (AuthProfile right) {
+      (AuthProfile right) async {
         isLoading.value = false;
         storageService.box.write('profileId', right.id);
         storageService.box.write('profileEmail', right.email);
@@ -108,7 +109,22 @@ class SigninController extends GetxController {
               borderRadius: BorderRadius.circular(20.0),
             ),
           );
+          return;
         }
+
+        final Either<AuthFailure, AuthProfile> failureOrYes =
+            await authRepository.login(right.id, right.email);
+        failureOrYes.fold(
+          (AuthFailure left) => left.map(
+            unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
+            notFound: (_) =>
+                SnackBarUtils.error(message: 'http_profile_not_found'),
+            conflict: (_) =>
+                SnackBarUtils.error(message: 'http_profile_email_missmatch'),
+            unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
+          ),
+          (AuthProfile right) => Get.toNamed(Routes.home),
+        );
       },
     );
   }

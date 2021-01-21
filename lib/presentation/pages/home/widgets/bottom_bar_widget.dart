@@ -1,10 +1,10 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:flutter_file_store/presentation/core/icons/cajole_icons.dart';
-import 'package:flutter_file_store/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_file_store/presentation/core/theme/app_colors.dart';
+import 'package:line_icons/line_icons.dart';
 
-class BottomBarWidget extends StatelessWidget {
-  const BottomBarWidget({
+class BottomBar extends StatelessWidget {
+  const BottomBar({
     this.key,
     this.controller,
     this.index,
@@ -20,17 +20,17 @@ class BottomBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar(
       icons: [
-        CustomIcons.attached,
-        CustomIcons.picture,
-        CustomIcons.user,
-        CustomIcons.gilft,
+        LineIcons.home,
+        LineIcons.users,
+        LineIcons.heart_o,
+        LineIcons.user,
       ],
       //elevation: 10,
       splashColor: const Color(primaryColor),
       activeColor: const Color(primaryColor),
       inactiveColor: const Color(greyColor),
       notchAndCornersAnimation: controller,
-      iconSize: 20,
+      iconSize: 21,
       activeIndex: index,
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.smoothEdge,
