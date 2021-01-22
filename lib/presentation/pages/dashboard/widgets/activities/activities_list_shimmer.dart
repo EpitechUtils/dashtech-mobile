@@ -8,8 +8,7 @@ class ActivitiesListShimmer extends StatelessWidget {
       baseColor: Colors.grey[300],
       highlightColor: Colors.grey[200],
       child: Container(
-        padding: const EdgeInsets.only(top: 20),
-        margin: const EdgeInsets.symmetric(horizontal: 15),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -92,6 +91,42 @@ class ActivitiesListShimmer extends StatelessWidget {
                   ),
                 );
               },
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 10, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    width: 75,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  Container(
+                    width: 96,
+                    height: 14,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  height: 80,
+                  color: Colors.white,
+                  child: Container(),
+                ),
+              ),
             ),
           ],
         ),

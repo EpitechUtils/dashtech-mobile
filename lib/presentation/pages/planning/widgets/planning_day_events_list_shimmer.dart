@@ -10,8 +10,8 @@ class PlanningDayEventsListShimmer extends StatelessWidget {
       baseColor: Colors.grey[300],
       highlightColor: Colors.grey[200],
       child: Container(
-        padding: const EdgeInsets.only(top: 20),
-        margin: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

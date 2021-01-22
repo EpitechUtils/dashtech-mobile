@@ -28,10 +28,6 @@ class PlanningCalendarGrid extends GetView<PlanningController> {
               color: Colors.white,
               fontSize: 15.0,
             ),
-            formatButtonDecoration: BoxDecoration(
-              color: Color(primaryColor),
-              borderRadius: BorderRadius.circular(5.0),
-            ),
           ),
           onDaySelected: controller.onDaySelected,
           onVisibleDaysChanged: controller.onVisibleDaysChanged,

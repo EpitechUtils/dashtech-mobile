@@ -74,10 +74,7 @@ class PlanningController extends GetxController {
   }
 
   void onDaySelected(DateTime day, List events, List holidays) async {
-    print(day);
     selectedDate.value = day;
-
-    print(events);
     if (events.isEmpty) {
       await fetchEventsByDate(day, false);
       return;
