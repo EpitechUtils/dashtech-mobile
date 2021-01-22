@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dashtech/application/dashboard/dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
@@ -14,7 +15,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       centerTitle: false,
       // ignore: prefer_const_literals_to_create_immutables
-      actions: [
+      /*actions: [
         const Padding(
           padding: EdgeInsets.only(right: 25.0),
           child: CircleAvatar(
@@ -28,7 +29,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-      ],
+      ],*/
       title: Padding(
         padding: const EdgeInsets.only(
           right: 20,
@@ -39,14 +40,16 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Salut à toi Cyril !',
+              StringUtils.capitalize(
+                  dashboardController.storageService.box.read('fullName'),
+                  allWords: true),
               style: Get.textTheme.headline1.copyWith(
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 5),
             Text(
-              'Comment ça va bien ?',
+              dashboardController.storageService.box.read('email'),
               style: Get.textTheme.subtitle2.copyWith(
                 color: Colors.white,
               ),

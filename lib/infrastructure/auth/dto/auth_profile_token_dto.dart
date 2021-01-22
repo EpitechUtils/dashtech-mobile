@@ -18,11 +18,12 @@ abstract class AuthProfileTokenDto implements _$AuthProfileTokenDto {
 
   const AuthProfileTokenDto._();
 
-  AuthProfile toDomain() {
-    final Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
+  AuthProfile toDomain(Map<String, dynamic> decodedToken) {
+    print(decodedToken);
     return AuthProfile(
-        id: decodedToken['profileId'] as String,
-        email: decodedToken['email'] as String,
-        status: "login_in");
+      id: decodedToken['profileId'] as String,
+      email: decodedToken['email'] as String,
+      status: "login_in",
+    );
   }
 }

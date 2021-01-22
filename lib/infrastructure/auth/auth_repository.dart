@@ -6,20 +6,25 @@ import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthRepository implements IAuthRepository {
   AuthRepository({
     @required this.graphqlService,
     @required this.tokenService,
+    @required this.storageService,
   })  : assert(graphqlService != null),
-        assert(tokenService != null);
+        assert(tokenService != null),
+        assert(storageService != null);
 
   GraphqlService graphqlService;
   TokenService tokenService;
+  StorageService storageService;
 
   // Register device with firebase token
   @override
@@ -160,9 +165,16 @@ class AuthRepository implements IAuthRepository {
 
     final AuthProfileTokenDto tokenDto =
         AuthProfileTokenDto.fromJson(result.data['login']);
+    final Map<String, dynamic> decodedToken =
+        JwtDecoder.decode(tokenDto.accessToken);
+    final AuthProfile authProfile = tokenDto.toDomain(decodedToken);
+
+    String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');
     tokenService.expirationDate.value = tokenDto.expirationTime.toLocal();
     tokenService.token.value = tokenDto.accessToken;
+    storageService.box.write('fullName', fullName);
+    storageService.box.write('email', authProfile.email);
 
-    return right(tokenDto.toDomain());
+    return right(authProfile);
   }
 }

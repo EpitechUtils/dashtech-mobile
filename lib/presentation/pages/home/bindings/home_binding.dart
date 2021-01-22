@@ -15,7 +15,11 @@ class HomeBinding implements Bindings {
       ),
     );
     Get.put<HomeController>(HomeController());
-    Get.lazyPut<DashboardController>(() => DashboardController());
+    Get.lazyPut<DashboardController>(
+      () => DashboardController(
+        storageService: Get.find(),
+      ),
+    );
     Get.lazyPut<ActivitiesController>(
       () => ActivitiesController(
         planningRepository: Get.find(),
