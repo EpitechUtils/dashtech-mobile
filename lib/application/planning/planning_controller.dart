@@ -5,6 +5,7 @@ import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PlanningController extends GetxController {
@@ -19,21 +20,24 @@ class PlanningController extends GetxController {
       <DateTime, List<PlanningActivity>>{}.obs;
 
   CalendarController calendarController;
+  RefreshController refreshController;
 
   @override
   Future<void> onInit() async {
     calendarController = CalendarController();
-    fetchEventsByDate(DateTime.now());
+    refreshController = RefreshController();
+    fetchEventsByDate(DateTime.now(), false);
     super.onInit();
   }
 
   @override
   void onClose() {
     calendarController.dispose();
+    refreshController.dispose();
     super.onClose();
   }
 
-  Future<void> fetchEventsByDate(DateTime date) async {
+  Future<void> fetchEventsByDate(DateTime date, bool refresh) async {
     showShimmer.value = true;
 
     final Either<BaseFailure, List<PlanningActivity>> failureOrActivities =
@@ -42,11 +46,24 @@ class PlanningController extends GetxController {
     failureOrActivities.fold(
       (BaseFailure left) {
         showShimmer.value = false;
+        if (refresh) {
+          refreshController.refreshFailed();
+          return;
+        }
+        refreshController.loadFailed();
         SnackBarUtils.error(message: 'http_common'.tr);
       },
       (List<PlanningActivity> right) {
         showShimmer.value = false;
-        //events.clear();
+        if (refresh) {
+          refreshController.refreshCompleted();
+        }
+
+        if (right.isEmpty) {
+          refreshController.loadNoData();
+        } else {
+          refreshController.loadComplete();
+        }
         allEvents[date] = right;
         selectedDateEvents.clear();
         selectedDateEvents.addAll(right);
@@ -60,7 +77,7 @@ class PlanningController extends GetxController {
 
     print(events);
     if (events.isEmpty) {
-      await fetchEventsByDate(day);
+      await fetchEventsByDate(day, false);
       return;
     }
 
