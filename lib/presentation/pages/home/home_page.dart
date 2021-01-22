@@ -7,6 +7,7 @@ import 'package:dashtech/presentation/shared/hooks/use_curve_animation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 class HomePage extends HookWidget {
   final HomeController controller = Get.find();
@@ -45,7 +46,7 @@ class HomePage extends HookWidget {
             backgroundColor: const Color(primaryColor),
             onPressed: () {},
             child: const Icon(
-              Icons.calendar_today,
+              LineIcons.hand_stop_o,
               color: Colors.white,
             ),
           ),

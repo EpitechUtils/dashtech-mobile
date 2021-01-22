@@ -21,9 +21,9 @@ class BottomBar extends StatelessWidget {
     return AnimatedBottomNavigationBar(
       icons: [
         LineIcons.home,
-        LineIcons.users,
-        LineIcons.heart_o,
+        LineIcons.calendar,
         LineIcons.user,
+        LineIcons.cogs,
       ],
       //elevation: 10,
       splashColor: const Color(primaryColor),

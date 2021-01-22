@@ -12,6 +12,7 @@ import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dashtech/infrastructure/planning/dto/planning_week_activities_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dashtech/infrastructure/planning/graphql/planning_queries.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -34,12 +35,12 @@ class PlanningRepository implements IPlanningRepository {
     );
 
     if (result.hasException) {
-      return right(null);
+      return left(const BaseFailure.unexpected());
     }
 
-    final json = result.data['planningListWeekActivities'] as List;
+    final List json = result.data['planningListWeekActivities'] as List;
     return right(json
-        .map((dynamic model) => PlanningWeekActivity.fromJson(model))
+        .map((value) => PlanningWeekActivitiesDto.fromJson(value).toDomain())
         .toList());
   }
 }

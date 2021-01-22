@@ -23,7 +23,7 @@ class ActivitiesController extends GetxController {
   Future<void> onInit() async {
     showShimmer.value = true;
     refreshController = RefreshController(initialRefresh: false);
-    fetchActivities();
+    fetchActivities(false);
     super.onInit();
   }
 
@@ -33,8 +33,28 @@ class ActivitiesController extends GetxController {
     super.onClose();
   }
 
-  Future<void> fetchActivities() async {
+  Future<void> fetchActivities(bool refresh) async {
     final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
         await planningRepository.getDashActivitiesList();
+
+    failureOrActivities.fold(
+      (BaseFailure left) {
+        showShimmer.value = false;
+        if (refresh) {
+          refreshController.refreshFailed();
+          return;
+        }
+
+        SnackBarUtils.error(message: 'http_common'.tr);
+      },
+      (List<PlanningWeekActivity> right) {
+        showShimmer.value = false;
+        if (refresh) {
+          refreshController.refreshCompleted();
+        }
+        activities.clear();
+        activities.addAll(right);
+      },
+    );
   }
 }

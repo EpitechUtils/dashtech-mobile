@@ -7,10 +7,12 @@ import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting();
     return GetMaterialApp(
       title: 'DashTech',
       theme: lightTheme,

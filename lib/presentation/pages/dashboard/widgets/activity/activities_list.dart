@@ -11,22 +11,28 @@ class ActivitiesList extends GetView<ActivitiesController> {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: !controller.showShimmer.value,
-      child: SmartRefresher(
-        controller: controller.refreshController,
-        onRefresh: controller.fetchActivities,
-        child: ListView.builder(
-          itemCount: controller.activities.length,
-          itemBuilder: (BuildContext c, int index) {
-            return ActivityCard(
-              weekActivity: controller.activities[index],
-              index: index,
-            );
-          },
+    return Obx(
+      () => Visibility(
+        visible: !controller.showShimmer.value,
+        child: SmartRefresher(
+          controller: controller.refreshController,
+          onRefresh: () => controller.fetchActivities(true),
+          child: ListView.builder(
+            itemCount: controller.activities.length + 1,
+            itemBuilder: (BuildContext c, int index) {
+              if (index == controller.activities.length) {
+                return SizedBox(height: 120);
+              }
+
+              return ActivityCard(
+                weekActivity: controller.activities[index],
+                index: index,
+              );
+            },
+          ),
         ),
+        replacement: ActivitiesListShimmer(),
       ),
-      replacement: ActivitiesListShimmer(),
     );
   }
 }
