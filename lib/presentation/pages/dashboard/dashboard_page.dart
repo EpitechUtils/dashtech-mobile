@@ -10,7 +10,6 @@ class DashboardPage extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(fillColor),
       appBar: DashboardAppBar(),
       body: TabBarView(
         controller: controller.tabController,

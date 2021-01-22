@@ -1,6 +1,7 @@
 import 'package:dashtech/presentation/core/bindings/app_bindings.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:dashtech/presentation/core/theme/app_theme.dart';
+import 'package:dashtech/presentation/core/theme/app_dark_theme.dart';
+import 'package:dashtech/presentation/core/theme/app_light_theme.dart';
 import 'package:dashtech/presentation/core/translations/app_translations.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';

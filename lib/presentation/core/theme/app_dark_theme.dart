@@ -2,9 +2,9 @@ import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-final ThemeData lightTheme = ThemeData(
-  backgroundColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
+final ThemeData darkTheme = ThemeData(
+  backgroundColor: Color(0xff121212),
+  scaffoldBackgroundColor: Color(0xff121212),
   primaryColor: const Color(primaryColor),
   accentColor: const Color(accentColor),
   buttonColor: const Color(primaryColor),
