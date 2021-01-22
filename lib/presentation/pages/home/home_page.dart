@@ -1,3 +1,4 @@
+import 'package:dashtech/presentation/pages/planning/planning_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dashtech/application/home/home_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
@@ -34,7 +35,7 @@ class HomePage extends HookWidget {
           onPageChanged: (int index) => controller.onPageChanged(index),
           children: <Widget>[
             DashboardPage(),
-            Container(color: const Color(fillColor)),
+            PlanningPage(),
             Container(color: const Color(fillColor)),
             Container(color: const Color(fillColor)),
           ],
