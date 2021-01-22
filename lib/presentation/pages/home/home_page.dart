@@ -21,7 +21,7 @@ class HomePage extends HookWidget {
       designSize: const Size(1080, 2160),
     );
     final AnimationController _controller = useAnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 500),
     );
     final Animation<double> _animation = useCurve(_controller);
 
@@ -54,7 +54,7 @@ class HomePage extends HookWidget {
         ),
         bottomNavigationBar: BottomBar(
           index: controller.index.value,
-          controller: _controller,
+          animationController: _controller,
           onTap: (int index) => controller.onPageChanged(index),
         ),
       ),
