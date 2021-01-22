@@ -80,5 +80,5 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(80.0 + 30.0);
+  Size get preferredSize => Size.fromHeight(80.0 + 20.0);
 }
