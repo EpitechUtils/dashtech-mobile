@@ -28,7 +28,6 @@ class PlanningController extends GetxController {
     allEvents.addAll({});
     calendarController = CalendarController();
     refreshController = RefreshController();
-    //fetchEventsByDate(DateTime.now(), false);
     super.onInit();
   }
 
@@ -44,8 +43,6 @@ class PlanningController extends GetxController {
     DateTime end,
     bool refresh,
   ) async {
-    showShimmer.value = true;
-
     final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
         await planningRepository.getWeekActivitiesList(start, end);
 
@@ -94,15 +91,10 @@ class PlanningController extends GetxController {
     DateTime last,
     CalendarFormat format,
   ) async {
-    calendarController.setSelectedDay(first);
-    selectedDate.value = first;
     if (!allEvents.keys.contains(first) || !allEvents.keys.contains(last)) {
+      //showShimmer.value = true;
       await fetchEventsByWeek(first, last, false);
     }
-
-    selectedDateEvents.clear();
-    selectedDateEvents.addAll(allEvents[first] != null ? allEvents[first] : []);
-    update();
   }
 
   void onCalendarCreated(
