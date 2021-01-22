@@ -46,25 +46,27 @@ class PlanningRepository implements IPlanningRepository {
 
   // Get activities list for the selected day
   @override
-  Future<Either<BaseFailure, List<PlanningActivity>>> getDayActivitiesList(
-    DateTime date,
+  Future<Either<BaseFailure, List<PlanningWeekActivity>>> getWeekActivitiesList(
+    DateTime start,
+    DateTime end,
   ) async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningDayActivitiesQuery),
+        documentNode: gql(planningWeekActivitiesQuery),
         variables: {
-          'date': date.toIso8601String(),
+          'start': start.toIso8601String(),
+          'end': end.toIso8601String(),
         },
       ),
     );
 
     if (result.hasException) {
-      print(result.data);
       return left(const BaseFailure.unexpected());
     }
 
-    final List json = result.data['planningDayActivities'] as List;
-    return right(
-        json.map((value) => PlanningActivity.fromJson(value)).toList());
+    final List json = result.data['planningWeekActivities'] as List;
+    return right(json
+        .map((value) => PlanningWeekActivitiesDto.fromJson(value).toDomain())
+        .toList());
   }
 }

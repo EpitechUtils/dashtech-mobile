@@ -11,8 +11,9 @@ class PlanningDayEventsList extends GetView<PlanningController> {
     return GetBuilder<PlanningController>(
       builder: (_) => SmartRefresher(
         controller: controller.refreshController,
-        onRefresh: () =>
-            controller.fetchEventsByDate(controller.selectedDate.value, true),
+        onRefresh: () {
+          //controller.fetchEventsByDate(controller.selectedDate.value, true)
+        },
         child: Visibility(
           visible: controller.selectedDateEvents.isNotEmpty,
           child: Padding(

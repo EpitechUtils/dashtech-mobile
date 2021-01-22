@@ -21,6 +21,7 @@ class AuthLayout extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AuthAppBar(context),
           body: GestureDetector(
             onTap: () => KeyboardUtils.hide(context),

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
+import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class PlanningController extends GetxController {
     allEvents.addAll({});
     calendarController = CalendarController();
     refreshController = RefreshController();
-    fetchEventsByDate(DateTime.now(), false);
+    //fetchEventsByDate(DateTime.now(), false);
     super.onInit();
   }
 
@@ -38,11 +39,15 @@ class PlanningController extends GetxController {
     super.onClose();
   }
 
-  Future<void> fetchEventsByDate(DateTime date, bool refresh) async {
+  Future<void> fetchEventsByWeek(
+    DateTime start,
+    DateTime end,
+    bool refresh,
+  ) async {
     showShimmer.value = true;
 
-    final Either<BaseFailure, List<PlanningActivity>> failureOrActivities =
-        await planningRepository.getDayActivitiesList(date);
+    final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
+        await planningRepository.getWeekActivitiesList(start, end);
 
     failureOrActivities.fold(
       (BaseFailure left) {
@@ -54,7 +59,7 @@ class PlanningController extends GetxController {
         refreshController.loadFailed();
         SnackBarUtils.error(message: 'http_common'.tr);
       },
-      (List<PlanningActivity> right) {
+      (List<PlanningWeekActivity> right) {
         showShimmer.value = false;
         if (refresh) {
           refreshController.refreshCompleted();
@@ -65,9 +70,12 @@ class PlanningController extends GetxController {
         } else {
           refreshController.loadComplete();
         }
-        allEvents[date] = right;
-        selectedDateEvents.clear();
-        selectedDateEvents.addAll(right);
+        right.forEach((e) {
+          List<PlanningActivity> acts = e.activities;
+          acts.sort((a, b) =>
+              DateTime.parse(a.start).compareTo(DateTime.parse(b.start)));
+          allEvents[DateTime.parse(e.date)] = acts;
+        });
         update();
       },
     );
@@ -75,13 +83,9 @@ class PlanningController extends GetxController {
 
   void onDaySelected(DateTime day, List events, List holidays) async {
     selectedDate.value = day;
-    if (events.isEmpty) {
-      await fetchEventsByDate(day, false);
-      return;
-    }
-
     selectedDateEvents.clear();
-    selectedDateEvents.addAll(events as List<PlanningActivity>);
+    selectedDateEvents
+        .addAll(events.isNotEmpty ? events as List<PlanningActivity> : []);
     update();
   }
 
@@ -89,11 +93,26 @@ class PlanningController extends GetxController {
     DateTime first,
     DateTime last,
     CalendarFormat format,
-  ) {}
+  ) async {
+    calendarController.setSelectedDay(first);
+    selectedDate.value = first;
+    if (!allEvents.keys.contains(first) || !allEvents.keys.contains(last)) {
+      await fetchEventsByWeek(first, last, false);
+    }
+
+    selectedDateEvents.clear();
+    selectedDateEvents.addAll(allEvents[first] != null ? allEvents[first] : []);
+    update();
+  }
 
   void onCalendarCreated(
     DateTime first,
     DateTime last,
     CalendarFormat format,
-  ) {}
+  ) {
+    Future.delayed(
+      Duration(seconds: 1),
+      () => fetchEventsByWeek(first, last, false),
+    );
+  }
 }

@@ -50,10 +50,11 @@ class PlanningActivityCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width / 5,
-                  color: activity.event_registered == "registered"
-                      ? ActivityColorUtils.getColorByEventType(
-                          activity.type_code)
-                      : Colors.grey,
+                  color: ActivityColorUtils.getColorByEventType(
+                    activity.type_code,
+                  ).withOpacity(
+                    activity.event_registered == "registered" ? 1 : 0.6,
+                  ),
                   child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,10 +122,13 @@ class PlanningActivityCard extends StatelessWidget {
                               activity.room.seats.toString() +
                               ")",
                           style: TextStyle(
-                            color: activity.event_registered == "registered"
-                                ? ActivityColorUtils.getColorByEventType(
-                                    activity.type_code)
-                                : Colors.grey,
+                            color: ActivityColorUtils.getColorByEventType(
+                              activity.type_code,
+                            ).withOpacity(
+                              activity.event_registered == "registered"
+                                  ? 1
+                                  : 0.6,
+                            ),
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -132,16 +136,16 @@ class PlanningActivityCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                /*SizedBox(
-                width: 30,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.grey,
+                SizedBox(
+                  width: 30,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-              )*/
+                )
               ],
             ),
           ),
