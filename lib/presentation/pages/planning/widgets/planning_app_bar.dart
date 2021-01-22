@@ -1,3 +1,4 @@
+import 'package:dashtech/presentation/pages/planning/widgets/planning_calendar_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:dashtech/application/dashboard/dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
@@ -8,7 +9,6 @@ class PlanningAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
-      //shape: const CurvedShape(),
       automaticallyImplyLeading: false,
       centerTitle: false,
       title: Padding(
@@ -37,10 +37,13 @@ class PlanningAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: const Color(primaryColor),
-      elevation: 0,
+      bottom: PreferredSize(
+        child: PlanningCalendarGrid(),
+        preferredSize: Size.fromHeight(300),
+      ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.0);
+  Size get preferredSize => Size.fromHeight(200.0);
 }

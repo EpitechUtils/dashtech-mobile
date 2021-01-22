@@ -15,17 +15,10 @@ class PlanningPage extends GetView<PlanningController> {
     return Scaffold(
       appBar: PlanningAppBar(),
       body: Obx(
-        () => Column(
-          children: [
-            PlanningCalendarGrid(),
-            Expanded(
-              child: Visibility(
-                visible: !controller.showShimmer.value,
-                child: PlanningDayEventsList(),
-                replacement: PlanningDayEventsListShimmer(),
-              ),
-            )
-          ],
+        () => Visibility(
+          visible: !controller.showShimmer.value,
+          child: PlanningDayEventsList(),
+          replacement: PlanningDayEventsListShimmer(),
         ),
       ),
     );

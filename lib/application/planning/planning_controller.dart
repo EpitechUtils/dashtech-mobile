@@ -24,6 +24,7 @@ class PlanningController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    allEvents.addAll({});
     calendarController = CalendarController();
     refreshController = RefreshController();
     fetchEventsByDate(DateTime.now(), false);
@@ -67,6 +68,7 @@ class PlanningController extends GetxController {
         allEvents[date] = right;
         selectedDateEvents.clear();
         selectedDateEvents.addAll(right);
+        update();
       },
     );
   }
@@ -83,6 +85,7 @@ class PlanningController extends GetxController {
 
     selectedDateEvents.clear();
     selectedDateEvents.addAll(events as List<PlanningActivity>);
+    update();
   }
 
   void onVisibleDaysChanged(

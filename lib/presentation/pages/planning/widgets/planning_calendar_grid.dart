@@ -7,29 +7,37 @@ import 'package:table_calendar/table_calendar.dart';
 class PlanningCalendarGrid extends GetView<PlanningController> {
   @override
   Widget build(BuildContext context) {
-    return TableCalendar(
-      calendarController: controller.calendarController,
-      events: controller.allEvents,
-      startingDayOfWeek: StartingDayOfWeek.monday,
-      locale: Get.locale.toLanguageTag(),
-      initialCalendarFormat: CalendarFormat.week,
-      calendarStyle: CalendarStyle(
-        selectedColor: Color(primaryColor),
-        todayColor: Color(greyColor),
-        markersColor: Color(errorColor),
-        outsideDaysVisible: false,
-      ),
-      headerStyle: HeaderStyle(
-        formatButtonTextStyle:
-            TextStyle().copyWith(color: Colors.white, fontSize: 15.0),
-        formatButtonDecoration: BoxDecoration(
-          color: Color(primaryColor),
-          borderRadius: BorderRadius.circular(16.0),
+    return Container(
+      decoration: BoxDecoration(color: Colors.white),
+      child: GetBuilder<PlanningController>(
+        builder: (_) => TableCalendar(
+          calendarController: controller.calendarController,
+          events: controller.allEvents,
+          startingDayOfWeek: StartingDayOfWeek.monday,
+          locale: Get.locale.toLanguageTag(),
+          initialCalendarFormat: CalendarFormat.week,
+          availableCalendarFormats: {CalendarFormat.week: 'Semaine'},
+          calendarStyle: CalendarStyle(
+            selectedColor: Color(primaryColor),
+            todayColor: Color(greyColor),
+            markersColor: Color(errorColor),
+            outsideDaysVisible: false,
+          ),
+          headerStyle: HeaderStyle(
+            formatButtonTextStyle: TextStyle().copyWith(
+              color: Colors.white,
+              fontSize: 15.0,
+            ),
+            formatButtonDecoration: BoxDecoration(
+              color: Color(primaryColor),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+          ),
+          onDaySelected: controller.onDaySelected,
+          onVisibleDaysChanged: controller.onVisibleDaysChanged,
+          onCalendarCreated: controller.onCalendarCreated,
         ),
       ),
-      onDaySelected: controller.onDaySelected,
-      onVisibleDaysChanged: controller.onVisibleDaysChanged,
-      onCalendarCreated: controller.onCalendarCreated,
     );
   }
 }

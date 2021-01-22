@@ -15,12 +15,13 @@ class PlanningDayEventsList extends GetView<PlanningController> {
       child: Visibility(
         visible: controller.selectedDateEvents.isNotEmpty,
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListView.builder(
+            padding: const EdgeInsets.only(top: 10),
             itemCount: controller.selectedDateEvents.length + 1,
             itemBuilder: (BuildContext c, int index) {
               if (index == controller.selectedDateEvents.length) {
-                return SizedBox(height: 30);
+                return SizedBox(height: 120);
               }
 
               return PlanningActivityCard(
