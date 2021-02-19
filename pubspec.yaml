@@ -50,7 +50,7 @@ dependencies:
   device_info: ^1.0.0
   firebase_messaging: ^7.0.3
   package_info: 0.4.3+2
-  pull_to_refresh: ^1.6.4
+  pull_to_refresh: 1.6.3
   basic_utils: ^2.6.3
 
   # Icons
