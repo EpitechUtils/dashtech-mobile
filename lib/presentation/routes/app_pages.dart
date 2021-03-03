@@ -1,3 +1,5 @@
+import 'package:dashtech/presentation/pages/activity/activity_details_page.dart';
+import 'package:dashtech/presentation/pages/activity/bindings/activity_binding.dart';
 import 'package:dashtech/presentation/pages/auth/bindings/signin_binding.dart';
 import 'package:dashtech/presentation/pages/auth/sign_in_page.dart';
 import 'package:dashtech/presentation/pages/home/bindings/home_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: Routes.home,
       page: () => HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.activity_details,
+      page: () => ActivityDetailsPage(),
+      binding: ActivityBinding(),
     ),
   ];
 }

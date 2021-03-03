@@ -9,4 +9,5 @@ abstract class Routes {
   static const String signup_restorer = '/signup/restorer';
   static const String forgot = '/forgot';
   static const String home = '/home';
+  static const String activity_details = '/activity/details';
 }

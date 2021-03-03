@@ -36,6 +36,7 @@ class SplashController extends GetxController {
       const Duration(milliseconds: 3000),
       () {
         final String token = tokenService.getToken();
+        print(token);
         //tokenService.clearToken();
         final bool tokenIsInvalid = JwtDecoder.isExpired(token);
         token.isNullOrBlank || tokenIsInvalid

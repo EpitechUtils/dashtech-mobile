@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:basic_utils/basic_utils.dart';
+import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dashtech/application/dashboard/activities_controller.dart';
@@ -16,6 +20,16 @@ class ActivityCard extends StatelessWidget {
   final PlanningWeekActivity weekActivity;
   final int index;
   final DashboardController dashboardController = Get.find();
+
+  void goToActivityDetails(PlanningActivity activity) => Get.toNamed(
+        Routes.activity_details,
+        arguments: {
+          'scolarYear': activity.scolaryear,
+          'codeModule': activity.codemodule,
+          'codeInstance': activity.codeinstance,
+          'codeActi': activity.codeacti
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -73,29 +87,40 @@ class ActivityCard extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: Slidable(
-            actionPane: SlidableBehindActionPane(),
-            secondaryActions: [
-              IconSlideAction(
-                caption: activity.event_registered == "registered"
-                    ? "unregister"
-                    : "register",
-                color: activity.event_registered == "registered"
-                    ? Colors.red
-                    : Colors.green,
-                icon: activity.event_registered == "registered"
-                    ? Icons.maximize
-                    : Icons.add,
-                onTap: () => {
-                  // TODO: perform
-                },
-              ),
-            ],
+      child: Slidable(
+        actionPane: SlidableBehindActionPane(),
+        secondaryActions: [
+          FlatButton(
+            color: Colors.white,
+            shape: CircleBorder(),
+            padding: EdgeInsets.zero,
+            height: 50,
+            splashColor: Color(greyColor).withOpacity(0.2),
+            onPressed: () {},
+            child: Icon(
+              activity.event_registered == "registered"
+                  ? Icons.close
+                  : Icons.add,
+              color: activity.event_registered == "registered"
+                  ? Colors.red
+                  : Colors.green,
+            ),
+          ),
+        ],
+        child: FlatButton(
+          color: Colors.white,
+          padding: EdgeInsets.zero,
+          splashColor: Color(greyColor).withOpacity(0.2),
+          onPressed: () {
+            goToActivityDetails(activity);
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
             child: Container(
               height: 80,
-              decoration: BoxDecoration(color: Colors.white),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -133,9 +158,6 @@ class ActivityCard extends StatelessWidget {
                   Expanded(
                     child: Container(
                       margin: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +223,9 @@ class ActivityCard extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

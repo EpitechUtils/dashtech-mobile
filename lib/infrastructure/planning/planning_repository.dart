@@ -69,4 +69,23 @@ class PlanningRepository implements IPlanningRepository {
         .map((value) => PlanningWeekActivitiesDto.fromJson(value).toDomain())
         .toList());
   }
+
+  @override
+  Future<Either<BaseFailure, PlanningActivity>> getActivityDetails(
+    Map<String, String> codes,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        documentNode: gql(planningWeekActivitiesQuery),
+        variables: {'codes': codes},
+      ),
+    );
+
+    if (result.hasException) {
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(
+        PlanningActivity.fromJson(result.data['planningActivityDetails']));
+  }
 }

@@ -12,4 +12,8 @@ abstract class IPlanningRepository {
     DateTime start,
     DateTime end,
   );
+
+  Future<Either<BaseFailure, PlanningActivity>> getActivityDetails(
+    Map<String, String> codes,
+  );
 }
