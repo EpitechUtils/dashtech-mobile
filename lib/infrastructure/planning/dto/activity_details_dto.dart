@@ -165,11 +165,13 @@ abstract class ActivityDetailsDto implements _$ActivityDetailsDto {
       ged_node_adm: ged_node_adm,
       nb_planified: nb_planified,
       hidden: hidden,
-      project: project.toDomain(),
-      events: events
-          .map((ActivityDetailsEventDto event) => event.toDomain())
-          .toList()
-          .cast(),
+      project: project != null ? project.toDomain() : null,
+      events: events != null
+          ? events
+              .map((ActivityDetailsEventDto event) => event.toDomain())
+              .toList()
+              .cast()
+          : [],
     );
   }
 }

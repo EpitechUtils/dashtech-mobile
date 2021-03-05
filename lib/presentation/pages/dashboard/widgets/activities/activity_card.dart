@@ -98,10 +98,8 @@ class ActivityCard extends StatelessWidget {
             splashColor: Color(greyColor).withOpacity(0.2),
             onPressed: () {},
             child: Icon(
-              activity.event_registered == "registered"
-                  ? Icons.close
-                  : Icons.add,
-              color: activity.event_registered == "registered"
+              activity.event_registered != "false" ? Icons.close : Icons.add,
+              color: activity.event_registered != "false"
                   ? Colors.red
                   : Colors.green,
             ),
@@ -128,7 +126,7 @@ class ActivityCard extends StatelessWidget {
                     color: ActivityColorUtils.getColorByEventType(
                       activity.type_code,
                     ).withOpacity(
-                      activity.event_registered == "registered" ? 1 : 0.6,
+                      activity.event_registered != "false" ? 1 : 0.6,
                     ),
                     child: Container(
                       child: Column(
@@ -171,10 +169,9 @@ class ActivityCard extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
-                                  color:
-                                      activity.event_registered == "registered"
-                                          ? Colors.black
-                                          : Colors.grey,
+                                  color: activity.event_registered != "false"
+                                      ? Colors.black
+                                      : Colors.grey,
                                 ),
                               ),
                               SizedBox(height: 2),
@@ -199,9 +196,7 @@ class ActivityCard extends StatelessWidget {
                               color: ActivityColorUtils.getColorByEventType(
                                 activity.type_code,
                               ).withOpacity(
-                                activity.event_registered == "registered"
-                                    ? 1
-                                    : 0.6,
+                                activity.event_registered != "false" ? 1 : 0.6,
                               ),
                               fontWeight: FontWeight.w500,
                             ),

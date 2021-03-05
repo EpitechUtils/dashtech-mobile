@@ -23,6 +23,11 @@ class ActivityColorUtils {
           return Color(0xff673ab7).withOpacity(opacity);
           break;
         }
+      case 'exam':
+        {
+          return Color(0xffdf6f3d).withOpacity(opacity);
+          break;
+        }
       default:
         {
           return Colors.grey.withOpacity(opacity);

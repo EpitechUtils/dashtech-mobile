@@ -8,6 +8,7 @@ import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:intl/intl.dart';
 
 class ActivityController extends GetxController {
   ActivityController({@required this.planningRepository})
@@ -44,5 +45,43 @@ class ActivityController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  String getStudentStatus() {
+    return activity.value.events[0].user_status;
+  }
+
+  bool isStudentRegistered() {
+    try {
+      return activity.value.events[0].already_register != null;
+    } catch (ignored) {
+      return false;
+    }
+  }
+
+  String parseActivityRoom() {
+    String room = "undefined";
+    try {
+      room = activity.value.events[0].location.substring(
+              activity.value.events[0].location.lastIndexOf('/') + 1,
+              activity.value.events[0].location.length) +
+          " - " +
+          activity.value.events[0].nb_inscrits +
+          "/" +
+          activity.value.events[0].seats;
+    } catch (ignored) {}
+
+    return room;
+  }
+
+  String parseActivityTime(String value) {
+    print(value);
+    DateTime startDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+    print(startDate);
+    String minutes = (startDate.minute > 9)
+        ? startDate.minute.toString()
+        : "0" + startDate.minute.toString();
+
+    return startDate.hour.toString() + ":" + minutes;
   }
 }
