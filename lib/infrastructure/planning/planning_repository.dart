@@ -5,6 +5,7 @@ import 'package:dashtech/domain/auth/failures/auth_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
+import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
@@ -12,6 +13,7 @@ import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dashtech/infrastructure/planning/dto/activity_details_dto.dart';
 import 'package:dashtech/infrastructure/planning/dto/planning_week_activities_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dashtech/infrastructure/planning/graphql/planning_queries.dart';
@@ -71,13 +73,16 @@ class PlanningRepository implements IPlanningRepository {
   }
 
   @override
-  Future<Either<BaseFailure, PlanningActivity>> getActivityDetails(
+  Future<Either<BaseFailure, ActivityDetails>> getActivityDetails(
     Map<String, String> codes,
   ) async {
+    print(codes);
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningWeekActivitiesQuery),
-        variables: {'codes': codes},
+        documentNode: gql(planningActivityDetailsQuery),
+        variables: {
+          'codes': codes,
+        },
       ),
     );
 
@@ -86,6 +91,7 @@ class PlanningRepository implements IPlanningRepository {
     }
 
     return right(
-        PlanningActivity.fromJson(result.data['planningActivityDetails']));
+        ActivityDetailsDto.fromJson(result.data['planningActivityDetails'])
+            .toDomain());
   }
 }

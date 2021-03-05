@@ -1,6 +1,6 @@
 const String authRegisterDeviceMutation = """
-mutation authRegisterDevice(\$platform: String!, \$token: String!, \$identifier: String!) {
-  authRegisterDevice(platform: \$platform, token: \$token, identifier: \$identifier)
+mutation profileRegisterDevice(\$platform: String!, \$token: String!, \$identifier: String!) {
+  profileRegisterDevice(platform: \$platform, token: \$token, identifier: \$identifier)
 }
 """;
 
