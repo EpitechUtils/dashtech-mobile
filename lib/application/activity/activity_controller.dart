@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
@@ -16,8 +17,10 @@ class ActivityController extends GetxController {
 
   final Rx<ActivityDetails> activity = ActivityDetails().obs;
   final RxBool isLoading = true.obs;
+  final RxMap<String, String> assistantIcon = <String, String>{}.obs;
 
   final IPlanningRepository planningRepository;
+  final IAuthRepository authRepository = Get.find();
 
   @override
   Future<void> onReady() async {
@@ -40,11 +43,29 @@ class ActivityController extends GetxController {
         (ActivityDetails right) {
           isLoading.value = false;
           activity.value = right;
+          _fetchAssistantsIcons(right.events);
         },
       );
     } catch (e) {
       print(e);
     }
+  }
+
+  _fetchAssistantsIcons(List<ActivityDetailsEvent> events) async {
+    events.forEach((ActivityDetailsEvent event) async {
+      event.assistants.forEach((ass) async {
+        final Either<BaseFailure, String> failOrIcon =
+            await this.authRepository.getProfileIconLink(ass.picture);
+
+        failOrIcon.fold(
+          (left) {},
+          (String url) {
+            assistantIcon[ass.login] = url;
+            update();
+          },
+        );
+      });
+    });
   }
 
   String getStudentStatus() {

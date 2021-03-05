@@ -5,6 +5,32 @@ part 'activity_details_dto.freezed.dart';
 part 'activity_details_dto.g.dart';
 
 @freezed
+abstract class ActivityDetailsEventAssistantDto
+    implements _$ActivityDetailsEventAssistantDto {
+  const factory ActivityDetailsEventAssistantDto({
+    String login,
+    String title,
+    String picture,
+    String manager_status,
+  }) = _ActivityDetailsEventAssistantDto;
+
+  factory ActivityDetailsEventAssistantDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$ActivityDetailsEventAssistantDtoFromJson(json);
+
+  const ActivityDetailsEventAssistantDto._();
+
+  ActivityDetailsEventAssistant toDomain() {
+    return ActivityDetailsEventAssistant(
+      login: login,
+      title: title,
+      picture: picture,
+      manager_status: manager_status,
+    );
+  }
+}
+
+@freezed
 abstract class ActivityDetailsProjectDto
     implements _$ActivityDetailsProjectDto {
   const factory ActivityDetailsProjectDto({
@@ -48,6 +74,7 @@ abstract class ActivityDetailsEventDto implements _$ActivityDetailsEventDto {
     String already_register,
     String user_status,
     String allow_token,
+    List<ActivityDetailsEventAssistantDto> assistants,
   }) = _ActivityDetailsEventDto;
 
   factory ActivityDetailsEventDto.fromJson(Map<String, dynamic> json) =>
@@ -71,6 +98,12 @@ abstract class ActivityDetailsEventDto implements _$ActivityDetailsEventDto {
       already_register: already_register,
       user_status: user_status,
       allow_token: allow_token,
+      assistants: assistants != null
+          ? assistants
+              .map((ActivityDetailsEventAssistantDto event) => event.toDomain())
+              .toList()
+              .cast()
+          : null,
     );
   }
 }

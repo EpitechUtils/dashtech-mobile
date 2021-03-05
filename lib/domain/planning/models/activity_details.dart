@@ -6,6 +6,22 @@ part 'activity_details.freezed.dart';
 part 'activity_details.g.dart';
 
 @freezed
+abstract class ActivityDetailsEventAssistant
+    implements _$ActivityDetailsEventAssistant {
+  const factory ActivityDetailsEventAssistant({
+    String login,
+    String title,
+    String picture,
+    String manager_status,
+  }) = _ActivityDetailsEventAssistant;
+
+  factory ActivityDetailsEventAssistant.fromJson(Map<String, dynamic> json) =>
+      _$ActivityDetailsEventAssistantFromJson(json);
+
+  const ActivityDetailsEventAssistant._();
+}
+
+@freezed
 abstract class ActivityDetailsEvent implements _$ActivityDetailsEvent {
   const factory ActivityDetailsEvent({
     String code,
@@ -22,6 +38,7 @@ abstract class ActivityDetailsEvent implements _$ActivityDetailsEvent {
     String already_register,
     String user_status,
     String allow_token,
+    List<ActivityDetailsEventAssistant> assistants,
   }) = _ActivityDetailsEvent;
 
   factory ActivityDetailsEvent.fromJson(Map<String, dynamic> json) =>

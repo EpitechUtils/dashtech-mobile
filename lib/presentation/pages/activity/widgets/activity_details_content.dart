@@ -1,6 +1,7 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/activity/activity_controller.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
+import 'package:dashtech/presentation/pages/activity/widgets/activity_assistants_list.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/activity_top_card.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:dashtech/presentation/shared/auth_title_subtitle.dart';
@@ -19,12 +20,12 @@ class ActivityDetailsContent extends GetView<ActivityController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         ActivityTopCard(),
-        const SizedBox(height: 15),
         Visibility(
           visible: controller.activity.value.description != null,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 15),
               Text(
                 "Description",
                 style: Get.textTheme.headline1.copyWith(),
@@ -39,59 +40,8 @@ class ActivityDetailsContent extends GetView<ActivityController> {
             ],
           ),
         ),
-
-        Container(
-          margin: const EdgeInsets.only(left: 15, top: 25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Container(
-                  child: Text(
-                    "Professeurs",
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child:
-                    /*Row(
-                  children: () {
-                    List<Widget> professors = List<Widget>();
-
-                    this
-                        ._scheduleSession
-                        .professors
-                        .forEach((ScheduleProfessor prof) {
-                      professors.add(Container(
-                          padding: EdgeInsets.only(right: 15),
-                          child: Tooltip(
-                              message:
-                                  prof.title == null ? "Inconnu !" : prof.title,
-                              child: CustomCircleAvatar(
-                                noPicture: Image.asset(
-                                    "assets/images/icons/nopicture-icon.png",
-                                    width: 60),
-                                imagePath: this._autolog +
-                                    "/file/userprofil/" +
-                                    prof.login.split('@')[0] +
-                                    ".bmp",
-                                radius: 60,
-                              ))));
-                    });
-
-                    return professors;
-                  }(),
-                )*/
-                    Container(),
-              ),
-            ],
-          ),
-        ),
-
-        // Details of registered users
+        const SizedBox(height: 15),
+        ActivityAssistantsList(),
         Container(
           margin: const EdgeInsets.only(top: 20),
           padding: const EdgeInsets.all(10),

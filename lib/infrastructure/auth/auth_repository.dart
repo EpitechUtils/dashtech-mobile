@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
+import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
+import 'package:dashtech/infrastructure/auth/graphql/auth_queries.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
@@ -176,5 +178,26 @@ class AuthRepository implements IAuthRepository {
     storageService.box.write('email', authProfile.email);
 
     return right(authProfile);
+  }
+
+  @override
+  Future<Either<BaseFailure, String>> getProfileIconLink(
+    String picture,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        fetchPolicy: FetchPolicy.noCache,
+        documentNode: gql(profileGetIconLinkByPictureQuery),
+        variables: {
+          'picture': picture,
+        },
+      ),
+    );
+
+    if (result.hasException) {
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(result.data['profileGetIconLinkByPicture']);
   }
 }

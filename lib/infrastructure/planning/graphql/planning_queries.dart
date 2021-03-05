@@ -125,6 +125,12 @@ const planningActivityDetailsQuery = """
         already_register
         user_status
         allow_token
+        assistants {
+          login
+          title
+          picture
+          manager_status
+        }
       }
     }
   }

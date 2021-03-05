@@ -1,6 +1,7 @@
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dashtech/domain/core/failures/base_failure.dart';
 
 abstract class IAuthRepository {
   Future<Either<AuthFailure, bool>> sendDeviceToken(
@@ -24,4 +25,6 @@ abstract class IAuthRepository {
     String profileId,
     String email,
   );
+
+  Future<Either<BaseFailure, String>> getProfileIconLink(String picture);
 }
