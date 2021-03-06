@@ -1,19 +1,20 @@
-import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/activity/activity_controller.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
-import 'package:flutter/material.dart';
-import 'package:dashtech/application/dashboard/dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ActivityDetailsAppBar extends GetView<ActivityController>
+class ActivityDetailsBaseAppBar extends GetView<ActivityController>
     implements PreferredSizeWidget {
+  ActivityDetailsBaseAppBar({this.actions, this.bottom});
+
+  final List<Widget> actions;
+  final PreferredSizeWidget bottom;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 70,
+      toolbarHeight: 70.0 + (bottom != null ? 50 : 0),
       automaticallyImplyLeading: false,
       centerTitle: false,
       leading: IconButton(
@@ -21,24 +22,7 @@ class ActivityDetailsAppBar extends GetView<ActivityController>
         icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
       ),
       leadingWidth: 30,
-      actions: [
-        Obx(
-          () => Visibility(
-            visible: !controller.isLoading.value,
-            child: IconButton(
-              icon: Icon(
-                controller.isStudentRegistered() ? Icons.close : Icons.add,
-                color: Color(
-                  controller.isStudentRegistered() ? errorColor : successColor,
-                ),
-              ),
-              iconSize: 30,
-              splashRadius: 20,
-              onPressed: () {},
-            ),
-          ),
-        ),
-      ],
+      actions: actions != null ? actions : [],
       title: Padding(
         padding: const EdgeInsets.only(
           right: 20,
@@ -70,6 +54,7 @@ class ActivityDetailsAppBar extends GetView<ActivityController>
                   controller.isLoading.value
                       ? ""
                       : controller.activity.value.title,
+                  overflow: TextOverflow.fade,
                   style: Get.textTheme.subtitle2.copyWith(
                     color: Colors.white,
                   ),
@@ -80,7 +65,8 @@ class ActivityDetailsAppBar extends GetView<ActivityController>
         ),
       ),
       backgroundColor: const Color(primaryColor),
-      elevation: 0,
+      elevation: 2,
+      bottom: bottom,
     );
   }
 
@@ -101,5 +87,5 @@ class ActivityDetailsAppBar extends GetView<ActivityController>
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.0);
+  Size get preferredSize => Size.fromHeight(70.0 + (bottom != null ? 50 : 0));
 }

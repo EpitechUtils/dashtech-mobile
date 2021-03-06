@@ -96,13 +96,9 @@ class ActivityController extends GetxController {
   }
 
   String parseActivityTime(String value) {
-    print(value);
-    DateTime startDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
-    print(startDate);
-    String minutes = (startDate.minute > 9)
-        ? startDate.minute.toString()
-        : "0" + startDate.minute.toString();
+    DateFormat hMFormat = DateFormat.Hm(Get.locale.toLanguageTag());
+    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
 
-    return startDate.hour.toString() + ":" + minutes;
+    return hMFormat.format(dateTime);
   }
 }

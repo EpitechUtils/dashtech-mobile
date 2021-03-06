@@ -58,7 +58,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: const Color(primaryColor),
-      elevation: 0,
+      elevation: 2,
       bottom: TabBar(
         controller: dashboardController.tabController,
         tabs: [

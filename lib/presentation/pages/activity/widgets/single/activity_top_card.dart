@@ -22,7 +22,8 @@ class ActivityTopCard extends GetView<ActivityController> {
         child: Container(
           width: Get.width - 20,
           color: ActivityColorUtils.getColorByEventType(
-              controller.activity.value.type_code),
+            controller.activity.value.type_code,
+          ),
           child: Container(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -44,14 +45,13 @@ class ActivityTopCard extends GetView<ActivityController> {
                         ),
                       ),
                     ),
-                    Text(
-                      controller.activity.value.module_title +
-                          "\n" +
-                          controller.activity.value.title,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        controller.activity.value.title,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
