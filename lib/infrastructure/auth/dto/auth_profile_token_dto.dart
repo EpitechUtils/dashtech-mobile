@@ -1,6 +1,5 @@
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_profile_token_dto.freezed.dart';

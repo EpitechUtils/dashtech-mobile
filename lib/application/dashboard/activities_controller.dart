@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

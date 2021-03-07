@@ -1,9 +1,6 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:dashtech/domain/auth/failures/auth_failure.dart';
-import 'package:dashtech/infrastructure/auth/auth_repository.dart';
 import 'package:dashtech/infrastructure/core/firebase_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dashtech/presentation/core/utils/device_utils.dart';

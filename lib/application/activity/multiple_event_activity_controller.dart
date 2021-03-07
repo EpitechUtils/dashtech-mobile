@@ -1,12 +1,7 @@
-import 'dart:convert';
-
-import 'package:dartz/dartz.dart';
 import 'package:dashtech/application/activity/activity_controller.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
-import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -28,7 +23,7 @@ class MultipleEventActivityController extends GetxController {
   @override
   Future<void> onInit() async {
     _initWorkers();
-    selectedEvent.value = activityController.activity.value.events[0];
+    selectedEvent.value = activityController.activity.value.events.first;
     super.onInit();
   }
 
@@ -38,11 +33,18 @@ class MultipleEventActivityController extends GetxController {
     super.onClose();
   }
 
-  String parseDateByEvent(ActivityDetailsEvent event) {
+  String parseDate(ActivityDetailsEvent event) {
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
+    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale.toLanguageTag());
+
+    return dateFormat.format(begin);
+  }
+
+  String parseDateWithHm(ActivityDetailsEvent event) {
     DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
     DateTime end = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.end);
     DateFormat hMFormat = DateFormat.Hm(Get.locale.toLanguageTag());
-    DateFormat dateFormat = DateFormat("dd/MM", Get.locale.toLanguageTag());
+    DateFormat dateFormat = DateFormat.MMMd(Get.locale.toLanguageTag());
 
     return dateFormat.format(begin) +
         " (" +
@@ -83,8 +85,12 @@ class MultipleEventActivityController extends GetxController {
   void _initWorkers() {
     workers.add(ever(
       currentTabIndex,
-      (_) => selectedEvent.value =
-          activityController.activity.value.events[currentTabIndex.value],
+      (val) {
+        if (activityController.isAppointment && val == 0) return;
+
+        selectedEvent.value = activityController.activity.value
+            .events[val - (activityController.isAppointment ? 1 : 0)];
+      },
     ));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:dashtech/domain/planning/models/planning_activity_room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'planning_activity.freezed.dart';
 part 'planning_activity.g.dart';

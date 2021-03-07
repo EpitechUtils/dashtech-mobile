@@ -1,16 +1,12 @@
-import 'package:basic_utils/basic_utils.dart';
+import 'package:dashtech/application/dashboard/dashboard_controller.dart';
+import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:dashtech/application/dashboard/activities_controller.dart';
-import 'package:dashtech/application/dashboard/dashboard_controller.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
-import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PlanningActivityCard extends StatelessWidget {
   PlanningActivityCard({@required this.activity, @required this.index});

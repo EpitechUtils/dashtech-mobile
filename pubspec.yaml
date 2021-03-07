@@ -2,7 +2,7 @@ name: dashtech
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.1.8+27
+version: 2.1.9+28
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -53,6 +53,7 @@ dependencies:
   pull_to_refresh: 1.6.3
   basic_utils: ^2.6.3
   cached_network_image: ^2.5.0
+  expandable: ^4.1.4
 
   # Icons
   line_icons: ^0.2.0
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/svg/
+    - assets/img/
     - .env.dev
     - .env.prod
   fonts:

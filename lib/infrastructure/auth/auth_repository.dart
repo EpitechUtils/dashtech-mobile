@@ -1,16 +1,16 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
+import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_queries.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';

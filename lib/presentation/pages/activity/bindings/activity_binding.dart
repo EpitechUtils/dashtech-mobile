@@ -1,4 +1,5 @@
 import 'package:dashtech/application/activity/activity_controller.dart';
+import 'package:dashtech/application/activity/appointment_controller.dart';
 import 'package:dashtech/application/activity/multiple_event_activity_controller.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/infrastructure/planning/planning_repository.dart';
@@ -19,6 +20,11 @@ class ActivityBinding implements Bindings {
     );
     Get.lazyPut<MultipleEventActivityController>(
       () => MultipleEventActivityController(
+        planningRepository: Get.find(),
+      ),
+    );
+    Get.lazyPut<AppointmentController>(
+      () => AppointmentController(
         planningRepository: Get.find(),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:basic_utils/basic_utils.dart';
-import 'package:flutter/material.dart';
 import 'package:dashtech/application/dashboard/dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {

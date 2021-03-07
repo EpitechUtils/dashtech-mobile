@@ -1,4 +1,5 @@
 import 'package:enum_to_string/enum_to_string.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 enum FileFormat { png, jpg, json, gif, svg }
 
@@ -9,6 +10,16 @@ class AssetsUtils {
       'assets',
       'svg',
       '$name.${EnumToString.convertToString(FileFormat.svg)}'
+    ], '/');
+    return buffer.toString();
+  }
+
+  static String profilePicture(String picture) {
+    final StringBuffer buffer = StringBuffer();
+    buffer.writeAll([
+      DotEnv().env['BASE_URL'],
+      'userPicture',
+      picture.replaceAll('.bmp', '') + '.jpg'
     ], '/');
     return buffer.toString();
   }

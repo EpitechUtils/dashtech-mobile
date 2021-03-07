@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:dashtech/application/dashboard/dashboard_controller.dart';
 import 'package:dashtech/presentation/pages/dashboard/widgets/activities/activities_list.dart';
 import 'package:dashtech/presentation/pages/dashboard/widgets/dashboard_app_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardPage extends GetView<DashboardController> {

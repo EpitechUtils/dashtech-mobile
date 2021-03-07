@@ -1,7 +1,6 @@
 import 'package:dashtech/presentation/pages/auth/widgets/sign_in_body.dart';
 import 'package:dashtech/presentation/shared/auth_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 
 class SigninPage extends StatelessWidget {
   @override

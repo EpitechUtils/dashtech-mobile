@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
-import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
+import 'package:dashtech/application/activity/appointment_controller.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
@@ -17,10 +15,10 @@ class ActivityController extends GetxController {
 
   final Rx<ActivityDetails> activity = ActivityDetails().obs;
   final RxBool isLoading = true.obs;
-  final RxMap<String, String> assistantIcon = <String, String>{}.obs;
 
   final IPlanningRepository planningRepository;
-  final IAuthRepository authRepository = Get.find();
+
+  AppointmentController appointmentController;
 
   @override
   Future<void> onReady() async {
@@ -43,29 +41,12 @@ class ActivityController extends GetxController {
         (ActivityDetails right) {
           isLoading.value = false;
           activity.value = right;
-          _fetchAssistantsIcons(right.events);
+          if (this.isAppointment) appointmentController = Get.find();
         },
       );
     } catch (e) {
       print(e);
     }
-  }
-
-  _fetchAssistantsIcons(List<ActivityDetailsEvent> events) async {
-    events.forEach((ActivityDetailsEvent event) async {
-      event.assistants.forEach((ass) async {
-        final Either<BaseFailure, String> failOrIcon =
-            await this.authRepository.getProfileIconLink(ass.picture);
-
-        failOrIcon.fold(
-          (left) {},
-          (String url) {
-            assistantIcon[ass.login] = url;
-            update();
-          },
-        );
-      });
-    });
   }
 
   String getStudentStatus() {
@@ -78,6 +59,14 @@ class ActivityController extends GetxController {
     } catch (ignored) {
       return false;
     }
+  }
+
+  String parseDate() {
+    DateTime begin =
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value.begin);
+    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale.toLanguageTag());
+
+    return dateFormat.format(begin);
   }
 
   String parseActivityRoom() {
@@ -95,10 +84,14 @@ class ActivityController extends GetxController {
     return room;
   }
 
-  String parseActivityTime(String value) {
+  String parseActivityTime(String value, {int addMinutes = 0}) {
     DateFormat hMFormat = DateFormat.Hm(Get.locale.toLanguageTag());
-    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
+        .parse(value)
+        .add(Duration(minutes: addMinutes));
 
     return hMFormat.format(dateTime);
   }
+
+  bool get isAppointment => activity.value.type_code == "rdv";
 }

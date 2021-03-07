@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/activity/activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
@@ -8,104 +9,108 @@ import 'package:line_icons/line_icons.dart';
 class ActivityTopCard extends GetView<ActivityController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Color(0xFF464646).withOpacity(0.2),
-            blurRadius: 15.0,
-          )
-        ],
+    return Card(
+      color: ActivityColorUtils.getColorByEventType(
+        controller.activity.value.type_code,
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+      child: Container(
+        width: Get.width - 20,
         child: Container(
-          width: Get.width - 20,
-          color: ActivityColorUtils.getColorByEventType(
-            controller.activity.value.type_code,
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Visibility(
-                      visible: controller.getStudentStatus() != null,
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        child: Icon(
-                          LineIcons.hand_stop_o,
-                          color: Color(
-                            controller.getStudentStatus() == "present"
-                                ? successColor
-                                : warnColor,
-                          ),
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Visibility(
+                    visible: controller.getStudentStatus() != null,
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      child: Icon(
+                        LineIcons.hand_stop_o,
+                        color: Color(
+                          controller.getStudentStatus() == "present"
+                              ? successColor
+                              : warnColor,
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        controller.activity.value.title,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: Get.width / 2,
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Text(
-                          controller.parseActivityTime(
-                              controller.activity.value.events[0].begin),
-                          overflow: TextOverflow.ellipsis,
+                          controller.activity.value.title,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                        Text(
-                          controller.parseActivityTime(
-                              controller.activity.value.events[0].end),
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
+                        const SizedBox(height: 5),
+                        Obx(
+                          () => Text(
+                            StringUtils.capitalize(controller.parseDate()),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    controller.parseActivityRoom(),
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: Get.width / 2,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        controller.parseActivityTime(
+                            controller.activity.value.events[0].begin),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      Text(
+                        controller.parseActivityTime(
+                            controller.activity.value.events[0].end),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  controller.parseActivityRoom(),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

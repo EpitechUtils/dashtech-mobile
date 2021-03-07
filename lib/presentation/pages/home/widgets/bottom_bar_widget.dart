@@ -1,9 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:dashtech/application/home/home_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({

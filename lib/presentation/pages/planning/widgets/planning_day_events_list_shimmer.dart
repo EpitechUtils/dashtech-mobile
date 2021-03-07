@@ -1,6 +1,4 @@
-import 'package:dashtech/application/planning/planning_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlanningDayEventsListShimmer extends StatelessWidget {

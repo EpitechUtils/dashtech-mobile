@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/material.dart';
 import 'package:dashtech/application/auth/signin_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/theme/app_fonts.dart';
@@ -8,6 +7,7 @@ import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 import 'package:dashtech/presentation/pages/auth/widgets/sign_in_form.dart';
 import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dashtech/presentation/shared/rounded_button.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 

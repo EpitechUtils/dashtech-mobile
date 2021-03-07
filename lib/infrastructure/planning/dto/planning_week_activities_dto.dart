@@ -1,8 +1,6 @@
-import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:meta/meta.dart';
 
 part 'planning_week_activities_dto.freezed.dart';
