@@ -42,11 +42,14 @@ class AppointmentDetails extends GetView<AppointmentController> {
               ),
             ),
           ),
-          Visibility(
-            visible: controller.groupSlot.value != null,
-            child: AppointmentSlot(),
-          ),
-          AppointmentGroup(),
+          controller.groupSlot.value.code != null
+              ? Column(
+                  children: [
+                    AppointmentSlot(),
+                    AppointmentGroup(),
+                  ],
+                )
+              : Container(),
         ],
       ),
     );

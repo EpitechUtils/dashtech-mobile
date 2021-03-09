@@ -44,7 +44,10 @@ class AppointmentController extends GetxController {
         },
         (ActivityRdvDetails right) {
           appointmentDetails.value = right;
-          if (appointmentDetails.value.group == null) return null;
+          if (appointmentDetails.value.group == null) {
+            isLoading.value = false;
+            return;
+          }
 
           appointmentDetails.value.slots.forEach((bloc) {
             bloc.slots.forEach((slot) {
@@ -88,6 +91,17 @@ class AppointmentController extends GetxController {
     }
 
     return Colors.white;
+  }
+
+  List<ActivityRdvSlot> getSlotsForEventCode(String code) {
+    try {
+      return appointmentDetails.value.slots
+          .where((bloc) => bloc.codeevent == code)
+          .first
+          .slots;
+    } catch (ignored) {
+      return [];
+    }
   }
 
   bool get isRegistered =>
