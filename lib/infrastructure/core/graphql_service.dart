@@ -24,9 +24,7 @@ class GraphqlService extends GetxService {
 
   @override
   void onReady() {
-    final HttpLink httpLink = HttpLink(
-      uri: '${DotEnv().env['BASE_URL']}/graphql',
-    );
+    final HttpLink httpLink = HttpLink('${DotEnv().env['BASE_URL']}/graphql');
 
     final AuthLink authLink = AuthLink(
       getToken: () {
@@ -37,7 +35,7 @@ class GraphqlService extends GetxService {
     final Link link = authLink.concat(httpLink);
 
     client = GraphQLClient(
-      cache: InMemoryCache(),
+      cache: GraphQLCache(store: InMemoryStore()),
       link: link,
     );
     super.onReady();

@@ -1,7 +1,6 @@
 import 'package:dashtech/application/auth/signin_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/theme/app_fonts.dart';
-import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,25 +14,33 @@ class SigninForm extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<bool> _passwordVisible = useState<bool>(false);
-    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context);
     return FormBuilder(
       key: signinForm,
       child: Column(
         children: [
           FormBuilderTextField(
             controller: _controller.emailTextController,
-            attribute: "form_email".tr,
+            name: "form_email".tr,
             autocorrect: false,
             autofocus: true,
             keyboardType: TextInputType.emailAddress,
-            validators: [
-              FormBuilderValidators.required(
-                  errorText: 'error_form_required'.tr),
-              FormBuilderValidators.email(errorText: 'error_form_email'.tr),
-              FormBuilderValidators.pattern(r"^[A-Za-z0-9._%+-]+@epitech.eu$",
-                  errorText: 'error_form_email_epitech'.tr)
-            ],
+            validator: FormBuilderValidators.compose(
+              [
+                FormBuilderValidators.required(
+                  context,
+                  errorText: 'error_form_required'.tr,
+                ),
+                FormBuilderValidators.email(
+                  context,
+                  errorText: 'error_form_email'.tr,
+                ),
+                FormBuilderValidators.match(
+                  context,
+                  r"^[A-Za-z0-9._%+-]+@epitech.eu$",
+                  errorText: 'error_form_email_epitech'.tr,
+                )
+              ],
+            ),
             decoration: const InputDecoration(
               labelText: "Email",
               prefixIcon: Icon(

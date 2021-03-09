@@ -13,9 +13,7 @@ class SignInStepTwoCodeFields extends GetView<SigninController> {
   Widget build(BuildContext context) {
     return FormBuilder(
       key: signInCodeForm,
-      onChanged: (val) {
-        controller.checkFormValidity();
-      },
+      onChanged: controller.checkFormValidity,
       autovalidateMode: AutovalidateMode.disabled,
       child: Column(
         children: [

@@ -12,13 +12,13 @@ dependencies:
     sdk: flutter
 
   # Basics
-  get: ^3.24.0
-  flutter_form_builder: ^3.14.1
+  get: ^3.26.0
+  flutter_form_builder: ^5.0.0-alpha.1
   flutter_inappwebview: ^4.0.0+4
-  intl: ^0.16.1
+  intl: ^0.17.0
 
   # Storage
-  get_storage: ^1.3.2
+  get_storage: ^1.4.0
 
   # Ui @ FX
   flutter_hooks: ^0.15.0
@@ -37,7 +37,7 @@ dependencies:
   gql_http_link: ^0.3.2
   dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.0
-  graphql_flutter: ^3.1.0
+  graphql_flutter: ^4.0.1
 
   # Utils
   flutter_screenutil: ^3.2.0
@@ -51,7 +51,7 @@ dependencies:
   device_info: ^1.0.0
   firebase_messaging: ^7.0.3
   package_info: 0.4.3+2
-  pull_to_refresh: 1.6.3
+  pull_to_refresh: 1.6.4
   basic_utils: ^2.6.3
   cached_network_image: ^2.5.0
   expandable: ^4.1.4

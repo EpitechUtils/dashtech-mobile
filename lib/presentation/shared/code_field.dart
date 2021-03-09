@@ -27,7 +27,7 @@ class CodeField extends StatelessWidget {
       width: fieldWidth,
       height: fieldHeight,
       child: FormBuilderTextField(
-        attribute: controller.toString(),
+        name: controller.toString(),
         focusNode: focusNode,
         onChanged: (value) {
           if (value != '' && !nextFocusNode.isNull) {
@@ -71,9 +71,10 @@ class CodeField extends StatelessWidget {
         ),
         autocorrect: false,
         maxLength: 1,
-        validators: [
-          FormBuilderValidators.required(errorText: 'error_form_required'.tr),
-        ],
+        validator: FormBuilderValidators.required(
+          context,
+          errorText: 'error_form_required'.tr,
+        ),
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
       ),
