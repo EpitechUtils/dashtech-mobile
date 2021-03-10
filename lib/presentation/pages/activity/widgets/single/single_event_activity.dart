@@ -42,6 +42,39 @@ class SingleEventActivity extends GetView<ActivityController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ActivityTopCard(),
+              const SizedBox(height: 15),
+              Obx(
+                () => Visibility(
+                  visible: controller.getStudentStatus() != null,
+                  child: Card(
+                    color: Color(
+                      controller.getStudentStatus() == "present"
+                          ? successColor
+                          : warnColor,
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 0,
+                      vertical: 4,
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      width: Get.width - 20,
+                      child: Text(
+                        'your_status_defined_to'.trParams(
+                          {
+                            'status': controller.getStudentStatus() ?? "",
+                          },
+                        ),
+                        textAlign: TextAlign.center,
+                        style: Get.textTheme.headline2.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Visibility(
                 visible: controller.activity.value.description != null,
                 child: Column(

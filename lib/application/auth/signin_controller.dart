@@ -8,6 +8,7 @@ import 'package:dashtech/presentation/pages/auth/widgets/sign_in_intranet_webvie
 import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import "package:get/get.dart";
 import "package:get/state_manager.dart";
 
@@ -17,6 +18,10 @@ class SigninController extends GetxController {
   SigninController({@required this.authRepository});
 
   final IAuthRepository authRepository;
+
+  final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> signInCodeForm =
+      GlobalKey<FormBuilderState>();
 
   final RxBool isLoading = false.obs;
   final RxBool isWaitingForCode = false.obs;

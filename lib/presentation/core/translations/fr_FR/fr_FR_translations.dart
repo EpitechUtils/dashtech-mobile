@@ -28,6 +28,7 @@ final Map<String, String> frFR = {
   'assistants': "Assistants",
   'assistants_subtitle': "Ils vous accompagnent tout du long...",
   'no_slot_available': "Aucun créneau n'est enregistré pour cette session.",
+  "your_status_defined_to": "Votre présence a été définie sur @status.",
 
   // Form
   "error_form_required": "Champs requis",

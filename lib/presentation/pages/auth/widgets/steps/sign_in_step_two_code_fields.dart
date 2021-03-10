@@ -5,14 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
-final GlobalKey<FormBuilderState> signInCodeForm =
-    GlobalKey<FormBuilderState>();
-
 class SignInStepTwoCodeFields extends GetView<SigninController> {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: signInCodeForm,
+      key: controller.signInCodeForm,
       onChanged: controller.checkFormValidity,
       autovalidateMode: AutovalidateMode.disabled,
       child: Column(

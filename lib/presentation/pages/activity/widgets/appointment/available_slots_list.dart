@@ -2,6 +2,7 @@ import 'package:dashtech/application/activity/appointment_controller.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
+import 'package:dashtech/presentation/pages/activity/widgets/appointment/appointment_slots_shimmer.dart';
 import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
 import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
         Obx(
           () => Visibility(
             visible: controller.isLoading.value,
-            child: Container(),
+            child: AppointmentSlotsShimmer(),
             replacement: Visibility(
               visible: controller.getSlotsForEventCode(event.code).isNotEmpty,
               replacement: Card(

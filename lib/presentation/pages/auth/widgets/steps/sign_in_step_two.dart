@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 class SignInStepTwo extends GetView<SigninController> {
   Future<void> sendEmailCode() async {
-    if (signinForm.currentState.saveAndValidate()) {
+    if (controller.signInForm.currentState.saveAndValidate()) {
       await controller.sendEmailCode();
     }
   }

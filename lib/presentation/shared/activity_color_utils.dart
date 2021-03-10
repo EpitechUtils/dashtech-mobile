@@ -25,7 +25,7 @@ class ActivityColorUtils {
         }
       case 'exam':
         {
-          return Color(0xffdf6f3d).withOpacity(opacity);
+          return Color(0xffe74c3c).withOpacity(opacity);
           break;
         }
       default:

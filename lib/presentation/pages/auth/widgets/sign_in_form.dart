@@ -1,25 +1,21 @@
 import 'package:dashtech/application/auth/signin_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/theme/app_fonts.dart';
+import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-final GlobalKey<FormBuilderState> signinForm = GlobalKey<FormBuilderState>();
-
-class SigninForm extends HookWidget {
-  final SigninController _controller = Get.find();
-
+class SigninForm extends GetViewWithHook<SigninController> {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: signinForm,
+      key: controller.signInForm,
       child: Column(
         children: [
           FormBuilderTextField(
-            controller: _controller.emailTextController,
+            controller: controller.emailTextController,
             name: "form_email".tr,
             autocorrect: false,
             autofocus: true,

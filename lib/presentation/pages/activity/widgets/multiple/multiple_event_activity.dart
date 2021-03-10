@@ -23,7 +23,11 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
             color: Colors.white,
             tabBar: TabBar(
               onTap: (int newIndex) {
-                controller.currentTabIndex.value = newIndex;
+                if (controller.activityController.isAppointment &&
+                    !controller.activityController.appointmentController
+                        .isLoading.value) {
+                  controller.currentTabIndex.value = newIndex;
+                }
               },
               unselectedLabelColor: const Color(textColor),
               labelColor: Colors.white,
@@ -62,6 +66,38 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     CurrentEventTopCard(),
+                    Obx(
+                      () => Visibility(
+                        visible: controller.getStudentStatus() != null,
+                        child: Card(
+                          color: Color(
+                            controller.getStudentStatus() == "present"
+                                ? successColor
+                                : warnColor,
+                          ),
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 0,
+                            vertical: 4,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: Get.width - 20,
+                            child: Text(
+                              'your_status_defined_to'.trParams(
+                                {
+                                  'status': controller.getStudentStatus() ?? "",
+                                },
+                              ),
+                              textAlign: TextAlign.center,
+                              style: Get.textTheme.headline2.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     Visibility(
                       visible: controller.activityController.isAppointment,
                       child: Obx(

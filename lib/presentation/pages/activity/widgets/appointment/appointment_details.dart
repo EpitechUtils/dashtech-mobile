@@ -1,5 +1,6 @@
 import 'package:dashtech/application/activity/appointment_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/pages/activity/widgets/appointment/appointment_details_shimmer.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/appointment/appointment_group.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/appointment/appointment_slot.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class AppointmentDetails extends GetView<AppointmentController> {
     return Obx(
       () => Visibility(
         visible: controller.isLoading.value,
-        child: Container(),
+        child: AppointmentDetailsShimmer(),
         replacement: _buildContent(),
       ),
     );
