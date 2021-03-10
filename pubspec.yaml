@@ -2,7 +2,7 @@ name: dashtech
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.1.11+31
+version: 2.1.12+32
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -30,6 +30,7 @@ dependencies:
   shimmer: ^1.1.2
   table_calendar: ^2.3.3
   fl_chart: ^0.20.1
+  fab_circular_menu: ^1.0.1
 
   # Networking
   dio: ^3.0.10

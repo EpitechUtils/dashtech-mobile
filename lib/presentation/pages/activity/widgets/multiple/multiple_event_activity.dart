@@ -5,10 +5,13 @@ import 'package:dashtech/presentation/pages/activity/widgets/appointment/appoint
 import 'package:dashtech/presentation/pages/activity/widgets/appointment/available_slots_list.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/multiple/current_event_top_card.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/shared/activity_details_base_app_bar.dart';
+import 'package:dashtech/presentation/pages/activity/widgets/shared/additional_options_for_activity_fab.dart';
 import 'package:dashtech/presentation/shared/bubble_tab_indicator.dart';
 import 'package:dashtech/presentation/shared/colored_tab_bar.dart';
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 class MultipleEventActivity extends GetView<MultipleEventActivityController> {
   @override
@@ -18,6 +21,7 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
           (controller.activityController.isAppointment ? 1 : 0),
       initialIndex: controller.currentTabIndex.value,
       child: Scaffold(
+        floatingActionButton: AdditionalOptionsForActivityFab(),
         appBar: ActivityDetailsBaseAppBar(
           bottom: ColoredTabBar(
             color: Colors.white,

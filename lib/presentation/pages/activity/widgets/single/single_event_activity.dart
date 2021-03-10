@@ -2,6 +2,7 @@ import 'package:dashtech/application/activity/activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/appointment/available_slots_list.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/shared/activity_details_base_app_bar.dart';
+import 'package:dashtech/presentation/pages/activity/widgets/shared/additional_options_for_activity_fab.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/single/activity_assistants_list.dart';
 import 'package:dashtech/presentation/pages/activity/widgets/single/activity_top_card.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class SingleEventActivity extends GetView<ActivityController> {
           ),
         ],
       ),
+      floatingActionButton: AdditionalOptionsForActivityFab(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 50),
         child: Container(

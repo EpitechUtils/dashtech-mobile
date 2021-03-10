@@ -30,6 +30,23 @@ final Map<String, String> frFR = {
   'no_slot_available': "Aucun créneau n'est enregistré pour cette session.",
   "your_status_defined_to": "Votre présence a été définie sur @status.",
 
+  // Settings
+  'settings_title': "Paramètres",
+  'settings_subtitle':
+      "Notifications, choix d'affichae du planning, données personelles etc...",
+  'notification_settings': "Notifications",
+  'notification_settings_desc':
+      'Choisissez les notifications désirées, ou désactivez-les complètement.',
+  'notification_settings_update': "Mise à jour de l'application",
+  'notification_settings_activity': "Rappel d'activité",
+  'notification_settings_appointment': "Rappel de rendez-vous",
+  'notification_settings_project': "Rappel de rendu",
+  'planning_settings': "Planning",
+  'planning_settings_desc':
+      'Affichez uniquement ce que vous voulez voir dans vos activités, rien de plus.',
+  'planning_settings_module_only': "Modules inscrits uniquement",
+  'planning_settings_registered_only': "Inscrits uniquement",
+
   // Form
   "error_form_required": "Champs requis",
   "error_form_email": "Format e-mail incorrect",
@@ -58,5 +75,7 @@ final Map<String, String> frFR = {
   // Other
   'available_soon': 'Bientôt Disponible !',
   'available_soon_text':
-      "Cette fonctionnalité n'est pas encore stable pour être déployée. Promis elle sera disponible très prochainement !"
+      "Cette fonctionnalité n'est pas encore stable pour être déployée. Promis elle sera disponible très prochainement !",
+  'active': "Activé",
+  'inactive': "Désactivé",
 };

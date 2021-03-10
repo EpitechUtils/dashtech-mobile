@@ -4,6 +4,7 @@ import 'package:dashtech/presentation/pages/attendance/widgets/attendance_page.d
 import 'package:dashtech/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:dashtech/presentation/pages/home/widgets/bottom_bar_widget.dart';
 import 'package:dashtech/presentation/pages/planning/planning_page.dart';
+import 'package:dashtech/presentation/pages/settings/settings_page.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
 import 'package:dashtech/presentation/shared/hooks/use_curve_animation.dart';
@@ -46,7 +47,7 @@ class HomePage extends GetViewWithHook<HomeController> {
             DashboardPage(),
             PlanningPage(),
             Container(color: const Color(fillColor)),
-            Container(color: const Color(fillColor)),
+            SettingsPage(),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

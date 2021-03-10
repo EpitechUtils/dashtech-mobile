@@ -21,6 +21,12 @@ class FontStyles {
         fontSize: 16,
       );
 
+  static TextStyle get smallTitle => futuraFont.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.w900,
+        color: const Color(textColor),
+      );
+
   static TextStyle get hugeTitle => futuraFont.copyWith(
         fontSize: 26,
         fontWeight: FontWeight.w900,
