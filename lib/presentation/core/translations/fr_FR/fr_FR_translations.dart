@@ -53,4 +53,10 @@ final Map<String, String> frFR = {
   // Common Actions
   'next': 'Suivant',
   'global_info': "Infos Globales",
+  'previous': "Revenir en arrière",
+
+  // Other
+  'available_soon': 'Bientôt Disponible !',
+  'available_soon_text':
+      "Cette fonctionnalité n'est pas encore stable pour être déployée. Promis elle sera disponible très prochainement !"
 };
