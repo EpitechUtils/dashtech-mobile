@@ -1,16 +1,46 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:dashtech/application/activity/activity_controller.dart';
+import 'package:dashtech/application/settings/settings_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SettingsAppBar extends StatelessWidget implements PreferredSizeWidget {
+class SettingsAppBar extends GetView<SettingsController>
+    implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 70.0,
       automaticallyImplyLeading: false,
       centerTitle: false,
+      actions: [
+        Obx(
+          () => Visibility(
+            visible: controller.needsUpdate.value,
+            child: Obx(
+              () => Visibility(
+                visible: !controller.isUpdating.value,
+                child: FadeIn(
+                  child: IconButton(
+                    icon: Icon(
+                      LineIcons.save,
+                      color: Colors.white,
+                    ),
+                    iconSize: 30,
+                    splashRadius: 20,
+                    onPressed: controller.saveSettings,
+                  ),
+                ),
+                replacement: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
       title: Padding(
         padding: const EdgeInsets.only(
           right: 20,

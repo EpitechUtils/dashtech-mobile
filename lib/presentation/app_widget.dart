@@ -9,6 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+extension BoolParsing on String {
+  bool parseBool() {
+    return this.toLowerCase() == 'true';
+  }
+}
+
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

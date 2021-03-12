@@ -25,7 +25,7 @@ class PlanningRepository implements IPlanningRepository {
       getDashActivitiesList() async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningListWeekActivitiesQuery),
+        document: gql(planningListWeekActivitiesQuery),
       ),
     );
 
@@ -47,7 +47,7 @@ class PlanningRepository implements IPlanningRepository {
   ) async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningWeekActivitiesQuery),
+        document: gql(planningWeekActivitiesQuery),
         variables: {
           'start': start.toIso8601String(),
           'end': end.toIso8601String(),
@@ -72,7 +72,7 @@ class PlanningRepository implements IPlanningRepository {
     print(codes);
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningActivityDetailsQuery),
+        document: gql(planningActivityDetailsQuery),
         variables: {
           'codes': codes,
         },
@@ -95,7 +95,7 @@ class PlanningRepository implements IPlanningRepository {
     print(codes);
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        documentNode: gql(planningRdvDetailsQuery),
+        document: gql(planningRdvDetailsQuery),
         variables: {
           'codes': codes,
         },

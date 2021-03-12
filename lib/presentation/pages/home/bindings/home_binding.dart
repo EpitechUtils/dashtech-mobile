@@ -4,7 +4,9 @@ import 'package:dashtech/application/home/home_controller.dart';
 import 'package:dashtech/application/planning/planning_controller.dart';
 import 'package:dashtech/application/settings/settings_controller.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
+import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart';
 import 'package:dashtech/infrastructure/planning/planning_repository.dart';
+import 'package:dashtech/infrastructure/profile/profile_repository.dart';
 import 'package:get/get.dart';
 
 class HomeBinding implements Bindings {
@@ -35,8 +37,16 @@ class HomeBinding implements Bindings {
     );
 
     // Settings
+    Get.lazyPut<IProfileRepository>(
+      () => ProfileRepository(
+        graphqlService: Get.find(),
+        storageService: Get.find(),
+      ),
+    );
     Get.lazyPut<SettingsController>(
-      () => SettingsController(),
+      () => SettingsController(
+        profileRepository: Get.find(),
+      ),
     );
   }
 }

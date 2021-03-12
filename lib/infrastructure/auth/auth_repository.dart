@@ -37,7 +37,7 @@ class AuthRepository implements IAuthRepository {
   ) async {
     final QueryResult result = await graphqlService.client.mutate(
       MutationOptions(
-        documentNode: gql(authRegisterDeviceMutation),
+        document: gql(authRegisterDeviceMutation),
         variables: {
           'token': token,
           'platform': platform,
@@ -55,7 +55,7 @@ class AuthRepository implements IAuthRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         fetchPolicy: FetchPolicy.noCache,
-        documentNode: gql(authSendEmailConfirmationQuery),
+        document: gql(authSendEmailConfirmationQuery),
         variables: {'email': email},
       ),
     );
@@ -76,7 +76,7 @@ class AuthRepository implements IAuthRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         fetchPolicy: FetchPolicy.noCache,
-        documentNode: gql(authConfirmEmailCodeQuery),
+        document: gql(authConfirmEmailCodeQuery),
         variables: {
           'email': email,
           'code': code,
@@ -112,7 +112,7 @@ class AuthRepository implements IAuthRepository {
     final QueryResult result = await graphqlService.client.mutate(
       MutationOptions(
         fetchPolicy: FetchPolicy.noCache,
-        documentNode: gql(profileSetAutologMutation),
+        document: gql(profileSetAutologMutation),
         variables: {
           'profileId': profileId,
           'autologUrl': autologUrl,
@@ -144,7 +144,7 @@ class AuthRepository implements IAuthRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         fetchPolicy: FetchPolicy.noCache,
-        documentNode: gql(loginQuery),
+        document: gql(loginQuery),
         variables: {
           'profileId': profileId,
           'email': email,
@@ -187,7 +187,7 @@ class AuthRepository implements IAuthRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         fetchPolicy: FetchPolicy.noCache,
-        documentNode: gql(profileGetIconLinkByPictureQuery),
+        document: gql(profileGetIconLinkByPictureQuery),
         variables: {
           'picture': picture,
         },

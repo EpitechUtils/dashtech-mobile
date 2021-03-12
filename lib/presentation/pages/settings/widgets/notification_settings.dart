@@ -25,6 +25,7 @@ class NotificationSettings extends GetView<SettingsController> {
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'enable',
+                  defaultVal: true,
                 ),
               ),
               ActionCard(
@@ -38,6 +39,7 @@ class NotificationSettings extends GetView<SettingsController> {
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'activity',
+                  defaultVal: true,
                 ),
               ),
               ActionCard(
@@ -51,6 +53,7 @@ class NotificationSettings extends GetView<SettingsController> {
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'appointment',
+                  defaultVal: true,
                 ),
               ),
               ActionCard(
@@ -64,6 +67,7 @@ class NotificationSettings extends GetView<SettingsController> {
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'project',
+                  defaultVal: false,
                 ),
               ),
             ],

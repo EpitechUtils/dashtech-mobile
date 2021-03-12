@@ -3,6 +3,7 @@ import 'package:dashtech/presentation/pages/settings/widgets/notification_settin
 import 'package:dashtech/presentation/pages/settings/widgets/planning_settings.dart';
 import 'package:dashtech/presentation/pages/settings/widgets/settings_app_bar.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
+import 'package:dashtech/presentation/shared/rounded_button.dart';
 import 'package:dashtech/presentation/shared/title_subtitle_list_card.dart';
 import 'package:dashtech/presentation/shared/title_with_subtitle.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({
@@ -19,17 +20,17 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar(
       icons: [
-        Icons.home,
-        Icons.calendar_today,
-        Icons.people,
-        Icons.settings,
+        LineIcons.home,
+        LineIcons.calendar,
+        LineIcons.user,
+        LineIcons.wrench,
       ],
       //elevation: 10,
       splashColor: const Color(primaryColor),
       activeColor: const Color(primaryColor),
       inactiveColor: const Color(greyColor),
       notchAndCornersAnimation: animationController,
-      iconSize: 21,
+      iconSize: 25,
       activeIndex: index,
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.smoothEdge,
