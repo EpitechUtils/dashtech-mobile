@@ -20,7 +20,7 @@ class PlanningSettings extends GetView<SettingsController> {
                   category: 'planning',
                   setting: 'module_only',
                   defaultVal: false,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'planning',
                   setting: 'module_only',
@@ -34,7 +34,7 @@ class PlanningSettings extends GetView<SettingsController> {
                   category: 'planning',
                   setting: 'registered_only',
                   defaultVal: false,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'planning',
                   setting: 'registered_only',

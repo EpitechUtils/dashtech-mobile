@@ -43,14 +43,14 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
               StringUtils.capitalize(
                   dashboardController.storageService.box.read('fullName'),
                   allWords: true),
-              style: Get.textTheme.headline1.copyWith(
+              style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 5),
             Text(
               dashboardController.storageService.box.read('email'),
-              style: Get.textTheme.subtitle2.copyWith(
+              style: Get.textTheme.subtitle2!.copyWith(
                 color: Colors.white,
               ),
             ),

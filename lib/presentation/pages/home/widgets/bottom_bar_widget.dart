@@ -7,12 +7,12 @@ class BottomBar extends StatelessWidget {
   const BottomBar({
     this.key,
     this.animationController,
-    this.index,
-    this.onTap,
+    required this.index,
+    required this.onTap,
   }) : super(key: key);
 
-  final Key key;
-  final AnimationController animationController;
+  final Key? key;
+  final AnimationController? animationController;
   final int index;
   final Function onTap;
 

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
+import 'package:dashtech/domain/planning/datasource/activity_datasource.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
@@ -10,7 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PlanningController extends GetxController {
-  PlanningController({@required this.planningRepository});
+  PlanningController({required this.planningRepository});
 
   final IPlanningRepository planningRepository;
 
@@ -20,20 +21,20 @@ class PlanningController extends GetxController {
   final RxMap<DateTime, List<PlanningActivity>> allEvents =
       <DateTime, List<PlanningActivity>>{}.obs;
 
-  CalendarController calendarController;
-  RefreshController refreshController;
+  //CalendarController calendarController;
+  late RefreshController refreshController;
 
   @override
   Future<void> onInit() async {
     allEvents.addAll({});
-    calendarController = CalendarController();
+    //calendarController = CalendarController();
     refreshController = RefreshController();
     super.onInit();
   }
 
   @override
   void onClose() {
-    calendarController.dispose();
+    //calendarController.dispose();
     refreshController.dispose();
     super.onClose();
   }
@@ -107,4 +108,6 @@ class PlanningController extends GetxController {
       () => fetchEventsByWeek(first, last, false),
     );
   }
+
+  ActivityDataSource get dataSource => ActivityDataSource(selectedDateEvents);
 }

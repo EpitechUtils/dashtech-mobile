@@ -19,7 +19,7 @@ class AppointmentGroup extends GetView<AppointmentController> {
         ),
         Text(
           StringUtils.capitalize(
-              controller.appointmentDetails.value.group.title),
+              controller.appointmentDetails.value!.group!.title),
           style: Get.textTheme.headline2,
         ),
         const SizedBox(height: 5),
@@ -40,7 +40,7 @@ class AppointmentGroup extends GetView<AppointmentController> {
                         width: 40,
                       ),
                       imagePath: AssetsUtils.profilePicture(controller
-                          .appointmentDetails.value.group.master
+                          .appointmentDetails.value!.group!.master
                           .split('@')
                           .first),
                       radius: 40,
@@ -51,20 +51,20 @@ class AppointmentGroup extends GetView<AppointmentController> {
                       children: [
                         Text(
                           StringUtils.capitalize(
-                            controller.appointmentDetails.value.group.master
+                            controller.appointmentDetails.value!.group!.master
                                 .split('@')
                                 .first
                                 .split('.')
                                 .join(" "),
                             allWords: true,
                           ),
-                          style: Get.textTheme.headline1.copyWith(
+                          style: Get.textTheme.headline1!.copyWith(
                             fontSize: 15,
                           ),
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          controller.appointmentDetails.value.group.master,
+                          controller.appointmentDetails.value!.group!.master,
                           style: Get.textTheme.headline2,
                         ),
                       ],
@@ -84,9 +84,9 @@ class AppointmentGroup extends GetView<AppointmentController> {
               style: Get.textTheme.headline2,
             ),
           ),
-          hasIcon: true,
+          collapsed: Container(),
           expanded: Column(
-            children: controller.appointmentDetails.value.group.members
+            children: controller.appointmentDetails.value!.group!.members
                 .map(
                   (String memberLogin) => Card(
                     margin:
@@ -122,7 +122,7 @@ class AppointmentGroup extends GetView<AppointmentController> {
                                           .join(" "),
                                       allWords: true,
                                     ),
-                                    style: Get.textTheme.headline1.copyWith(
+                                    style: Get.textTheme.headline1!.copyWith(
                                       fontSize: 15,
                                     ),
                                   ),

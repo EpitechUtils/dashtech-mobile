@@ -13,14 +13,14 @@ import 'package:get/get.dart';
 
 class SignInStepTwo extends GetView<SigninController> {
   Future<void> sendEmailCode() async {
-    if (controller.signInForm.currentState.saveAndValidate()) {
+    if (controller.signInForm.currentState!.saveAndValidate()) {
       await controller.sendEmailCode();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context);
+    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context!);
 
     return FadeInUp(
       delay: const Duration(milliseconds: 200),
@@ -39,7 +39,7 @@ class SignInStepTwo extends GetView<SigninController> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 text: 'signin_mail_sent_1'.tr,
-                style: Get.textTheme.bodyText1.copyWith(
+                style: Get.textTheme.bodyText1!.copyWith(
                   fontSize: 15,
                   color: const Color(blackColor),
                 ),

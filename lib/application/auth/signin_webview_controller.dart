@@ -19,7 +19,7 @@ class SigninWebviewController extends GetxController {
   final StorageService storageService = Get.find();
   final HttpService httpService = Get.find();
 
-  SigninWebviewController({@required this.authRepository});
+  SigninWebviewController({required this.authRepository});
 
   final IAuthRepository authRepository;
 
@@ -41,7 +41,7 @@ class SigninWebviewController extends GetxController {
 
     dynamic body = resp.data;
     if (body == null ||
-        resp.statusCode >= 500 ||
+        resp.statusCode! >= 500 ||
         resp.data['office_auth_uri'] == null) {
       return null;
     }
@@ -55,8 +55,8 @@ class SigninWebviewController extends GetxController {
   }
 
   // When url stop to load
-  void onLoadStop(InAppWebViewController controller, String url) {
-    if (url.startsWith("https://intra.epitech.eu/admin/autolog")) {
+  void onLoadStop(InAppWebViewController controller, Uri? uri) {
+    if (uri.toString().startsWith("https://intra.epitech.eu/admin/autolog")) {
       //Navigator.of(Get.context).pop();
 
       try {
@@ -114,7 +114,7 @@ class SigninWebviewController extends GetxController {
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
       (_) {
-        Navigator.of(Get.context).maybePop();
+        Get.back();
         performLoginFromCurrentProfileId(profileId);
       },
     );

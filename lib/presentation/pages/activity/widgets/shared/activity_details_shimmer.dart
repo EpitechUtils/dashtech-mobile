@@ -6,8 +6,8 @@ class ActivityDetailsShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300],
-      highlightColor: Colors.grey[200],
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[200]!,
       child: Container(
         margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -28,7 +28,7 @@ class SingInIntranetSyncing extends GetView<SigninWebviewController> {
           Text(
             'synchronization_desc'.tr,
             textAlign: TextAlign.center,
-            style: Get.textTheme.bodyText1.copyWith(
+            style: Get.textTheme.bodyText1!.copyWith(
               fontSize: 15,
               color: const Color(blackColor),
             ),

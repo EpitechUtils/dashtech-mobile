@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'jwt_payload_dto.dart';
 
@@ -8,6 +8,10 @@ part of 'jwt_payload_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 JwtPayloadDto _$JwtPayloadDtoFromJson(Map<String, dynamic> json) {
   return _JwtPayloadDto.fromJson(json);
 }
@@ -16,32 +20,30 @@ JwtPayloadDto _$JwtPayloadDtoFromJson(Map<String, dynamic> json) {
 class _$JwtPayloadDtoTearOff {
   const _$JwtPayloadDtoTearOff();
 
-// ignore: unused_element
-  _JwtPayloadDto call({@required String userId, @required String email}) {
+  _JwtPayloadDto call({required String userId, required String email}) {
     return _JwtPayloadDto(
       userId: userId,
       email: email,
     );
   }
 
-// ignore: unused_element
   JwtPayloadDto fromJson(Map<String, Object> json) {
     return JwtPayloadDto.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $JwtPayloadDto = _$JwtPayloadDtoTearOff();
 
 /// @nodoc
 mixin _$JwtPayloadDto {
-  String get userId;
-  String get email;
+  String get userId => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith;
+  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -63,12 +65,18 @@ class _$JwtPayloadDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userId = freezed,
-    Object email = freezed,
+    Object? userId = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed ? _value.userId : userId as String,
-      email: email == freezed ? _value.email : email as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -96,24 +104,27 @@ class __$JwtPayloadDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userId = freezed,
-    Object email = freezed,
+    Object? userId = freezed,
+    Object? email = freezed,
   }) {
     return _then(_JwtPayloadDto(
-      userId: userId == freezed ? _value.userId : userId as String,
-      email: email == freezed ? _value.email : email as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_JwtPayloadDto extends _JwtPayloadDto {
-  const _$_JwtPayloadDto({@required this.userId, @required this.email})
-      : assert(userId != null),
-        assert(email != null),
-        super._();
+  const _$_JwtPayloadDto({required this.userId, required this.email})
+      : super._();
 
   factory _$_JwtPayloadDto.fromJson(Map<String, dynamic> json) =>
       _$_$_JwtPayloadDtoFromJson(json);
@@ -156,18 +167,19 @@ class _$_JwtPayloadDto extends _JwtPayloadDto {
 }
 
 abstract class _JwtPayloadDto extends JwtPayloadDto {
-  const _JwtPayloadDto._() : super._();
   const factory _JwtPayloadDto(
-      {@required String userId, @required String email}) = _$_JwtPayloadDto;
+      {required String userId, required String email}) = _$_JwtPayloadDto;
+  const _JwtPayloadDto._() : super._();
 
   factory _JwtPayloadDto.fromJson(Map<String, dynamic> json) =
       _$_JwtPayloadDto.fromJson;
 
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith;
+  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

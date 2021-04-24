@@ -9,11 +9,11 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 class TokenService extends GetxService {
   final StorageService storageService = Get.find();
 
-  Rx<DateTime> expirationDate = Rx<DateTime>();
-  RxString token = RxString();
+  Rx<DateTime?> expirationDate = Rx<DateTime?>(null);
+  RxString token = RxString('');
 
-  Worker tokenWorker;
-  Worker expirationWorker;
+  late Worker tokenWorker;
+  late Worker expirationWorker;
 
   Future<TokenService> init() async {
     Logger.write('$runtimeType ready!');
@@ -22,8 +22,8 @@ class TokenService extends GetxService {
 
   @override
   void onReady() {
-    token.value = getToken();
-    expirationDate.value = _getExpirationDate();
+    token.value = getToken()!;
+    expirationDate.value = _getExpirationDate()!;
     _initWorkers();
     super.onReady();
   }
@@ -39,7 +39,7 @@ class TokenService extends GetxService {
     print('Token has been saved...');
   }
 
-  String getToken() => storageService.box.read('token');
+  String? getToken() => storageService.box.read('token');
 
   void clearToken() => storageService.box.remove('token');
 
@@ -52,9 +52,9 @@ class TokenService extends GetxService {
     );
   }
 
-  DateTime _getExpirationDate() {
-    final String date = storageService.box.read<String>('expirationDate');
-    return !date.isNullOrBlank ? DateTime.parse(date) : null;
+  DateTime? _getExpirationDate() {
+    final String? date = storageService.box.read<String>('expirationDate');
+    return date != null ? DateTime.parse(date) : null;
   }
 
   Future<void> _getRefreshToken() async {
@@ -77,7 +77,7 @@ class TokenService extends GetxService {
     );
     expirationWorker = ever(
       expirationDate,
-      (DateTime date) => _saveExpirationDate(date),
+      (DateTime? date) => _saveExpirationDate(date!),
     );
   }
 
@@ -88,7 +88,7 @@ class TokenService extends GetxService {
 
   void _startTimerForRefreshToken() {
     final int durationInSeconds = DateUtils.getDiffInSeconds(
-      expirationDate.value,
+      expirationDate.value!,
     );
     Timer(
       Duration(seconds: durationInSeconds),

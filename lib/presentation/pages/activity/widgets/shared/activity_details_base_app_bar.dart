@@ -8,8 +8,8 @@ class ActivityDetailsBaseAppBar extends GetView<ActivityController>
     implements PreferredSizeWidget {
   ActivityDetailsBaseAppBar({this.actions, this.bottom});
 
-  final List<Widget> actions;
-  final PreferredSizeWidget bottom;
+  final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class ActivityDetailsBaseAppBar extends GetView<ActivityController>
                 replacement: Text(
                   controller.isLoading.value
                       ? ""
-                      : controller.activity.value.type_title,
-                  style: Get.textTheme.headline1.copyWith(
+                      : controller.activity.value!.type_title,
+                  style: Get.textTheme.headline1!.copyWith(
                     color: Colors.white,
                   ),
                 ),
@@ -53,9 +53,9 @@ class ActivityDetailsBaseAppBar extends GetView<ActivityController>
                 replacement: Text(
                   controller.isLoading.value
                       ? ""
-                      : controller.activity.value.title,
+                      : controller.activity.value!.title,
                   overflow: TextOverflow.fade,
-                  style: Get.textTheme.subtitle2.copyWith(
+                  style: Get.textTheme.subtitle2!.copyWith(
                     color: Colors.white,
                   ),
                 ),
@@ -72,8 +72,8 @@ class ActivityDetailsBaseAppBar extends GetView<ActivityController>
 
   Widget _shimmerText(double width) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300].withOpacity(0.5),
-      highlightColor: Colors.grey[200].withOpacity(0.6),
+      baseColor: Colors.grey[300]!.withOpacity(0.5),
+      highlightColor: Colors.grey[200]!.withOpacity(0.6),
       child: Container(
         margin: const EdgeInsets.only(bottom: 5),
         width: width,

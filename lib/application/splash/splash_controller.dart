@@ -12,8 +12,8 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SplashController extends GetxController {
   SplashController({
-    @required this.tokenService,
-    @required this.firebaseService,
+    required this.tokenService,
+    required this.firebaseService,
   });
 
   final TokenService tokenService;
@@ -32,11 +32,11 @@ class SplashController extends GetxController {
     await Future<void>.delayed(
       const Duration(milliseconds: 3000),
       () {
-        final String token = tokenService.getToken();
-        print(token);
+        String? token = tokenService.getToken();
         //tokenService.clearToken();
-        final bool tokenIsInvalid = JwtDecoder.isExpired(token);
-        token.isNullOrBlank || tokenIsInvalid
+        bool tokenIsInvalid = true;
+        if (token != null) tokenIsInvalid = JwtDecoder.isExpired(token);
+        token == null || tokenIsInvalid
             ? Get.offAllNamed(Routes.signin)
             : Get.offAllNamed(Routes.home);
       },
@@ -45,12 +45,12 @@ class SplashController extends GetxController {
 
   // Send the notification token to API
   Future<void> sendNotificationToken() async {
-    final String deviceToken = this.firebaseService.getToken();
+    final String? deviceToken = this.firebaseService.getToken();
     if (deviceToken != null && deviceToken.isNotEmpty) {
-      final Map<String, String> info = await DeviceUtils.getDeviceDetails();
+      final Map<String, String?> info = await DeviceUtils.getDeviceDetails();
       await authRepository.sendDeviceToken(
         deviceToken,
-        info['identifier'],
+        info['identifier']!,
         Platform.operatingSystem,
       );
     }

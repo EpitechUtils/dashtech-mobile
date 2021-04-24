@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'auth_failure.dart';
 
@@ -9,67 +9,69 @@ part of 'auth_failure.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
-// ignore: unused_element
   _Unexpected unexpected() {
     return const _Unexpected();
   }
 
-// ignore: unused_element
   _NotFound notFound() {
     return const _NotFound();
   }
 
-// ignore: unused_element
   _Conflict conflict() {
     return const _Conflict();
   }
 
-// ignore: unused_element
   _Unauthorized unauthorized() {
     return const _Unauthorized();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthFailure = _$AuthFailureTearOff();
 
 /// @nodoc
 mixin _$AuthFailure {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult notFound(),
-    @required TResult conflict(),
-    @required TResult unauthorized(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() conflict,
+    required TResult Function() unauthorized,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult notFound(),
-    TResult conflict(),
-    TResult unauthorized(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? conflict,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult unexpected(_Unexpected value),
-    @required TResult notFound(_NotFound value),
-    @required TResult conflict(_Conflict value),
-    @required TResult unauthorized(_Unauthorized value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Conflict value) conflict,
+    required TResult Function(_Unauthorized value) unauthorized,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult unexpected(_Unexpected value),
-    TResult notFound(_NotFound value),
-    TResult conflict(_Conflict value),
-    TResult unauthorized(_Unauthorized value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Conflict value)? conflict,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -107,6 +109,7 @@ class __$UnexpectedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Unexpected implements _Unexpected {
   const _$_Unexpected();
 
@@ -125,29 +128,24 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult notFound(),
-    @required TResult conflict(),
-    @required TResult unauthorized(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() conflict,
+    required TResult Function() unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return unexpected();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult notFound(),
-    TResult conflict(),
-    TResult unauthorized(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? conflict,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unexpected != null) {
       return unexpected();
     }
@@ -156,29 +154,24 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult unexpected(_Unexpected value),
-    @required TResult notFound(_NotFound value),
-    @required TResult conflict(_Conflict value),
-    @required TResult unauthorized(_Unauthorized value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Conflict value) conflict,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return unexpected(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult unexpected(_Unexpected value),
-    TResult notFound(_NotFound value),
-    TResult conflict(_Conflict value),
-    TResult unauthorized(_Unauthorized value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Conflict value)? conflict,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unexpected != null) {
       return unexpected(this);
     }
@@ -207,6 +200,7 @@ class __$NotFoundCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_NotFound implements _NotFound {
   const _$_NotFound();
 
@@ -225,29 +219,24 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult notFound(),
-    @required TResult conflict(),
-    @required TResult unauthorized(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() conflict,
+    required TResult Function() unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return notFound();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult notFound(),
-    TResult conflict(),
-    TResult unauthorized(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? conflict,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notFound != null) {
       return notFound();
     }
@@ -256,29 +245,24 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult unexpected(_Unexpected value),
-    @required TResult notFound(_NotFound value),
-    @required TResult conflict(_Conflict value),
-    @required TResult unauthorized(_Unauthorized value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Conflict value) conflict,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return notFound(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult unexpected(_Unexpected value),
-    TResult notFound(_NotFound value),
-    TResult conflict(_Conflict value),
-    TResult unauthorized(_Unauthorized value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Conflict value)? conflict,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notFound != null) {
       return notFound(this);
     }
@@ -307,6 +291,7 @@ class __$ConflictCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Conflict implements _Conflict {
   const _$_Conflict();
 
@@ -325,29 +310,24 @@ class _$_Conflict implements _Conflict {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult notFound(),
-    @required TResult conflict(),
-    @required TResult unauthorized(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() conflict,
+    required TResult Function() unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return conflict();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult notFound(),
-    TResult conflict(),
-    TResult unauthorized(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? conflict,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (conflict != null) {
       return conflict();
     }
@@ -356,29 +336,24 @@ class _$_Conflict implements _Conflict {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult unexpected(_Unexpected value),
-    @required TResult notFound(_NotFound value),
-    @required TResult conflict(_Conflict value),
-    @required TResult unauthorized(_Unauthorized value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Conflict value) conflict,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return conflict(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult unexpected(_Unexpected value),
-    TResult notFound(_NotFound value),
-    TResult conflict(_Conflict value),
-    TResult unauthorized(_Unauthorized value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Conflict value)? conflict,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (conflict != null) {
       return conflict(this);
     }
@@ -409,6 +384,7 @@ class __$UnauthorizedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Unauthorized implements _Unauthorized {
   const _$_Unauthorized();
 
@@ -427,29 +403,24 @@ class _$_Unauthorized implements _Unauthorized {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult notFound(),
-    @required TResult conflict(),
-    @required TResult unauthorized(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() conflict,
+    required TResult Function() unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return unauthorized();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult notFound(),
-    TResult conflict(),
-    TResult unauthorized(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? conflict,
+    TResult Function()? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unauthorized != null) {
       return unauthorized();
     }
@@ -458,29 +429,24 @@ class _$_Unauthorized implements _Unauthorized {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult unexpected(_Unexpected value),
-    @required TResult notFound(_NotFound value),
-    @required TResult conflict(_Conflict value),
-    @required TResult unauthorized(_Unauthorized value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Conflict value) conflict,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
-    assert(unexpected != null);
-    assert(notFound != null);
-    assert(conflict != null);
-    assert(unauthorized != null);
     return unauthorized(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult unexpected(_Unexpected value),
-    TResult notFound(_NotFound value),
-    TResult conflict(_Conflict value),
-    TResult unauthorized(_Unauthorized value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Conflict value)? conflict,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unauthorized != null) {
       return unauthorized(this);
     }

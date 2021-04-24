@@ -51,7 +51,7 @@ class SettingsAppBar extends GetView<SettingsController>
           children: [
             Text(
               "settings_title".tr,
-              style: Get.textTheme.headline1.copyWith(
+              style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,
               ),
             ),
@@ -59,7 +59,7 @@ class SettingsAppBar extends GetView<SettingsController>
             Text(
               "settings_subtitle".tr,
               overflow: TextOverflow.fade,
-              style: Get.textTheme.subtitle2.copyWith(
+              style: Get.textTheme.subtitle2!.copyWith(
                 color: Colors.white,
               ),
             ),

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'auth_profile_token_dto.dart';
 
@@ -8,6 +8,10 @@ part of 'auth_profile_token_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 AuthProfileTokenDto _$AuthProfileTokenDtoFromJson(Map<String, dynamic> json) {
   return _AuthProfileTokenDto.fromJson(json);
 }
@@ -16,33 +20,31 @@ AuthProfileTokenDto _$AuthProfileTokenDtoFromJson(Map<String, dynamic> json) {
 class _$AuthProfileTokenDtoTearOff {
   const _$AuthProfileTokenDtoTearOff();
 
-// ignore: unused_element
   _AuthProfileTokenDto call(
-      {@required DateTime expirationTime, @required String accessToken}) {
+      {required DateTime expirationTime, required String accessToken}) {
     return _AuthProfileTokenDto(
       expirationTime: expirationTime,
       accessToken: accessToken,
     );
   }
 
-// ignore: unused_element
   AuthProfileTokenDto fromJson(Map<String, Object> json) {
     return AuthProfileTokenDto.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthProfileTokenDto = _$AuthProfileTokenDtoTearOff();
 
 /// @nodoc
 mixin _$AuthProfileTokenDto {
-  DateTime get expirationTime;
-  String get accessToken;
+  DateTime get expirationTime => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthProfileTokenDtoCopyWith<AuthProfileTokenDto> get copyWith;
+  $AuthProfileTokenDtoCopyWith<AuthProfileTokenDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -64,15 +66,18 @@ class _$AuthProfileTokenDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object expirationTime = freezed,
-    Object accessToken = freezed,
+    Object? expirationTime = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_value.copyWith(
       expirationTime: expirationTime == freezed
           ? _value.expirationTime
-          : expirationTime as DateTime,
-      accessToken:
-          accessToken == freezed ? _value.accessToken : accessToken as String,
+          : expirationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      accessToken: accessToken == freezed
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -100,28 +105,28 @@ class __$AuthProfileTokenDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object expirationTime = freezed,
-    Object accessToken = freezed,
+    Object? expirationTime = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_AuthProfileTokenDto(
       expirationTime: expirationTime == freezed
           ? _value.expirationTime
-          : expirationTime as DateTime,
-      accessToken:
-          accessToken == freezed ? _value.accessToken : accessToken as String,
+          : expirationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      accessToken: accessToken == freezed
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
   const _$_AuthProfileTokenDto(
-      {@required this.expirationTime, @required this.accessToken})
-      : assert(expirationTime != null),
-        assert(accessToken != null),
-        super._();
+      {required this.expirationTime, required this.accessToken})
+      : super._();
 
   factory _$_AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =>
       _$_$_AuthProfileTokenDtoFromJson(json);
@@ -167,19 +172,20 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
 }
 
 abstract class _AuthProfileTokenDto extends AuthProfileTokenDto {
-  const _AuthProfileTokenDto._() : super._();
   const factory _AuthProfileTokenDto(
-      {@required DateTime expirationTime,
-      @required String accessToken}) = _$_AuthProfileTokenDto;
+      {required DateTime expirationTime,
+      required String accessToken}) = _$_AuthProfileTokenDto;
+  const _AuthProfileTokenDto._() : super._();
 
   factory _AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =
       _$_AuthProfileTokenDto.fromJson;
 
   @override
-  DateTime get expirationTime;
+  DateTime get expirationTime => throw _privateConstructorUsedError;
   @override
-  String get accessToken;
+  String get accessToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith;
+  _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

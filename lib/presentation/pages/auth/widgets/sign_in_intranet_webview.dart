@@ -25,7 +25,7 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 InkWell(
-                  onTap: () => Navigator.pop(Get.context),
+                  onTap: () => Get.back(),
                   child: Icon(Icons.close, size: 30, color: Color(0xFF131313)),
                 ),
                 Text(
@@ -48,8 +48,8 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
             child: Obx(
               () {
                 if (controller.officeLoginUrl.value.isEmpty) {
-                  SnackBarUtils.error(message: null);
-                  Navigator.of(Get.context).maybePop();
+                  SnackBarUtils.error(message: 'error_occured');
+                  Get.back();
                   return Container();
                 }
 
@@ -63,7 +63,9 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
                         javaScriptEnabled: true,
                       ),
                     ),
-                    initialUrl: controller.officeLoginUrl.value,
+                    initialUrlRequest: URLRequest(
+                      url: Uri.parse(controller.officeLoginUrl.value),
+                    ),
                     onProgressChanged: controller.onProgressChanged,
                     onLoadStop: controller.onLoadStop,
                   ),

@@ -17,7 +17,7 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: controller.activityController.activity.value.events.length +
+      length: controller.activityController.activity.value!.events.length +
           (controller.activityController.isAppointment ? 1 : 0),
       initialIndex: controller.currentTabIndex.value,
       child: Scaffold(
@@ -41,13 +41,13 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
                 tabBarIndicatorSize: TabBarIndicatorSize.tab,
               ),
               isScrollable: true,
-              labelStyle: Get.textTheme.subtitle1.copyWith(
+              labelStyle: Get.textTheme.subtitle1!.copyWith(
                 fontWeight: FontWeight.bold,
               ),
               tabs: <Tab>[
                 if (controller.activityController.isAppointment)
                   Tab(text: 'global_info'.tr),
-                ...controller.activityController.activity.value.events.map(
+                ...controller.activityController.activity.value!.events.map(
                   (ActivityDetailsEvent event) => Tab(
                     text: controller.parseDateWithHm(event),
                   ),
@@ -91,9 +91,9 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
                                 {
                                   'status': controller.getStudentStatus() ?? "",
                                 },
-                              ),
+                              )!,
                               textAlign: TextAlign.center,
-                              style: Get.textTheme.headline2.copyWith(
+                              style: Get.textTheme.headline2!.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -106,7 +106,7 @@ class MultipleEventActivity extends GetView<MultipleEventActivityController> {
                       visible: controller.activityController.isAppointment,
                       child: Obx(
                         () => AvailableSlotsList(
-                          event: controller.selectedEvent.value,
+                          event: controller.selectedEvent.value!,
                         ),
                       ),
                     )

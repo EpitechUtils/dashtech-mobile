@@ -11,7 +11,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
-  AvailableSlotsList({this.event});
+  AvailableSlotsList({required this.event});
 
   final ActivityDetailsEvent event;
 
@@ -50,7 +50,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                   child: Text(
                     'no_slot_available'.tr,
                     textAlign: TextAlign.center,
-                    style: Get.textTheme.headline2.copyWith(
+                    style: Get.textTheme.headline2!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -102,7 +102,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                                               ),
                                               imagePath:
                                                   AssetsUtils.profilePicture(
-                                                      slot.master.login
+                                                      slot.master!.login
                                                           .split('@')
                                                           .first),
                                               radius: 30,
@@ -131,7 +131,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                                                   slot.date,
                                                   addMinutes: slot.duration,
                                                 ),
-                                            style: Get.textTheme.headline2
+                                            style: Get.textTheme.headline2!
                                                 .copyWith(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                                           ),
                                           Text(
                                             slot.master != null
-                                                ? slot.master.login +
+                                                ? slot.master!.login +
                                                     ", +" +
                                                     slot.members.length
                                                         .toString()
@@ -154,12 +154,12 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                                   ],
                                 ),
                                 slot.code != null &&
-                                        controller.appointmentDetails.value
+                                        controller.appointmentDetails.value!
                                                 .group !=
                                             null &&
                                         slot.code ==
-                                            controller.appointmentDetails.value
-                                                .group.code
+                                            controller.appointmentDetails.value!
+                                                .group!.code
                                     ? Container(
                                         margin: const EdgeInsets.only(top: 5),
                                         child: Row(
@@ -173,7 +173,7 @@ class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
                                               "registered_to_this_slot".tr,
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              style: Get.textTheme.headline2
+                                              style: Get.textTheme.headline2!
                                                   .copyWith(
                                                 fontStyle: FontStyle.italic,
                                               ),

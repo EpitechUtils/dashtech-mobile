@@ -11,12 +11,12 @@ class CachedCircleAvatar extends StatelessWidget {
 
   final StorageService storageService = Get.find();
 
-  CachedCircleAvatar(
-      {Key key,
-      @required this.noPicture,
-      @required this.radius,
-      @required this.imagePath})
-      : super(key: key);
+  CachedCircleAvatar({
+    Key? key,
+    required this.noPicture,
+    required this.radius,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class CachedCircleAvatar extends StatelessWidget {
       ),
       child: ClipOval(
         child: CachedNetworkImage(
-          errorWidget: (BuildContext context, String url, Object error) {
+          errorWidget: (BuildContext context, String url, dynamic error) {
             return this.noPicture;
           },
           progressIndicatorBuilder: (_, __, ___) => Shimmer.fromColors(
-            baseColor: Colors.grey[300],
-            highlightColor: Colors.grey[200],
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[200]!,
             child: Container(
               width: radius,
               height: radius,

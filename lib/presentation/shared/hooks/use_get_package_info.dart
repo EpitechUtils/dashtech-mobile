@@ -12,7 +12,7 @@ class _PackageInfoHook extends Hook<PackageInfo> {
 }
 
 class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
-  PackageInfo packageInfo;
+  late PackageInfo packageInfo;
 
   @override
   void initHook() async {

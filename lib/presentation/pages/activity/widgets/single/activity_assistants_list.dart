@@ -9,21 +9,21 @@ class ActivityAssistantsList extends GetView<ActivityController> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: controller.activity.value.events[0].assistants.isNotEmpty,
+      visible: controller.activity.value!.events[0].assistants.isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
           Text(
             'assistants'.tr,
-            style: Get.textTheme.headline1.copyWith(),
+            style: Get.textTheme.headline1!.copyWith(),
           ),
           Text(
             'assistants_subtitle'.tr,
             style: Get.textTheme.headline2,
           ),
           const SizedBox(height: 10),
-          ...controller.activity.value.events[0].assistants
+          ...controller.activity.value!.events[0].assistants
               .map(
                 (ActivityDetailsEventAssistant ass) => Card(
                   color: Colors.white,
@@ -51,7 +51,7 @@ class ActivityAssistantsList extends GetView<ActivityController> {
                             children: [
                               Text(
                                 ass.title,
-                                style: Get.textTheme.headline1.copyWith(
+                                style: Get.textTheme.headline1!.copyWith(
                                   fontSize: 15,
                                 ),
                               ),

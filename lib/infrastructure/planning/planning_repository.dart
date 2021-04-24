@@ -5,19 +5,15 @@ import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/domain/planning/models/activity_rdv_details.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
-import 'package:dashtech/infrastructure/planning/dto/activity_details_dto.dart';
-import 'package:dashtech/infrastructure/planning/dto/activity_rdv_details_dto.dart';
-import 'package:dashtech/infrastructure/planning/dto/planning_week_activities_dto.dart';
 import 'package:dashtech/infrastructure/planning/graphql/planning_queries.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class PlanningRepository implements IPlanningRepository {
   PlanningRepository({
-    @required this.graphqlService,
-  }) : assert(graphqlService != null);
+    required this.graphqlService,
+  });
 
-  GraphqlService graphqlService;
+  final GraphqlService graphqlService;
 
   // Get activities list for the week dashboard
   @override
@@ -33,10 +29,9 @@ class PlanningRepository implements IPlanningRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    final List json = result.data['planningListWeekActivities'] as List;
-    return right(json
-        .map((value) => PlanningWeekActivitiesDto.fromJson(value).toDomain())
-        .toList());
+    final List json = result.data!['planningListWeekActivities'] as List;
+    return right(
+        json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
   }
 
   // Get activities list for the selected day
@@ -59,10 +54,9 @@ class PlanningRepository implements IPlanningRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    final List json = result.data['planningWeekActivities'] as List;
-    return right(json
-        .map((value) => PlanningWeekActivitiesDto.fromJson(value).toDomain())
-        .toList());
+    final List json = result.data!['planningWeekActivities'] as List;
+    return right(
+        json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
   }
 
   @override
@@ -84,8 +78,7 @@ class PlanningRepository implements IPlanningRepository {
     }
 
     return right(
-        ActivityDetailsDto.fromJson(result.data['planningActivityDetails'])
-            .toDomain());
+        ActivityDetails.fromJson(result.data!['planningActivityDetails']));
   }
 
   @override
@@ -107,7 +100,6 @@ class PlanningRepository implements IPlanningRepository {
     }
 
     return right(
-        ActivityRdvDetailsDto.fromJson(result.data['planningRdvDetails'])
-            .toDomain());
+        ActivityRdvDetails.fromJson(result.data!['planningRdvDetails']));
   }
 }

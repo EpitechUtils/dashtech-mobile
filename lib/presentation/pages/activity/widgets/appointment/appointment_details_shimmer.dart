@@ -9,8 +9,8 @@ class AppointmentDetailsShimmer extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[200],
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[200]!,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

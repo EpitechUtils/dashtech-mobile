@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 class AuthTitleSubtitle extends StatelessWidget {
   AuthTitleSubtitle({
-    @required this.title,
-    @required this.subtitle,
+    required this.title,
+    required this.subtitle,
   });
 
   String title;

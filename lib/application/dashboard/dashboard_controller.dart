@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 
 class DashboardController extends GetxController
     with SingleGetTickerProviderMixin {
-  DashboardController({@required this.storageService});
+  DashboardController({required this.storageService});
 
   final StorageService storageService;
 
-  TabController tabController;
+  late TabController tabController;
 
   @override
   Future<void> onInit() async {

@@ -10,15 +10,15 @@ import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
 class ActivityController extends GetxController {
-  ActivityController({@required this.planningRepository})
+  ActivityController({required this.planningRepository})
       : assert(planningRepository != null);
 
-  final Rx<ActivityDetails> activity = ActivityDetails().obs;
+  final Rxn<ActivityDetails> activity = Rxn<ActivityDetails>();
   final RxBool isLoading = true.obs;
 
   final IPlanningRepository planningRepository;
 
-  AppointmentController appointmentController;
+  late AppointmentController appointmentController;
 
   @override
   Future<void> onReady() async {
@@ -49,13 +49,13 @@ class ActivityController extends GetxController {
     }
   }
 
-  String getStudentStatus() {
-    return activity.value.events[0].user_status;
+  String? getStudentStatus() {
+    return activity.value!.events[0].user_status;
   }
 
   bool isStudentRegistered() {
     try {
-      return activity.value.events[0].already_register != null;
+      return activity.value!.events[0].already_register != null;
     } catch (ignored) {
       return false;
     }
@@ -63,8 +63,8 @@ class ActivityController extends GetxController {
 
   String parseDate() {
     DateTime begin =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value.begin);
-    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale.toLanguageTag());
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin);
+    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
   }
@@ -72,20 +72,20 @@ class ActivityController extends GetxController {
   String parseActivityRoom() {
     String room = "undefined";
     try {
-      room = activity.value.events[0].location.substring(
-              activity.value.events[0].location.lastIndexOf('/') + 1,
-              activity.value.events[0].location.length) +
+      room = activity.value!.events[0].location.substring(
+              activity.value!.events[0].location.lastIndexOf('/') + 1,
+              activity.value!.events[0].location.length) +
           " - " +
-          activity.value.events[0].nb_inscrits +
+          activity.value!.events[0].nb_inscrits +
           "/" +
-          activity.value.events[0].seats;
+          activity.value!.events[0].seats;
     } catch (ignored) {}
 
     return room;
   }
 
   String parseActivityTime(String value, {int addMinutes = 0}) {
-    DateFormat hMFormat = DateFormat.Hm(Get.locale.toLanguageTag());
+    DateFormat hMFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
     DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
         .parse(value)
         .add(Duration(minutes: addMinutes));
@@ -93,5 +93,5 @@ class ActivityController extends GetxController {
     return hMFormat.format(dateTime);
   }
 
-  bool get isAppointment => activity.value.type_code == "rdv";
+  bool get isAppointment => activity.value!.type_code == "rdv";
 }

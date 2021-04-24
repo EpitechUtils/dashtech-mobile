@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 
 class CodeField extends StatelessWidget {
   CodeField({
-    @required this.focusNode,
-    @required this.controller,
+    required this.focusNode,
+    required this.controller,
     this.nextFocusNode,
     this.fieldWidth = 28,
     this.fieldHeight = 48,
@@ -16,7 +16,7 @@ class CodeField extends StatelessWidget {
 
   TextEditingController controller;
   FocusNode focusNode;
-  FocusNode nextFocusNode;
+  FocusNode? nextFocusNode;
   double fieldWidth;
   double fieldHeight;
   double fontSize;
@@ -30,7 +30,7 @@ class CodeField extends StatelessWidget {
         name: controller.toString(),
         focusNode: focusNode,
         onChanged: (value) {
-          if (value != '' && !nextFocusNode.isNull) {
+          if (value != '' && nextFocusNode != null) {
             FocusScope.of(context).requestFocus(nextFocusNode);
           }
         },

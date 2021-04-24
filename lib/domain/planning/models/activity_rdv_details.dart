@@ -5,14 +5,14 @@ part 'activity_rdv_details.freezed.dart';
 part 'activity_rdv_details.g.dart';
 
 @freezed
-abstract class ActivityRdvGroup implements _$ActivityRdvGroup {
+class ActivityRdvGroup with _$ActivityRdvGroup {
   const factory ActivityRdvGroup({
-    int id,
-    String code,
-    String title,
-    bool inscrit,
-    String master,
-    List<String> members,
+    required int id,
+    required String code,
+    required String title,
+    required bool inscrit,
+    required String master,
+    required List<String> members,
   }) = _ActivityRdvGroup;
 
   factory ActivityRdvGroup.fromJson(Map<String, dynamic> json) =>
@@ -22,11 +22,11 @@ abstract class ActivityRdvGroup implements _$ActivityRdvGroup {
 }
 
 @freezed
-abstract class ActivityRdvProject implements _$ActivityRdvProject {
+class ActivityRdvProject with _$ActivityRdvProject {
   const factory ActivityRdvProject({
-    String title,
-    String codeacti,
-    String id_projet,
+    String? title,
+    String? codeacti,
+    String? id_projet,
   }) = _ActivityRdvProject;
 
   factory ActivityRdvProject.fromJson(Map<String, dynamic> json) =>
@@ -36,18 +36,18 @@ abstract class ActivityRdvProject implements _$ActivityRdvProject {
 }
 
 @freezed
-abstract class ActivityRdvEvent implements _$ActivityRdvEvent {
+class ActivityRdvEvent with _$ActivityRdvEvent {
   const factory ActivityRdvEvent({
-    String id,
-    String nb_registered,
-    String begin,
-    String register,
-    String num_event,
-    String end,
-    String location,
-    String title,
-    String date_ins,
-    String date_modif,
+    String? id,
+    String? nb_registered,
+    String? begin,
+    String? register,
+    String? num_event,
+    String? end,
+    String? location,
+    String? title,
+    String? date_ins,
+    String? date_modif,
   }) = _ActivityRdvEvent;
 
   factory ActivityRdvEvent.fromJson(Map<String, dynamic> json) =>
@@ -57,11 +57,11 @@ abstract class ActivityRdvEvent implements _$ActivityRdvEvent {
 }
 
 @freezed
-abstract class ActivityRdvMember implements _$ActivityRdvMember {
+class ActivityRdvMember with _$ActivityRdvMember {
   const factory ActivityRdvMember({
-    String login,
-    String title,
-    String picture,
+    required String login,
+    required String title,
+    required String picture,
   }) = _ActivityRdvMember;
 
   factory ActivityRdvMember.fromJson(Map<String, dynamic> json) =>
@@ -71,25 +71,25 @@ abstract class ActivityRdvMember implements _$ActivityRdvMember {
 }
 
 @freezed
-abstract class ActivityRdvSlot implements _$ActivityRdvSlot {
+class ActivityRdvSlot with _$ActivityRdvSlot {
   const factory ActivityRdvSlot({
-    int id,
-    String note,
-    String acti_title,
-    String date,
-    int duration,
-    String status,
-    String bloc_status,
-    String id_team,
-    String id_user,
-    String date_ins,
-    String code,
-    String title,
-    String module_title,
-    String members_picture,
-    int past,
-    ActivityRdvMember master,
-    List<ActivityRdvMember> members,
+    int? id,
+    String? note,
+    required String acti_title,
+    required String date,
+    required int duration,
+    String? status,
+    String? bloc_status,
+    String? id_team,
+    String? id_user,
+    String? date_ins,
+    String? code,
+    String? title,
+    String? module_title,
+    String? members_picture,
+    int? past,
+    required ActivityRdvMember? master,
+    @Default([]) List<ActivityRdvMember> members,
   }) = _ActivityRdvSlot;
 
   factory ActivityRdvSlot.fromJson(Map<String, dynamic> json) =>
@@ -99,14 +99,14 @@ abstract class ActivityRdvSlot implements _$ActivityRdvSlot {
 }
 
 @freezed
-abstract class ActivityRdvSlotBloc implements _$ActivityRdvSlotBloc {
+class ActivityRdvSlotBloc with _$ActivityRdvSlotBloc {
   const factory ActivityRdvSlotBloc({
-    int id,
-    String title,
-    String bloc_status,
-    String room,
-    String codeevent,
-    List<ActivityRdvSlot> slots,
+    required int id,
+    required String title,
+    required String bloc_status,
+    required String room,
+    required String codeevent,
+    required List<ActivityRdvSlot> slots,
   }) = _ActivityRdvSlotBloc;
 
   factory ActivityRdvSlotBloc.fromJson(Map<String, dynamic> json) =>
@@ -116,26 +116,26 @@ abstract class ActivityRdvSlotBloc implements _$ActivityRdvSlotBloc {
 }
 
 @freezed
-abstract class ActivityRdvDetails implements _$ActivityRdvDetails {
+class ActivityRdvDetails with _$ActivityRdvDetails {
   const factory ActivityRdvDetails({
-    String scolaryear,
-    String codemodule,
-    String codeinstance,
-    String codeacti,
-    bool register_by_bloc,
-    String title,
-    String description,
-    String instance_location,
-    String module_title,
-    String student_registered,
-    bool with_project,
-    int nb_registered,
-    int nb_slots_full,
-    ActivityDetailsProject project,
-    ActivityRdvGroup group,
-    List<ActivityRdvProject> projects,
-    List<ActivityRdvEvent> events,
-    List<ActivityRdvSlotBloc> slots,
+    String? scolaryear,
+    String? codemodule,
+    String? codeinstance,
+    String? codeacti,
+    bool? register_by_bloc,
+    String? title,
+    String? description,
+    String? instance_location,
+    String? module_title,
+    String? student_registered,
+    bool? with_project,
+    int? nb_registered,
+    int? nb_slots_full,
+    ActivityDetailsProject? project,
+    required ActivityRdvGroup? group,
+    List<ActivityRdvProject>? projects,
+    required List<ActivityRdvEvent> events,
+    required List<ActivityRdvSlotBloc> slots,
   }) = _ActivityRdvDetails;
 
   factory ActivityRdvDetails.fromJson(Map<String, dynamic> json) =>

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  SettingsController({@required this.profileRepository});
+  SettingsController({required this.profileRepository});
 
   RxMap<String, dynamic> currentSettings = <String, dynamic>{}.obs;
   RxMap<String, dynamic> fetchedSettings = <String, dynamic>{}.obs;
@@ -78,25 +78,37 @@ class SettingsController extends GetxController {
     );
   }
 
-  T getSetting<T>({String category, String setting, T defaultVal}) {
+  T? getSetting<T>({
+    required String category,
+    required String setting,
+    required T defaultVal,
+  }) {
     try {
-      dynamic data = currentSettings['settings.$category.$setting'];
-      return data != null
+      dynamic? data = currentSettings['settings.$category.$setting'];
+      /*return data != null
           ? T is bool
               ? _parseBool(data)
               : data as T
-          : defaultVal;
+          : defaultVal;*/
+      return defaultVal;
     } catch (ignored) {
       return defaultVal;
     }
   }
 
-  void updateSetting<T>({String category, String setting, T value}) {
+  void updateSetting<T>({
+    required String category,
+    required String setting,
+    required T value,
+  }) {
     currentSettings['settings.$category.$setting'] = value;
     update();
   }
 
-  void toggleBoolSetting({String category, String setting, bool defaultVal}) {
+  void toggleBoolSetting(
+      {required String category,
+      required String setting,
+      required bool defaultVal}) {
     bool currentValue = currentSettings['settings.$category.$setting'] != null
         ? _parseBool(currentSettings['settings.$category.$setting'])
         : defaultVal;
@@ -114,7 +126,7 @@ class SettingsController extends GetxController {
   void _initWorkers() {
     workers.add(ever(
       currentSettings,
-      (s) {
+      (Map<String, dynamic> s) {
         if (!isLoading.value)
           needsUpdate.value = !mapEquals(fetchedSettings, s);
       },

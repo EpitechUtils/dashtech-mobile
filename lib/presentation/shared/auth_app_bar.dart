@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthAppBar extends AppBar {
-  AuthAppBar(BuildContext context, {Key key})
+  AuthAppBar(BuildContext context, {Key? key})
       : super(
           key: key,
           shape: const CurvedShape(),
@@ -24,7 +24,7 @@ class CurvedShape extends ContinuousRectangleBorder {
   const CurvedShape();
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection textDirection}) => Path()
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => Path()
     ..lineTo(0, rect.size.height)
     ..quadraticBezierTo(
       rect.size.width / 2,

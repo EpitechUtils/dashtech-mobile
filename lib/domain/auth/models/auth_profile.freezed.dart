@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'auth_profile.dart';
 
@@ -8,6 +8,10 @@ part of 'auth_profile.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 AuthProfile _$AuthProfileFromJson(Map<String, dynamic> json) {
   return _AuthProfile.fromJson(json);
 }
@@ -16,9 +20,8 @@ AuthProfile _$AuthProfileFromJson(Map<String, dynamic> json) {
 class _$AuthProfileTearOff {
   const _$AuthProfileTearOff();
 
-// ignore: unused_element
   _AuthProfile call(
-      {@required String id, @required String email, @required String status}) {
+      {required String id, required String email, required String status}) {
     return _AuthProfile(
       id: id,
       email: email,
@@ -26,25 +29,24 @@ class _$AuthProfileTearOff {
     );
   }
 
-// ignore: unused_element
   AuthProfile fromJson(Map<String, Object> json) {
     return AuthProfile.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthProfile = _$AuthProfileTearOff();
 
 /// @nodoc
 mixin _$AuthProfile {
-  String get id;
-  String get email;
-  String get status;
+  String get id => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthProfileCopyWith<AuthProfile> get copyWith;
+  $AuthProfileCopyWith<AuthProfile> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -65,14 +67,23 @@ class _$AuthProfileCopyWithImpl<$Res> implements $AuthProfileCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object email = freezed,
-    Object status = freezed,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      email: email == freezed ? _value.email : email as String,
-      status: status == freezed ? _value.status : status as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -99,28 +110,33 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object email = freezed,
-    Object status = freezed,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? status = freezed,
   }) {
     return _then(_AuthProfile(
-      id: id == freezed ? _value.id : id as String,
-      email: email == freezed ? _value.email : email as String,
-      status: status == freezed ? _value.status : status as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_AuthProfile extends _AuthProfile {
   const _$_AuthProfile(
-      {@required this.id, @required this.email, @required this.status})
-      : assert(id != null),
-        assert(email != null),
-        assert(status != null),
-        super._();
+      {required this.id, required this.email, required this.status})
+      : super._();
 
   factory _$_AuthProfile.fromJson(Map<String, dynamic> json) =>
       _$_$_AuthProfileFromJson(json);
@@ -168,22 +184,23 @@ class _$_AuthProfile extends _AuthProfile {
 }
 
 abstract class _AuthProfile extends AuthProfile {
-  const _AuthProfile._() : super._();
   const factory _AuthProfile(
-      {@required String id,
-      @required String email,
-      @required String status}) = _$_AuthProfile;
+      {required String id,
+      required String email,
+      required String status}) = _$_AuthProfile;
+  const _AuthProfile._() : super._();
 
   factory _AuthProfile.fromJson(Map<String, dynamic> json) =
       _$_AuthProfile.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthProfileCopyWith<_AuthProfile> get copyWith;
+  _$AuthProfileCopyWith<_AuthProfile> get copyWith =>
+      throw _privateConstructorUsedError;
 }

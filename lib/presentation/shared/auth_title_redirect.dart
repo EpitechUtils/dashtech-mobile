@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 class AuthTitleRedirect extends StatelessWidget {
   AuthTitleRedirect({
-    @required this.title,
-    @required this.buttonLabel,
-    @required this.onTap,
+    required this.title,
+    required this.buttonLabel,
+    required this.onTap,
   });
 
   String title;
@@ -32,7 +32,7 @@ class AuthTitleRedirect extends StatelessWidget {
                   onTap: () => onTap(),
                   child: Text(
                     buttonLabel,
-                    style: Get.textTheme.headline2.copyWith(
+                    style: Get.textTheme.headline2!.copyWith(
                       color: const Color(primaryColor),
                       fontWeight: FontWeight.bold,
                     ),

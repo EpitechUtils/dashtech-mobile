@@ -12,7 +12,7 @@ Animation<double> useCurve(
 
 class _CurvedAnimationForAnimationHook extends Hook<Animation<double>> {
   const _CurvedAnimationForAnimationHook({
-    @required this.animationController,
+    required this.animationController,
   });
 
   final AnimationController animationController;
@@ -23,8 +23,8 @@ class _CurvedAnimationForAnimationHook extends Hook<Animation<double>> {
 
 class _CurvedForAnimationHookState
     extends HookState<Animation<double>, _CurvedAnimationForAnimationHook> {
-  CurvedAnimation _curve;
-  Animation<double> _animation;
+  late CurvedAnimation _curve;
+  late Animation<double> _animation;
 
   @override
   void initHook() {

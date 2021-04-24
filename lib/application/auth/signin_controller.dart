@@ -15,7 +15,7 @@ import "package:get/state_manager.dart";
 class SigninController extends GetxController {
   final StorageService storageService = Get.find();
 
-  SigninController({@required this.authRepository});
+  SigninController({required this.authRepository});
 
   final IAuthRepository authRepository;
 
@@ -30,9 +30,9 @@ class SigninController extends GetxController {
 
   final TextEditingController emailTextController = TextEditingController();
 
-  List<FocusNode> focusNodes;
-  List<TextEditingController> codes;
-  Worker codeWorker;
+  late List<FocusNode> focusNodes;
+  late List<TextEditingController> codes;
+  late Worker codeWorker;
 
   @override
   void onInit() {
@@ -146,7 +146,7 @@ class SigninController extends GetxController {
   String get code => codes.map((controller) => controller.text).join('');
 
   void checkFormValidity() {
-    verificationCodeFormIsValid.value = signInCodeForm.currentState.mounted &&
-        signInCodeForm.currentState.validate();
+    verificationCodeFormIsValid.value = signInCodeForm.currentState!.mounted &&
+        signInCodeForm.currentState!.validate();
   }
 }

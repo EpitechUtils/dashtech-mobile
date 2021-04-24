@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:dashtech/presentation/core/utils/assets_utils.dart';
-import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/utils/assets_utils.dart';
+import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 
 class SnackBarUtils {
   static void success({
-    @required String message,
+    required String message,
     String title = 'success',
-    Function onClose,
+    Function? onClose,
   }) {
-    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context);
+    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context!);
 
     Get.snackbar(
       _translateIt(title),
@@ -33,16 +33,16 @@ class SnackBarUtils {
       ),
     );
     if (!onClose.isNull) {
-      Timer(const Duration(seconds: 3), () => onClose());
+      Timer(const Duration(seconds: 3), () => onClose!());
     }
   }
 
   static void info({
-    @required String message,
+    required String message,
     String title = 'info',
-    Function onClose,
+    Function? onClose,
   }) {
-    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context);
+    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context!);
 
     Get.snackbar(
       _translateIt(title),
@@ -63,16 +63,16 @@ class SnackBarUtils {
       ),
     );
     if (!onClose.isNull) {
-      Timer(const Duration(seconds: 3), () => onClose());
+      Timer(const Duration(seconds: 3), () => onClose!());
     }
   }
 
   static void error({
-    @required String message,
+    required String message,
     String title = "error",
-    Function onClose,
+    Function? onClose,
   }) {
-    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context);
+    final bool keyboardIsOpen = KeyboardUtils.isShowing(Get.context!);
 
     Get.snackbar(
       _translateIt(title),
@@ -92,7 +92,7 @@ class SnackBarUtils {
       ),
     );
     if (!onClose.isNull) {
-      Timer(const Duration(seconds: 3), () => onClose());
+      Timer(const Duration(seconds: 3), () => onClose!());
     }
   }
 

@@ -8,8 +8,8 @@ class AdditionalOptionsForActivityFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FabCircularMenu(
       fabElevation: 2,
-      fabOpenIcon: Icon(LineIcons.ellipsis_h, color: Colors.white),
-      fabCloseIcon: Icon(LineIcons.close, color: Colors.white),
+      fabOpenIcon: Icon(LineIcons.horizontalEllipsis, color: Colors.white),
+      fabCloseIcon: Icon(LineIcons.times, color: Colors.white),
       ringColor: Color(primaryColor).withAlpha(25),
       ringDiameter: 250.0,
       ringWidth: 70.0,

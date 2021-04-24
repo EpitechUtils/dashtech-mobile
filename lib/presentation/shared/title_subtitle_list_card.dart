@@ -9,29 +9,29 @@ enum ActionCardType {
 
 class ActionCard {
   ActionCard({
-    @required this.title,
-    @required this.action,
+    required this.title,
+    required this.action,
     this.type = ActionCardType.clickable,
     this.switchValue = false,
   });
 
   final String title;
-  final Function action;
+  final VoidCallback action;
   final ActionCardType type;
   final bool switchValue;
 }
 
 class TitleSubtitleSubListCard extends StatelessWidget {
   TitleSubtitleSubListCard({
-    @required this.title,
-    @required this.cards,
+    required this.title,
+    required this.cards,
     this.subtitle,
     this.subtitleWidget,
   });
 
   final String title;
-  final String subtitle;
-  final Widget subtitleWidget;
+  final String? subtitle;
+  final Widget? subtitleWidget;
   final List<ActionCard> cards;
 
   @override
@@ -70,10 +70,10 @@ class TitleSubtitleSubListCard extends StatelessWidget {
 
   Widget getSubtitle() {
     if (subtitleWidget != null) {
-      return subtitleWidget;
+      return subtitleWidget!;
     } else {
       return Text(
-        subtitle,
+        subtitle!,
         textAlign: TextAlign.start,
         style: Get.textTheme.subtitle2,
       );
@@ -111,7 +111,7 @@ class TitleSubtitleSubListCard extends StatelessWidget {
           children: <Widget>[
             Text(
               card.title,
-              style: Get.textTheme.headline3.copyWith(
+              style: Get.textTheme.headline3!.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -138,14 +138,14 @@ class TitleSubtitleSubListCard extends StatelessWidget {
           children: <Widget>[
             Text(
               card.title,
-              style: Get.textTheme.headline3.copyWith(
+              style: Get.textTheme.headline3!.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
             ),
             Text(
               (card.switchValue ? 'active' : 'inactive').tr,
-              style: Get.textTheme.headline3.copyWith(
+              style: Get.textTheme.headline3!.copyWith(
                   fontSize: 14,
                   color: Color(card.switchValue ? successColor : errorColor)),
             ),

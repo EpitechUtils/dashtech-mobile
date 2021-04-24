@@ -9,14 +9,14 @@ import 'package:get/state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ActivitiesController extends GetxController {
-  ActivitiesController({@required this.planningRepository});
+  ActivitiesController({required this.planningRepository});
 
   final IPlanningRepository planningRepository;
 
   final RxBool showShimmer = false.obs;
   final RxList<PlanningWeekActivity> activities = <PlanningWeekActivity>[].obs;
 
-  RefreshController refreshController;
+  late RefreshController refreshController;
 
   @override
   Future<void> onInit() async {

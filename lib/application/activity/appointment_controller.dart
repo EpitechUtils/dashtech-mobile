@@ -11,16 +11,16 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class AppointmentController extends GetxController {
-  AppointmentController({@required this.planningRepository})
+  AppointmentController({required this.planningRepository})
       : assert(planningRepository != null);
 
   final ActivityController activityController = Get.find();
   final IPlanningRepository planningRepository;
 
   final RxBool isLoading = true.obs;
-  final Rx<ActivityRdvDetails> appointmentDetails = ActivityRdvDetails().obs;
-  final Rx<ActivityRdvSlot> groupSlot = ActivityRdvSlot().obs;
-  final Rx<ActivityRdvSlotBloc> currentSlotBloc = ActivityRdvSlotBloc().obs;
+  final Rxn<ActivityRdvDetails> appointmentDetails = Rxn<ActivityRdvDetails>();
+  final Rxn<ActivityRdvSlot> groupSlot = Rxn<ActivityRdvSlot>();
+  final Rxn<ActivityRdvSlotBloc> currentSlotBloc = Rxn<ActivityRdvSlotBloc>();
 
   Future<void> onInit() async {
     _fetchAppointmentDetails();
@@ -31,10 +31,10 @@ class AppointmentController extends GetxController {
     try {
       final Either<BaseFailure, ActivityRdvDetails> failOrRdvDetails =
           await this.planningRepository.getRdvDetails({
-        'scolarYear': activityController.activity.value.scolaryear,
-        'codeModule': activityController.activity.value.codemodule,
-        'codeInstance': activityController.activity.value.codeinstance,
-        'codeActi': activityController.activity.value.codeacti
+        'scolarYear': activityController.activity.value!.scolaryear,
+        'codeModule': activityController.activity.value!.codemodule,
+        'codeInstance': activityController.activity.value!.codeinstance,
+        'codeActi': activityController.activity.value!.codeacti
       });
 
       failOrRdvDetails.fold(
@@ -44,14 +44,14 @@ class AppointmentController extends GetxController {
         },
         (ActivityRdvDetails right) {
           appointmentDetails.value = right;
-          if (appointmentDetails.value.group == null) {
+          if (appointmentDetails.value!.group == null) {
             isLoading.value = false;
             return;
           }
 
-          appointmentDetails.value.slots.forEach((bloc) {
+          appointmentDetails.value!.slots.forEach((bloc) {
             bloc.slots.forEach((slot) {
-              if (slot.code == appointmentDetails.value.group.code)
+              if (slot.code == appointmentDetails.value!.group!.code)
                 groupSlot.value = slot;
             });
           });
@@ -66,7 +66,7 @@ class AppointmentController extends GetxController {
 
   void changeSlotBlocByEvent(ActivityDetailsEvent event) {
     try {
-      currentSlotBloc.value = appointmentDetails.value.slots
+      currentSlotBloc.value = appointmentDetails.value!.slots
           .where((bloc) => bloc.codeevent == event.code)
           .first;
     } catch (ingored) {}
@@ -74,19 +74,19 @@ class AppointmentController extends GetxController {
 
   String parseDateOfSlot() {
     DateTime begin =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value.date);
-    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale.toLanguageTag());
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value!.date);
+    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
   }
 
   Color getSlotColor(ActivityRdvSlot slot) {
     if (slot.code == null) {
-      return Colors.grey[300];
+      return Colors.grey[300]!;
     }
 
-    if (appointmentDetails.value.group != null &&
-        slot.code == appointmentDetails.value.group.code) {
+    if (appointmentDetails.value!.group != null &&
+        slot.code == appointmentDetails.value!.group!.code) {
       return Color(successColor);
     }
 
@@ -95,7 +95,7 @@ class AppointmentController extends GetxController {
 
   List<ActivityRdvSlot> getSlotsForEventCode(String code) {
     try {
-      return appointmentDetails.value.slots
+      return appointmentDetails.value!.slots
           .where((bloc) => bloc.codeevent == code)
           .first
           .slots;
@@ -105,7 +105,7 @@ class AppointmentController extends GetxController {
   }
 
   bool get isRegistered =>
-      appointmentDetails.value.student_registered != null &&
-      appointmentDetails.value.student_registered == "true" &&
-      appointmentDetails.value.student_registered != "false";
+      appointmentDetails.value!.student_registered != null &&
+      appointmentDetails.value!.student_registered == "true" &&
+      appointmentDetails.value!.student_registered != "false";
 }

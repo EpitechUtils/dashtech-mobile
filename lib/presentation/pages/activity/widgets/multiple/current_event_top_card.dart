@@ -11,7 +11,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
   Widget build(BuildContext context) {
     return Card(
       color: ActivityColorUtils.getColorByEventType(
-        controller.activityController.activity.value.type_code,
+        controller.activityController.activity.value!.type_code,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
       child: Container(
@@ -29,7 +29,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
                       child: Container(
                         margin: const EdgeInsets.only(right: 10),
                         child: Icon(
-                          LineIcons.hand_stop_o,
+                          LineIcons.handPointingUp,
                           color: Color(
                             controller.getStudentStatus() == "present"
                                 ? successColor
@@ -44,7 +44,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.activityController.activity.value.title,
+                          controller.activityController.activity.value!.title,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
                         Obx(
                           () => Text(
                             StringUtils.capitalize(controller
-                                .parseDate(controller.selectedEvent.value)),
+                                .parseDate(controller.selectedEvent.value!)),
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -77,7 +77,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
                       children: <Widget>[
                         Text(
                           controller.activityController.parseActivityTime(
-                              controller.selectedEvent.value.begin),
+                              controller.selectedEvent.value!.begin),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,
@@ -92,7 +92,7 @@ class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
                         ),
                         Text(
                           controller.activityController.parseActivityTime(
-                              controller.selectedEvent.value.end),
+                              controller.selectedEvent.value!.end),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,

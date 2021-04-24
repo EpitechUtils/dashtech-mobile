@@ -18,11 +18,6 @@ import 'package:line_icons/line_icons.dart';
 class HomePage extends GetViewWithHook<HomeController> {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      context,
-      allowFontScaling: true,
-      designSize: const Size(1080, 2160),
-    );
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -64,7 +59,7 @@ class HomePage extends GetViewWithHook<HomeController> {
               ),
             ),
             child: const Icon(
-              LineIcons.hand_stop_o,
+              LineIcons.handPointingUp,
               color: Colors.white,
             ),
           ),

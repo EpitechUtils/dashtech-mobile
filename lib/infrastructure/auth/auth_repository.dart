@@ -17,10 +17,10 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthRepository implements IAuthRepository {
   AuthRepository({
-    @required this.graphqlService,
-    @required this.tokenService,
-    @required this.storageService,
-  })  : assert(graphqlService != null),
+    required this.graphqlService,
+    required this.tokenService,
+    required this.storageService,
+  })   : assert(graphqlService != null),
         assert(tokenService != null),
         assert(storageService != null);
 
@@ -85,7 +85,7 @@ class AuthRepository implements IAuthRepository {
     );
 
     if (result.hasException) {
-      switch (result.exception.statusCode) {
+      switch (result.exception!.statusCode) {
         case HttpStatus.notFound:
           return left(const AuthFailure.notFound());
         case HttpStatus.conflict:
@@ -98,7 +98,7 @@ class AuthRepository implements IAuthRepository {
     }
 
     final Map<String, dynamic> json =
-        result.data['authConfirmEmailCode'] as Map<String, dynamic>;
+        result.data!['authConfirmEmailCode'] as Map<String, dynamic>;
     return right(AuthProfile.fromJson(json));
   }
 
@@ -121,7 +121,7 @@ class AuthRepository implements IAuthRepository {
     );
 
     if (result.hasException) {
-      switch (result.exception.statusCode) {
+      switch (result.exception!.statusCode) {
         case HttpStatus.notFound:
           return left(const AuthFailure.notFound());
         case HttpStatus.conflict:
@@ -133,7 +133,7 @@ class AuthRepository implements IAuthRepository {
       }
     }
 
-    return right(result.data['profileSetAutolog'] as bool);
+    return right(result.data!['profileSetAutolog'] as bool);
   }
 
   @override
@@ -153,7 +153,7 @@ class AuthRepository implements IAuthRepository {
     );
 
     if (result.hasException) {
-      switch (result.exception.statusCode) {
+      switch (result.exception!.statusCode) {
         case HttpStatus.notFound:
           return left(const AuthFailure.notFound());
         case HttpStatus.conflict:
@@ -166,7 +166,7 @@ class AuthRepository implements IAuthRepository {
     }
 
     final AuthProfileTokenDto tokenDto =
-        AuthProfileTokenDto.fromJson(result.data['login']);
+        AuthProfileTokenDto.fromJson(result.data!['login']);
     final Map<String, dynamic> decodedToken =
         JwtDecoder.decode(tokenDto.accessToken);
     final AuthProfile authProfile = tokenDto.toDomain(decodedToken);
@@ -198,6 +198,6 @@ class AuthRepository implements IAuthRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    return right(result.data['profileGetIconLinkByPicture']);
+    return right(result.data!['profileGetIconLinkByPicture']);
   }
 }

@@ -8,22 +8,21 @@ import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
 class MultipleEventActivityController extends GetxController {
-  MultipleEventActivityController({@required this.planningRepository})
-      : assert(planningRepository != null);
+  MultipleEventActivityController({required this.planningRepository});
 
   final ActivityController activityController = Get.find();
   final IPlanningRepository planningRepository;
   final IAuthRepository authRepository = Get.find();
 
   final RxInt currentTabIndex = 0.obs;
-  final Rx<ActivityDetailsEvent> selectedEvent = ActivityDetailsEvent().obs;
+  final Rxn<ActivityDetailsEvent> selectedEvent = Rxn<ActivityDetailsEvent>();
 
   final List<Worker> workers = <Worker>[];
 
   @override
   Future<void> onInit() async {
     _initWorkers();
-    selectedEvent.value = activityController.activity.value.events.first;
+    selectedEvent.value = activityController.activity.value!.events.first;
     super.onInit();
   }
 
@@ -35,7 +34,7 @@ class MultipleEventActivityController extends GetxController {
 
   String parseDate(ActivityDetailsEvent event) {
     DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
-    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale.toLanguageTag());
+    DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
   }
@@ -43,8 +42,8 @@ class MultipleEventActivityController extends GetxController {
   String parseDateWithHm(ActivityDetailsEvent event) {
     DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
     DateTime end = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.end);
-    DateFormat hMFormat = DateFormat.Hm(Get.locale.toLanguageTag());
-    DateFormat dateFormat = DateFormat.MMMd(Get.locale.toLanguageTag());
+    DateFormat hMFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
+    DateFormat dateFormat = DateFormat.MMMd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin) +
         " (" +
@@ -55,22 +54,22 @@ class MultipleEventActivityController extends GetxController {
         parseActivityRoom(event: event, includeSeats: false);
   }
 
-  String getStudentStatus() {
-    return selectedEvent.value.user_status;
+  String? getStudentStatus() {
+    return selectedEvent.value!.user_status;
   }
 
   bool isStudentRegistered() {
     try {
-      return selectedEvent.value.already_register != null;
+      return selectedEvent.value!.already_register != null;
     } catch (ignored) {
       return false;
     }
   }
 
   String parseActivityRoom(
-      {ActivityDetailsEvent event, bool includeSeats = true}) {
+      {ActivityDetailsEvent? event, bool includeSeats = true}) {
     String room = "undefined";
-    ActivityDetailsEvent choosed = event == null ? selectedEvent.value : event;
+    ActivityDetailsEvent choosed = event == null ? selectedEvent.value! : event;
     try {
       room = choosed.location.substring(
               choosed.location.lastIndexOf('/') + 1, choosed.location.length) +
@@ -85,10 +84,10 @@ class MultipleEventActivityController extends GetxController {
   void _initWorkers() {
     workers.add(ever(
       currentTabIndex,
-      (val) {
+      (int val) {
         if (activityController.isAppointment && val == 0) return;
 
-        selectedEvent.value = activityController.activity.value
+        selectedEvent.value = activityController.activity.value!
             .events[val - (activityController.isAppointment ? 1 : 0)];
       },
     ));

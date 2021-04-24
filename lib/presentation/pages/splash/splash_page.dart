@@ -51,7 +51,7 @@ class SplashPage extends HookWidget {
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
                       packageInfo != null ? 'v${packageInfo.version}' : '',
-                      style: Get.textTheme.headline2.copyWith(
+                      style: Get.textTheme.headline2!.copyWith(
                         color: Colors.white,
                       ),
                     ),

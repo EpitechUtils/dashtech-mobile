@@ -11,7 +11,7 @@ class ActivityTopCard extends GetView<ActivityController> {
   Widget build(BuildContext context) {
     return Card(
       color: ActivityColorUtils.getColorByEventType(
-        controller.activity.value.type_code,
+        controller.activity.value!.type_code,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
       child: Container(
@@ -28,7 +28,7 @@ class ActivityTopCard extends GetView<ActivityController> {
                     child: Container(
                       margin: const EdgeInsets.only(right: 10),
                       child: Icon(
-                        LineIcons.hand_stop_o,
+                        LineIcons.handPointingUp,
                         color: Color(
                           controller.getStudentStatus() == "present"
                               ? successColor
@@ -42,7 +42,7 @@ class ActivityTopCard extends GetView<ActivityController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.activity.value.title,
+                          controller.activity.value!.title,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class ActivityTopCard extends GetView<ActivityController> {
                     children: <Widget>[
                       Text(
                         controller.parseActivityTime(
-                            controller.activity.value.events[0].begin),
+                            controller.activity.value!.events[0].begin),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
@@ -88,7 +88,7 @@ class ActivityTopCard extends GetView<ActivityController> {
                       ),
                       Text(
                         controller.parseActivityTime(
-                            controller.activity.value.events[0].end),
+                            controller.activity.value!.events[0].end),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,

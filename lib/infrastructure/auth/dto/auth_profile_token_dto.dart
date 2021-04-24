@@ -6,10 +6,10 @@ part 'auth_profile_token_dto.freezed.dart';
 part 'auth_profile_token_dto.g.dart';
 
 @freezed
-abstract class AuthProfileTokenDto implements _$AuthProfileTokenDto {
+class AuthProfileTokenDto with _$AuthProfileTokenDto {
   const factory AuthProfileTokenDto({
-    @required DateTime expirationTime,
-    @required String accessToken,
+    required DateTime expirationTime,
+    required String accessToken,
   }) = _AuthProfileTokenDto;
 
   factory AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =>

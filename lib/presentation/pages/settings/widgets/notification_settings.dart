@@ -21,7 +21,7 @@ class NotificationSettings extends GetView<SettingsController> {
                   category: 'notifications',
                   setting: 'enable',
                   defaultVal: true,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'enable',
@@ -35,7 +35,7 @@ class NotificationSettings extends GetView<SettingsController> {
                   category: 'notifications',
                   setting: 'activity',
                   defaultVal: true,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'activity',
@@ -49,7 +49,7 @@ class NotificationSettings extends GetView<SettingsController> {
                   category: 'notifications',
                   setting: 'appointment',
                   defaultVal: true,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'appointment',
@@ -63,7 +63,7 @@ class NotificationSettings extends GetView<SettingsController> {
                   category: 'notifications',
                   setting: 'project',
                   defaultVal: false,
-                ),
+                )!,
                 action: () => controller.toggleBoolSetting(
                   category: 'notifications',
                   setting: 'project',

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
@@ -10,8 +11,8 @@ import 'package:get/get.dart';
 class FirebaseService extends GetxService {
   final StorageService storageService = Get.find();
 
-  final FirebaseMessaging fm = FirebaseMessaging();
-  StreamSubscription iosSubscription;
+  final FirebaseMessaging messaging = FirebaseMessaging.instance;
+  late StreamSubscription iosSubscription;
 
   Future<FirebaseService> init() async {
     Logger.write('$runtimeType ready!');
@@ -19,8 +20,8 @@ class FirebaseService extends GetxService {
   }
 
   @override
-  void onReady() {
-    _initFirebaseMessaging();
+  Future<void> onReady() async {
+    await _initFirebaseMessaging();
     super.onReady();
   }
 
@@ -29,29 +30,43 @@ class FirebaseService extends GetxService {
     iosSubscription.cancel();
   }
 
-  void _initFirebaseMessaging() {
-    fm.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        SnackBarUtils.info(message: message.toString());
-      },
+  Future<void> _initFirebaseMessaging() async {
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
     );
 
-    if (Platform.isIOS) {
-      iosSubscription = fm.onIosSettingsRegistered.listen((event) {
-        saveDeviceToken();
-      });
-      fm.requestNotificationPermissions(IosNotificationSettings());
-      return;
-    }
+    Get.log('User granted permission: ${settings.authorizationStatus}');
 
-    saveDeviceToken();
+    /*FirebaseMessaging.onBackgroundMessage((message) async {
+      SnackBarUtils.info(message: message.toString());
+    });*/
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      Get.log('Got a message whilst in the foreground!');
+      Get.log('Message data: ${message.data}');
+
+      if (message.notification != null) {
+        Get.log('Message also contained a notif: ${message.notification}');
+      }
+
+      SnackBarUtils.info(message: message.toString());
+    });
+
+    await saveDeviceToken();
   }
 
-  void saveDeviceToken() async {
-    final String token = await fm.getToken();
+  Future<void> saveDeviceToken() async {
+    final String? token =
+        await messaging.getToken(vapidKey: DotEnv.env['FCM_VAPID_KEY']);
     if (token != null && token.isNotEmpty) {
       storageService.box.write('deviceToken', token);
-      print('Device token has been saved...');
+      Get.log('Device token has been saved...');
     }
   }
 

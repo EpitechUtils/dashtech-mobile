@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class PlanningActivityCard extends StatelessWidget {
-  PlanningActivityCard({@required this.activity, @required this.index});
+  PlanningActivityCard({required this.activity, required this.index});
 
   final PlanningActivity activity;
   final int index;
@@ -27,7 +27,7 @@ class PlanningActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateFormat hourFormat = DateFormat.Hm(Get.locale.toLanguageTag());
+    DateFormat hourFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),

@@ -36,14 +36,14 @@ class AppointmentDetails extends GetView<AppointmentController> {
                         : "appointment_not_registered")
                     .tr,
                 textAlign: TextAlign.center,
-                style: Get.textTheme.headline2.copyWith(
+                style: Get.textTheme.headline2!.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-          controller.groupSlot.value.code != null
+          controller.groupSlot.value!.code != null
               ? Column(
                   children: [
                     AppointmentSlot(),

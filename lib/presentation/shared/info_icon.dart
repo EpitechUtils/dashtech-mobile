@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 class InfoIcon extends StatelessWidget {
   InfoIcon({
-    @required this.icon,
-    @required this.iconColor,
-    @required this.label,
+    required this.icon,
+    required this.iconColor,
+    required this.label,
   });
 
   IconData icon;
@@ -29,7 +29,7 @@ class InfoIcon extends StatelessWidget {
             Flexible(
               child: Text(
                 label,
-                style: Get.textTheme.bodyText1.copyWith(
+                style: Get.textTheme.bodyText1!.copyWith(
                   fontSize: 13,
                 ),
                 textAlign: TextAlign.justify,

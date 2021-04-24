@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
-    Key key,
-    @required this.onPressed,
-    @required this.label,
+    Key? key,
+    required this.onPressed,
+    required this.label,
     this.height,
     this.fontSize,
     this.isRaised = true,
@@ -17,8 +17,8 @@ class RoundedButton extends StatelessWidget {
   }) : super(key: key);
 
   final String label;
-  final double height;
-  final double fontSize;
+  final double? height;
+  final double? fontSize;
   final Function onPressed;
   final bool isRaised;
   final bool noBorder;

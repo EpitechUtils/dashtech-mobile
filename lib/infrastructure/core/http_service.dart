@@ -12,20 +12,22 @@ class AuthInterceptor extends Interceptor {
   final TokenService tokenService = Get.find();
 
   @override
-  Future<void> onRequest(RequestOptions req) async {
-    final String token = tokenService.getToken();
+  Future<void> onRequest(
+    RequestOptions req,
+    RequestInterceptorHandler handler,
+  ) async {
+    final String? token = tokenService.getToken();
     print('Header: Bearer $token');
-    if (!token.isNullOrBlank) {
+    if (token != null) {
       req.headers.addAll({
         "authorization": 'Bearer $token',
       });
     }
-    return req;
   }
 }
 
 class HttpService extends GetxService {
-  Dio dio;
+  late Dio dio;
 
   Future<HttpService> init() async {
     Logger.write('$runtimeType ready!');
@@ -39,7 +41,7 @@ class HttpService extends GetxService {
         baseUrl: "https://intra.epitech.eu",
         connectTimeout: 20000,
         receiveTimeout: 20000,
-        validateStatus: (status) => status < 500,
+        validateStatus: (status) => status! < 500,
         headers: {
           'Accept': "application/json",
           'Content-Type': "application/json",
@@ -54,7 +56,7 @@ class HttpService extends GetxService {
     dio.interceptors.add(LogInterceptor());
     dio.interceptors.add(AuthInterceptor());
     dio.interceptors.add(CookieManager(
-      PersistCookieJar(dir: '$appDocPath/.cookies'),
+      PersistCookieJar(storage: FileStorage('$appDocPath/.cookies')),
     ));
     super.onReady();
   }

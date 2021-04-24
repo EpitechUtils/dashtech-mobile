@@ -21,14 +21,14 @@ class PlanningAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Text(
               'Planning',
-              style: Get.textTheme.headline1.copyWith(
+              style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 5),
             Text(
               'Consultes ton planning et organises-toi au mieux !',
-              style: Get.textTheme.subtitle2.copyWith(
+              style: Get.textTheme.subtitle2!.copyWith(
                 color: Colors.white,
               ),
             ),
@@ -36,13 +36,13 @@ class PlanningAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: const Color(primaryColor),
-      bottom: PreferredSize(
+      /*bottom: PreferredSize(
         child: PlanningCalendarGrid(),
         preferredSize: Size.fromHeight(300),
-      ),
+      ),*/
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(200.0);
+  Size get preferredSize => Size.fromHeight(80.0);
 }

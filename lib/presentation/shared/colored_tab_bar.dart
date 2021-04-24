@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColoredTabBar extends Container implements PreferredSizeWidget {
-  ColoredTabBar({this.color, this.tabBar});
+  ColoredTabBar({required this.color, required this.tabBar});
 
   final Color color;
   final TabBar tabBar;
@@ -18,13 +18,13 @@ class ColoredTabBar extends Container implements PreferredSizeWidget {
 
 class CustomTabIndicator extends Decoration {
   @override
-  _CustomPainter createBoxPainter([VoidCallback onChanged]) {
+  _CustomPainter createBoxPainter([VoidCallback? onChanged]) {
     return _CustomPainter(this, onChanged);
   }
 }
 
 class _CustomPainter extends BoxPainter {
-  _CustomPainter(this.decoration, VoidCallback onChanged)
+  _CustomPainter(this.decoration, VoidCallback? onChanged)
       : assert(decoration != null),
         super(onChanged);
 
@@ -37,7 +37,7 @@ class _CustomPainter extends BoxPainter {
 
     //offset is the position from where the decoration should be drawn.
     //configuration.size tells us about the height and width of the tab.
-    final Rect rect = offset & configuration.size;
+    final Rect rect = offset & configuration.size!;
     final Paint paint = Paint();
     paint.color = Colors.blueAccent;
     paint.style = PaintingStyle.fill;

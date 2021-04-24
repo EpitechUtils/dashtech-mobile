@@ -7,7 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 class PlanningCalendarGrid extends GetView<PlanningController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    /*return Container(
       decoration: BoxDecoration(color: Colors.white),
       child: GetBuilder<PlanningController>(
         builder: (_) => TableCalendar(
@@ -34,6 +34,7 @@ class PlanningCalendarGrid extends GetView<PlanningController> {
           onCalendarCreated: controller.onCalendarCreated,
         ),
       ),
-    );
+    );*/
+    return Container();
   }
 }

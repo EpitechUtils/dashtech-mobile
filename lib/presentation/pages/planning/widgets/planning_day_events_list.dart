@@ -3,11 +3,16 @@ import 'package:dashtech/presentation/pages/planning/widgets/planning_activity_c
 import 'package:dashtech/presentation/pages/planning/widgets/planning_empty_events.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class PlanningDayEventsList extends GetView<PlanningController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PlanningController>(
+    return SfCalendar(
+      view: CalendarView.day,
+      dataSource: controller.dataSource,
+    );
+    /*return GetBuilder<PlanningController>(
       builder: (_) => Visibility(
         visible: controller.selectedDateEvents.isNotEmpty,
         child: Padding(
@@ -29,6 +34,6 @@ class PlanningDayEventsList extends GetView<PlanningController> {
         ),
         replacement: PlanningEmptyEvents(),
       ),
-    );
+    );*/
   }
 }

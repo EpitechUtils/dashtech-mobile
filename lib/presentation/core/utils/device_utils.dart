@@ -5,10 +5,11 @@ import 'package:flutter/services.dart';
 
 /// Get all information about current device
 class DeviceUtils {
-  static Future<Map<String, String>> getDeviceDetails() async {
-    String deviceName;
-    String deviceVersion;
-    String identifier;
+  static Future<Map<String, String?>> getDeviceDetails() async {
+    String? deviceName;
+    String? deviceVersion;
+    String? identifier;
+
     final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
     try {
       if (Platform.isAndroid) {

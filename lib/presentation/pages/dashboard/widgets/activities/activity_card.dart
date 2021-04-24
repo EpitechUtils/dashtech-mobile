@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ActivityCard extends StatelessWidget {
-  ActivityCard({@required this.weekActivity, @required this.index});
+  ActivityCard({required this.weekActivity, required this.index});
 
   final PlanningWeekActivity weekActivity;
   final int index;
@@ -50,8 +50,8 @@ class ActivityCard extends StatelessWidget {
   }
 
   _buildDateActivity(BuildContext ctxt, String date) {
-    DateFormat format = DateFormat.EEEE(Get.locale.toLanguageTag());
-    DateFormat formatDate = DateFormat.yMMMd(Get.locale.toLanguageTag());
+    DateFormat format = DateFormat.EEEE(Get.locale!.toLanguageTag());
+    DateFormat formatDate = DateFormat.yMMMd(Get.locale!.toLanguageTag());
 
     return Container(
       margin: EdgeInsets.only(bottom: 10, top: 10),

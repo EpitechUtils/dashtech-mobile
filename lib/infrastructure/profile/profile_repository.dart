@@ -13,7 +13,6 @@ import 'package:dashtech/infrastructure/auth/graphql/auth_queries.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
-import 'package:dashtech/infrastructure/profile/dto/profile_setting_dto.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_mutations.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_queries.dart';
 import 'package:dashtech/infrastructure/profile/input/profile_setting_input.dart';
@@ -23,9 +22,9 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ProfileRepository implements IProfileRepository {
   ProfileRepository({
-    @required this.graphqlService,
-    @required this.storageService,
-  })  : assert(graphqlService != null),
+    required this.graphqlService,
+    required this.storageService,
+  })   : assert(graphqlService != null),
         assert(storageService != null);
 
   GraphqlService graphqlService;
@@ -41,10 +40,8 @@ class ProfileRepository implements IProfileRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    final List json = result.data['settingsGetAll'] as List;
-    return right(json
-        .map((value) => ProfileSettingDto.fromJson(value).toDomain())
-        .toList());
+    final List json = result.data!['settingsGetAll'] as List;
+    return right(json.map((value) => ProfileSetting.fromJson(value)).toList());
   }
 
   @override
@@ -62,9 +59,7 @@ class ProfileRepository implements IProfileRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    final List json = result.data['settingsUpdate'] as List;
-    return right(json
-        .map((value) => ProfileSettingDto.fromJson(value).toDomain())
-        .toList());
+    final List json = result.data!['settingsUpdate'] as List;
+    return right(json.map((value) => ProfileSetting.fromJson(value)).toList());
   }
 }

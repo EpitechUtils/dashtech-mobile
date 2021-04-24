@@ -5,8 +5,8 @@ class PlanningDayEventsListShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300],
-      highlightColor: Colors.grey[200],
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[200]!,
       child: Container(
         padding: const EdgeInsets.only(top: 10),
         margin: const EdgeInsets.symmetric(horizontal: 10),

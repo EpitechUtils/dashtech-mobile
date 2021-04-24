@@ -66,9 +66,9 @@ class SingleEventActivity extends GetView<ActivityController> {
                           {
                             'status': controller.getStudentStatus() ?? "",
                           },
-                        ),
+                        )!,
                         textAlign: TextAlign.center,
-                        style: Get.textTheme.headline2.copyWith(
+                        style: Get.textTheme.headline2!.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -78,21 +78,21 @@ class SingleEventActivity extends GetView<ActivityController> {
                 ),
               ),
               Visibility(
-                visible: controller.activity.value.description != null,
+                visible: controller.activity.value!.description != null,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 15),
                     Text(
                       'description'.tr,
-                      style: Get.textTheme.headline1.copyWith(),
+                      style: Get.textTheme.headline1!.copyWith(),
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      controller.activity.value.description != null
-                          ? controller.activity.value.description
+                      controller.activity.value!.description != null
+                          ? controller.activity.value!.description
                           : "",
-                      style: Get.textTheme.headline2.copyWith(
+                      style: Get.textTheme.headline2!.copyWith(
                         color: Color(textColor),
                       ),
                     )
@@ -103,7 +103,7 @@ class SingleEventActivity extends GetView<ActivityController> {
               Visibility(
                 visible: controller.isAppointment,
                 child: AvailableSlotsList(
-                  event: controller.activity.value.events.first,
+                  event: controller.activity.value!.events.first,
                 ),
               ),
             ],
