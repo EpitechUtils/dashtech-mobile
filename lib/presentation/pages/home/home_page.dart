@@ -5,13 +5,11 @@ import 'package:dashtech/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:dashtech/presentation/pages/home/widgets/bottom_bar_widget.dart';
 import 'package:dashtech/presentation/pages/planning/planning_page.dart';
 import 'package:dashtech/presentation/pages/settings/settings_page.dart';
-import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
 import 'package:dashtech/presentation/shared/hooks/use_curve_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 

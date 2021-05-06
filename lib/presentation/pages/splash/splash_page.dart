@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:dashtech/application/splash/splash_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
+import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
 import 'package:dashtech/presentation/shared/hooks/use_get_package_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,9 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 
-class SplashPage extends HookWidget {
-  final SplashController splashController = Get.find();
-
+class SplashPage extends GetViewWithHook<SplashController> {
   @override
   Widget build(BuildContext context) {
     final PackageInfo packageInfo = useGetPackageInfo();

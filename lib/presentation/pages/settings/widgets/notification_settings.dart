@@ -1,6 +1,5 @@
 import 'package:dashtech/application/settings/settings_controller.dart';
 import 'package:dashtech/presentation/shared/title_subtitle_list_card.dart';
-import 'package:dashtech/presentation/shared/title_with_subtitle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

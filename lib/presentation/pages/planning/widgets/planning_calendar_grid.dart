@@ -1,8 +1,6 @@
 import 'package:dashtech/application/planning/planning_controller.dart';
-import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class PlanningCalendarGrid extends GetView<PlanningController> {
   @override

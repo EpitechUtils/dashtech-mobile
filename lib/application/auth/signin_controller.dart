@@ -5,7 +5,6 @@ import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
 import 'package:dashtech/presentation/pages/auth/widgets/sign_in_intranet_webview.dart';
-import 'package:dashtech/presentation/pages/auth/widgets/steps/sign_in_step_two_code_fields.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -120,14 +119,17 @@ class SigninController extends GetxController {
         final Either<AuthFailure, AuthProfile> failureOrYes =
             await authRepository.login(right.id, right.email);
         failureOrYes.fold(
-          (AuthFailure left) => left.map(
-            unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
-            notFound: (_) =>
-                SnackBarUtils.error(message: 'http_profile_not_found'),
-            conflict: (_) =>
-                SnackBarUtils.error(message: 'http_profile_email_missmatch'),
-            unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
-          ),
+          (AuthFailure left) {
+            isLoading.value = false;
+            left.map(
+              unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
+              notFound: (_) =>
+                  SnackBarUtils.error(message: 'http_profile_not_found'),
+              conflict: (_) =>
+                  SnackBarUtils.error(message: 'http_profile_email_missmatch'),
+              unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
+            );
+          },
           (AuthProfile right) => Get.toNamed(Routes.home),
         );
       },

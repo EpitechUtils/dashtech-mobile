@@ -1,11 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:dashtech/application/activity/activity_controller.dart';
 import 'package:dashtech/application/settings/settings_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:shimmer/shimmer.dart';
 
 class SettingsAppBar extends GetView<SettingsController>
     implements PreferredSizeWidget {

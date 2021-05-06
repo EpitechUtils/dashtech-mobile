@@ -9,22 +9,24 @@ import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_mutations.dart';
 import 'package:dashtech/infrastructure/auth/graphql/auth_queries.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/http_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 class AuthRepository implements IAuthRepository {
   AuthRepository({
     required this.graphqlService,
+    required this.httpService,
     required this.tokenService,
     required this.storageService,
-  })   : assert(graphqlService != null),
-        assert(tokenService != null),
-        assert(storageService != null);
+  });
 
   GraphqlService graphqlService;
+  HttpService httpService;
   TokenService tokenService;
   StorageService storageService;
 
@@ -141,19 +143,33 @@ class AuthRepository implements IAuthRepository {
     String profileId,
     String email,
   ) async {
-    final QueryResult result = await graphqlService.client.query(
-      QueryOptions(
-        fetchPolicy: FetchPolicy.noCache,
-        document: gql(loginQuery),
-        variables: {
+    try {
+      final dio.Response<Map<String, dynamic>> response =
+          await httpService.dio.post<Map<String, dynamic>>(
+        DotEnv.env['BASE_URL']! + '/auth/login',
+        data: {
           'profileId': profileId,
           'email': email,
         },
-      ),
-    );
+      );
 
-    if (result.hasException) {
-      switch (result.exception!.statusCode) {
+      final AuthProfileTokenDto tokenDto =
+          AuthProfileTokenDto.fromJson(response.data!);
+      final AuthProfile authProfile = tokenDto.toDomain();
+
+      print(tokenDto.toString());
+      print(authProfile.toString());
+
+      String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');
+      tokenService.expirationDate.value = tokenDto.expirationTime.toLocal();
+      tokenService.token.value = tokenDto.accessToken;
+      storageService.box.write('fullName', fullName);
+      storageService.box.write('email', authProfile.email);
+      return right(authProfile);
+    } on dio.DioError catch (e) {
+      print(e);
+      return left(const AuthFailure.unexpected());
+      switch (e.response!.statusCode) {
         case HttpStatus.notFound:
           return left(const AuthFailure.notFound());
         case HttpStatus.conflict:
@@ -164,20 +180,6 @@ class AuthRepository implements IAuthRepository {
           return left(const AuthFailure.unexpected());
       }
     }
-
-    final AuthProfileTokenDto tokenDto =
-        AuthProfileTokenDto.fromJson(result.data!['login']);
-    final Map<String, dynamic> decodedToken =
-        JwtDecoder.decode(tokenDto.accessToken);
-    final AuthProfile authProfile = tokenDto.toDomain(decodedToken);
-
-    String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');
-    tokenService.expirationDate.value = tokenDto.expirationTime.toLocal();
-    tokenService.token.value = tokenDto.accessToken;
-    storageService.box.write('fullName', fullName);
-    storageService.box.write('email', authProfile.email);
-
-    return right(authProfile);
   }
 
   @override

@@ -5,7 +5,6 @@ class SplashBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<SplashController>(SplashController(
-      tokenService: Get.find(),
       firebaseService: Get.find(),
     ));
   }

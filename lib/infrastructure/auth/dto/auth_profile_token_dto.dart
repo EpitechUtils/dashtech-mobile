@@ -1,6 +1,6 @@
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 part 'auth_profile_token_dto.freezed.dart';
 part 'auth_profile_token_dto.g.dart';
@@ -17,7 +17,8 @@ class AuthProfileTokenDto with _$AuthProfileTokenDto {
 
   const AuthProfileTokenDto._();
 
-  AuthProfile toDomain(Map<String, dynamic> decodedToken) {
+  AuthProfile toDomain() {
+    final Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
     print(decodedToken);
     return AuthProfile(
       id: decodedToken['profileId'] as String,

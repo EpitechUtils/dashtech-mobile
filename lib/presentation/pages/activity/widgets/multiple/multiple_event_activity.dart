@@ -8,10 +8,8 @@ import 'package:dashtech/presentation/pages/activity/widgets/shared/activity_det
 import 'package:dashtech/presentation/pages/activity/widgets/shared/additional_options_for_activity_fab.dart';
 import 'package:dashtech/presentation/shared/bubble_tab_indicator.dart';
 import 'package:dashtech/presentation/shared/colored_tab_bar.dart';
-import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 
 class MultipleEventActivity extends GetView<MultipleEventActivityController> {
   @override

@@ -8,6 +8,7 @@ class AppBindings implements Bindings {
     Get.lazyPut<IAuthRepository>(
       () => AuthRepository(
           graphqlService: Get.find(),
+          httpService: Get.find(),
           tokenService: Get.find(),
           storageService: Get.find()),
       fenix: true,

@@ -24,8 +24,8 @@ Future<void> _initServices() async {
   await Firebase.initializeApp();
   await Get.putAsync(() => StorageService().init());
   await Get.putAsync(() => FirebaseService().init());
-  await Get.putAsync(() => TokenService().init());
   await Get.putAsync(() => HttpService().init());
+  await Get.putAsync(() => TokenService().init());
   await Get.putAsync(() => GraphqlService().init());
   Logger.write('All services started...');
 }

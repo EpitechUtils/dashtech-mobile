@@ -4,7 +4,6 @@ import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart
 import 'package:dashtech/domain/profile/models/profile_setting.dart';
 import 'package:dashtech/infrastructure/profile/input/profile_setting_input.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {

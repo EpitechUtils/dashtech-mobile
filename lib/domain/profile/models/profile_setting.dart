@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'profile_setting.freezed.dart';
 part 'profile_setting.g.dart';

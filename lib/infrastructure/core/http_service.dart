@@ -17,7 +17,6 @@ class AuthInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final String? token = tokenService.getToken();
-    print('Header: Bearer $token');
     if (token != null) {
       req.headers.addAll({
         "authorization": 'Bearer $token',
@@ -44,20 +43,12 @@ class HttpService extends GetxService {
         validateStatus: (status) => status! < 500,
         headers: {
           'Accept': "application/json",
-          'Content-Type': "application/json",
         },
         responseType: ResponseType.json,
         followRedirects: true,
         receiveDataWhenStatusError: true,
       ),
     );
-    final Directory appDocDir = await getApplicationDocumentsDirectory();
-    final String appDocPath = appDocDir.path;
-    dio.interceptors.add(LogInterceptor());
-    dio.interceptors.add(AuthInterceptor());
-    dio.interceptors.add(CookieManager(
-      PersistCookieJar(storage: FileStorage('$appDocPath/.cookies')),
-    ));
     super.onReady();
   }
 }

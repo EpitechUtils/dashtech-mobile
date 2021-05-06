@@ -1,6 +1,4 @@
 import 'package:dashtech/application/planning/planning_controller.dart';
-import 'package:dashtech/presentation/pages/planning/widgets/planning_activity_card.dart';
-import 'package:dashtech/presentation/pages/planning/widgets/planning_empty_events.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';

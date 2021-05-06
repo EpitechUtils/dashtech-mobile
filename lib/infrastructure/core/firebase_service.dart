@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:get/get.dart';
 
 class FirebaseService extends GetxService {

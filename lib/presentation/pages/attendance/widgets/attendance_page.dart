@@ -1,5 +1,4 @@
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
-import 'package:dashtech/presentation/shared/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

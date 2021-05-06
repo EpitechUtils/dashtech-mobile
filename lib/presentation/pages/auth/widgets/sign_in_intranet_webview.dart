@@ -49,7 +49,6 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
               () {
                 if (controller.officeLoginUrl.value.isEmpty) {
                   SnackBarUtils.error(message: 'error_occured');
-                  Get.back();
                   return Container();
                 }
 
@@ -57,11 +56,18 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
                   visible: !controller.isSyncing.value,
                   child: InAppWebView(
                     initialOptions: InAppWebViewGroupOptions(
-                      crossPlatform: InAppWebViewOptions(
-                        cacheEnabled: false,
-                        clearCache: true,
-                        javaScriptEnabled: true,
+                      android: AndroidInAppWebViewOptions(
+                        useHybridComposition: true,
                       ),
+                      ios: IOSInAppWebViewOptions(
+                        allowsInlineMediaPlayback: true,
+                      ),
+                      crossPlatform: InAppWebViewOptions(
+                          cacheEnabled: false,
+                          clearCache: true,
+                          javaScriptEnabled: true,
+                          preferredContentMode:
+                              UserPreferredContentMode.MOBILE),
                     ),
                     initialUrlRequest: URLRequest(
                       url: Uri.parse(controller.officeLoginUrl.value),

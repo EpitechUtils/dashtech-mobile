@@ -10,7 +10,6 @@ import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dio/dio.dart' as dio;
-import "package:flutter/material.dart";
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import "package:get/get.dart";
 import "package:get/state_manager.dart";
@@ -36,10 +35,11 @@ class SigninWebviewController extends GetxController {
 
   // Get office url from intranet
   void _getOfficeLoginUrl() async {
-    dio.Response resp = await httpService.dio
-        .get("https://intra.epitech.eu/admin/autolog?format=json");
+    dio.Response resp =
+        await httpService.dio.get<dynamic>("/admin/autolog?format=json");
 
     dynamic body = resp.data;
+    print(body);
     if (body == null ||
         resp.statusCode! >= 500 ||
         resp.data['office_auth_uri'] == null) {
