@@ -10,7 +10,7 @@ class SettingsAppBar extends GetView<SettingsController>
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 70.0,
+      toolbarHeight: 80.0,
       automaticallyImplyLeading: false,
       centerTitle: false,
       actions: [
@@ -70,5 +70,5 @@ class SettingsAppBar extends GetView<SettingsController>
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.0);
+  Size get preferredSize => Size.fromHeight(80.0);
 }
