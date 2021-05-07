@@ -12,10 +12,9 @@ import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/http_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class AuthRepository implements IAuthRepository {
   AuthRepository({

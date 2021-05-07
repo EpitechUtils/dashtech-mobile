@@ -43,7 +43,8 @@ class AppointmentDetails extends GetView<AppointmentController> {
               ),
             ),
           ),
-          controller.groupSlot.value!.code != null
+          controller.groupSlot.value != null &&
+                  controller.groupSlot.value!.code != null
               ? Column(
                   children: [
                     AppointmentSlot(),

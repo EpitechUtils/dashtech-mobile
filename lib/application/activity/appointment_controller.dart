@@ -104,8 +104,13 @@ class AppointmentController extends GetxController {
     }
   }
 
-  bool get isRegistered =>
-      appointmentDetails.value!.student_registered != null &&
-      appointmentDetails.value!.student_registered == "true" &&
-      appointmentDetails.value!.student_registered != "false";
+  bool get isRegistered => () {
+        try {
+          return appointmentDetails.value!.student_registered != null &&
+              appointmentDetails.value!.student_registered == "true" &&
+              appointmentDetails.value!.student_registered != "false";
+        } catch (ignored) {
+          return false;
+        }
+      }();
 }
