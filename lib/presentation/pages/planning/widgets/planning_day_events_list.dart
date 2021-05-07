@@ -1,4 +1,6 @@
 import 'package:dashtech/application/planning/planning_controller.dart';
+import 'package:dashtech/domain/planning/datasource/activity_datasource.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -6,32 +8,24 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 class PlanningDayEventsList extends GetView<PlanningController> {
   @override
   Widget build(BuildContext context) {
-    return SfCalendar(
-      view: CalendarView.day,
-      dataSource: controller.dataSource,
-    );
-    /*return GetBuilder<PlanningController>(
-      builder: (_) => Visibility(
-        visible: controller.selectedDateEvents.isNotEmpty,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView.builder(
-            padding: const EdgeInsets.only(top: 10),
-            itemCount: controller.selectedDateEvents.length + 1,
-            itemBuilder: (BuildContext c, int index) {
-              if (index == controller.selectedDateEvents.length) {
-                return SizedBox(height: 120);
-              }
+    final date = DateTime.now();
 
-              return PlanningActivityCard(
-                activity: controller.selectedDateEvents[index],
-                index: index,
-              );
-            },
-          ),
-        ),
-        replacement: PlanningEmptyEvents(),
-      ),
-    );*/
+    return GetBuilder<PlanningController>(
+      id: 'planning_display',
+      builder: (PlanningController controller) {
+        return SfCalendar(
+          view: CalendarView.week,
+          controller: controller.calendarController,
+          dataSource: ActivityDataSource(controller.allEvents),
+          initialDisplayDate: date.subtract(Duration(days: date.weekday - 1)),
+          initialSelectedDate: date,
+          allowedViews: [CalendarView.day, CalendarView.week],
+          firstDayOfWeek: 1,
+          allowViewNavigation: true,
+          onTap: controller.onActivityTap,
+          onViewChanged: controller.onViewChanged,
+        );
+      },
+    );
   }
 }

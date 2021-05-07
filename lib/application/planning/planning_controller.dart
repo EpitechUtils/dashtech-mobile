@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
@@ -5,9 +7,9 @@ import 'package:dashtech/domain/planning/datasource/activity_datasource.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class PlanningController extends GetxController {
   PlanningController({required this.planningRepository});
@@ -16,97 +18,72 @@ class PlanningController extends GetxController {
 
   final RxBool showShimmer = true.obs;
   final Rx<DateTime> selectedDate = DateTime.now().obs;
-  final RxList<PlanningActivity> selectedDateEvents = <PlanningActivity>[].obs;
   final RxMap<DateTime, List<PlanningActivity>> allEvents =
       <DateTime, List<PlanningActivity>>{}.obs;
 
-  //CalendarController calendarController;
-  late RefreshController refreshController;
+  late CalendarController calendarController;
 
   @override
   Future<void> onInit() async {
     allEvents.addAll({});
-    //calendarController = CalendarController();
-    refreshController = RefreshController();
+    calendarController = CalendarController();
+    final date = DateTime.now();
+    fetchEventsByWeek(date.subtract(Duration(days: date.weekday - 1)),
+        date.add(Duration(days: DateTime.daysPerWeek - date.weekday)));
     super.onInit();
   }
 
   @override
   void onClose() {
-    //calendarController.dispose();
-    refreshController.dispose();
+    calendarController.dispose();
     super.onClose();
   }
 
   Future<void> fetchEventsByWeek(
     DateTime start,
     DateTime end,
-    bool refresh,
   ) async {
+    print(start);
+    print(end);
     final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
         await planningRepository.getWeekActivitiesList(start, end);
 
     failureOrActivities.fold(
       (BaseFailure left) {
         showShimmer.value = false;
-        if (refresh) {
-          refreshController.refreshFailed();
-          return;
-        }
-        refreshController.loadFailed();
         SnackBarUtils.error(message: 'http_common'.tr);
       },
       (List<PlanningWeekActivity> right) {
         showShimmer.value = false;
-        if (refresh) {
-          refreshController.refreshCompleted();
-        }
-
-        if (right.isEmpty) {
-          refreshController.loadNoData();
-        } else {
-          refreshController.loadComplete();
-        }
         right.forEach((e) {
           List<PlanningActivity> acts = e.activities;
           acts.sort((a, b) =>
               DateTime.parse(a.start).compareTo(DateTime.parse(b.start)));
           allEvents[DateTime.parse(e.date)] = acts;
         });
-        update();
+        update(['planning_display']);
       },
     );
   }
 
-  void onDaySelected(DateTime day, List events, List holidays) async {
-    selectedDate.value = day;
-    selectedDateEvents.clear();
-    selectedDateEvents
-        .addAll(events.isNotEmpty ? events as List<PlanningActivity> : []);
-    update();
-  }
-
-  void onVisibleDaysChanged(
-    DateTime first,
-    DateTime last,
-    CalendarFormat format,
-  ) async {
-    if (!allEvents.keys.contains(first) || !allEvents.keys.contains(last)) {
-      //showShimmer.value = true;
-      await fetchEventsByWeek(first, last, false);
-    }
-  }
-
-  void onCalendarCreated(
-    DateTime first,
-    DateTime last,
-    CalendarFormat format,
-  ) {
-    Future.delayed(
-      Duration(seconds: 1),
-      () => fetchEventsByWeek(first, last, false),
+  void onActivityTap(CalendarTapDetails details) {
+    if (details.appointments == null) return;
+    PlanningActivity activity = details.appointments![0];
+    Get.toNamed(
+      Routes.activity_details,
+      arguments: {
+        'scolarYear': activity.scolaryear,
+        'codeModule': activity.codemodule,
+        'codeInstance': activity.codeinstance,
+        'codeActi': activity.codeacti
+      },
     );
   }
 
-  ActivityDataSource get dataSource => ActivityDataSource(selectedDateEvents);
+  void onViewChanged(ViewChangedDetails details) {
+    if (!allEvents.keys.contains(details.visibleDates.first) ||
+        !allEvents.keys.contains(details.visibleDates.first)) {
+      fetchEventsByWeek(details.visibleDates.first, details.visibleDates.last);
+    }
+  }
 }

@@ -5,18 +5,19 @@ import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ActivityDataSource extends CalendarDataSource {
-  ActivityDataSource(List<PlanningActivity> source) {
-    appointments = source;
+  ActivityDataSource(Map<DateTime, List<PlanningActivity>> source) {
+    appointments = [];
+    source.forEach((key, value) => appointments!.addAll(value));
   }
 
   @override
   DateTime getStartTime(int index) {
-    return appointments![index].start;
+    return DateTime.parse(appointments![index].start);
   }
 
   @override
   DateTime getEndTime(int index) {
-    return appointments![index].end;
+    return DateTime.parse(appointments![index].end);
   }
 
   @override
@@ -27,7 +28,10 @@ class ActivityDataSource extends CalendarDataSource {
   @override
   Color getColor(int index) {
     return ActivityColorUtils.getColorByEventType(
-        appointments![index].type_code);
+            appointments![index].type_code)
+        .withOpacity(
+      appointments![index].event_registered != "false" ? 1 : 0.6,
+    );
   }
 
   @override
