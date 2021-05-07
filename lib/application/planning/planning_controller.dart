@@ -43,8 +43,6 @@ class PlanningController extends GetxController {
     DateTime start,
     DateTime end,
   ) async {
-    print(start);
-    print(end);
     final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
         await planningRepository.getWeekActivitiesList(start, end);
 
