@@ -13,7 +13,7 @@ import 'package:package_info/package_info.dart';
 class SplashPage extends GetViewWithHook<SplashController> {
   @override
   Widget build(BuildContext context) {
-    final PackageInfo packageInfo = useGetPackageInfo();
+    //final PackageInfo packageInfo = useGetPackageInfo();
 
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -48,7 +48,8 @@ class SplashPage extends GetViewWithHook<SplashController> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
-                      packageInfo != null ? 'v${packageInfo.version}' : '',
+                      //packageInfo != null ? 'v${packageInfo.version}' : '',
+                      'v2.1.15',
                       style: Get.textTheme.headline2!.copyWith(
                         color: Colors.white,
                       ),

@@ -2,7 +2,7 @@ name: dashtech
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.1.13+33
+version: 2.1.16+36
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -42,9 +42,9 @@ dependencies:
 
   # Utils
   flutter_screenutil: ^5.0.0
-  flutter_dotenv: ^3.1.0
+  flutter_dotenv: ^4.0.0-nullsafety.1
   freezed_annotation: ^0.14.1
-  dartz: ^0.9.2
+  dartz: ^0.10.0-nullsafety.0
   enum_to_string: ^2.0.1
   json_annotation: ^4.0.1
   json_serializable: ^4.1.1
@@ -52,7 +52,7 @@ dependencies:
   device_info: ^2.0.0
   firebase_messaging: ^9.1.2
   package_info: ^2.0.0
-  pull_to_refresh: ^1.6.5
+  pull_to_refresh: ^2.0.0
   basic_utils: ^3.0.2
   cached_network_image: ^3.0.0
   expandable: ^5.0.1

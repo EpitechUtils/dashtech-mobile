@@ -16,7 +16,7 @@ class TokenService extends GetxService {
   final HttpService httpService = Get.find();
 
   Rxn<DateTime> expirationDate = Rxn<DateTime>();
-  RxnString token = RxnString();
+  RxString token = ''.obs;
   late Timer timerExpirationDate;
 
   List<Worker> workers = <Worker>[];
