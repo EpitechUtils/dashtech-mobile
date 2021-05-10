@@ -63,7 +63,7 @@ class TokenService extends GetxService {
     }
   }
 
-  Map<String, dynamic> decodeToken() => JwtDecoder.decode(token.value!);
+  Map<String, dynamic> decodeToken() => JwtDecoder.decode(token.value);
 
   void _saveExpirationDate(DateTime? date) {
     storageService.box.write(
@@ -149,6 +149,7 @@ class TokenService extends GetxService {
     final int durationInSeconds = DateUtils.getDiffInSeconds(
       expirationDate.value!,
     );
+    print("refresh");
     if (durationInSeconds < 0) {
       _getRefreshToken();
       return;

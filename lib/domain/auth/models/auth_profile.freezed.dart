@@ -21,11 +21,15 @@ class _$AuthProfileTearOff {
   const _$AuthProfileTearOff();
 
   _AuthProfile call(
-      {required String id, required String email, required String status}) {
+      {required String id,
+      required String email,
+      required String status,
+      List<String> rights = const []}) {
     return _AuthProfile(
       id: id,
       email: email,
       status: status,
+      rights: rights,
     );
   }
 
@@ -42,6 +46,7 @@ mixin _$AuthProfile {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  List<String> get rights => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +59,7 @@ abstract class $AuthProfileCopyWith<$Res> {
   factory $AuthProfileCopyWith(
           AuthProfile value, $Res Function(AuthProfile) then) =
       _$AuthProfileCopyWithImpl<$Res>;
-  $Res call({String id, String email, String status});
+  $Res call({String id, String email, String status, List<String> rights});
 }
 
 /// @nodoc
@@ -70,6 +75,7 @@ class _$AuthProfileCopyWithImpl<$Res> implements $AuthProfileCopyWith<$Res> {
     Object? id = freezed,
     Object? email = freezed,
     Object? status = freezed,
+    Object? rights = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -84,6 +90,10 @@ class _$AuthProfileCopyWithImpl<$Res> implements $AuthProfileCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      rights: rights == freezed
+          ? _value.rights
+          : rights // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -95,7 +105,7 @@ abstract class _$AuthProfileCopyWith<$Res>
           _AuthProfile value, $Res Function(_AuthProfile) then) =
       __$AuthProfileCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String email, String status});
+  $Res call({String id, String email, String status, List<String> rights});
 }
 
 /// @nodoc
@@ -113,6 +123,7 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
     Object? id = freezed,
     Object? email = freezed,
     Object? status = freezed,
+    Object? rights = freezed,
   }) {
     return _then(_AuthProfile(
       id: id == freezed
@@ -127,6 +138,10 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      rights: rights == freezed
+          ? _value.rights
+          : rights // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -135,7 +150,10 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthProfile extends _AuthProfile {
   const _$_AuthProfile(
-      {required this.id, required this.email, required this.status})
+      {required this.id,
+      required this.email,
+      required this.status,
+      this.rights = const []})
       : super._();
 
   factory _$_AuthProfile.fromJson(Map<String, dynamic> json) =>
@@ -147,10 +165,13 @@ class _$_AuthProfile extends _AuthProfile {
   final String email;
   @override
   final String status;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<String> rights;
 
   @override
   String toString() {
-    return 'AuthProfile(id: $id, email: $email, status: $status)';
+    return 'AuthProfile(id: $id, email: $email, status: $status, rights: $rights)';
   }
 
   @override
@@ -162,7 +183,9 @@ class _$_AuthProfile extends _AuthProfile {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.rights, rights) ||
+                const DeepCollectionEquality().equals(other.rights, rights)));
   }
 
   @override
@@ -170,7 +193,8 @@ class _$_AuthProfile extends _AuthProfile {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(status);
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(rights);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +211,8 @@ abstract class _AuthProfile extends AuthProfile {
   const factory _AuthProfile(
       {required String id,
       required String email,
-      required String status}) = _$_AuthProfile;
+      required String status,
+      List<String> rights}) = _$_AuthProfile;
   const _AuthProfile._() : super._();
 
   factory _AuthProfile.fromJson(Map<String, dynamic> json) =
@@ -199,6 +224,8 @@ abstract class _AuthProfile extends AuthProfile {
   String get email => throw _privateConstructorUsedError;
   @override
   String get status => throw _privateConstructorUsedError;
+  @override
+  List<String> get rights => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthProfileCopyWith<_AuthProfile> get copyWith =>

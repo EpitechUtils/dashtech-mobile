@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AuthInterceptor extends Interceptor {
   final TokenService tokenService = Get.find();
@@ -30,19 +35,23 @@ class HttpService extends GetxService {
 
   @override
   void onReady() async {
-    dio = Dio(
-      BaseOptions(
-        baseUrl: "https://intra.epitech.eu",
-        connectTimeout: 20000,
-        receiveTimeout: 20000,
-        validateStatus: (status) => status! < 500,
-        headers: {
-          'Accept': "application/json",
-        },
-        responseType: ResponseType.json,
-        followRedirects: true,
-        receiveDataWhenStatusError: true,
-      ),
+    dio = Dio();
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String appDocPath = appDocDir.path;
+    PersistCookieJar cookieJar =
+        PersistCookieJar(storage: FileStorage(appDocPath + "/.cookies/"));
+    dio.interceptors.add(CookieManager(cookieJar));
+    dio.options = BaseOptions(
+      baseUrl: "https://intra.epitech.eu",
+      connectTimeout: 20000,
+      receiveTimeout: 20000,
+      validateStatus: (status) => status! < 500,
+      headers: {
+        'Accept': "application/json",
+      },
+      responseType: ResponseType.json,
+      followRedirects: true,
+      receiveDataWhenStatusError: true,
     );
     super.onReady();
   }

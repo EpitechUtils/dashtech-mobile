@@ -164,6 +164,7 @@ class AuthRepository implements IAuthRepository {
       tokenService.token.value = tokenDto.accessToken;
       storageService.box.write('fullName', fullName);
       storageService.box.write('email', authProfile.email);
+      storageService.box.write('rights', authProfile.rights);
       return right(authProfile);
     } on dio.DioError catch (e) {
       print(e);

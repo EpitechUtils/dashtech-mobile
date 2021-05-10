@@ -1,6 +1,7 @@
 import 'package:dashtech/infrastructure/core/firebase_service.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/http_service.dart';
+import 'package:dashtech/infrastructure/core/intranet_rights_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/core/token_service.dart';
 import 'package:dashtech/presentation/app_widget.dart';
@@ -23,6 +24,7 @@ Future<void> _initServices() async {
   await GetStorage.init();
   await Firebase.initializeApp();
   await Get.putAsync(() => StorageService().init());
+  await Get.putAsync(() => IntranetRightsService().init());
   await Get.putAsync(() => FirebaseService().init());
   await Get.putAsync(() => HttpService().init());
   await Get.putAsync(() => TokenService().init());

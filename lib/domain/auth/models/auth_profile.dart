@@ -9,6 +9,7 @@ class AuthProfile with _$AuthProfile {
     required String id,
     required String email,
     required String status,
+    @Default([]) List<String> rights,
   }) = _AuthProfile;
 
   factory AuthProfile.fromJson(Map<String, dynamic> json) =>

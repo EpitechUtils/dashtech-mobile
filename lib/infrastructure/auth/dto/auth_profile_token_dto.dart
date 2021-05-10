@@ -23,6 +23,7 @@ class AuthProfileTokenDto with _$AuthProfileTokenDto {
     return AuthProfile(
       id: decodedToken['profileId'] as String,
       email: decodedToken['email'] as String,
+      rights: List<String>.from(decodedToken['intranetRights']),
       status: "login_in",
     );
   }

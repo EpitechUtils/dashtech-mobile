@@ -61,6 +61,7 @@ dependencies:
   line_icons: ^2.0.1
   syncfusion_flutter_calendar: ^19.1.57
   firebase_core: ^1.0.4
+  path_provider: ^2.0.1
 
 dev_dependencies:
   flutter_test:

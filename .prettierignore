@@ -1,0 +1,8 @@
+*.g.dart
+*.freezed.dart
+assets
+ios
+android
+build
+test
+web
