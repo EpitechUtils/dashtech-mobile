@@ -7,10 +7,8 @@ import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
 class MultipleEventActivityController extends GetxController {
-  MultipleEventActivityController({required this.planningRepository});
-
   final ActivityController activityController = Get.find();
-  final IPlanningRepository planningRepository;
+  final IPlanningRepository planningRepository = Get.find();
   final IAuthRepository authRepository = Get.find();
 
   final RxInt currentTabIndex = 0.obs;

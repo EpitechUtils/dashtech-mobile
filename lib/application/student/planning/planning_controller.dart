@@ -9,9 +9,7 @@ import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class PlanningController extends GetxController {
-  PlanningController({required this.planningRepository});
-
-  final IPlanningRepository planningRepository;
+  final IPlanningRepository planningRepository = Get.find();
 
   final RxBool showShimmer = true.obs;
   final Rx<DateTime> selectedDate = DateTime.now().obs;

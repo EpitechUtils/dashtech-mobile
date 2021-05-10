@@ -1,4 +1,4 @@
-import 'package:dashtech/application/student/dashboard/dashboard_controller.dart';
+import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
@@ -13,7 +13,7 @@ class PlanningActivityCard extends StatelessWidget {
 
   final PlanningActivity activity;
   final int index;
-  final DashboardController dashboardController = Get.find();
+  final StudentDashboardController dashboardController = Get.find();
 
   void goToActivityDetails(PlanningActivity activity) => Get.toNamed(
         Routes.activity_details,

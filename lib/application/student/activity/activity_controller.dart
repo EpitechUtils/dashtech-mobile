@@ -9,13 +9,10 @@ import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
 class ActivityController extends GetxController {
-  ActivityController({required this.planningRepository})
-      : assert(planningRepository != null);
+  final IPlanningRepository planningRepository = Get.find();
 
   final Rxn<ActivityDetails> activity = Rxn<ActivityDetails>();
   final RxBool isLoading = true.obs;
-
-  final IPlanningRepository planningRepository;
 
   late AppointmentController appointmentController;
 

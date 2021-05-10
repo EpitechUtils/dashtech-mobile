@@ -7,10 +7,8 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class ActivitiesController extends GetxController {
-  ActivitiesController({required this.planningRepository});
-
-  final IPlanningRepository planningRepository;
+class StudentActivitiesController extends GetxController {
+  final IPlanningRepository planningRepository = Get.find();
 
   final RxBool showShimmer = false.obs;
   final RxList<PlanningWeekActivity> activities = <PlanningWeekActivity>[].obs;

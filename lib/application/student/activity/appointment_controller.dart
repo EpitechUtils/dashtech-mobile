@@ -11,11 +11,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class AppointmentController extends GetxController {
-  AppointmentController({required this.planningRepository})
-      : assert(planningRepository != null);
-
   final ActivityController activityController = Get.find();
-  final IPlanningRepository planningRepository;
+  final IPlanningRepository planningRepository = Get.find();
 
   final RxBool isLoading = true.obs;
   final Rxn<ActivityRdvDetails> appointmentDetails = Rxn<ActivityRdvDetails>();

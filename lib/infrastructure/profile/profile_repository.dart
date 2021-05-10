@@ -7,17 +7,12 @@ import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_mutations.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_queries.dart';
 import 'package:dashtech/infrastructure/profile/input/profile_setting_input.dart';
+import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class ProfileRepository implements IProfileRepository {
-  ProfileRepository({
-    required this.graphqlService,
-    required this.storageService,
-  })   : assert(graphqlService != null),
-        assert(storageService != null);
-
-  GraphqlService graphqlService;
-  StorageService storageService;
+  final GraphqlService graphqlService = Get.find();
+  final StorageService storageService = Get.find();
 
   @override
   Future<Either<BaseFailure, List<ProfileSetting>>> getSettings() async {

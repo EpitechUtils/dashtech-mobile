@@ -8,25 +8,10 @@ import 'package:get/get.dart';
 class ActivityBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<IPlanningRepository>(
-      () => PlanningRepository(
-        graphqlService: Get.find(),
-      ),
-    );
-    Get.put<ActivityController>(
-      ActivityController(
-        planningRepository: Get.find(),
-      ),
-    );
+    Get.lazyPut<IPlanningRepository>(() => PlanningRepository());
+    Get.put<ActivityController>(ActivityController());
     Get.lazyPut<MultipleEventActivityController>(
-      () => MultipleEventActivityController(
-        planningRepository: Get.find(),
-      ),
-    );
-    Get.lazyPut<AppointmentController>(
-      () => AppointmentController(
-        planningRepository: Get.find(),
-      ),
-    );
+        () => MultipleEventActivityController());
+    Get.lazyPut<AppointmentController>(() => AppointmentController());
   }
 }

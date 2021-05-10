@@ -13,10 +13,7 @@ import "package:get/state_manager.dart";
 
 class SigninController extends GetxController {
   final StorageService storageService = Get.find();
-
-  SigninController({required this.authRepository});
-
-  final IAuthRepository authRepository;
+  final IAuthRepository authRepository = Get.find();
 
   final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
   final GlobalKey<FormBuilderState> signInCodeForm =

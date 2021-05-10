@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final IntranetRightsService intranetRightsService;
-
-  HomeController({required this.intranetRightsService});
-
-  PageController pageController = PageController();
+  final IntranetRightsService intranetRightsService = Get.find();
+  final PageController pageController = PageController();
 
   RxInt index = 0.obs;
 

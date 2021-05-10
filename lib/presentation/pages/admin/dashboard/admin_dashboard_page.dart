@@ -4,7 +4,7 @@ import 'package:dashtech/presentation/pages/student/dashboard/widgets/dashboard_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StudentDashboardPage extends GetView<StudentDashboardController> {
+class AdminDashboardPage extends GetView<StudentDashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

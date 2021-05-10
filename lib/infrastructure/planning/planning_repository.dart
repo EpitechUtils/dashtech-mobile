@@ -6,14 +6,11 @@ import 'package:dashtech/domain/planning/models/activity_rdv_details.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:dashtech/infrastructure/planning/graphql/planning_queries.dart';
+import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class PlanningRepository implements IPlanningRepository {
-  PlanningRepository({
-    required this.graphqlService,
-  });
-
-  final GraphqlService graphqlService;
+  final GraphqlService graphqlService = Get.find();
 
   // Get activities list for the week dashboard
   @override

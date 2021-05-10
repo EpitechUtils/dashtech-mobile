@@ -17,10 +17,7 @@ import "package:get/state_manager.dart";
 class SigninWebviewController extends GetxController {
   final StorageService storageService = Get.find();
   final HttpService httpService = Get.find();
-
-  SigninWebviewController({required this.authRepository});
-
-  final IAuthRepository authRepository;
+  final IAuthRepository authRepository = Get.find();
 
   final RxBool isSyncing = false.obs;
   final RxDouble progress = 0.0.obs;

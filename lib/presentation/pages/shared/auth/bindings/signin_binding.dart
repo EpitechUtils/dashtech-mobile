@@ -5,13 +5,7 @@ import 'package:get/get.dart';
 class SigninBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<SigninController>(
-      SigninController(authRepository: Get.find()),
-    );
-    Get.put<SigninWebviewController>(
-      SigninWebviewController(
-        authRepository: Get.find(),
-      ),
-    );
+    Get.put<SigninController>(SigninController());
+    Get.put<SigninWebviewController>(SigninWebviewController());
   }
 }

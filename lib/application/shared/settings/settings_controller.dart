@@ -7,15 +7,13 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  SettingsController({required this.profileRepository});
+  final IProfileRepository profileRepository = Get.find();
 
   RxMap<String, dynamic> currentSettings = <String, dynamic>{}.obs;
   RxMap<String, dynamic> fetchedSettings = <String, dynamic>{}.obs;
   RxBool isLoading = true.obs;
   RxBool isUpdating = false.obs;
   RxBool needsUpdate = false.obs;
-
-  final IProfileRepository profileRepository;
 
   final List<Worker> workers = <Worker>[].obs;
 
