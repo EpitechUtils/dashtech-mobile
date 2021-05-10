@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:dashtech/application/splash/splash_controller.dart';
+import 'package:dashtech/application/shared/splash/splash_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/shared/get_view_with_hook.dart';

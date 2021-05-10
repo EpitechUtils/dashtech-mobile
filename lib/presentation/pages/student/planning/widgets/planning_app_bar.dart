@@ -12,7 +12,6 @@ class PlanningAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Padding(
         padding: const EdgeInsets.only(
           right: 20,
-          left: 10,
           top: 10,
         ),
         child: Column(

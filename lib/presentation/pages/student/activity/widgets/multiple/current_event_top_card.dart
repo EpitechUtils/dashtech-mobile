@@ -1,12 +1,13 @@
 import 'package:basic_utils/basic_utils.dart';
-import 'package:dashtech/application/student/activity/multiple_event_activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_multiple_event_activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-class CurrentEventTopCard extends GetView<MultipleEventActivityController> {
+class CurrentEventTopCard
+    extends GetView<StudentMultipleEventActivityController> {
   @override
   Widget build(BuildContext context) {
     return Card(

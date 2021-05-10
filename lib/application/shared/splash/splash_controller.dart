@@ -7,11 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 class SplashController extends GetxController {
-  SplashController({
-    required this.firebaseService,
-  });
-
-  final FirebaseService firebaseService;
+  final FirebaseService firebaseService = Get.find();
   final IAuthRepository authRepository = Get.find();
 
   @override

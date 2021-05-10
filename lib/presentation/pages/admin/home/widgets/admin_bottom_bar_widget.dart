@@ -19,8 +19,8 @@ class AdminBottomBar extends StatelessWidget {
     return AnimatedBottomNavigationBar(
       icons: [
         LineIcons.home,
-        LineIcons.calendar,
-        LineIcons.checkCircle,
+        LineIcons.calendarCheck,
+        LineIcons.qrcode,
         LineIcons.wrench,
       ],
       //elevation: 10,

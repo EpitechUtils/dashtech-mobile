@@ -8,7 +8,7 @@ import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class PlanningController extends GetxController {
+class StudentPlanningController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
   final RxBool showShimmer = true.obs;

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:dashtech/application/student/activity/appointment_controller.dart';
+import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
-class ActivityController extends GetxController {
+class StudentActivityController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
   final Rxn<ActivityDetails> activity = Rxn<ActivityDetails>();
   final RxBool isLoading = true.obs;
 
-  late AppointmentController appointmentController;
+  late StudentAppointmentController appointmentController;
 
   @override
   Future<void> onReady() async {

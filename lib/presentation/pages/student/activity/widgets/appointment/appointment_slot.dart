@@ -1,10 +1,10 @@
 import 'package:basic_utils/basic_utils.dart';
-import 'package:dashtech/application/student/activity/appointment_controller.dart';
+import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AppointmentSlot extends GetView<AppointmentController> {
+class AppointmentSlot extends GetView<StudentAppointmentController> {
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class AppointmentController extends GetxController {
-  final ActivityController activityController = Get.find();
+class StudentAppointmentController extends GetxController {
+  final StudentActivityController activityController = Get.find();
   final IPlanningRepository planningRepository = Get.find();
 
   final RxBool isLoading = true.obs;

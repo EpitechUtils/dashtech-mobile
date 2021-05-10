@@ -1,8 +1,8 @@
-import 'package:dashtech/application/student/planning/planning_controller.dart';
+import 'package:dashtech/application/student/planning/student_planning_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PlanningCalendarGrid extends GetView<PlanningController> {
+class PlanningCalendarGrid extends GetView<StudentPlanningController> {
   @override
   Widget build(BuildContext context) {
     /*return Container(

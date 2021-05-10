@@ -1,11 +1,11 @@
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ActivityAssistantsList extends GetView<ActivityController> {
+class ActivityAssistantsList extends GetView<StudentActivityController> {
   @override
   Widget build(BuildContext context) {
     return Visibility(

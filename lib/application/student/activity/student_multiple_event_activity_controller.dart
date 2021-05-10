@@ -1,4 +1,4 @@
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
 
-class MultipleEventActivityController extends GetxController {
-  final ActivityController activityController = Get.find();
+class StudentMultipleEventActivityController extends GetxController {
+  final StudentActivityController activityController = Get.find();
   final IPlanningRepository planningRepository = Get.find();
   final IAuthRepository authRepository = Get.find();
 

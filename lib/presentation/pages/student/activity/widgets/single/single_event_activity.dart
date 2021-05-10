@@ -1,4 +1,4 @@
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/available_slots_list.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/shared/activity_details_base_app_bar.dart';
@@ -8,7 +8,7 @@ import 'package:dashtech/presentation/pages/student/activity/widgets/single/acti
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SingleEventActivity extends GetView<ActivityController> {
+class SingleEventActivity extends GetView<StudentActivityController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

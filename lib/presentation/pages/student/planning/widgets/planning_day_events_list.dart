@@ -1,17 +1,17 @@
-import 'package:dashtech/application/student/planning/planning_controller.dart';
+import 'package:dashtech/application/student/planning/student_planning_controller.dart';
 import 'package:dashtech/domain/planning/datasource/activity_datasource.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class PlanningDayEventsList extends GetView<PlanningController> {
+class PlanningDayEventsList extends GetView<StudentPlanningController> {
   @override
   Widget build(BuildContext context) {
     final date = DateTime.now();
 
-    return GetBuilder<PlanningController>(
+    return GetBuilder<StudentPlanningController>(
       id: 'planning_display',
-      builder: (PlanningController controller) {
+      builder: (StudentPlanningController controller) {
         return SfCalendar(
           view: CalendarView.week,
           controller: controller.calendarController,

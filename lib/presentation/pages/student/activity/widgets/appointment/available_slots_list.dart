@@ -1,4 +1,4 @@
-import 'package:dashtech/application/student/activity/appointment_controller.dart';
+import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-class AvailableSlotsList extends GetViewWithHook<AppointmentController> {
+class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
   AvailableSlotsList({required this.event});
 
   final ActivityDetailsEvent event;

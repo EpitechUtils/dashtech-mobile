@@ -1,39 +1,40 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/utils/assets_utils.dart';
+import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final StudentDashboardController dashboardController = Get.find();
-
+class StudentDashboardAppBar extends GetView<StudentDashboardController>
+    implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
-      //shape: const CurvedShape(),
       automaticallyImplyLeading: false,
       centerTitle: false,
-      // ignore: prefer_const_literals_to_create_immutables
-      /*actions: [
-        const Padding(
-          padding: EdgeInsets.only(right: 25.0),
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 15.0),
           child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                'https://cinepassion34.fr/wp-content/uploads/2017/07/Chuck-Norris-cinepassion34.jpg',
+            radius: 25,
+            backgroundColor: Colors.transparent,
+            child: CachedCircleAvatar(
+              noPicture: Image.asset(
+                AssetsUtils.image('unknown', FileFormat.jpg),
+                width: 30,
               ),
-              radius: 27,
+              imagePath: AssetsUtils.profilePicture(
+                  controller.storageService.box.read('email').split('@').first),
+              radius: 45,
             ),
           ),
         ),
-      ],*/
+      ],
       title: Padding(
         padding: const EdgeInsets.only(
           right: 20,
-          left: 10,
           top: 10,
         ),
         child: Column(
@@ -41,7 +42,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Text(
               StringUtils.capitalize(
-                  dashboardController.storageService.box.read('fullName'),
+                  controller.storageService.box.read('fullName'),
                   allWords: true),
               style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,
@@ -49,7 +50,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              dashboardController.storageService.box.read('email'),
+              controller.storageService.box.read('email'),
               style: Get.textTheme.subtitle2!.copyWith(
                 color: Colors.white,
               ),
@@ -60,7 +61,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: const Color(primaryColor),
       elevation: 2,
       bottom: TabBar(
-        controller: dashboardController.tabController,
+        controller: controller.tabController,
         tabs: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -80,5 +81,5 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(80.0 + 20.0);
+  Size get preferredSize => Size.fromHeight(80.0 + 35.0);
 }

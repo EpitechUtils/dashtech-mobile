@@ -1,4 +1,4 @@
-import 'package:dashtech/application/student/activity/appointment_controller.dart';
+import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/appointment_details_shimmer.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/appointment_group.dart';
@@ -6,7 +6,7 @@ import 'package:dashtech/presentation/pages/student/activity/widgets/appointment
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AppointmentDetails extends GetView<AppointmentController> {
+class AppointmentDetails extends GetView<StudentAppointmentController> {
   @override
   Widget build(BuildContext context) {
     return Obx(

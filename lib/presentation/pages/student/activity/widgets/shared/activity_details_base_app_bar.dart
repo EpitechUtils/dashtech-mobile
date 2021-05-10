@@ -1,10 +1,10 @@
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ActivityDetailsBaseAppBar extends GetView<ActivityController>
+class ActivityDetailsBaseAppBar extends GetView<StudentActivityController>
     implements PreferredSizeWidget {
   ActivityDetailsBaseAppBar({this.actions, this.bottom});
 

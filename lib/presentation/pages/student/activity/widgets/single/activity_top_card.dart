@@ -1,12 +1,12 @@
 import 'package:basic_utils/basic_utils.dart';
-import 'package:dashtech/application/student/activity/activity_controller.dart';
+import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-class ActivityTopCard extends GetView<ActivityController> {
+class ActivityTopCard extends GetView<StudentActivityController> {
   @override
   Widget build(BuildContext context) {
     return Card(

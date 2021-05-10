@@ -1,12 +1,12 @@
 import 'package:basic_utils/basic_utils.dart';
-import 'package:dashtech/application/student/activity/appointment_controller.dart';
+import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AppointmentGroup extends GetView<AppointmentController> {
+class AppointmentGroup extends GetView<StudentAppointmentController> {
   @override
   Widget build(BuildContext context) {
     return Column(
