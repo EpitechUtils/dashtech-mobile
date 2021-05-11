@@ -1,5 +1,7 @@
 import 'package:dashtech/infrastructure/core/intranet_rights_service.dart';
-import 'package:dashtech/presentation/pages/admin/dashboard/bindings/admin_dashbpard_bindings.dart';
+import 'package:dashtech/presentation/pages/admin/attendance/bindings/admin_attendance_bindings.dart';
+import 'package:dashtech/presentation/pages/admin/card/bindings/admin_card_bindings.dart';
+import 'package:dashtech/presentation/pages/admin/dashboard/bindings/admin_dashboard_bindings.dart';
 import 'package:dashtech/presentation/pages/admin/home/bindings/admin_home_bindings.dart';
 import 'package:dashtech/presentation/pages/shared/auth/bindings/signin_binding.dart';
 import 'package:dashtech/presentation/pages/shared/auth/sign_in_page.dart';
@@ -45,6 +47,8 @@ class AppPages {
               HomeBinding(),
               AdminHomeBindings(),
               AdminDashboardBindings(),
+              AdminAttendanceBindings(),
+              AdminCardBindings(),
               SettingsBindings(),
             ]
           : <Bindings>[

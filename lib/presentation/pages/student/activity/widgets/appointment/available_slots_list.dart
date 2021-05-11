@@ -102,9 +102,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                               ),
                                               imagePath:
                                                   AssetsUtils.profilePicture(
-                                                      slot.master!.login
-                                                          .split('@')
-                                                          .first),
+                                                      slot.master!.login),
                                               radius: 30,
                                             )
                                           : Icon(

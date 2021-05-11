@@ -424,6 +424,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_nfc_kit:
+    dependency: "direct main"
+    description:
+      name: flutter_nfc_kit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -686,6 +693,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  ndef:
+    dependency: transitive
+    description:
+      name: ndef
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3"
   normalize:
     dependency: transitive
     description:

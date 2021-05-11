@@ -26,7 +26,7 @@ class StudentDashboardAppBar extends GetView<StudentDashboardController>
                 width: 30,
               ),
               imagePath: AssetsUtils.profilePicture(
-                  controller.storageService.box.read('email').split('@').first),
+                  controller.storageService.box.read('email')),
               radius: 45,
             ),
           ),

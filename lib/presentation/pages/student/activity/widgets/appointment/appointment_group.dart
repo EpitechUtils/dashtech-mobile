@@ -39,10 +39,8 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                         AssetsUtils.image('unknown', FileFormat.jpg),
                         width: 40,
                       ),
-                      imagePath: AssetsUtils.profilePicture(controller
-                          .appointmentDetails.value!.group!.master
-                          .split('@')
-                          .first),
+                      imagePath: AssetsUtils.profilePicture(
+                          controller.appointmentDetails.value!.group!.master),
                       radius: 40,
                     ),
                     const SizedBox(width: 10),
@@ -105,8 +103,8 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                                   AssetsUtils.image('unknown', FileFormat.jpg),
                                   width: 40,
                                 ),
-                                imagePath: AssetsUtils.profilePicture(
-                                    memberLogin.split('@').first),
+                                imagePath:
+                                    AssetsUtils.profilePicture(memberLogin),
                                 radius: 40,
                               ),
                               const SizedBox(width: 10),

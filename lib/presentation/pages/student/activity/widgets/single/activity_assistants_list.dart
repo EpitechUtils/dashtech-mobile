@@ -41,8 +41,7 @@ class ActivityAssistantsList extends GetView<StudentActivityController> {
                               AssetsUtils.image('unknown', FileFormat.jpg),
                               width: 40,
                             ),
-                            imagePath: AssetsUtils.profilePicture(
-                                ass.login.split('@').first),
+                            imagePath: AssetsUtils.profilePicture(ass.picture),
                             radius: 40,
                           ),
                           const SizedBox(width: 10),

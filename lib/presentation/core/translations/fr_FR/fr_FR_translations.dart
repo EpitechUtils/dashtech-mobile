@@ -47,6 +47,10 @@ final Map<String, String> frFR = {
   'planning_settings_module_only': "Modules inscrits uniquement",
   'planning_settings_registered_only': "Inscrits uniquement",
 
+  // Admin cards
+  'admin_card_title': "Cartes Etudiant",
+  'admin_card_subtitle': "Associez, gérez les cartes des étudiants...",
+
   // Form
   "error_form_required": "Champs requis",
   "error_form_email": "Format e-mail incorrect",

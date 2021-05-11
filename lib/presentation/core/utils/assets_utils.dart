@@ -19,8 +19,9 @@ class AssetsUtils {
     buffer.writeAll([
       DotEnv.env['BASE_URL'],
       'userPicture',
-      picture.replaceAll('.bmp', '') + '.jpg'
+      Uri.encodeQueryComponent(picture)
     ], '/');
+
     return buffer.toString();
   }
 
