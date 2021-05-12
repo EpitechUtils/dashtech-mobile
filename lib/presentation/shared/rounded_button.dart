@@ -10,12 +10,14 @@ class RoundedButton extends StatelessWidget {
     required this.label,
     this.height,
     this.fontSize,
+    this.colors,
     this.isRaised = true,
     this.noBorder = false,
     this.isLoading = false,
     this.disabled = false,
   }) : super(key: key);
 
+  final List<Color>? colors;
   final String label;
   final double? height;
   final double? fontSize;
@@ -24,6 +26,12 @@ class RoundedButton extends StatelessWidget {
   final bool noBorder;
   final bool isLoading;
   final bool disabled;
+
+  final List<Color> defaultColors = const [
+    Color(0xff0652dd),
+    Color(0xff075bf6),
+    Color(0xff1e6bf9),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +53,15 @@ class RoundedButton extends StatelessWidget {
                   Color(greyColor),
                 ],
               )
-            : const LinearGradient(
-                colors: [
-                  Color(0xff0652dd),
-                  Color(0xff075bf6),
-                  Color(0xff1e6bf9),
-                ],
+            : LinearGradient(
+                colors: colors == null ? defaultColors : colors!,
               ),
         boxShadow: [
           BoxShadow(
             color: disabled
                 ? const Color(greyColor).withOpacity(0.15)
-                : const Color(primaryColor).withOpacity(0.35),
+                : (colors == null ? defaultColors.first : colors!.first)
+                    .withOpacity(0.35),
             offset: const Offset(2.0, 3.5),
             blurRadius: disabled ? 0 : 1.5,
           ),

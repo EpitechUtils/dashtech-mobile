@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
+import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/card/graphql/card_queries.dart';
@@ -34,5 +35,25 @@ class CardRepository implements ICardRepository {
 
     final List json = result.data!['cardGetUsersByFilters'] as List;
     return right(json.map((value) => TrombiUser.fromJson(value)).toList());
+  }
+
+  @override
+  Future<Either<BaseFailure, CardResult>> getCardInfoByLogin(
+    String login,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        document: gql(cardInfoByLogin),
+        variables: {
+          "email": login,
+        },
+      ),
+    );
+
+    if (result.hasException) {
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(CardResult.fromJson(result.data!['cardInfoByLogin']));
   }
 }
