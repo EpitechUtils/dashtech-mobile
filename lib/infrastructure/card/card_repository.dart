@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
+import 'package:dashtech/domain/card/models/card_history.dart';
 import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
@@ -38,12 +39,12 @@ class CardRepository implements ICardRepository {
   }
 
   @override
-  Future<Either<BaseFailure, CardResult>> getCardInfoByLogin(
+  Future<Either<BaseFailure, List<CardHistory>>> getCardHistory(
     String login,
   ) async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
-        document: gql(cardInfoByLogin),
+        document: gql(cardHistoryByLogin),
         variables: {
           "email": login,
         },
@@ -54,6 +55,7 @@ class CardRepository implements ICardRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    return right(CardResult.fromJson(result.data!['cardInfoByLogin']));
+    final List json = result.data!['cardHistoryByLogin'] as List;
+    return right(json.map((value) => CardHistory.fromJson(value)).toList());
   }
 }

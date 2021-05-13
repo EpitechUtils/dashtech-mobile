@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
+import 'package:dashtech/domain/card/models/card_history.dart';
 import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
@@ -22,8 +23,8 @@ class AdminCardController extends GetxController {
   final RxString filterPromo = "tek2".obs;
   final RxList<TrombiUser> users = RxList([]);
 
-  final RxBool userCardInfoIsLoading = false.obs;
-  final Rxn<CardResult> userCardResult = Rxn<CardResult>();
+  final RxList<CardHistory> cardHistory = RxList([]);
+  final RxInt currentBottomIndex = 0.obs;
 
   Future<void> fetchProfilesByFilters() async {
     isLoading.value = true;
@@ -47,6 +48,7 @@ class AdminCardController extends GetxController {
   }
 
   void onUserSelected(TrombiUser user) {
+    currentBottomIndex.value = 0;
     Get.bottomSheet(
       TrombiUserBottomSheet(user),
       backgroundColor: Color(fillColor),
@@ -56,20 +58,18 @@ class AdminCardController extends GetxController {
     );
   }
 
-  Future<void> getUserCardInfo(TrombiUser user) async {
-    userCardInfoIsLoading.value = true;
-    final Either<BaseFailure, CardResult> failOrInfo =
-        await this.cardRepository.getCardInfoByLogin(user.login);
+  Future<void> getUserCardHistory(TrombiUser user) async {
+    cardHistory.clear();
+    final Either<BaseFailure, List<CardHistory>> failOrInfo =
+        await this.cardRepository.getCardHistory(user.login);
 
     failOrInfo.fold(
       (BaseFailure left) {
-        userCardInfoIsLoading.value = false;
         SnackBarUtils.error(message: 'http_common');
       },
-      (CardResult right) {
-        userCardInfoIsLoading.value = false;
+      (List<CardHistory> right) {
         print(right.toString());
-        userCardResult.value = right;
+        cardHistory.value = right.reversed.toList();
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:dashtech/domain/card/models/card.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'trombi_user.freezed.dart';
@@ -12,6 +13,7 @@ class TrombiUser with _$TrombiUser {
     required String picture,
     required String prenom,
     required String nom,
+    Card? card,
   }) = _TrombiUser;
 
   factory TrombiUser.fromJson(Map<String, dynamic> json) =>

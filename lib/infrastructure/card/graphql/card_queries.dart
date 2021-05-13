@@ -5,25 +5,23 @@ const String cardGetUsersByFilters = """
       title
       location
       picture
+      card {
+        id
+        nfcTag
+      }
     }
   }
 """;
 
-const String cardInfoByLogin = """
-  query cardInfoByLogin(\$email: String!) {
-    cardInfoByLogin(email: \$email) {
-      card {
-        login
-        nfcTag
-      }
-      history {
-        createdAt
-        eventType
-        message
-        profile {
-          id
-          email
-        }
+const String cardHistoryByLogin = """
+  query cardHistoryByLogin(\$email: String!) {
+    cardHistoryByLogin(email: \$email) {
+      createdAt
+      eventType
+      message
+      profile {
+        id
+        email
       }
     }
   }
