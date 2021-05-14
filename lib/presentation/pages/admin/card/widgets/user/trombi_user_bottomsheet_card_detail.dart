@@ -8,10 +8,11 @@ class TrombiUserBottomSheetDetail extends GetView<AdminCardController> {
   final String value;
   final Color? color;
 
-  TrombiUserBottomSheetDetail(
-      {required this.title,
-      required this.value,
-      this.color = const Color(textColor)});
+  TrombiUserBottomSheetDetail({
+    required this.title,
+    required this.value,
+    this.color = const Color(textColor),
+  });
 
   @override
   Widget build(BuildContext context) {

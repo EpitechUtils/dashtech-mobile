@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
 import 'package:dashtech/domain/card/models/card_history.dart';
-import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
+import 'package:dashtech/domain/card/models/card.dart' as models;
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 
@@ -68,30 +69,58 @@ class AdminCardController extends GetxController {
         SnackBarUtils.error(message: 'http_common');
       },
       (List<CardHistory> right) {
-        print(right.toString());
         cardHistory.value = right.reversed.toList();
       },
     );
   }
 
-  Future<void> searchForNfcTag() async {
-    var availability = await FlutterNfcKit.nfcAvailability;
+  Future<void> updateCardByNFC(TrombiUser user) async {
+    NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
     if (availability != NFCAvailability.available) {
-      // oh-no
-    }
-
-    // timeout only works on Android, while the latter two messages are only for iOS
-    var tag = await FlutterNfcKit.poll(
-      iosAlertMessage: "Présentez une carte étudiante",
-    );
-
-    print(jsonEncode(tag));
-    if (tag.type != NFCTagType.mifare_desfire) {
-      await FlutterNfcKit.finish(
-          iosErrorMessage: "Cette carte ne provient pas d'Epitech.");
       return;
     }
 
-    await FlutterNfcKit.finish(iosAlertMessage: tag.id);
+    try {
+      NFCTag tag = await FlutterNfcKit.poll(
+        iosAlertMessage: "Présentez votre carte",
+      );
+
+      if (tag.type != NFCTagType.mifare_desfire) {
+        await FlutterNfcKit.finish(
+          iosErrorMessage: "Cette carte ne provient pas d'Epitech.",
+        );
+        return;
+      }
+
+      final Either<BaseFailure, models.Card> failOrInfo =
+          await this.cardRepository.updateCard(user.login, tag.id);
+
+      await failOrInfo.fold(
+        (BaseFailure left) async {
+          SnackBarUtils.error(message: 'http_common');
+          await FlutterNfcKit.finish(iosErrorMessage: "http_common".tr);
+        },
+        (models.Card right) async {
+          await FlutterNfcKit.finish(
+            iosAlertMessage: "Carte ajouté pour " + user.title,
+          );
+
+          // Set values
+          users.value = users.map((elem) {
+            if (elem.login == user.login)
+              return elem.copyWith.call(card: right);
+            return elem;
+          }).toList();
+
+          // Close bottomsheet and display success
+          Get.back();
+        },
+      );
+    } catch (err) {
+      if (err is PlatformException && err.code == "500") return;
+      SnackBarUtils.error(message: 'http_common');
+      await FlutterNfcKit.finish(iosErrorMessage: "http_common".tr);
+      return;
+    }
   }
 }

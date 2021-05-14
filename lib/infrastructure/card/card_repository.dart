@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
+import 'package:dashtech/domain/card/models/card.dart';
 import 'package:dashtech/domain/card/models/card_history.dart';
 import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
@@ -45,6 +46,7 @@ class CardRepository implements ICardRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         document: gql(cardHistoryByLogin),
+        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
         variables: {
           "email": login,
         },
@@ -57,5 +59,27 @@ class CardRepository implements ICardRepository {
 
     final List json = result.data!['cardHistoryByLogin'] as List;
     return right(json.map((value) => CardHistory.fromJson(value)).toList());
+  }
+
+  @override
+  Future<Either<BaseFailure, Card>> updateCard(
+    String login,
+    String nfcTag,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        document: gql(cardUpdateForLogin),
+        variables: {
+          "email": login,
+          "nfcTag": nfcTag,
+        },
+      ),
+    );
+
+    if (result.hasException) {
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(Card.fromJson(result.data!['cardUpdateForLogin']));
   }
 }

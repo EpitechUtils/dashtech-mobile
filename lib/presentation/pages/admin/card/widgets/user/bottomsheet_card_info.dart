@@ -39,19 +39,41 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
             value: user.card == null ? "Aucune" : user.card!.nfcTag,
             color: user.card == null ? Color(errorColor) : Color(successColor),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                child: RoundedButton(
-                  onPressed: controller.searchForNfcTag,
-                  label: 'Associer une carte',
+          Visibility(
+            visible: user.card != null,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: RoundedButton(
+                    onPressed: () => controller.updateCardByNFC(user),
+                    colors: [
+                      Color(0xffFFAE00),
+                      Color(0xffDB8E00),
+                    ],
+                    label: 'Remplacer la carte',
+                  ),
                 ),
-              )
-            ],
+                RoundedButton(
+                  onPressed: controller.updateCardByNFC,
+                  colors: [
+                    Color(0xffFF3C2B),
+                    Color(0xffDB1F1F),
+                  ],
+                  label: 'Supprimer la carte',
+                ),
+              ],
+            ),
+            replacement: Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              child: RoundedButton(
+                onPressed: () => controller.updateCardByNFC(user),
+                label: 'Associer une nouvelle carte',
+              ),
+            ),
           )
         ],
       ),

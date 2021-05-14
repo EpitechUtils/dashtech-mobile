@@ -26,3 +26,12 @@ const String cardHistoryByLogin = """
     }
   }
 """;
+
+const String cardUpdateForLogin = """
+  query cardUpdateForLogin(\$email: String!, \$nfcTag: String!) {
+    cardUpdateForLogin(email: \$email, nfcTag: \$nfcTag) {
+      id
+      nfcTag
+    }
+  }
+""";
