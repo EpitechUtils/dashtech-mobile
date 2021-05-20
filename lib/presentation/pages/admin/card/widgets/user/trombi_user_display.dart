@@ -3,6 +3,7 @@ import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
+import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet.dart';
 import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,15 @@ class TrombiUserDisplay extends GetView<AdminCardController> {
       child: InkWell(
         highlightColor: Colors.transparent,
         borderRadius: BorderRadius.circular(10),
-        onTap: () => controller.onUserSelected(user),
+        onTap: () {
+          Get.bottomSheet(
+            TrombiUserBottomSheet(user),
+            backgroundColor: Color(fillColor),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+          );
+        },
         splashColor: const Color(primaryColor).withOpacity(0.2),
         child: Container(
           padding: const EdgeInsets.all(10),

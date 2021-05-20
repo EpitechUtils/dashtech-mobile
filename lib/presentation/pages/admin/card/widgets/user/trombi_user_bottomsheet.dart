@@ -27,16 +27,14 @@ class TrombiUserBottomSheet extends GetViewWithHook<AdminCardController> {
           topRight: Radius.circular(20),
         ),
       ),
-      child: Obx(
-        () => DefaultTabController(
-          length: 2,
-          initialIndex: controller.currentBottomIndex.value,
-          child: TabBarView(
-            children: [
-              BottomSheetCardInfo(user),
-              BottomSheetCardHistory(user),
-            ],
-          ),
+      child: DefaultTabController(
+        length: 2,
+        initialIndex: 0,
+        child: TabBarView(
+          children: [
+            BottomSheetCardInfo(user),
+            BottomSheetCardHistory(user),
+          ],
         ),
       ),
     );

@@ -58,7 +58,7 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
                   ),
                 ),
                 RoundedButton(
-                  onPressed: controller.updateCardByNFC,
+                  onPressed: () => controller.removeCard(user),
                   colors: [
                     Color(0xffFF3C2B),
                     Color(0xffDB1F1F),

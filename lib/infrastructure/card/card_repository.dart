@@ -5,10 +5,12 @@ import 'package:dashtech/domain/card/models/card_history.dart';
 import 'package:dashtech/domain/card/models/card_result.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
+import 'package:dashtech/infrastructure/card/graphql/card_mutations.dart';
 import 'package:dashtech/infrastructure/card/graphql/card_queries.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class CardRepository implements ICardRepository {
@@ -66,8 +68,8 @@ class CardRepository implements ICardRepository {
     String login,
     String nfcTag,
   ) async {
-    final QueryResult result = await graphqlService.client.query(
-      QueryOptions(
+    final QueryResult result = await graphqlService.client.mutate(
+      MutationOptions(
         document: gql(cardUpdateForLogin),
         variables: {
           "email": login,
@@ -77,9 +79,39 @@ class CardRepository implements ICardRepository {
     );
 
     if (result.hasException) {
-      return left(const BaseFailure.unexpected());
+      if (result.exception!.statusCode == HttpStatus.conflict) {
+        return left(
+          BaseFailure.conflict(
+            message: result.exception!.statusMessage,
+          ),
+        );
+      }
+      return left(BaseFailure.unexpected());
     }
 
     return right(Card.fromJson(result.data!['cardUpdateForLogin']));
+  }
+
+  @override
+  Future<Either<BaseFailure, void>> removeCard(
+    String login,
+  ) async {
+    final QueryResult result = await graphqlService.client.mutate(
+      MutationOptions(
+        document: gql(cardRemove),
+        variables: {
+          "email": login,
+        },
+      ),
+    );
+
+    if (result.hasException) {
+      if (result.exception!.statusCode == HttpStatus.conflict) {
+        return left(const BaseFailure.conflict());
+      }
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(result.data!['cardRemove']);
   }
 }

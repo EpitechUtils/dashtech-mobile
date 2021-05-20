@@ -16,4 +16,7 @@ abstract class ICardRepository {
     String login,
     String nfcTag,
   );
+  Future<Either<BaseFailure, void>> removeCard(
+    String login,
+  );
 }

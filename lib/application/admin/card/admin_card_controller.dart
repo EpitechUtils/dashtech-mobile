@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
 import 'package:dashtech/domain/card/models/card_history.dart';
@@ -7,10 +5,7 @@ import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/card/models/card.dart' as models;
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
-import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
-import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
@@ -25,16 +20,17 @@ class AdminCardController extends GetxController {
   final RxList<TrombiUser> users = RxList([]);
 
   final RxList<CardHistory> cardHistory = RxList([]);
-  final RxInt currentBottomIndex = 0.obs;
 
+  /// Fetch profiles by given filters
   Future<void> fetchProfilesByFilters() async {
     isLoading.value = true;
-    final PromoFetchInput filters = PromoFetchInput(
-      course: this.filterCourse.value,
-      promo: this.filterPromo.value,
-    );
     final Either<BaseFailure, List<TrombiUser>> failOrUsers =
-        await this.cardRepository.getUsersByFilters(filters);
+        await this.cardRepository.getUsersByFilters(
+              PromoFetchInput(
+                course: this.filterCourse.value,
+                promo: this.filterPromo.value,
+              ),
+            );
 
     failOrUsers.fold(
       (BaseFailure left) {
@@ -48,17 +44,9 @@ class AdminCardController extends GetxController {
     );
   }
 
-  void onUserSelected(TrombiUser user) {
-    currentBottomIndex.value = 0;
-    Get.bottomSheet(
-      TrombiUserBottomSheet(user),
-      backgroundColor: Color(fillColor),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-    );
-  }
+  void onUserSelected(TrombiUser user) {}
 
+  /// Get suer history from login
   Future<void> getUserCardHistory(TrombiUser user) async {
     cardHistory.clear();
     final Either<BaseFailure, List<CardHistory>> failOrInfo =
@@ -74,6 +62,7 @@ class AdminCardController extends GetxController {
     );
   }
 
+  /// Update or create new card by NFC
   Future<void> updateCardByNFC(TrombiUser user) async {
     NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
     if (availability != NFCAvailability.available) {
@@ -82,7 +71,7 @@ class AdminCardController extends GetxController {
 
     try {
       NFCTag tag = await FlutterNfcKit.poll(
-        iosAlertMessage: "Présentez votre carte",
+        iosAlertMessage: "Présentez une carte NFC Epitech",
       );
 
       if (tag.type != NFCTagType.mifare_desfire) {
@@ -97,12 +86,21 @@ class AdminCardController extends GetxController {
 
       await failOrInfo.fold(
         (BaseFailure left) async {
-          SnackBarUtils.error(message: 'http_common');
-          await FlutterNfcKit.finish(iosErrorMessage: "http_common".tr);
+          left.map(
+              unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
+              notFound: (_) {},
+              conflict: (_) async {
+                final String email = _.message!.split(':').last;
+                await FlutterNfcKit.finish(
+                    iosErrorMessage: "Carte déjà utilisée par " + email);
+                SnackBarUtils.error(
+                    message: "Carte déjà utilisée par " + email);
+              },
+              unauthorized: (_) {});
         },
         (models.Card right) async {
           await FlutterNfcKit.finish(
-            iosAlertMessage: "Carte ajouté pour " + user.title,
+            iosAlertMessage: "Carte associée à " + user.title,
           );
 
           // Set values
@@ -114,6 +112,7 @@ class AdminCardController extends GetxController {
 
           // Close bottomsheet and display success
           Get.back();
+          SnackBarUtils.success(message: 'Carte associée avec ' + user.title);
         },
       );
     } catch (err) {
@@ -122,5 +121,28 @@ class AdminCardController extends GetxController {
       await FlutterNfcKit.finish(iosErrorMessage: "http_common".tr);
       return;
     }
+  }
+
+  /// Remove card by user login
+  Future<void> removeCard(TrombiUser user) async {
+    final Either<BaseFailure, void> failOrSuccess =
+        await this.cardRepository.removeCard(user.login);
+
+    failOrSuccess.fold(
+      (BaseFailure left) {
+        SnackBarUtils.error(message: 'http_common');
+      },
+      (_) {
+        // Set values
+        users.value = users.map((elem) {
+          if (elem.login == user.login) return elem.copyWith.call(card: null);
+          return elem;
+        }).toList();
+
+        // Close bottomsheet and display success
+        Get.back();
+        SnackBarUtils.success(message: 'Carte supprimée avec succès');
+      },
+    );
   }
 }

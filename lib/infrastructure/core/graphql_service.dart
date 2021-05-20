@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 extension GraphQLErrorX on OperationException {
-  int get statusCode {
-    print("----------------- " + graphqlErrors.first.toString());
-    return graphqlErrors.first.extensions!['exception']['status'] as int;
-  }
+  int get statusCode =>
+      graphqlErrors.first.extensions!['exception']['status'] as int;
+
+  String get statusMessage => graphqlErrors.first.message;
 }
 
 class GraphqlService extends GetxService {

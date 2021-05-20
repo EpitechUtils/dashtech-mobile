@@ -38,13 +38,13 @@ class HistoryUtils {
   static String getEventDescription(String type) {
     switch (type) {
       case 'new':
-        return 'Association d\'une nouvelle carte';
+        return 'Association d\'une carte';
 
       case 'delete':
         return 'Suppression de la carte';
 
       case 'replace':
-        return 'Remplacement de la carte par une autre';
+        return 'Remplacement de la carte';
 
       default:
         return "Status inconnu";
