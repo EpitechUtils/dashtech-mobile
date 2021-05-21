@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 
+enum Filter { YEAR, COURSE, PROMO }
+
 class AdminCardController extends GetxController {
   final ICardRepository cardRepository = Get.find();
 
@@ -20,6 +22,15 @@ class AdminCardController extends GetxController {
   final RxList<TrombiUser> users = RxList([]);
 
   final RxList<CardHistory> cardHistory = RxList([]);
+
+  @override
+  Future<void> onInit() async {
+    this.getFilterByName(Filter.YEAR);
+    super.onInit();
+  }
+
+  /// Get filter values by params
+  Future<void> getFilterByName(Filter filter) async {}
 
   /// Fetch profiles by given filters
   Future<void> fetchProfilesByFilters() async {

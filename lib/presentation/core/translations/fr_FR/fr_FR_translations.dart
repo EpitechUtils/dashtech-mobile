@@ -60,7 +60,7 @@ final Map<String, String> frFR = {
   'admin_card_associate_delete': "Supprimer la carte",
   'admin_card_student_details': "Détails de l'étudiant",
   'admin_card_card_history': "Historique des modifications",
-  'admin_card_filter_search': "Afficher la liste",
+  'admin_card_filter_search': "Voir les profils",
 
   // Admin card history
   'admin_card_history_new': "Ajout d'une carte",
