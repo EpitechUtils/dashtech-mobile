@@ -50,6 +50,32 @@ final Map<String, String> frFR = {
   // Admin cards
   'admin_card_title': "Cartes Etudiant",
   'admin_card_subtitle': "Associez, gérez les cartes des étudiants...",
+  'admin_card_present_card': "Présentez une carte NFC d'Epitech",
+  'admin_card_not_epitech_card': "Cette carte ne provient pas d'Epitech.",
+  'admin_card_successfully_deleted': "Carte supprimée avec succès.",
+  'admin_card_associated_to': "Carte associée à @user",
+  'admin_card_already_used_by': "Cette carte appartient déjà à @login",
+  'admin_card_associate_new': "Associer une carte",
+  'admin_card_associate_replace': "Remplacer la carte",
+  'admin_card_associate_delete': "Supprimer la carte",
+  'admin_card_student_details': "Détails de l'étudiant",
+  'admin_card_card_history': "Historique des modifications",
+  'admin_card_filter_search': "Afficher la liste",
+
+  // Admin card history
+  'admin_card_history_new': "Ajout d'une carte",
+  'admin_card_history_replace': "Remplacement de la carte",
+  'admin_card_history_delete': "Suppression de la carte",
+  'admin_card_history_unknown': "Status inconnu",
+
+  // Words
+  'word_first_name': "Prénom",
+  'word_last_name': "Nom",
+  'word_email': "Adresse Email",
+  'word_card': "Carte",
+  'word_nothing': "Aucune",
+  'word_by': "Par",
+  'word_at': "Le",
 
   // Form
   "error_form_required": "Champs requis",

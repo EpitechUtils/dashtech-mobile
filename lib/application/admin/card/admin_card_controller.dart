@@ -44,8 +44,6 @@ class AdminCardController extends GetxController {
     );
   }
 
-  void onUserSelected(TrombiUser user) {}
-
   /// Get suer history from login
   Future<void> getUserCardHistory(TrombiUser user) async {
     cardHistory.clear();
@@ -71,12 +69,12 @@ class AdminCardController extends GetxController {
 
     try {
       NFCTag tag = await FlutterNfcKit.poll(
-        iosAlertMessage: "Présentez une carte NFC Epitech",
+        iosAlertMessage: "admin_card_present_card".tr,
       );
 
       if (tag.type != NFCTagType.mifare_desfire) {
         await FlutterNfcKit.finish(
-          iosErrorMessage: "Cette carte ne provient pas d'Epitech.",
+          iosErrorMessage: "admin_card_not_epitech_card".tr,
         );
         return;
       }
@@ -92,15 +90,17 @@ class AdminCardController extends GetxController {
               conflict: (_) async {
                 final String email = _.message!.split(':').last;
                 await FlutterNfcKit.finish(
-                    iosErrorMessage: "Carte déjà utilisée par " + email);
-                SnackBarUtils.error(
-                    message: "Carte déjà utilisée par " + email);
+                    iosErrorMessage: 'admin_card_already_used_by'.trParams(
+                  {'login': email},
+                )!);
               },
               unauthorized: (_) {});
         },
         (models.Card right) async {
           await FlutterNfcKit.finish(
-            iosAlertMessage: "Carte associée à " + user.title,
+            iosAlertMessage: 'admin_card_associated_to'.trParams(
+              {'user': user.title},
+            )!,
           );
 
           // Set values
@@ -112,7 +112,11 @@ class AdminCardController extends GetxController {
 
           // Close bottomsheet and display success
           Get.back();
-          SnackBarUtils.success(message: 'Carte associée avec ' + user.title);
+          SnackBarUtils.success(
+            message: 'admin_card_associated_to'.trParams(
+              {'user': user.title},
+            )!,
+          );
         },
       );
     } catch (err) {
@@ -141,7 +145,7 @@ class AdminCardController extends GetxController {
 
         // Close bottomsheet and display success
         Get.back();
-        SnackBarUtils.success(message: 'Carte supprimée avec succès');
+        SnackBarUtils.success(message: 'admin_card_successfully_deleted'.tr);
       },
     );
   }

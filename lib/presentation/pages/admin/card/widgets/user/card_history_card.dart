@@ -33,19 +33,19 @@ class CardHistoryCard extends GetView<AdminCardController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    HistoryUtils.getEventDescription(cardHistory.eventType),
+                    HistoryUtils.getEventDescription(cardHistory.eventType).tr,
                     style: Get.textTheme.headline1!.copyWith(
                       fontSize: 15,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Par " + cardHistory.profile.email,
+                    ['word_by'.tr, cardHistory.profile.email].join(" "),
                     style: Get.textTheme.headline2!.copyWith(fontSize: 13),
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    "Le " + cardHistory.createdAt.toString(),
+                    ['word_at'.tr, cardHistory.createdAt.toString()].join(" "),
                     style: Get.textTheme.headline2!.copyWith(fontSize: 13),
                   ),
                 ],

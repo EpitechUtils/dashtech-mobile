@@ -22,10 +22,9 @@ class SearchFields extends GetView<AdminCardController> {
         const SizedBox(height: 10),
         Obx(
           () => RoundedButton(
-            height: 40,
             isLoading: controller.isLoading.value,
             onPressed: controller.fetchProfilesByFilters,
-            label: 'Afficher la liste des Etudiants',
+            label: 'admin_card_filter_search'.tr,
           ),
         ),
       ],

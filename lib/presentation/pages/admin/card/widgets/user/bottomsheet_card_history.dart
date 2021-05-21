@@ -19,7 +19,7 @@ class BottomSheetCardHistory extends GetView<AdminCardController> {
       child: Column(
         children: [
           Text(
-            "Historique des modifications",
+            'admin_card_card_history'.tr,
             style: TextStyle(
               color: Color(textColor),
               fontWeight: FontWeight.bold,

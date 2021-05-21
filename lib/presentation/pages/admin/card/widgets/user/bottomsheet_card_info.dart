@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
@@ -18,7 +19,7 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
       child: Column(
         children: [
           Text(
-            "Détails sur l'étudiant(e)",
+            "admin_card_student_details".tr,
             style: TextStyle(
               color: Color(textColor),
               fontWeight: FontWeight.bold,
@@ -27,16 +28,16 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
           ),
           const SizedBox(height: 15),
           TrombiUserBottomSheetDetail(
-            title: "Prénom / Nom",
+            title: ['word_first_name'.tr, 'word_last_name'.tr].join(" / "),
             value: user.title,
           ),
           TrombiUserBottomSheetDetail(
-            title: "Adresse Email",
+            title: 'word_email'.tr,
             value: user.login,
           ),
           TrombiUserBottomSheetDetail(
-            title: "Carte",
-            value: user.card == null ? "Aucune" : user.card!.nfcTag,
+            title: 'word_card'.tr,
+            value: user.card == null ? "word_nothing".tr : user.card!.nfcTag,
             color: user.card == null ? Color(errorColor) : Color(successColor),
           ),
           Visibility(
@@ -54,7 +55,7 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
                       Color(0xffFFAE00),
                       Color(0xffDB8E00),
                     ],
-                    label: 'Remplacer la carte',
+                    label: 'admin_card_associate_replace'.tr,
                   ),
                 ),
                 RoundedButton(
@@ -63,7 +64,7 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
                     Color(0xffFF3C2B),
                     Color(0xffDB1F1F),
                   ],
-                  label: 'Supprimer la carte',
+                  label: 'admin_card_associate_delete'.tr,
                 ),
               ],
             ),
@@ -71,7 +72,7 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: RoundedButton(
                 onPressed: () => controller.updateCardByNFC(user),
-                label: 'Associer une nouvelle carte',
+                label: 'admin_card_associate_new'.tr,
               ),
             ),
           )

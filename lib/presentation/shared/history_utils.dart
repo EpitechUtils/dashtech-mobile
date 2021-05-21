@@ -38,16 +38,16 @@ class HistoryUtils {
   static String getEventDescription(String type) {
     switch (type) {
       case 'new':
-        return 'Association d\'une carte';
+        return 'admin_card_history_new';
 
       case 'delete':
-        return 'Suppression de la carte';
+        return 'admin_card_history_replace';
 
       case 'replace':
-        return 'Remplacement de la carte';
+        return 'admin_card_history_delete';
 
       default:
-        return "Status inconnu";
+        return "admin_card_history_unknown";
     }
   }
 }
