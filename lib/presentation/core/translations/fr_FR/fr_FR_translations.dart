@@ -67,6 +67,9 @@ final Map<String, String> frFR = {
   'admin_card_history_replace': "Remplacement de la carte",
   'admin_card_history_delete': "Suppression de la carte",
   'admin_card_history_unknown': "Status inconnu",
+  'admin_card_empty_promo_title': "Promo vide...",
+  'admin_card_empty_promo_text':
+      "Cette preomotion ne contient aucun étudiants. Veuillez vérifier si les filtres sont les bons ou réessayez.",
 
   // Words
   'word_first_name': "Prénom",

@@ -5,6 +5,7 @@ import 'package:dashtech/presentation/pages/admin/card/widgets/filters/course_dr
 import 'package:dashtech/presentation/pages/admin/card/widgets/filters/promo_dropdown.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/filters/search_fields.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_display.dart';
+import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_empty_list.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_users_shimmer.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/filters/year_dropdown.dart';
 import 'package:dashtech/presentation/shared/rounded_button.dart';
@@ -28,11 +29,15 @@ class AdminCardPage extends GetView<AdminCardController> {
                 () => Visibility(
                   visible: !controller.isLoading.value,
                   replacement: TrombiUsersShimmer(),
-                  child: ListView.builder(
-                    itemCount: controller.users.length,
-                    itemBuilder: (context, index) =>
-                        TrombiUserDisplay(controller.users[index]),
-                  ),
+                  child: (() {
+                    if (controller.users.isEmpty) return TrombiUserEmptyList();
+
+                    return ListView.builder(
+                      itemCount: controller.users.length,
+                      itemBuilder: (context, index) =>
+                          TrombiUserDisplay(controller.users[index]),
+                    );
+                  })(),
                 ),
               ),
             ),
