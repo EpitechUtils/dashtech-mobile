@@ -1,36 +1,83 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
 import 'package:dashtech/domain/card/models/card_history.dart';
+import 'package:dashtech/domain/card/models/filters/filter_course.dart';
+import 'package:dashtech/domain/card/models/filters/filter_details.dart';
+import 'package:dashtech/domain/card/models/filters/filter_promo.dart';
+import 'package:dashtech/domain/card/models/filters/filter_scolaryear.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/card/models/card.dart' as models;
 import 'package:dashtech/domain/core/failures/base_failure.dart';
+import 'package:dashtech/infrastructure/card/input/filter_details_input.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 
-enum Filter { YEAR, COURSE, PROMO }
+enum Filter { YEARS, COURSES, PROMOS }
 
 class AdminCardController extends GetxController {
   final ICardRepository cardRepository = Get.find();
 
   final RxBool isLoading = false.obs;
-  final RxString filterYear = "2020".obs;
-  final RxString filterCourse = "bachelor/classic".obs;
-  final RxString filterPromo = "tek2".obs;
   final RxList<TrombiUser> users = RxList([]);
+
+  final RxMap<Filter, bool> filterIsLoading = RxMap<Filter, bool>({
+    Filter.YEARS: false,
+    Filter.COURSES: false,
+    Filter.PROMOS: false,
+  });
+  final RxList<FilterScolaryear> filterYears = RxList([]);
+  final RxList<FilterCourse> filterCourses = RxList([]);
+  final RxList<FilterPromo> filterPromos = RxList([]);
+  final Rxn<FilterScolaryear> filterYear = Rxn(null);
+  final Rxn<FilterCourse> filterCourse = Rxn(null);
+  final Rxn<FilterPromo> filterPromo = Rxn(null);
 
   final RxList<CardHistory> cardHistory = RxList([]);
 
   @override
   Future<void> onInit() async {
-    this.getFilterByName(Filter.YEAR);
+    this.getFilterByName(Filter.YEARS);
     super.onInit();
   }
 
   /// Get filter values by params
-  Future<void> getFilterByName(Filter filter) async {}
+  Future<void> getFilterByName(Filter filter) async {
+    filterIsLoading[filter] = true;
+
+    final Either<BaseFailure, FilterDetails> failOrDetails = await this
+        .cardRepository
+        .getFilterValue(
+          FilterDetailsInput(
+            filter: EnumToString.convertToString(filter).toLowerCase(),
+            scolaryear:
+                filterYear.value == null ? null : filterYear.value!.scolaryear,
+            course:
+                filterCourse.value == null ? null : filterCourse.value!.code,
+          ),
+        );
+
+    failOrDetails.fold(
+      (BaseFailure left) {
+        filterIsLoading[filter] = false;
+        SnackBarUtils.error(message: 'http_common');
+      },
+      (FilterDetails right) {
+        filterIsLoading[filter] = false;
+
+        if (right.filterType == "years") {
+          filterYears.value = right.years!;
+        } else if (right.filterType == "courses") {
+          filterCourses.value = right.courses!;
+        } else if (right.filterType == "promos") {
+          filterPromos.value = right.promos!;
+        }
+      },
+    );
+  }
 
   /// Fetch profiles by given filters
   Future<void> fetchProfilesByFilters() async {
@@ -38,8 +85,8 @@ class AdminCardController extends GetxController {
     final Either<BaseFailure, List<TrombiUser>> failOrUsers =
         await this.cardRepository.getUsersByFilters(
               PromoFetchInput(
-                course: this.filterCourse.value,
-                promo: this.filterPromo.value,
+                course: this.filterCourse.value!.code,
+                promo: this.filterPromo.value!.promo,
               ),
             );
 

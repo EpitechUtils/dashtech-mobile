@@ -22,7 +22,7 @@ class AdminCardPage extends GetView<AdminCardController> {
         child: Column(
           children: [
             SearchFields(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Expanded(
               child: Obx(
                 () => Visibility(

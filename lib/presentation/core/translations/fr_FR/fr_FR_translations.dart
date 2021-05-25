@@ -101,6 +101,8 @@ final Map<String, String> frFR = {
   'next': 'Suivant',
   'global_info': "Infos Globales",
   'previous': "Revenir en arrière",
+  'loading': "Chargement...",
+  'select': "Selectionnez",
 
   // Other
   'available_soon': 'Bientôt Disponible !',

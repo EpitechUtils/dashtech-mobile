@@ -43,11 +43,9 @@ const String cardGetFilterValues = """
         title
       }
       promos {
-        code
-        old_title
-        shortcode_school
+        promo
+        promo_deprecated
         students
-        title
       }
     }
   }

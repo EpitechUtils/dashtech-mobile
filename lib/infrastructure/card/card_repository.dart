@@ -25,11 +25,18 @@ class CardRepository implements ICardRepository {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         document: gql(cardGetFilterValues),
-        variables: {"details": filterDetailsInput},
+        variables: {
+          "details": {
+            "filter": filterDetailsInput.filter,
+            "scolaryear": filterDetailsInput.scolaryear,
+            "course": filterDetailsInput.course,
+          },
+        },
       ),
     );
 
     if (result.hasException) {
+      print(result.exception.toString());
       return left(const BaseFailure.unexpected());
     }
 
