@@ -21,6 +21,7 @@ class CourseDropdown extends GetView<AdminCardController> {
           ),
           onChanged: (FilterCourse? val) {
             controller.filterCourse.value = val!;
+            controller.filterPromo.value = null;
             controller.getFilterByName(Filter.PROMOS);
           },
           items: buildDropdowns()),

@@ -21,6 +21,8 @@ class YearDropdown extends GetView<AdminCardController> {
         ),
         onChanged: (FilterScolaryear? val) {
           controller.filterYear.value = val!;
+          controller.filterCourse.value = null;
+          controller.filterPromo.value = null;
           controller.getFilterByName(Filter.COURSES);
         },
         items: buildDropdowns(),

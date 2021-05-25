@@ -14,7 +14,9 @@ class AssetsUtils {
     return buffer.toString();
   }
 
-  static String profilePicture(String picture) {
+  static String profilePicture(String? picture) {
+    if (picture == null) return "";
+
     final StringBuffer buffer = StringBuffer();
     buffer.writeAll([
       DotEnv.env['BASE_URL'],

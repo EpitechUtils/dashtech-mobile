@@ -10,7 +10,7 @@ class TrombiUser with _$TrombiUser {
     required String login,
     required String title,
     required String location,
-    required String picture,
+    String? picture,
     required String prenom,
     required String nom,
     Card? card,
