@@ -26,3 +26,29 @@ const String cardHistoryByLogin = """
     }
   }
 """;
+
+const String cardGetFilterValues = """
+  query cardGetFilterValues(\$details: FilterDetailsInput!) {
+    cardGetFilterValues(details: \$details) {
+      filterType
+      years {
+        students
+        scolaryear
+      }
+      courses {
+        code
+        old_title
+        shortcode_school
+        students
+        title
+      }
+      promos {
+        code
+        old_title
+        shortcode_school
+        students
+        title
+      }
+    }
+  }
+""";

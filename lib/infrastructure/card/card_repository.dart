@@ -3,10 +3,12 @@ import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
 import 'package:dashtech/domain/card/models/card.dart';
 import 'package:dashtech/domain/card/models/card_history.dart';
 import 'package:dashtech/domain/card/models/card_result.dart';
+import 'package:dashtech/domain/card/models/filters/filter_details.dart';
 import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/card/graphql/card_mutations.dart';
 import 'package:dashtech/infrastructure/card/graphql/card_queries.dart';
+import 'package:dashtech/infrastructure/card/input/filter_details_input.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
 import 'package:dashtech/infrastructure/core/graphql_service.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,24 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 class CardRepository implements ICardRepository {
   final GraphqlService graphqlService = Get.find();
+
+  @override
+  Future<Either<BaseFailure, FilterDetails>> getFilterValue(
+    FilterDetailsInput filterDetailsInput,
+  ) async {
+    final QueryResult result = await graphqlService.client.query(
+      QueryOptions(
+        document: gql(cardGetFilterValues),
+        variables: {"details": filterDetailsInput},
+      ),
+    );
+
+    if (result.hasException) {
+      return left(const BaseFailure.unexpected());
+    }
+
+    return right(FilterDetails.fromJson(result.data!['cardGetFilterValues']));
+  }
 
   @override
   Future<Either<BaseFailure, List<TrombiUser>>> getUsersByFilters(

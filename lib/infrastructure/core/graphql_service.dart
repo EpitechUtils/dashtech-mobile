@@ -30,6 +30,7 @@ class GraphqlService extends GetxService {
       getToken: () {
         final String? token = tokenService.getToken();
         if (token == null) return null;
+        print(token);
         return 'Bearer $token';
       },
     );
