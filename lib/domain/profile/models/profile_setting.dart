@@ -11,8 +11,7 @@ class ProfileSetting with _$ProfileSetting {
     required String value,
   }) = _ProfileSetting;
 
-  factory ProfileSetting.fromJson(Map<String, dynamic> json) =>
-      _$ProfileSettingFromJson(json);
+  factory ProfileSetting.fromJson(Map<String, dynamic> json) => _$ProfileSettingFromJson(json);
 
   const ProfileSetting._();
 }

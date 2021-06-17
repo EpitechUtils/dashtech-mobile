@@ -11,8 +11,7 @@ class FilterScolaryear with _$FilterScolaryear {
     required String scolaryear,
   }) = _FilterScolaryear;
 
-  factory FilterScolaryear.fromJson(Map<String, dynamic> json) =>
-      _$FilterScolaryearFromJson(json);
+  factory FilterScolaryear.fromJson(Map<String, dynamic> json) => _$FilterScolaryearFromJson(json);
 
   const FilterScolaryear._();
 }

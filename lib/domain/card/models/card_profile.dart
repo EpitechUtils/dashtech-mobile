@@ -10,8 +10,7 @@ class CardProfile with _$CardProfile {
     required String email,
   }) = _CardProfile;
 
-  factory CardProfile.fromJson(Map<String, dynamic> json) =>
-      _$CardProfileFromJson(json);
+  factory CardProfile.fromJson(Map<String, dynamic> json) => _$CardProfileFromJson(json);
 
   const CardProfile._();
 }

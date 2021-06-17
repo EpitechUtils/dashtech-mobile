@@ -16,8 +16,7 @@ class SigninController extends GetxController {
   final IAuthRepository authRepository = Get.find();
 
   final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormBuilderState> signInCodeForm =
-      GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> signInCodeForm = GlobalKey<FormBuilderState>();
 
   final RxBool isLoading = false.obs;
   final RxBool isWaitingForCode = false.obs;
@@ -57,8 +56,8 @@ class SigninController extends GetxController {
   // Send email code by email
   Future<void> sendEmailCode() async {
     isLoading.value = true;
-    final Either<AuthFailure, bool> failureOrYes = await authRepository
-        .sendEmailCode(emailTextController.text.toLowerCase());
+    final Either<AuthFailure, bool> failureOrYes =
+        await authRepository.sendEmailCode(emailTextController.text.toLowerCase());
 
     failureOrYes.fold(
       (AuthFailure left) => SnackBarUtils.error(message: 'http_common'),
@@ -83,19 +82,15 @@ class SigninController extends GetxController {
     isLoading.value = true;
 
     final Either<AuthFailure, AuthProfile> failureOrAuthProfile =
-        await authRepository.confirmEmailCode(
-            emailTextController.text.toLowerCase(), code);
+        await authRepository.confirmEmailCode(emailTextController.text.toLowerCase(), code);
     failureOrAuthProfile.fold(
       (AuthFailure left) {
         isLoading.value = false;
         left.map(
           unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
-          notFound: (_) =>
-              SnackBarUtils.error(message: 'http_profile_not_found'),
-          conflict: (_) =>
-              SnackBarUtils.error(message: 'http_profile_invalid_code'),
-          unauthorized: (_) =>
-              SnackBarUtils.error(message: 'http_profile_expired_code'),
+          notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
+          conflict: (_) => SnackBarUtils.error(message: 'http_profile_invalid_code'),
+          unauthorized: (_) => SnackBarUtils.error(message: 'http_profile_expired_code'),
         );
       },
       (AuthProfile right) async {
@@ -120,10 +115,8 @@ class SigninController extends GetxController {
             isLoading.value = false;
             left.map(
               unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
-              notFound: (_) =>
-                  SnackBarUtils.error(message: 'http_profile_not_found'),
-              conflict: (_) =>
-                  SnackBarUtils.error(message: 'http_profile_email_missmatch'),
+              notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
+              conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
               unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
             );
           },
@@ -145,7 +138,7 @@ class SigninController extends GetxController {
   String get code => codes.map((controller) => controller.text).join('');
 
   void checkFormValidity() {
-    verificationCodeFormIsValid.value = signInCodeForm.currentState!.mounted &&
-        signInCodeForm.currentState!.validate();
+    verificationCodeFormIsValid.value =
+        signInCodeForm.currentState!.mounted && signInCodeForm.currentState!.validate();
   }
 }

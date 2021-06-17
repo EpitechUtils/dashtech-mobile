@@ -27,8 +27,7 @@ class ActivityAssistantsList extends GetView<StudentActivityController> {
               .map(
                 (ActivityDetailsEventAssistant ass) => Card(
                   color: Colors.white,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                  margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     width: Get.width - 20,

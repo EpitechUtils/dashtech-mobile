@@ -20,8 +20,7 @@ AuthProfileTokenDto _$AuthProfileTokenDtoFromJson(Map<String, dynamic> json) {
 class _$AuthProfileTokenDtoTearOff {
   const _$AuthProfileTokenDtoTearOff();
 
-  _AuthProfileTokenDto call(
-      {required DateTime expirationTime, required String accessToken}) {
+  _AuthProfileTokenDto call({required DateTime expirationTime, required String accessToken}) {
     return _AuthProfileTokenDto(
       expirationTime: expirationTime,
       accessToken: accessToken,
@@ -56,8 +55,7 @@ abstract class $AuthProfileTokenDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthProfileTokenDtoCopyWithImpl<$Res>
-    implements $AuthProfileTokenDtoCopyWith<$Res> {
+class _$AuthProfileTokenDtoCopyWithImpl<$Res> implements $AuthProfileTokenDtoCopyWith<$Res> {
   _$AuthProfileTokenDtoCopyWithImpl(this._value, this._then);
 
   final AuthProfileTokenDto _value;
@@ -83,18 +81,16 @@ class _$AuthProfileTokenDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AuthProfileTokenDtoCopyWith<$Res>
-    implements $AuthProfileTokenDtoCopyWith<$Res> {
-  factory _$AuthProfileTokenDtoCopyWith(_AuthProfileTokenDto value,
-          $Res Function(_AuthProfileTokenDto) then) =
+abstract class _$AuthProfileTokenDtoCopyWith<$Res> implements $AuthProfileTokenDtoCopyWith<$Res> {
+  factory _$AuthProfileTokenDtoCopyWith(
+          _AuthProfileTokenDto value, $Res Function(_AuthProfileTokenDto) then) =
       __$AuthProfileTokenDtoCopyWithImpl<$Res>;
   @override
   $Res call({DateTime expirationTime, String accessToken});
 }
 
 /// @nodoc
-class __$AuthProfileTokenDtoCopyWithImpl<$Res>
-    extends _$AuthProfileTokenDtoCopyWithImpl<$Res>
+class __$AuthProfileTokenDtoCopyWithImpl<$Res> extends _$AuthProfileTokenDtoCopyWithImpl<$Res>
     implements _$AuthProfileTokenDtoCopyWith<$Res> {
   __$AuthProfileTokenDtoCopyWithImpl(
       _AuthProfileTokenDto _value, $Res Function(_AuthProfileTokenDto) _then)
@@ -124,8 +120,7 @@ class __$AuthProfileTokenDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
-  const _$_AuthProfileTokenDto(
-      {required this.expirationTime, required this.accessToken})
+  const _$_AuthProfileTokenDto({required this.expirationTime, required this.accessToken})
       : super._();
 
   factory _$_AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =>
@@ -146,11 +141,9 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
     return identical(this, other) ||
         (other is _AuthProfileTokenDto &&
             (identical(other.expirationTime, expirationTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.expirationTime, expirationTime)) &&
+                const DeepCollectionEquality().equals(other.expirationTime, expirationTime)) &&
             (identical(other.accessToken, accessToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessToken, accessToken)));
+                const DeepCollectionEquality().equals(other.accessToken, accessToken)));
   }
 
   @override
@@ -162,8 +155,7 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
   @JsonKey(ignore: true)
   @override
   _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith =>
-      __$AuthProfileTokenDtoCopyWithImpl<_AuthProfileTokenDto>(
-          this, _$identity);
+      __$AuthProfileTokenDtoCopyWithImpl<_AuthProfileTokenDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -173,8 +165,7 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
 
 abstract class _AuthProfileTokenDto extends AuthProfileTokenDto {
   const factory _AuthProfileTokenDto(
-      {required DateTime expirationTime,
-      required String accessToken}) = _$_AuthProfileTokenDto;
+      {required DateTime expirationTime, required String accessToken}) = _$_AuthProfileTokenDto;
   const _AuthProfileTokenDto._() : super._();
 
   factory _AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =

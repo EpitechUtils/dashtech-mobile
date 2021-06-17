@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-class AdminCardAppBar extends GetView<AdminCardController>
-    implements PreferredSizeWidget {
+class AdminCardAppBar extends GetView<AdminCardController> implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(

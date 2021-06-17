@@ -98,8 +98,7 @@ class AuthRepository implements IAuthRepository {
       }
     }
 
-    final Map<String, dynamic> json =
-        result.data!['authConfirmEmailCode'] as Map<String, dynamic>;
+    final Map<String, dynamic> json = result.data!['authConfirmEmailCode'] as Map<String, dynamic>;
     return right(AuthProfile.fromJson(json));
   }
 
@@ -152,8 +151,7 @@ class AuthRepository implements IAuthRepository {
         },
       );
 
-      final AuthProfileTokenDto tokenDto =
-          AuthProfileTokenDto.fromJson(response.data!);
+      final AuthProfileTokenDto tokenDto = AuthProfileTokenDto.fromJson(response.data!);
       final AuthProfile authProfile = tokenDto.toDomain();
 
       print(tokenDto.toString());

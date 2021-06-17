@@ -15,8 +15,7 @@ class ActivityRdvGroup with _$ActivityRdvGroup {
     required List<String> members,
   }) = _ActivityRdvGroup;
 
-  factory ActivityRdvGroup.fromJson(Map<String, dynamic> json) =>
-      _$ActivityRdvGroupFromJson(json);
+  factory ActivityRdvGroup.fromJson(Map<String, dynamic> json) => _$ActivityRdvGroupFromJson(json);
 
   const ActivityRdvGroup._();
 }
@@ -50,8 +49,7 @@ class ActivityRdvEvent with _$ActivityRdvEvent {
     String? date_modif,
   }) = _ActivityRdvEvent;
 
-  factory ActivityRdvEvent.fromJson(Map<String, dynamic> json) =>
-      _$ActivityRdvEventFromJson(json);
+  factory ActivityRdvEvent.fromJson(Map<String, dynamic> json) => _$ActivityRdvEventFromJson(json);
 
   const ActivityRdvEvent._();
 }
@@ -92,8 +90,7 @@ class ActivityRdvSlot with _$ActivityRdvSlot {
     @Default([]) List<ActivityRdvMember> members,
   }) = _ActivityRdvSlot;
 
-  factory ActivityRdvSlot.fromJson(Map<String, dynamic> json) =>
-      _$ActivityRdvSlotFromJson(json);
+  factory ActivityRdvSlot.fromJson(Map<String, dynamic> json) => _$ActivityRdvSlotFromJson(json);
 
   const ActivityRdvSlot._();
 }

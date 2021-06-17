@@ -16,8 +16,7 @@ class FilterDetails with _$FilterDetails {
     List<FilterPromo>? promos,
   }) = _FilterDetails;
 
-  factory FilterDetails.fromJson(Map<String, dynamic> json) =>
-      _$FilterDetailsFromJson(json);
+  factory FilterDetails.fromJson(Map<String, dynamic> json) => _$FilterDetailsFromJson(json);
 
   const FilterDetails._();
 }

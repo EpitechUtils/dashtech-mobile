@@ -58,8 +58,7 @@ class StudentActivityController extends GetxController {
   }
 
   String parseDate() {
-    DateTime begin =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin);
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
@@ -82,9 +81,8 @@ class StudentActivityController extends GetxController {
 
   String parseActivityTime(String value, {int addMinutes = 0}) {
     DateFormat hMFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
-    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
-        .parse(value)
-        .add(Duration(minutes: addMinutes));
+    DateTime dateTime =
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(value).add(Duration(minutes: addMinutes));
 
     return hMFormat.format(dateTime);
   }

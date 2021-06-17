@@ -35,9 +35,8 @@ class AppPages {
       name: Routes.signin,
       page: () => SigninPage(),
       binding: SigninBinding(),
-      transition: Get.previousRoute == Routes.splash
-          ? Transition.rightToLeft
-          : Transition.leftToRight,
+      transition:
+          Get.previousRoute == Routes.splash ? Transition.rightToLeft : Transition.leftToRight,
     ),
     GetPage(
       name: Routes.home,

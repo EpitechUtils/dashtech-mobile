@@ -48,17 +48,14 @@ class AdminCardController extends GetxController {
   Future<void> getFilterByName(Filter filter) async {
     filterIsLoading[filter] = true;
 
-    final Either<BaseFailure, FilterDetails> failOrDetails = await this
-        .cardRepository
-        .getFilterValue(
-          FilterDetailsInput(
-            filter: EnumToString.convertToString(filter).toLowerCase(),
-            scolaryear:
-                filterYear.value == null ? null : filterYear.value!.scolaryear,
-            course:
-                filterCourse.value == null ? null : filterCourse.value!.code,
-          ),
-        );
+    final Either<BaseFailure, FilterDetails> failOrDetails =
+        await this.cardRepository.getFilterValue(
+              FilterDetailsInput(
+                filter: EnumToString.convertToString(filter).toLowerCase(),
+                scolaryear: filterYear.value == null ? null : filterYear.value!.scolaryear,
+                course: filterCourse.value == null ? null : filterCourse.value!.code,
+              ),
+            );
 
     failOrDetails.fold(
       (BaseFailure left) {
@@ -163,8 +160,7 @@ class AdminCardController extends GetxController {
 
           // Set values
           users.value = users.map((elem) {
-            if (elem.login == user.login)
-              return elem.copyWith.call(card: right);
+            if (elem.login == user.login) return elem.copyWith.call(card: right);
             return elem;
           }).toList();
 

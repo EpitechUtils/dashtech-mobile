@@ -44,8 +44,7 @@ class PlanningActivity with _$PlanningActivity {
     required PlanningActivityRoom room,
   }) = _PlanningActivity;
 
-  factory PlanningActivity.fromJson(Map<String, dynamic> json) =>
-      _$PlanningActivityFromJson(json);
+  factory PlanningActivity.fromJson(Map<String, dynamic> json) => _$PlanningActivityFromJson(json);
 
   const PlanningActivity._();
 }

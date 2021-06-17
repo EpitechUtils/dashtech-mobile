@@ -32,14 +32,11 @@ class SigninWebviewController extends GetxController {
 
   // Get office url from intranet
   void _getOfficeLoginUrl() async {
-    dio.Response resp =
-        await httpService.dio.get<dynamic>("/admin/autolog?format=json");
+    dio.Response resp = await httpService.dio.get<dynamic>("/admin/autolog?format=json");
 
     dynamic body = resp.data;
     print(body);
-    if (body == null ||
-        resp.statusCode! >= 500 ||
-        resp.data['office_auth_uri'] == null) {
+    if (body == null || resp.statusCode! >= 500 || resp.data['office_auth_uri'] == null) {
       return null;
     }
 
@@ -57,18 +54,14 @@ class SigninWebviewController extends GetxController {
       //Navigator.of(Get.context).pop();
 
       try {
-        controller
-            .evaluateJavascript(source: "document.documentElement.innerHTML")
-            .then((body) {
+        controller.evaluateJavascript(source: "document.documentElement.innerHTML").then((body) {
           if (Platform.isIOS) {
             // Remove html tags from response
-            RegExp exp =
-                RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+            RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
             return body.replaceAll(exp, '');
           } else {
             String autologin = body.substring(body.indexOf("autologin"));
-            String autolog_url =
-                autologin.substring(autologin.indexOf(":") + 1);
+            String autolog_url = autologin.substring(autologin.indexOf(":") + 1);
             autolog_url = autolog_url.substring(1, autolog_url.indexOf("\\n}"));
             autolog_url = autolog_url.replaceAll("\\", "");
             return autolog_url.substring(1, autolog_url.length - 1);
@@ -106,8 +99,7 @@ class SigninWebviewController extends GetxController {
       (AuthFailure left) => left.map(
         unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
         notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
-        conflict: (_) =>
-            SnackBarUtils.error(message: 'http_profile_email_missmatch'),
+        conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
       (_) {
@@ -126,8 +118,7 @@ class SigninWebviewController extends GetxController {
       (AuthFailure left) => left.map(
         unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
         notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
-        conflict: (_) =>
-            SnackBarUtils.error(message: 'http_profile_email_missmatch'),
+        conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
       (AuthProfile right) => Get.toNamed(Routes.home),

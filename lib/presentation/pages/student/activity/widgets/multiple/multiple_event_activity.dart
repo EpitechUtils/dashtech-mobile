@@ -11,8 +11,7 @@ import 'package:dashtech/presentation/shared/colored_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MultipleEventActivity
-    extends GetView<StudentMultipleEventActivityController> {
+class MultipleEventActivity extends GetView<StudentMultipleEventActivityController> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,8 +26,7 @@ class MultipleEventActivity
             tabBar: TabBar(
               onTap: (int newIndex) {
                 if (controller.activityController.isAppointment &&
-                    !controller.activityController.appointmentController
-                        .isLoading.value) {
+                    !controller.activityController.appointmentController.isLoading.value) {
                   controller.currentTabIndex.value = newIndex;
                 }
               },
@@ -44,8 +42,7 @@ class MultipleEventActivity
                 fontWeight: FontWeight.bold,
               ),
               tabs: <Tab>[
-                if (controller.activityController.isAppointment)
-                  Tab(text: 'global_info'.tr),
+                if (controller.activityController.isAppointment) Tab(text: 'global_info'.tr),
                 ...controller.activityController.activity.value!.events.map(
                   (ActivityDetailsEvent event) => Tab(
                     text: controller.parseDateWithHm(event),
@@ -74,9 +71,7 @@ class MultipleEventActivity
                         visible: controller.getStudentStatus() != null,
                         child: Card(
                           color: Color(
-                            controller.getStudentStatus() == "present"
-                                ? successColor
-                                : warnColor,
+                            controller.getStudentStatus() == "present" ? successColor : warnColor,
                           ),
                           margin: const EdgeInsets.symmetric(
                             horizontal: 0,

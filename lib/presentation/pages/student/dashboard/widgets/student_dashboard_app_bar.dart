@@ -25,8 +25,7 @@ class StudentDashboardAppBar extends GetView<StudentDashboardController>
                 AssetsUtils.image('unknown', FileFormat.jpg),
                 width: 30,
               ),
-              imagePath: AssetsUtils.profilePicture(
-                  controller.storageService.box.read('email')),
+              imagePath: AssetsUtils.profilePicture(controller.storageService.box.read('email')),
               radius: 45,
             ),
           ),
@@ -41,8 +40,7 @@ class StudentDashboardAppBar extends GetView<StudentDashboardController>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              StringUtils.capitalize(
-                  controller.storageService.box.read('fullName'),
+              StringUtils.capitalize(controller.storageService.box.read('fullName'),
                   allWords: true),
               style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,

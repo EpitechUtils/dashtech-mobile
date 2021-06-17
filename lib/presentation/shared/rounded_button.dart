@@ -60,8 +60,7 @@ class RoundedButton extends StatelessWidget {
           BoxShadow(
             color: disabled
                 ? const Color(greyColor).withOpacity(0.15)
-                : (colors == null ? defaultColors.first : colors!.first)
-                    .withOpacity(0.35),
+                : (colors == null ? defaultColors.first : colors!.first).withOpacity(0.35),
             offset: const Offset(2.0, 3.5),
             blurRadius: disabled ? 0 : 1.5,
           ),
@@ -89,9 +88,7 @@ class RoundedButton extends StatelessWidget {
                   )
                 : Text(
                     label,
-                    style: disabled
-                        ? const TextStyle(color: Colors.white)
-                        : Get.textTheme.button,
+                    style: disabled ? const TextStyle(color: Colors.white) : Get.textTheme.button,
                   ),
           ),
         ),
@@ -102,9 +99,7 @@ class RoundedButton extends StatelessWidget {
   Widget _outlineButton(BuildContext context) {
     return OutlineButton(
       onPressed: () => onPressed(),
-      textColor: disabled
-          ? const Color(inactiveCardTextColor)
-          : Theme.of(context).primaryColor,
+      textColor: disabled ? const Color(inactiveCardTextColor) : Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),

@@ -18,8 +18,7 @@ class IntranetRightsService extends GetxService {
     bool authorize = false;
     List<String> userRights = List<String>.from(rights);
     userRights.forEach((e) {
-      if (EnumToString.convertToString(IntranetRight.global) != e)
-        authorize = true;
+      if (EnumToString.convertToString(IntranetRight.global) != e) authorize = true;
     });
 
     return authorize;

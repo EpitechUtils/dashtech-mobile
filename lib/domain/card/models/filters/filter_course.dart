@@ -14,8 +14,7 @@ class FilterCourse with _$FilterCourse {
     required String title,
   }) = _FilterCourse;
 
-  factory FilterCourse.fromJson(Map<String, dynamic> json) =>
-      _$FilterCourseFromJson(json);
+  factory FilterCourse.fromJson(Map<String, dynamic> json) => _$FilterCourseFromJson(json);
 
   const FilterCourse._();
 }

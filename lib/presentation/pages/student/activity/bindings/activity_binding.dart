@@ -12,7 +12,6 @@ class ActivityBinding implements Bindings {
     Get.put<StudentActivityController>(StudentActivityController());
     Get.lazyPut<StudentMultipleEventActivityController>(
         () => StudentMultipleEventActivityController());
-    Get.lazyPut<StudentAppointmentController>(
-        () => StudentAppointmentController());
+    Get.lazyPut<StudentAppointmentController>(() => StudentAppointmentController());
   }
 }

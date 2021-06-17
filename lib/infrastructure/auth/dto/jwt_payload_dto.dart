@@ -10,8 +10,7 @@ class JwtPayloadDto with _$JwtPayloadDto {
     required String email,
   }) = _JwtPayloadDto;
 
-  factory JwtPayloadDto.fromJson(Map<String, dynamic> json) =>
-      _$JwtPayloadDtoFromJson(json);
+  factory JwtPayloadDto.fromJson(Map<String, dynamic> json) => _$JwtPayloadDtoFromJson(json);
 
   const JwtPayloadDto._();
 }

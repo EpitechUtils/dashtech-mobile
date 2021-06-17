@@ -41,9 +41,7 @@ class CachedCircleAvatar extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          httpHeaders: {
-            'Authorization': 'Bearer ${storageService.box.read('token')}'
-          },
+          httpHeaders: {'Authorization': 'Bearer ${storageService.box.read('token')}'},
           fit: BoxFit.cover,
           imageUrl: this.imagePath,
           width: radius,

@@ -23,8 +23,7 @@ class SignInStepTwoCodeFields extends GetView<SigninController> {
                 fontSize: 28,
                 controller: controller.codes[index],
                 focusNode: controller.focusNodes[index],
-                nextFocusNode:
-                    (index == 5) ? null : controller.focusNodes[index + 1],
+                nextFocusNode: (index == 5) ? null : controller.focusNodes[index + 1],
               ),
             ),
           ),

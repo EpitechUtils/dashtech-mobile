@@ -13,8 +13,7 @@ class YearDropdown extends GetView<AdminCardController> {
         value: controller.filterYear.value,
         iconSize: 24,
         elevation: 16,
-        style: Get.textTheme.subtitle2!
-            .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+        style: Get.textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
         underline: Container(
           height: 1,
           color: Color(primaryColor),

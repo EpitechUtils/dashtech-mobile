@@ -68,8 +68,8 @@ mixin _$EmailVerificationFailure {
 
 /// @nodoc
 abstract class $EmailVerificationFailureCopyWith<$Res> {
-  factory $EmailVerificationFailureCopyWith(EmailVerificationFailure value,
-          $Res Function(EmailVerificationFailure) then) =
+  factory $EmailVerificationFailureCopyWith(
+          EmailVerificationFailure value, $Res Function(EmailVerificationFailure) then) =
       _$EmailVerificationFailureCopyWithImpl<$Res>;
 }
 
@@ -85,17 +85,14 @@ class _$EmailVerificationFailureCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
+  factory _$UnexpectedCopyWith(_Unexpected value, $Res Function(_Unexpected) then) =
       __$UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res>
-    extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$UnexpectedCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
+  __$UnexpectedCopyWithImpl(_Unexpected _value, $Res Function(_Unexpected) _then)
       : super(_value, (v) => _then(v as _Unexpected));
 
   @override
@@ -175,17 +172,14 @@ abstract class _Unexpected implements EmailVerificationFailure {
 
 /// @nodoc
 abstract class _$UnauthorizedCopyWith<$Res> {
-  factory _$UnauthorizedCopyWith(
-          _Unauthorized value, $Res Function(_Unauthorized) then) =
+  factory _$UnauthorizedCopyWith(_Unauthorized value, $Res Function(_Unauthorized) then) =
       __$UnauthorizedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnauthorizedCopyWithImpl<$Res>
-    extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$UnauthorizedCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$UnauthorizedCopyWith<$Res> {
-  __$UnauthorizedCopyWithImpl(
-      _Unauthorized _value, $Res Function(_Unauthorized) _then)
+  __$UnauthorizedCopyWithImpl(_Unauthorized _value, $Res Function(_Unauthorized) _then)
       : super(_value, (v) => _then(v as _Unauthorized));
 
   @override
@@ -265,14 +259,12 @@ abstract class _Unauthorized implements EmailVerificationFailure {
 
 /// @nodoc
 abstract class _$WrongCodeCopyWith<$Res> {
-  factory _$WrongCodeCopyWith(
-          _WrongCode value, $Res Function(_WrongCode) then) =
+  factory _$WrongCodeCopyWith(_WrongCode value, $Res Function(_WrongCode) then) =
       __$WrongCodeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WrongCodeCopyWithImpl<$Res>
-    extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$WrongCodeCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$WrongCodeCopyWith<$Res> {
   __$WrongCodeCopyWithImpl(_WrongCode _value, $Res Function(_WrongCode) _then)
       : super(_value, (v) => _then(v as _WrongCode));

@@ -26,8 +26,7 @@ class AdminDashboardAppBar extends GetView<AdminDashboardController>
                 AssetsUtils.image('unknown', FileFormat.jpg),
                 width: 30,
               ),
-              imagePath: AssetsUtils.profilePicture(
-                  controller.storageService.box.read('email')),
+              imagePath: AssetsUtils.profilePicture(controller.storageService.box.read('email')),
               radius: 45,
             ),
           ),
@@ -42,8 +41,7 @@ class AdminDashboardAppBar extends GetView<AdminDashboardController>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              StringUtils.capitalize(
-                  controller.storageService.box.read('fullName'),
+              StringUtils.capitalize(controller.storageService.box.read('fullName'),
                   allWords: true),
               style: Get.textTheme.headline1!.copyWith(
                 color: Colors.white,
@@ -52,8 +50,8 @@ class AdminDashboardAppBar extends GetView<AdminDashboardController>
             const SizedBox(height: 5),
             Text(
               'Compte Pédagogique Epitech',
-              style: Get.textTheme.subtitle2!.copyWith(
-                  color: Color(errorColor), fontWeight: FontWeight.bold),
+              style: Get.textTheme.subtitle2!
+                  .copyWith(color: Color(errorColor), fontWeight: FontWeight.bold),
             ),
           ],
         ),

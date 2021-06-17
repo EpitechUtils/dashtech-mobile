@@ -105,8 +105,7 @@ class ActivityDetails with _$ActivityDetails {
     required List<ActivityDetailsEvent> events,
   }) = _ActivityDetails;
 
-  factory ActivityDetails.fromJson(Map<String, dynamic> json) =>
-      _$ActivityDetailsFromJson(json);
+  factory ActivityDetails.fromJson(Map<String, dynamic> json) => _$ActivityDetailsFromJson(json);
 
   const ActivityDetails._();
 }

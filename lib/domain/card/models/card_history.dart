@@ -13,8 +13,7 @@ class CardHistory with _$CardHistory {
     required CardProfile profile,
   }) = _CardHistory;
 
-  factory CardHistory.fromJson(Map<String, dynamic> json) =>
-      _$CardHistoryFromJson(json);
+  factory CardHistory.fromJson(Map<String, dynamic> json) => _$CardHistoryFromJson(json);
 
   const CardHistory._();
 }

@@ -95,9 +95,7 @@ class ActivityCard extends StatelessWidget {
             onPressed: () {},
             child: Icon(
               activity.event_registered != "false" ? Icons.close : Icons.add,
-              color: activity.event_registered != "false"
-                  ? Colors.red
-                  : Colors.green,
+              color: activity.event_registered != "false" ? Colors.red : Colors.green,
             ),
           ),
         ],
@@ -132,9 +130,7 @@ class ActivityCard extends StatelessWidget {
                           Text(
                             hourFormat.format(DateTime.parse(activity.start)),
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
+                                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -175,9 +171,7 @@ class ActivityCard extends StatelessWidget {
                                 activity.titlemodule.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 12,
-                                    color: Colors.grey),
+                                    fontWeight: FontWeight.w300, fontSize: 12, color: Colors.grey),
                               )
                             ],
                           ),

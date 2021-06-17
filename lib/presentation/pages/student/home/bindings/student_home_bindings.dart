@@ -7,8 +7,7 @@ class StudentHomeBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<StudentDashboardController>(() => StudentDashboardController());
-    Get.lazyPut<StudentActivitiesController>(
-        () => StudentActivitiesController());
+    Get.lazyPut<StudentActivitiesController>(() => StudentActivitiesController());
     Get.lazyPut<StudentPlanningController>(() => StudentPlanningController());
   }
 }

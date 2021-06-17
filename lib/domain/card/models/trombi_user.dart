@@ -16,8 +16,7 @@ class TrombiUser with _$TrombiUser {
     Card? card,
   }) = _TrombiUser;
 
-  factory TrombiUser.fromJson(Map<String, dynamic> json) =>
-      _$TrombiUserFromJson(json);
+  factory TrombiUser.fromJson(Map<String, dynamic> json) => _$TrombiUserFromJson(json);
 
   const TrombiUser._();
 }

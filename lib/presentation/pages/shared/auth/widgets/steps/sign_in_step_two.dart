@@ -79,8 +79,7 @@ class SignInStepTwo extends GetView<SigninController> {
                 width: 30,
                 child: CircularProgressIndicator(
                   strokeWidth: 3,
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(Color(primaryColor)),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(primaryColor)),
                 ),
               ),
             ),

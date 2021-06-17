@@ -15,8 +15,7 @@ class CardHistoryCard extends GetView<AdminCardController> {
 
   @override
   Widget build(BuildContext context) {
-    final DateFormat format =
-        DateFormat.yMMMMEEEEd(Get.locale!.toLanguageTag());
+    final DateFormat format = DateFormat.yMMMMEEEEd(Get.locale!.toLanguageTag());
     return SizedBox(
       height: 70,
       child: Card(

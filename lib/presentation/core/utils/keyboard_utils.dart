@@ -8,6 +8,5 @@ class KeyboardUtils {
     }
   }
 
-  static bool isShowing(BuildContext context) =>
-      !(MediaQuery.of(context).viewInsets.bottom == 0.0);
+  static bool isShowing(BuildContext context) => !(MediaQuery.of(context).viewInsets.bottom == 0.0);
 }

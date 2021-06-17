@@ -30,9 +30,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                       child: Icon(
                         LineIcons.handPointingUp,
                         color: Color(
-                          controller.getStudentStatus() == "present"
-                              ? successColor
-                              : warnColor,
+                          controller.getStudentStatus() == "present" ? successColor : warnColor,
                         ),
                       ),
                     ),
@@ -72,8 +70,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        controller.parseActivityTime(
-                            controller.activity.value!.events[0].begin),
+                        controller.parseActivityTime(controller.activity.value!.events[0].begin),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
@@ -87,8 +84,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                         size: 25,
                       ),
                       Text(
-                        controller.parseActivityTime(
-                            controller.activity.value!.events[0].end),
+                        controller.parseActivityTime(controller.activity.value!.events[0].end),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,

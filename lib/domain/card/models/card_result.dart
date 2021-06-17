@@ -12,8 +12,7 @@ class CardResult with _$CardResult {
     List<CardHistory>? history,
   }) = _CardResult;
 
-  factory CardResult.fromJson(Map<String, dynamic> json) =>
-      _$CardResultFromJson(json);
+  factory CardResult.fromJson(Map<String, dynamic> json) => _$CardResultFromJson(json);
 
   const CardResult._();
 }

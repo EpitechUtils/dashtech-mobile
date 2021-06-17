@@ -36,9 +36,7 @@ class ActivityDetailsBaseAppBar extends GetView<StudentActivityController>
                 visible: controller.isLoading.value,
                 child: _shimmerText(70),
                 replacement: Text(
-                  controller.isLoading.value
-                      ? ""
-                      : controller.activity.value!.type_title,
+                  controller.isLoading.value ? "" : controller.activity.value!.type_title,
                   style: Get.textTheme.headline1!.copyWith(
                     color: Colors.white,
                   ),
@@ -51,9 +49,7 @@ class ActivityDetailsBaseAppBar extends GetView<StudentActivityController>
                 visible: controller.isLoading.value,
                 child: _shimmerText(140),
                 replacement: Text(
-                  controller.isLoading.value
-                      ? ""
-                      : controller.activity.value!.title,
+                  controller.isLoading.value ? "" : controller.activity.value!.title,
                   overflow: TextOverflow.fade,
                   style: Get.textTheme.subtitle2!.copyWith(
                     color: Colors.white,

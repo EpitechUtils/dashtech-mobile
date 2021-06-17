@@ -27,9 +27,7 @@ class ActivityDataSource extends CalendarDataSource {
 
   @override
   Color getColor(int index) {
-    return ActivityColorUtils.getColorByEventType(
-            appointments![index].type_code)
-        .withOpacity(
+    return ActivityColorUtils.getColorByEventType(appointments![index].type_code).withOpacity(
       appointments![index].event_registered != "false" ? 1 : 0.6,
     );
   }

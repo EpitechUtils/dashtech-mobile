@@ -34,8 +34,7 @@ class AdminCardPage extends GetView<AdminCardController> {
 
                     return ListView.builder(
                       itemCount: controller.users.length,
-                      itemBuilder: (context, index) =>
-                          TrombiUserDisplay(controller.users[index]),
+                      itemBuilder: (context, index) => TrombiUserDisplay(controller.users[index]),
                     );
                   })(),
                 ),

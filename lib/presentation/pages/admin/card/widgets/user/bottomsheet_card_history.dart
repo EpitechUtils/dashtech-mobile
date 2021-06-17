@@ -30,8 +30,7 @@ class BottomSheetCardHistory extends GetView<AdminCardController> {
           Expanded(
               child: ListView.builder(
             itemCount: controller.cardHistory.length,
-            itemBuilder: (_, index) =>
-                CardHistoryCard(cardHistory: controller.cardHistory[index]),
+            itemBuilder: (_, index) => CardHistoryCard(cardHistory: controller.cardHistory[index]),
           )),
         ],
       ),

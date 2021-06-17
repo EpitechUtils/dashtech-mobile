@@ -63,16 +63,13 @@ class StudentMultipleEventActivityController extends GetxController {
     }
   }
 
-  String parseActivityRoom(
-      {ActivityDetailsEvent? event, bool includeSeats = true}) {
+  String parseActivityRoom({ActivityDetailsEvent? event, bool includeSeats = true}) {
     String room = "undefined";
     ActivityDetailsEvent choosed = event == null ? selectedEvent.value! : event;
     try {
-      room = choosed.location.substring(
-              choosed.location.lastIndexOf('/') + 1, choosed.location.length) +
-          (includeSeats
-              ? (" - " + choosed.nb_inscrits + "/" + choosed.seats)
-              : "");
+      room = choosed.location
+              .substring(choosed.location.lastIndexOf('/') + 1, choosed.location.length) +
+          (includeSeats ? (" - " + choosed.nb_inscrits + "/" + choosed.seats) : "");
     } catch (ignored) {}
 
     return room;
@@ -84,8 +81,8 @@ class StudentMultipleEventActivityController extends GetxController {
       (int val) {
         if (activityController.isAppointment && val == 0) return;
 
-        selectedEvent.value = activityController.activity.value!
-            .events[val - (activityController.isAppointment ? 1 : 0)];
+        selectedEvent.value = activityController
+            .activity.value!.events[val - (activityController.isAppointment ? 1 : 0)];
       },
     ));
   }

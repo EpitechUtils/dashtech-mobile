@@ -12,8 +12,7 @@ class AuthProfile with _$AuthProfile {
     @Default([]) List<String> rights,
   }) = _AuthProfile;
 
-  factory AuthProfile.fromJson(Map<String, dynamic> json) =>
-      _$AuthProfileFromJson(json);
+  factory AuthProfile.fromJson(Map<String, dynamic> json) => _$AuthProfileFromJson(json);
 
   const AuthProfile._();
 }

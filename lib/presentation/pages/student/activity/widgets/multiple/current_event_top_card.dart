@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-class CurrentEventTopCard
-    extends GetView<StudentMultipleEventActivityController> {
+class CurrentEventTopCard extends GetView<StudentMultipleEventActivityController> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,9 +31,7 @@ class CurrentEventTopCard
                         child: Icon(
                           LineIcons.handPointingUp,
                           color: Color(
-                            controller.getStudentStatus() == "present"
-                                ? successColor
-                                : warnColor,
+                            controller.getStudentStatus() == "present" ? successColor : warnColor,
                           ),
                         ),
                       ),
@@ -54,8 +51,8 @@ class CurrentEventTopCard
                         const SizedBox(height: 5),
                         Obx(
                           () => Text(
-                            StringUtils.capitalize(controller
-                                .parseDate(controller.selectedEvent.value!)),
+                            StringUtils.capitalize(
+                                controller.parseDate(controller.selectedEvent.value!)),
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -77,8 +74,8 @@ class CurrentEventTopCard
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          controller.activityController.parseActivityTime(
-                              controller.selectedEvent.value!.begin),
+                          controller.activityController
+                              .parseActivityTime(controller.selectedEvent.value!.begin),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,
@@ -92,8 +89,8 @@ class CurrentEventTopCard
                           size: 25,
                         ),
                         Text(
-                          controller.activityController.parseActivityTime(
-                              controller.selectedEvent.value!.end),
+                          controller.activityController
+                              .parseActivityTime(controller.selectedEvent.value!.end),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,

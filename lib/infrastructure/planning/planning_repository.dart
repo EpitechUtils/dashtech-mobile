@@ -14,8 +14,7 @@ class PlanningRepository implements IPlanningRepository {
 
   // Get activities list for the week dashboard
   @override
-  Future<Either<BaseFailure, List<PlanningWeekActivity>>>
-      getDashActivitiesList() async {
+  Future<Either<BaseFailure, List<PlanningWeekActivity>>> getDashActivitiesList() async {
     final QueryResult result = await graphqlService.client.query(
       QueryOptions(
         document: gql(planningListWeekActivitiesQuery),
@@ -27,8 +26,7 @@ class PlanningRepository implements IPlanningRepository {
     }
 
     final List json = result.data!['planningListWeekActivities'] as List;
-    return right(
-        json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
+    return right(json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
   }
 
   // Get activities list for the selected day
@@ -52,8 +50,7 @@ class PlanningRepository implements IPlanningRepository {
     }
 
     final List json = result.data!['planningWeekActivities'] as List;
-    return right(
-        json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
+    return right(json.map((value) => PlanningWeekActivity.fromJson(value)).toList());
   }
 
   @override
@@ -74,8 +71,7 @@ class PlanningRepository implements IPlanningRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    return right(
-        ActivityDetails.fromJson(result.data!['planningActivityDetails']));
+    return right(ActivityDetails.fromJson(result.data!['planningActivityDetails']));
   }
 
   @override
@@ -96,7 +92,6 @@ class PlanningRepository implements IPlanningRepository {
       return left(const BaseFailure.unexpected());
     }
 
-    return right(
-        ActivityRdvDetails.fromJson(result.data!['planningRdvDetails']));
+    return right(ActivityRdvDetails.fromJson(result.data!['planningRdvDetails']));
   }
 }

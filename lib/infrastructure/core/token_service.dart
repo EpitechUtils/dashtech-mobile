@@ -106,9 +106,7 @@ class TokenService extends GetxService {
         (String? token) {
           Future<void>.delayed(const Duration(seconds: 3), () {
             //clear();
-            token == null
-                ? Get.offAllNamed(Routes.signin)
-                : Get.offAllNamed(Routes.home);
+            token == null ? Get.offAllNamed(Routes.signin) : Get.offAllNamed(Routes.home);
           });
         },
       ),

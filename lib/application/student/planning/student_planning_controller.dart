@@ -50,8 +50,7 @@ class StudentPlanningController extends GetxController {
         showShimmer.value = false;
         right.forEach((e) {
           List<PlanningActivity> acts = e.activities;
-          acts.sort((a, b) =>
-              DateTime.parse(a.start).compareTo(DateTime.parse(b.start)));
+          acts.sort((a, b) => DateTime.parse(a.start).compareTo(DateTime.parse(b.start)));
           allEvents[DateTime.parse(e.date)] = acts;
         });
         update(['planning_display']);

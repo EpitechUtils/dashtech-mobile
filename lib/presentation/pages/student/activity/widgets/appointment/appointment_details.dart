@@ -31,9 +31,7 @@ class AppointmentDetails extends GetView<StudentAppointmentController> {
               padding: const EdgeInsets.all(10),
               width: Get.width - 20,
               child: Text(
-                (controller.isRegistered
-                        ? "appointment_registered"
-                        : "appointment_not_registered")
+                (controller.isRegistered ? "appointment_registered" : "appointment_not_registered")
                     .tr,
                 textAlign: TextAlign.center,
                 style: Get.textTheme.headline2!.copyWith(
@@ -43,8 +41,7 @@ class AppointmentDetails extends GetView<StudentAppointmentController> {
               ),
             ),
           ),
-          controller.groupSlot.value != null &&
-                  controller.groupSlot.value!.code != null
+          controller.groupSlot.value != null && controller.groupSlot.value!.code != null
               ? Column(
                   children: [
                     AppointmentSlot(),

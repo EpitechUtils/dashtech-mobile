@@ -32,8 +32,7 @@ final Map<String, String> frFR = {
 
   // Settings
   'settings_title': "Paramètres",
-  'settings_subtitle':
-      "Notifications, choix d'affichae du planning, données personelles etc...",
+  'settings_subtitle': "Notifications, choix d'affichae du planning, données personelles etc...",
   'notification_settings': "Notifications",
   'notification_settings_desc':
       'Choisissez les notifications désirées, ou désactivez-les complètement.',

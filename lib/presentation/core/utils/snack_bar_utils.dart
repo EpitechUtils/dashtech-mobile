@@ -23,8 +23,7 @@ class SnackBarUtils {
       snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      margin: EdgeInsets.symmetric(
-          horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
       icon: Lottie.asset(
         AssetsUtils.animation('success'),
         height: 30,
@@ -53,8 +52,7 @@ class SnackBarUtils {
       overlayBlur: 0,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      margin: EdgeInsets.symmetric(
-          horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
       icon: Lottie.asset(
         AssetsUtils.animation('success'),
         height: 30,
@@ -82,8 +80,7 @@ class SnackBarUtils {
       snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      margin: EdgeInsets.symmetric(
-          horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: keyboardIsOpen ? 20 : 0),
       icon: Lottie.asset(
         AssetsUtils.animation('error'),
         height: 50,

@@ -2,8 +2,7 @@ import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StudentDashboardController extends GetxController
-    with SingleGetTickerProviderMixin {
+class StudentDashboardController extends GetxController with SingleGetTickerProviderMixin {
   final StorageService storageService = Get.find();
 
   late TabController tabController;

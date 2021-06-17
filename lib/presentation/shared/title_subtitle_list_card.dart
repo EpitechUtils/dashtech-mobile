@@ -93,8 +93,7 @@ class TitleSubtitleSubListCard extends StatelessWidget {
   }
 
   Widget _conditionalRendering(ActionCard card) {
-    if (card.type == ActionCardType.switchOnOff)
-      return _buildSwitchOnOffCard(card);
+    if (card.type == ActionCardType.switchOnOff) return _buildSwitchOnOffCard(card);
     return _buildClickableCard(card);
   }
 
@@ -146,8 +145,7 @@ class TitleSubtitleSubListCard extends StatelessWidget {
             Text(
               (card.switchValue ? 'active' : 'inactive').tr,
               style: Get.textTheme.headline3!.copyWith(
-                  fontSize: 14,
-                  color: Color(card.switchValue ? successColor : errorColor)),
+                  fontSize: 14, color: Color(card.switchValue ? successColor : errorColor)),
             ),
           ],
         ),

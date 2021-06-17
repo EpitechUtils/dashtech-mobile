@@ -61,8 +61,8 @@ class AppointmentSlot extends GetView<StudentAppointmentController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            controller.activityController.parseActivityTime(
-                                controller.groupSlot.value!.date),
+                            controller.activityController
+                                .parseActivityTime(controller.groupSlot.value!.date),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: Colors.white,
@@ -78,8 +78,7 @@ class AppointmentSlot extends GetView<StudentAppointmentController> {
                           Text(
                             controller.activityController.parseActivityTime(
                                 controller.groupSlot.value!.date,
-                                addMinutes:
-                                    controller.groupSlot.value!.duration),
+                                addMinutes: controller.groupSlot.value!.duration),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: Colors.white,

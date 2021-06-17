@@ -18,8 +18,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
           style: Get.textTheme.headline1,
         ),
         Text(
-          StringUtils.capitalize(
-              controller.appointmentDetails.value!.group!.title),
+          StringUtils.capitalize(controller.appointmentDetails.value!.group!.title),
           style: Get.textTheme.headline2,
         ),
         const SizedBox(height: 5),
@@ -87,8 +86,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
             children: controller.appointmentDetails.value!.group!.members
                 .map(
                   (String memberLogin) => Card(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                    margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
                     color: Colors.white,
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -103,8 +101,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                                   AssetsUtils.image('unknown', FileFormat.jpg),
                                   width: 40,
                                 ),
-                                imagePath:
-                                    AssetsUtils.profilePicture(memberLogin),
+                                imagePath: AssetsUtils.profilePicture(memberLogin),
                                 radius: 40,
                               ),
                               const SizedBox(width: 10),
@@ -113,11 +110,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                                 children: [
                                   Text(
                                     StringUtils.capitalize(
-                                      memberLogin
-                                          .split('@')
-                                          .first
-                                          .split('.')
-                                          .join(" "),
+                                      memberLogin.split('@').first.split('.').join(" "),
                                       allWords: true,
                                     ),
                                     style: Get.textTheme.headline1!.copyWith(

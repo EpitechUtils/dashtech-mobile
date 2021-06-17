@@ -96,13 +96,11 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                       child: slot.code != null
                                           ? CachedCircleAvatar(
                                               noPicture: Image.asset(
-                                                AssetsUtils.image(
-                                                    'unknown', FileFormat.jpg),
+                                                AssetsUtils.image('unknown', FileFormat.jpg),
                                                 width: 30,
                                               ),
                                               imagePath:
-                                                  AssetsUtils.profilePicture(
-                                                      slot.master!.login),
+                                                  AssetsUtils.profilePicture(slot.master!.login),
                                               radius: 30,
                                             )
                                           : Icon(
@@ -113,24 +111,19 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             "De " +
                                                 controller.activityController
-                                                    .parseActivityTime(
-                                                        slot.date) +
+                                                    .parseActivityTime(slot.date) +
                                                 " à " +
-                                                controller.activityController
-                                                    .parseActivityTime(
+                                                controller.activityController.parseActivityTime(
                                                   slot.date,
                                                   addMinutes: slot.duration,
                                                 ),
-                                            style: Get.textTheme.headline2!
-                                                .copyWith(
+                                            style: Get.textTheme.headline2!.copyWith(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -139,8 +132,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                             slot.master != null
                                                 ? slot.master!.login +
                                                     ", +" +
-                                                    slot.members.length
-                                                        .toString()
+                                                    slot.members.length.toString()
                                                 : "Libre",
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -152,12 +144,9 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                   ],
                                 ),
                                 slot.code != null &&
-                                        controller.appointmentDetails.value!
-                                                .group !=
-                                            null &&
+                                        controller.appointmentDetails.value!.group != null &&
                                         slot.code ==
-                                            controller.appointmentDetails.value!
-                                                .group!.code
+                                            controller.appointmentDetails.value!.group!.code
                                     ? Container(
                                         margin: const EdgeInsets.only(top: 5),
                                         child: Row(
@@ -171,8 +160,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                               "registered_to_this_slot".tr,
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              style: Get.textTheme.headline2!
-                                                  .copyWith(
+                                              style: Get.textTheme.headline2!.copyWith(
                                                 fontStyle: FontStyle.italic,
                                               ),
                                             )

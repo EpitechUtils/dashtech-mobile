@@ -50,14 +50,12 @@ mixin _$AuthProfile {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthProfileCopyWith<AuthProfile> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthProfileCopyWith<AuthProfile> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthProfileCopyWith<$Res> {
-  factory $AuthProfileCopyWith(
-          AuthProfile value, $Res Function(AuthProfile) then) =
+  factory $AuthProfileCopyWith(AuthProfile value, $Res Function(AuthProfile) then) =
       _$AuthProfileCopyWithImpl<$Res>;
   $Res call({String id, String email, String status, List<String> rights});
 }
@@ -99,10 +97,8 @@ class _$AuthProfileCopyWithImpl<$Res> implements $AuthProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AuthProfileCopyWith<$Res>
-    implements $AuthProfileCopyWith<$Res> {
-  factory _$AuthProfileCopyWith(
-          _AuthProfile value, $Res Function(_AuthProfile) then) =
+abstract class _$AuthProfileCopyWith<$Res> implements $AuthProfileCopyWith<$Res> {
+  factory _$AuthProfileCopyWith(_AuthProfile value, $Res Function(_AuthProfile) then) =
       __$AuthProfileCopyWithImpl<$Res>;
   @override
   $Res call({String id, String email, String status, List<String> rights});
@@ -111,8 +107,7 @@ abstract class _$AuthProfileCopyWith<$Res>
 /// @nodoc
 class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
     implements _$AuthProfileCopyWith<$Res> {
-  __$AuthProfileCopyWithImpl(
-      _AuthProfile _value, $Res Function(_AuthProfile) _then)
+  __$AuthProfileCopyWithImpl(_AuthProfile _value, $Res Function(_AuthProfile) _then)
       : super(_value, (v) => _then(v as _AuthProfile));
 
   @override
@@ -150,14 +145,10 @@ class __$AuthProfileCopyWithImpl<$Res> extends _$AuthProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthProfile extends _AuthProfile {
   const _$_AuthProfile(
-      {required this.id,
-      required this.email,
-      required this.status,
-      this.rights = const []})
+      {required this.id, required this.email, required this.status, this.rights = const []})
       : super._();
 
-  factory _$_AuthProfile.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthProfileFromJson(json);
+  factory _$_AuthProfile.fromJson(Map<String, dynamic> json) => _$_$_AuthProfileFromJson(json);
 
   @override
   final String id;
@@ -178,8 +169,7 @@ class _$_AuthProfile extends _AuthProfile {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthProfile &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.status, status) ||
@@ -215,8 +205,7 @@ abstract class _AuthProfile extends AuthProfile {
       List<String> rights}) = _$_AuthProfile;
   const _AuthProfile._() : super._();
 
-  factory _AuthProfile.fromJson(Map<String, dynamic> json) =
-      _$_AuthProfile.fromJson;
+  factory _AuthProfile.fromJson(Map<String, dynamic> json) = _$_AuthProfile.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -228,6 +217,5 @@ abstract class _AuthProfile extends AuthProfile {
   List<String> get rights => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthProfileCopyWith<_AuthProfile> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$AuthProfileCopyWith<_AuthProfile> get copyWith => throw _privateConstructorUsedError;
 }

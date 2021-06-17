@@ -42,21 +42,18 @@ mixin _$JwtPayloadDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $JwtPayloadDtoCopyWith<$Res> {
-  factory $JwtPayloadDtoCopyWith(
-          JwtPayloadDto value, $Res Function(JwtPayloadDto) then) =
+  factory $JwtPayloadDtoCopyWith(JwtPayloadDto value, $Res Function(JwtPayloadDto) then) =
       _$JwtPayloadDtoCopyWithImpl<$Res>;
   $Res call({String userId, String email});
 }
 
 /// @nodoc
-class _$JwtPayloadDtoCopyWithImpl<$Res>
-    implements $JwtPayloadDtoCopyWith<$Res> {
+class _$JwtPayloadDtoCopyWithImpl<$Res> implements $JwtPayloadDtoCopyWith<$Res> {
   _$JwtPayloadDtoCopyWithImpl(this._value, this._then);
 
   final JwtPayloadDto _value;
@@ -82,21 +79,17 @@ class _$JwtPayloadDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$JwtPayloadDtoCopyWith<$Res>
-    implements $JwtPayloadDtoCopyWith<$Res> {
-  factory _$JwtPayloadDtoCopyWith(
-          _JwtPayloadDto value, $Res Function(_JwtPayloadDto) then) =
+abstract class _$JwtPayloadDtoCopyWith<$Res> implements $JwtPayloadDtoCopyWith<$Res> {
+  factory _$JwtPayloadDtoCopyWith(_JwtPayloadDto value, $Res Function(_JwtPayloadDto) then) =
       __$JwtPayloadDtoCopyWithImpl<$Res>;
   @override
   $Res call({String userId, String email});
 }
 
 /// @nodoc
-class __$JwtPayloadDtoCopyWithImpl<$Res>
-    extends _$JwtPayloadDtoCopyWithImpl<$Res>
+class __$JwtPayloadDtoCopyWithImpl<$Res> extends _$JwtPayloadDtoCopyWithImpl<$Res>
     implements _$JwtPayloadDtoCopyWith<$Res> {
-  __$JwtPayloadDtoCopyWithImpl(
-      _JwtPayloadDto _value, $Res Function(_JwtPayloadDto) _then)
+  __$JwtPayloadDtoCopyWithImpl(_JwtPayloadDto _value, $Res Function(_JwtPayloadDto) _then)
       : super(_value, (v) => _then(v as _JwtPayloadDto));
 
   @override
@@ -123,11 +116,9 @@ class __$JwtPayloadDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_JwtPayloadDto extends _JwtPayloadDto {
-  const _$_JwtPayloadDto({required this.userId, required this.email})
-      : super._();
+  const _$_JwtPayloadDto({required this.userId, required this.email}) : super._();
 
-  factory _$_JwtPayloadDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_JwtPayloadDtoFromJson(json);
+  factory _$_JwtPayloadDto.fromJson(Map<String, dynamic> json) => _$_$_JwtPayloadDtoFromJson(json);
 
   @override
   final String userId;
@@ -167,12 +158,10 @@ class _$_JwtPayloadDto extends _JwtPayloadDto {
 }
 
 abstract class _JwtPayloadDto extends JwtPayloadDto {
-  const factory _JwtPayloadDto(
-      {required String userId, required String email}) = _$_JwtPayloadDto;
+  const factory _JwtPayloadDto({required String userId, required String email}) = _$_JwtPayloadDto;
   const _JwtPayloadDto._() : super._();
 
-  factory _JwtPayloadDto.fromJson(Map<String, dynamic> json) =
-      _$_JwtPayloadDto.fromJson;
+  factory _JwtPayloadDto.fromJson(Map<String, dynamic> json) = _$_JwtPayloadDto.fromJson;
 
   @override
   String get userId => throw _privateConstructorUsedError;
@@ -180,6 +169,5 @@ abstract class _JwtPayloadDto extends JwtPayloadDto {
   String get email => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith => throw _privateConstructorUsedError;
 }

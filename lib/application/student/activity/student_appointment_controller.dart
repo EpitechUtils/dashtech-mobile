@@ -48,8 +48,7 @@ class StudentAppointmentController extends GetxController {
 
           appointmentDetails.value!.slots.forEach((bloc) {
             bloc.slots.forEach((slot) {
-              if (slot.code == appointmentDetails.value!.group!.code)
-                groupSlot.value = slot;
+              if (slot.code == appointmentDetails.value!.group!.code) groupSlot.value = slot;
             });
           });
 
@@ -63,15 +62,13 @@ class StudentAppointmentController extends GetxController {
 
   void changeSlotBlocByEvent(ActivityDetailsEvent event) {
     try {
-      currentSlotBloc.value = appointmentDetails.value!.slots
-          .where((bloc) => bloc.codeevent == event.code)
-          .first;
+      currentSlotBloc.value =
+          appointmentDetails.value!.slots.where((bloc) => bloc.codeevent == event.code).first;
     } catch (ingored) {}
   }
 
   String parseDateOfSlot() {
-    DateTime begin =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value!.date);
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value!.date);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
@@ -92,10 +89,7 @@ class StudentAppointmentController extends GetxController {
 
   List<ActivityRdvSlot> getSlotsForEventCode(String code) {
     try {
-      return appointmentDetails.value!.slots
-          .where((bloc) => bloc.codeevent == code)
-          .first
-          .slots;
+      return appointmentDetails.value!.slots.where((bloc) => bloc.codeevent == code).first.slots;
     } catch (ignored) {
       return [];
     }

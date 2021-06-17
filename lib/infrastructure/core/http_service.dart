@@ -38,8 +38,7 @@ class HttpService extends GetxService {
     dio = Dio();
     Directory appDocDir = await getApplicationDocumentsDirectory();
     String appDocPath = appDocDir.path;
-    PersistCookieJar cookieJar =
-        PersistCookieJar(storage: FileStorage(appDocPath + "/.cookies/"));
+    PersistCookieJar cookieJar = PersistCookieJar(storage: FileStorage(appDocPath + "/.cookies/"));
     dio.interceptors.add(CookieManager(cookieJar));
     dio.options = BaseOptions(
       baseUrl: "https://intra.epitech.eu",

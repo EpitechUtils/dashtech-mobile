@@ -12,8 +12,7 @@ class FilterPromo with _$FilterPromo {
     required String students,
   }) = _FilterPromo;
 
-  factory FilterPromo.fromJson(Map<String, dynamic> json) =>
-      _$FilterPromoFromJson(json);
+  factory FilterPromo.fromJson(Map<String, dynamic> json) => _$FilterPromoFromJson(json);
 
   const FilterPromo._();
 }

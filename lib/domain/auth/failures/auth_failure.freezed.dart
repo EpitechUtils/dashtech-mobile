@@ -76,8 +76,7 @@ mixin _$AuthFailure {
 
 /// @nodoc
 abstract class $AuthFailureCopyWith<$Res> {
-  factory $AuthFailureCopyWith(
-          AuthFailure value, $Res Function(AuthFailure) then) =
+  factory $AuthFailureCopyWith(AuthFailure value, $Res Function(AuthFailure) then) =
       _$AuthFailureCopyWithImpl<$Res>;
 }
 
@@ -92,16 +91,14 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
+  factory _$UnexpectedCopyWith(_Unexpected value, $Res Function(_Unexpected) then) =
       __$UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$UnexpectedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
+  __$UnexpectedCopyWithImpl(_Unexpected _value, $Res Function(_Unexpected) _then)
       : super(_value, (v) => _then(v as _Unexpected));
 
   @override
@@ -367,16 +364,14 @@ abstract class _Conflict implements AuthFailure {
 
 /// @nodoc
 abstract class _$UnauthorizedCopyWith<$Res> {
-  factory _$UnauthorizedCopyWith(
-          _Unauthorized value, $Res Function(_Unauthorized) then) =
+  factory _$UnauthorizedCopyWith(_Unauthorized value, $Res Function(_Unauthorized) then) =
       __$UnauthorizedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$UnauthorizedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements _$UnauthorizedCopyWith<$Res> {
-  __$UnauthorizedCopyWithImpl(
-      _Unauthorized _value, $Res Function(_Unauthorized) _then)
+  __$UnauthorizedCopyWithImpl(_Unauthorized _value, $Res Function(_Unauthorized) _then)
       : super(_value, (v) => _then(v as _Unauthorized));
 
   @override
