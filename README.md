@@ -1,6 +1,4 @@
-# Flutter File Store - Epitech 2020
-
-![flutter banner](https://miro.medium.com/max/1260/0*MXYivtrvfMI2nZXU.)
+# Dashtech - Epitech Intranet Mobile
 
 # Table of content
 
