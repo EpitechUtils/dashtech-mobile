@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
-import 'package:dashtech/infrastructure/core/http_service.dart';
-import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/infrastructure/core/service/http_service.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/date_utils.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
-import 'package:dio/dio.dart' as dio;
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -16,7 +15,7 @@ class TokenService extends GetxService {
   final HttpService httpService = Get.find();
 
   Rxn<DateTime> expirationDate = Rxn<DateTime>();
-  RxString token = ''.obs;
+  RxnString token = RxnString(null);
   late Timer timerExpirationDate;
 
   List<Worker> workers = <Worker>[];
@@ -49,7 +48,8 @@ class TokenService extends GetxService {
     storageService.box.write('token', token);
   }
 
-  String getToken() {
+  String? getToken() {
+    if (!storageService.box.hasData('token')) return null;
     return storageService.box.read('token');
   }
 
@@ -63,7 +63,7 @@ class TokenService extends GetxService {
     }
   }
 
-  Map<String, dynamic> decodeToken() => JwtDecoder.decode(token.value);
+  Map<String, dynamic> decodeToken() => JwtDecoder.decode(token.value!);
 
   void _saveExpirationDate(DateTime? date) {
     storageService.box.write(
@@ -82,13 +82,9 @@ class TokenService extends GetxService {
   Future<void> _getRefreshToken() async {
     print("Refresh token...");
     try {
-      final dio.Response<Map<String, dynamic>> response =
-          await httpService.dio.post<Map<String, dynamic>>(
-        DotEnv.env['BASE_URL']! + '/auth/refresh',
-      );
-      final AuthProfileTokenDto tokenDto = AuthProfileTokenDto.fromJson(
-        response.data!,
-      );
+      final response =
+          await httpService.connect.post(DotEnv().env['BASE_URL']! + '/auth/refresh', null);
+      final tokenDto = AuthProfileTokenDto.fromJson(response.body);
       token.value = tokenDto.accessToken;
       expirationDate.value = tokenDto.expirationTime.toLocal();
       print("Token refreshed...");

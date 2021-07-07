@@ -4,7 +4,7 @@ import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.da
 import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/domain/planning/models/activity_rdv_details.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
-import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:dashtech/infrastructure/planning/graphql/planning_queries.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

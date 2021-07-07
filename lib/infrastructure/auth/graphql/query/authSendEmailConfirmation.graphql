@@ -1,0 +1,3 @@
+query AuthSendEmailConfirmation($email: String!) {
+    authSendEmailConfirmation(email: $email)
+}

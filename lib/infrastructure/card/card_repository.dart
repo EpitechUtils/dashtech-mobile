@@ -10,7 +10,7 @@ import 'package:dashtech/infrastructure/card/graphql/card_mutations.dart';
 import 'package:dashtech/infrastructure/card/graphql/card_queries.dart';
 import 'package:dashtech/infrastructure/card/input/filter_details_input.dart';
 import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
-import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

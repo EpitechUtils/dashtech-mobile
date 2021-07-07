@@ -11,65 +11,51 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Basics
+  # Getx related packages
   get: ^4.1.4
-  flutter_form_builder: ^6.0.0
-  flutter_inappwebview: ^5.3.2
-  intl: ^0.17.0
-
-  # Storage
   get_storage: ^2.0.2
 
-  # Ui @ FX
-  flutter_hooks: ^0.16.0
+  # Ui @ Fxs
   flutter_svg: ^0.22.0
-  lottie: ^1.0.1
   animate_do: ^2.0.0
-  animated_bottom_navigation_bar: ^0.3.2
-  flutter_slidable: ^0.6.0
-  shimmer: ^2.0.0
-  table_calendar: ^3.0.0
-  fl_chart: ^0.35.0
-  fab_circular_menu: ^1.0.1
+  lottie: ^1.0.1
+  pull_to_refresh: ^2.0.0
+  syncfusion_flutter_calendar: ^19.2.46
 
   # Networking
-  dio: ^4.0.0
-  gql_dio_link: ^0.1.0-nullsafety.1
-  gql_http_link: ^0.4.0-nullsafety.1
-  dio_cookie_manager: ^2.0.0
-  cookie_jar: ^3.0.1
-  graphql_flutter: ^5.0.0-nullsafety.2
+  gql_http_link: ^0.4.0
+  gql_transform_link: ^0.2.0
+  gql_error_link: ^0.2.0
+  ferry: ^0.10.3
+  ferry_hive_store: ^0.4.3
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  jwt_decoder: ^2.0.1
 
   # Utils
-  flutter_screenutil: ^5.0.0
-  flutter_dotenv: ^4.0.0-nullsafety.1
-  freezed_annotation: ^0.14.1
-  dartz: ^0.10.0-nullsafety.0
+  flutter_form_builder: ^6.0.1
+  flutter_hooks: ^0.18.0
+  package_info: ^2.0.2
   enum_to_string: ^2.0.1
-  json_annotation: ^4.0.1
-  json_serializable: ^4.1.1
-  jwt_decoder: ^2.0.1
-  device_info: ^2.0.0
-  firebase_messaging: ^9.1.2
-  package_info: ^2.0.0
-  pull_to_refresh: ^2.0.0
-  basic_utils: ^3.0.2
-  cached_network_image: ^3.0.0
-  expandable: ^5.0.1
+  flutter_dotenv: ^5.0.0
+  dartz: ^0.10.0-nullsafety.2
   flutter_nfc_kit: ^2.2.1
-  path_provider: ^2.0.1
+  flutter_inappwebview: ^5.3.2
 
-  # Icons
-  line_icons: ^2.0.1
-  syncfusion_flutter_calendar: ^19.1.57
-  firebase_core: ^1.0.4
+  # Firebase
+  firebase_core: ^1.3.0
+  firebase_messaging: ^10.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.0.1
-  freezed: ^0.14.1+3
-  #lint: ^1.5.1
+  build_runner: ^2.0.5
+  freezed: ^0.14.2
+  json_annotation: ^4.0.1
+  json_serializable: ^4.1.3
+  ferry_generator: ^0.4.3
+  gql_build: ^0.2.0
+  gql_code_builder: ^0.2.0
 
 flutter:
   uses-material-design: true

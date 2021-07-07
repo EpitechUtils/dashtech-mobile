@@ -5,11 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
-import 'package:dashtech/infrastructure/core/http_service.dart';
-import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/infrastructure/core/service/http_service.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import "package:get/get.dart";
 import "package:get/state_manager.dart";
@@ -32,11 +31,11 @@ class SigninWebviewController extends GetxController {
 
   // Get office url from intranet
   void _getOfficeLoginUrl() async {
-    dio.Response resp = await httpService.dio.get<dynamic>("/admin/autolog?format=json");
+    final resp = await httpService.connect.get("/admin/autolog?format=json");
 
-    dynamic body = resp.data;
+    dynamic body = resp.body;
     print(body);
-    if (body == null || resp.statusCode! >= 500 || resp.data['office_auth_uri'] == null) {
+    if (body == null || resp.statusCode! >= 500 || resp.body['office_auth_uri'] == null) {
       return null;
     }
 

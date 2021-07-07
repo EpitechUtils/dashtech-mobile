@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:dashtech/infrastructure/core/firebase_service.dart';
+import 'package:dashtech/infrastructure/core/service/firebase_service.dart';
 import 'package:dashtech/presentation/core/utils/device_utils.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';

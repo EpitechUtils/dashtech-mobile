@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart';
 import 'package:dashtech/domain/profile/models/profile_setting.dart';
-import 'package:dashtech/infrastructure/core/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/storage_service.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_mutations.dart';
 import 'package:dashtech/infrastructure/profile/graphql/profile_queries.dart';

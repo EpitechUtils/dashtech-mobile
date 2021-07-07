@@ -1,0 +1,7 @@
+query AuthConfirmEmailCode($email: String!, $code: String!) {
+    authConfirmEmailCode(email: $email, code: $code) {
+        id
+        status
+        email
+    }
+}

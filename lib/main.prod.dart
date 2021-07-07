@@ -1,21 +1,21 @@
-import 'package:dashtech/infrastructure/core/firebase_service.dart';
-import 'package:dashtech/infrastructure/core/graphql_service.dart';
-import 'package:dashtech/infrastructure/core/http_service.dart';
-import 'package:dashtech/infrastructure/core/intranet_rights_service.dart';
-import 'package:dashtech/infrastructure/core/storage_service.dart';
-import 'package:dashtech/infrastructure/core/token_service.dart';
+import 'package:dashtech/infrastructure/core/service/firebase_service.dart';
+import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
+import 'package:dashtech/infrastructure/core/service/http_service.dart';
+import 'package:dashtech/infrastructure/core/service/intranet_rights_service.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
+import 'package:dashtech/infrastructure/core/service/token_service.dart';
 import 'package:dashtech/presentation/app_widget.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initServices();
-  await DotEnv.load(fileName: 'assets/.env.prod');
+  await DotEnv().load(fileName: 'assets/.env.prod');
   runApp(AppWidget());
 }
 

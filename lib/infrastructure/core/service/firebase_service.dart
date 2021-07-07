@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 class FirebaseService extends GetxService {
@@ -61,7 +61,7 @@ class FirebaseService extends GetxService {
   }
 
   Future<void> saveDeviceToken() async {
-    final String? token = await messaging.getToken(vapidKey: DotEnv.env['FCM_VAPID_KEY']);
+    final String? token = await messaging.getToken(vapidKey: DotEnv().env['FCM_VAPID_KEY']);
     if (token != null && token.isNotEmpty) {
       storageService.box.write('deviceToken', token);
       Get.log('Device token has been saved...');

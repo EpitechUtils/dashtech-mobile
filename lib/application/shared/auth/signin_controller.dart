@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
 import 'package:dashtech/domain/auth/models/auth_profile.dart';
-import 'package:dashtech/infrastructure/core/storage_service.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
 import 'package:dashtech/presentation/pages/shared/auth/widgets/sign_in_intranet_webview.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';

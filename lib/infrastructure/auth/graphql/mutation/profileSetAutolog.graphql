@@ -1,0 +1,3 @@
+mutation ProfileSetAutolog($profileId: String!, $autologUrl: String!) {
+    profileSetAutolog(profileId: $profileId, autologUrl: $autologUrl)
+}

@@ -1,9 +1,7 @@
-import 'package:dashtech/infrastructure/core/intranet_rights_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final IntranetRightsService intranetRightsService = Get.find();
   final PageController pageController = PageController();
 
   RxInt index = 0.obs;
