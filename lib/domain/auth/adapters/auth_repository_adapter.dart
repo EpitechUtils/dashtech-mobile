@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
-import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.data.gql.dart';
 

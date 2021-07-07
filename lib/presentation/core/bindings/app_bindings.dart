@@ -6,11 +6,7 @@ class AppBindings implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<IAuthRepository>(
-      () => AuthRepository(
-          graphqlService: Get.find(),
-          httpService: Get.find(),
-          tokenService: Get.find(),
-          storageService: Get.find()),
+      () => AuthRepository(),
       fenix: true,
     );
   }

@@ -7,6 +7,7 @@ import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/auth/graphql/mutation/profileRegisterDevice.req.gql.dart';
 import 'package:dashtech/infrastructure/auth/graphql/mutation/profileSetAutolog.req.gql.dart';
+import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.data.gql.dart';
 import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.req.gql.dart';
 import 'package:dashtech/infrastructure/auth/graphql/query/authSendEmailConfirmation.req.gql.dart';
 import 'package:dashtech/infrastructure/auth/graphql/query/profileGetIconLinkByPicture.req.gql.dart';
@@ -16,8 +17,6 @@ import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/infrastructure/core/service/token_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-
-import 'graphql/query/authConfirmEmailCode.data.gql.dart';
 
 class AuthRepository implements IAuthRepository {
   final GraphqlService graphqlService = Get.find();
