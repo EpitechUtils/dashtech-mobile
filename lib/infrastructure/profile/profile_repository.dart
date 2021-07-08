@@ -1,49 +1,55 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart';
 import 'package:dashtech/domain/profile/models/profile_setting.dart';
+import 'package:dashtech/infrastructure/core/graphql/schema.schema.gql.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
-import 'package:dashtech/infrastructure/core/storage_service.dart';
-import 'package:dashtech/infrastructure/profile/graphql/profile_mutations.dart';
-import 'package:dashtech/infrastructure/profile/graphql/profile_queries.dart';
-import 'package:dashtech/infrastructure/profile/input/profile_setting_input.dart';
+import 'package:dashtech/infrastructure/core/service/storage_service.dart';
+import 'package:dashtech/infrastructure/profile/graphql/mutation/settingsUpdate.data.gql.dart';
+import 'package:dashtech/infrastructure/profile/graphql/mutation/settingsUpdate.req.gql.dart';
+import 'package:dashtech/infrastructure/profile/graphql/query/settingsGetAll.data.gql.dart';
+import 'package:dashtech/infrastructure/profile/graphql/query/settingsGetAll.req.gql.dart';
 import 'package:get/get.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 class ProfileRepository implements IProfileRepository {
   final GraphqlService graphqlService = Get.find();
   final StorageService storageService = Get.find();
 
   @override
-  Future<Either<BaseFailure, List<ProfileSetting>>> getSettings() async {
-    final QueryResult result = await graphqlService.client.query(
-      QueryOptions(document: gql(settingsGetAllQuery)),
-    );
+  Future<Either<BaseFailure, List<GSettingsGetAllData_settingsGetAll>>> getSettings() async {
+    final completer = Completer<Either<BaseFailure, List<GSettingsGetAllData_settingsGetAll>>>();
+    final request = GSettingsGetAllReq((b) => b);
 
-    if (result.hasException) {
-      return left(const BaseFailure.unexpected());
-    }
+    graphqlService.client.request(request).listen((response) {
+      if (response.loading) return;
+      if (response.hasErrors) {
+        completer.complete(left(const BaseFailure.unexpected()));
+        return;
+      }
+      completer.complete(right(response.data!.settingsGetAll.toList()));
+    });
 
-    final List json = result.data!['settingsGetAll'] as List;
-    return right(json.map((value) => ProfileSetting.fromJson(value)).toList());
+    return completer.future;
   }
 
   @override
-  Future<Either<BaseFailure, List<ProfileSetting>>> updateSettings(
-    List<ProfileSettingInput> settings,
+  Future<Either<BaseFailure, List<GSettingsUpdateData_settingsUpdate>>> updateSettings(
+    List<GSettingInput> settings,
   ) async {
-    final QueryResult result = await graphqlService.client.query(
-      QueryOptions(
-        document: gql(settingsUpdateMutation),
-        variables: {'settings': settings},
-      ),
-    );
+    final completer = Completer<Either<BaseFailure, List<GSettingsUpdateData_settingsUpdate>>>();
+    final request = GSettingsUpdateReq((b) => b..vars.settings.addAll(settings));
 
-    if (result.hasException) {
-      return left(const BaseFailure.unexpected());
-    }
+    graphqlService.client.request(request).listen((response) {
+      if (response.loading) return;
+      if (response.hasErrors) {
+        completer.complete(left(const BaseFailure.unexpected()));
+        return;
+      }
+      completer.complete(right(response.data!.settingsUpdate.toList()));
+    });
 
-    final List json = result.data!['settingsUpdate'] as List;
-    return right(json.map((value) => ProfileSetting.fromJson(value)).toList());
+    return completer.future;
   }
 }

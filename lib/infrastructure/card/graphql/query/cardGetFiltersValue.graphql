@@ -1,0 +1,21 @@
+query CardGetFilterValues($details: FilterDetailsInput!) {
+    cardGetFilterValues(details: $details) {
+        filterType
+        years {
+            students
+            scolaryear
+        }
+        courses {
+            code
+            old_title
+            shortcode_school
+            students
+            title
+        }
+        promos {
+            promo
+            promo_deprecated
+            students
+        }
+    }
+}

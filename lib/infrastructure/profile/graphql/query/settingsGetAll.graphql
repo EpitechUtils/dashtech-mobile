@@ -1,0 +1,7 @@
+query SettingsGetAll {
+    settingsGetAll {
+        id
+        setting
+        value
+    }
+}
