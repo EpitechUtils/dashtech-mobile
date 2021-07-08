@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart';
-import 'package:dashtech/domain/profile/models/profile_setting.dart';
 import 'package:dashtech/infrastructure/core/graphql/schema.schema.gql.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';

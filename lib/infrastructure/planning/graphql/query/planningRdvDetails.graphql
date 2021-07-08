@@ -1,0 +1,84 @@
+query PlanningRdvDetails($codes: CodesInput!) {
+    planningRdvDetails(codes: $codes) {
+        scolaryear
+        codemodule
+        codeinstance
+        codeacti
+
+        nb_notes
+        register_by_bloc
+        title
+        description
+        instance_location
+        module_title
+        student_registered
+        with_project
+        nb_registered
+        nb_slots_full
+        group {
+            id
+            code
+            title
+            inscrit
+            master
+            members
+        }
+        projects {
+            title
+            codeacti
+            id_projet
+        }
+        events {
+            id
+            nb_registered
+            begin
+            register
+            num_event
+            end
+            location
+            title
+            date_ins
+            date_modif
+        }
+        project {
+            id
+            scolaryear
+            codemodule
+            codeinstance
+            title
+        }
+        slots {
+            id
+            title
+            bloc_status
+            room
+            codeevent
+            slots {
+                id
+                acti_title
+                date
+                duration
+                status
+                bloc_status
+                id_team
+                id_user
+                date_ins
+                code
+                title
+                module_title
+                members_pictures
+                past
+                master {
+                    login
+                    title
+                    picture
+                }
+                members {
+                    login
+                    title
+                    picture
+                }
+            }
+        }
+    }
+}
