@@ -1,4 +1,4 @@
-import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.data.gql.dart';
+import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -17,14 +17,12 @@ class AuthProfileTokenDto with _$AuthProfileTokenDto {
 
   const AuthProfileTokenDto._();
 
-  GAuthConfirmEmailCodeData_authConfirmEmailCode toDomain() {
+  AuthProfile toDomain() {
     final Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
-    print(decodedToken);
-    return GAuthConfirmEmailCodeData_authConfirmEmailCode(
-      (b) => b
-        ..id = decodedToken['profileId'] as String
-        ..email = decodedToken['email'] as String
-        ..status = "login_in",
+    return AuthProfile(
+      id: decodedToken['profileId'] as String,
+      email: decodedToken['email'] as String,
+      status: "login_in",
     );
   }
 }

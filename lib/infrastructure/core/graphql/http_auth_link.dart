@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:ferry/ferry.dart';
 import "package:gql_error_link/gql_error_link.dart";
 import "package:gql_exec/gql_exec.dart";
 import 'package:gql_http_link/gql_http_link.dart';

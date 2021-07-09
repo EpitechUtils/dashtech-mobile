@@ -1,0 +1,429 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type ActivityDetails {
+    archive: String
+    begin: String
+    call_ihk: String
+    codeacti: String
+    codeinstance: String
+    codemodule: String
+    deadline: String
+    description: String
+    end: String
+    end_register: String
+    events: [ActivityEvent!]
+    ged_node_adm: String
+    hash_elearning: String
+    hidden: Boolean
+    id_bareme: String
+    id_projet: String
+    instance_location: String
+    is_blocins: Boolean
+    is_note: Boolean
+    is_projet: Boolean
+    module_title: String
+    nb_group: Float
+    nb_hours: String
+    nb_notes: String
+    nb_planified: Float
+    num: Float
+    project: ActivityProject
+    project_title: String
+    rdv_status: String
+    register: String
+    register_by_bloc: String
+    register_prof: String
+    scolaryear: String
+    slug: String
+    start: String
+    student_registered: String
+    title: String
+    title_bareme: String
+    title_location_type: String
+    type_code: String
+    type_title: String
+}
+
+type ActivityEvent {
+    allow_token: String
+    already_register: String
+    assistants: [ActivityEventAssistants!]
+    begin: String
+    code: String
+    description: String
+    end: String
+    id_activite: String
+    location: String
+    nb_inscrits: String
+    nb_max_students_projet: String
+    num_event: String
+    seats: String
+    title: String
+    user_status: String
+}
+
+type ActivityEventAssistants {
+    login: String
+    manager_status: String
+    picture: String
+    title: String
+}
+
+type ActivityProject {
+    codeinstance: String
+    codemodule: String
+    id: Float
+    scolaryear: String
+    title: String
+}
+
+type ActivityRdvDetails {
+    codeacti: String
+    codeinstance: String
+    codemodule: String
+    description: String
+    events: [ActivityRdvEvent!]
+    group: ActivityRdvGroup
+    instance_location: String
+    module_title: String
+    nb_notes: Float
+    nb_registered: Float
+    nb_slots_full: Float
+    project: ActivityProject
+    projects: [ActivityRdvProject!]
+    register_by_bloc: Boolean
+    scolaryear: String
+    slots: [ActivityRdvSlotBloc!]
+    student_registered: String
+    title: String
+    with_project: Boolean
+}
+
+type ActivityRdvEvent {
+    begin: String
+    date_ins: String
+    date_modif: String
+    end: String
+    id: String
+    location: String
+    nb_registered: String
+    num_event: String
+    register: String
+    title: String
+}
+
+type ActivityRdvGroup {
+    code: String
+    id: Float
+    inscrit: Boolean
+    master: String
+    members: [String!]
+    title: String
+}
+
+type ActivityRdvMember {
+    login: String
+    picture: String
+    title: String
+}
+
+type ActivityRdvProject {
+    codeacti: String
+    id_projet: String
+    title: String
+}
+
+type ActivityRdvSlot {
+    acti_title: String
+    bloc_status: String
+    code: String
+    date: String
+    date_ins: String
+    duration: Float
+    id: Float
+    id_team: String
+    id_user: String
+    master: ActivityRdvMember
+    members: [ActivityRdvMember!]
+    members_pictures: String
+    module_title: String
+    note: String
+    past: Float
+    status: String
+    title: String
+}
+
+type ActivityRdvSlotBloc {
+    bloc_status: String
+    codeevent: String
+    id: Float
+    room: String
+    slots: [ActivityRdvSlot!]
+    title: String
+}
+
+type Card {
+    id: String!
+    login: String!
+    nfcTag: String!
+}
+
+type CardHistory {
+    createdAt: DateTime!
+    eventType: String!
+    id: String!
+    message: String
+    ownerLogin: String!
+    profile: Profile!
+}
+
+type Course {
+    code: String!
+    old_title: String!
+    shortcode_school: String!
+    students: String!
+    title: String!
+}
+
+type FilterDetails {
+    courses: [Course!]
+    filterType: String!
+    promos: [Promo!]
+    years: [ScolarYear!]
+}
+
+type Module {
+    date_inscription: String!
+    timeline_barre: String!
+    timeline_end: String!
+    timeline_start: String!
+    title: String!
+    title_link: String!
+}
+
+type Mutation {
+    cardRemove(email: String!): Boolean!
+    cardUpdateForLogin(email: String!, nfcTag: String!): Card!
+    createSetting(Setting: SettingInput!): Setting!
+    profileRegisterDevice(identifier: String!, platform: String!, token: String!): Boolean!
+    profileSetAutolog(autologUrl: String!, profileId: String!): Boolean!
+    removeSetting(id: String!): StatusResponse!
+    settingsUpdate(settings: [SettingInput!]!): [Setting!]!
+    updateSetting(Setting: SettingUpdate!, id: String!): Setting!
+}
+
+type Notification {
+    class: String!
+    content: String!
+    date: String!
+    id: String!
+    id_activite: String!
+    title: String!
+    user: NotificationUser!
+    visible: String!
+}
+
+type NotificationUser {
+    picture: String
+    title: String!
+    url: String!
+}
+
+type PlanningActivity {
+    acti_title: String
+    allow_register: Boolean
+    codeacti: String
+    codeevent: String
+    codeinstance: String
+    codemodule: String
+    end: String
+    event_registered: String
+    instance_location: String
+    is_rdv: String
+    module_registered: Boolean
+    nb_hours: String
+    past: Boolean
+    room: PlanningActivityRoom
+    scolaryear: String
+    semester: String
+    start: String
+    title: String
+    titlemodule: String
+    total_students_registered: Float
+    type_code: String
+    type_title: String
+}
+
+type PlanningActivityRoom {
+    code: String!
+    seats: Float!
+    type: String
+}
+
+type PlanningWeekActivity {
+    activities: [PlanningActivity!]!
+    date: String!
+}
+
+type Profile {
+    email: String!
+    hashedAutolog: String
+    id: String!
+    lastDeviceIdentifier: String
+    scheduledNotifications: ScheduledNotification
+    settings: Setting
+    status: String!
+    verificationCode: String
+    verificationCodeExpiration: DateTime
+}
+
+type Promo {
+    promo: String!
+    promo_deprecated: String!
+    students: String!
+}
+
+type Query {
+    authConfirmEmailCode(code: String!, email: String!): Profile
+    authSendEmailConfirmation(email: String!): Boolean!
+    cardGetFilterValues(details: FilterDetailsInput!): FilterDetails!
+    cardGetUsersByFilters(filters: PromoFetchInput!): [TrombiUser!]!
+    cardHistoryByLogin(email: String!): [CardHistory!]!
+    connectionSetting(
+        "Paginate after opaque cursor"
+        after: String,
+        "Paginate before opaque cursor"
+        before: String,
+        "Paginate first"
+        first: Pagination,
+        "Paginate last"
+        last: Pagination,
+        "name of the column to sort"
+        sortColumn: String,
+        "DES or ASC"
+        sortOrder: String
+    ): SettingConnection!
+    findAllSetting: [Setting!]!
+    findSettingById(id: String!): Setting!
+    moduleCurrent: [Module!]!
+    notificationsAll: [Notification!]!
+    pageSetting(
+        number: Int!,
+        size: Pagination = 25,
+        "name of the column to sort"
+        sortColumn: String,
+        "DES or ASC"
+        sortOrder: String
+    ): SettingPage!
+    planningActivityDetails(codes: CodesInput!): ActivityDetails!
+    planningListWeekActivities: [PlanningWeekActivity!]!
+    planningMonthActivities: [PlanningActivity!]!
+    planningRdvDetails(codes: CodesInput!): ActivityRdvDetails!
+    planningWeekActivities(end: String!, start: String!): [PlanningWeekActivity!]!
+    profileGetIconLinkByPicture(picture: String!): String!
+    settingsGetAll: [Setting!]!
+}
+
+type ScheduledNotification {
+    handleAt: DateTime!
+    id: String!
+    profile: Profile!
+    type: String!
+    values: String!
+}
+
+type ScolarYear {
+    scolaryear: String!
+    students: String!
+}
+
+type Setting {
+    id: String!
+    profile: Profile!
+    setting: String!
+    value: String!
+}
+
+type SettingConnection {
+    edges: [SettingEdge!]
+    hasNextPage: Boolean!
+    nodes: [Setting!]
+    totalCount: Int!
+}
+
+type SettingEdge {
+    cursor: String!
+    node: Setting!
+}
+
+type SettingPage {
+    first: Boolean!
+    last: Boolean!
+    numberOfElements: Int!
+    pageNumber: Int!
+    pageSize: Int!
+    results: [Setting!]!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type StatusResponse {
+    status: Status!
+}
+
+type TrombiUser {
+    card: Card
+    cardHistory: [CardHistory!]
+    location: String!
+    login: String!
+    nom: String!
+    picture: String
+    prenom: String!
+    title: String!
+}
+
+enum Status {
+    KO
+    OK
+}
+
+input CodesInput {
+    codeActi: String!
+    codeInstance: String!
+    codeModule: String!
+    scolarYear: String!
+}
+
+input FilterDetailsInput {
+    course: String
+    filter: String!
+    scolaryear: String
+}
+
+input PromoFetchInput {
+    course: String!
+    promo: String!
+    year: String
+}
+
+input SettingInput {
+    setting: String!
+    value: String!
+}
+
+input SettingUpdate {
+    setting: String
+    value: String
+}
+
+
+"A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format."
+scalar DateTime
+
+"Pagination custom scalar type to limit size"
+scalar Pagination

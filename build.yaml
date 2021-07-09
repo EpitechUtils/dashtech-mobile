@@ -1,24 +1,18 @@
 targets:
   $default:
+    sources:
+      - lib/**
+      - graphql/**
+      - schema.graphql
+      - $package$
     builders:
-      gql_build|schema_builder:
-        enabled: true
-      gql_build|ast_builder:
-        enabled: true
-      gql_build|data_builder:
-        enabled: true
+      artemis:
         options:
-          schema: dashtech|lib/infrastructure/core/graphql/schema.graphql
-      gql_build|var_builder:
-        enabled: true
-        options:
-          schema: dashtech|lib/infrastructure/core/graphql/schema.graphql
-      gql_build|serializer_builder:
-        enabled: true
-        options:
-          schema: dashtech|lib/infrastructure/core/graphql/schema.graphql
-
-      ferry_generator|req_builder:
-        enabled: true
-        options:
-          schema: dashtech|lib/infrastructure/core/graphql/schema.graphql
+          scalar_mapping:
+            - custom_parser_import: 'package:dashtech/infrastructure/core/graphql/type_coercers.dart'
+              graphql_type: DateTime
+              dart_type: DateTime
+          schema_mapping:
+            - schema: 'schema.graphql'
+              queries_glob: 'lib/infrastructure/**.graphql'
+              output: 'lib/infrastructure/core/graphql/graphql_api.dart'

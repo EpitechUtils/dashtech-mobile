@@ -3,14 +3,10 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/auth/failures/auth_failure.dart';
+import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
-import 'package:dashtech/infrastructure/auth/graphql/mutation/profileRegisterDevice.req.gql.dart';
-import 'package:dashtech/infrastructure/auth/graphql/mutation/profileSetAutolog.req.gql.dart';
-import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.data.gql.dart';
-import 'package:dashtech/infrastructure/auth/graphql/query/authConfirmEmailCode.req.gql.dart';
-import 'package:dashtech/infrastructure/auth/graphql/query/authSendEmailConfirmation.req.gql.dart';
-import 'package:dashtech/infrastructure/auth/graphql/query/profileGetIconLinkByPicture.req.gql.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/service/http_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
@@ -31,70 +27,61 @@ class AuthRepository implements IAuthRepository {
     String identifier,
     String platform,
   ) async {
-    final completer = Completer<Either<BaseFailure, bool>>();
-    final request = GProfileRegisterDeviceReq(
-      (b) => b
-        ..vars.identifier = identifier
-        ..vars.platform = platform
-        ..vars.token = token,
+    final response = await graphqlService.client.execute(
+      ProfileRegisterDeviceMutation(
+        variables: ProfileRegisterDeviceArguments(
+          identifier: identifier,
+          platform: platform,
+          token: token,
+        ),
+      ),
     );
 
-    graphqlService.client.request(request).listen((response) {
-      if (response.loading) return;
-      if (response.hasErrors) {
-        completer.complete(left(const BaseFailure.notFound()));
-        return;
-      }
-      completer.complete(right(response.data!.profileRegisterDevice));
-    });
+    if (response.hasErrors) {
+      return left(const BaseFailure.notFound());
+    }
 
-    return completer.future;
+    return right(response.data!.profileRegisterDevice);
   }
 
   // Send email verification to user
   @override
   Future<Either<BaseFailure, bool>> sendEmailCode(String email) async {
-    final completer = Completer<Either<BaseFailure, bool>>();
-    final request = GAuthSendEmailConfirmationReq(
-      (b) => b..vars.email = email,
+    final response = await graphqlService.client.execute(
+      AuthSendEmailConfirmationQuery(
+        variables: AuthSendEmailConfirmationArguments(
+          email: email,
+        ),
+      ),
     );
 
-    graphqlService.client.request(request).listen((response) {
-      if (response.loading) return;
-      if (response.hasErrors) {
-        completer.complete(left(const BaseFailure.notFound()));
-        return;
-      }
-      completer.complete(right(response.data!.authSendEmailConfirmation));
-    });
+    if (response.hasErrors) {
+      return left(const BaseFailure.notFound());
+    }
 
-    return completer.future;
+    return right(response.data!.authSendEmailConfirmation);
   }
 
   // Validate code sent by email
   @override
-  Future<Either<BaseFailure, GAuthConfirmEmailCodeData_authConfirmEmailCode>> confirmEmailCode(
+  Future<Either<BaseFailure, AuthConfirmEmailCode$Query$Profile>> confirmEmailCode(
     String email,
     String code,
   ) async {
-    final completer =
-        Completer<Either<BaseFailure, GAuthConfirmEmailCodeData_authConfirmEmailCode>>();
-    final request = GAuthConfirmEmailCodeReq(
-      (b) => b
-        ..vars.email = email
-        ..vars.code = code,
+    final response = await graphqlService.client.execute(
+      AuthConfirmEmailCodeQuery(
+        variables: AuthConfirmEmailCodeArguments(
+          email: email,
+          code: code,
+        ),
+      ),
     );
 
-    graphqlService.client.request(request).listen((response) {
-      if (response.loading) return;
-      if (response.hasErrors) {
-        completer.complete(left(const BaseFailure.notFound()));
-        return;
-      }
-      completer.complete(right(response.data!.authConfirmEmailCode!));
-    });
+    if (response.hasErrors) {
+      return left(const BaseFailure.notFound());
+    }
 
-    return completer.future;
+    return right(response.data!.authConfirmEmailCode!);
   }
 
   // Set profile autolog url if user email iss same as intranet logged user
@@ -104,27 +91,24 @@ class AuthRepository implements IAuthRepository {
     String profileId,
     String autologUrl,
   ) async {
-    final completer = Completer<Either<BaseFailure, bool>>();
-    final request = GProfileSetAutologReq(
-      (b) => b
-        ..vars.profileId = profileId
-        ..vars.autologUrl = autologUrl,
+    final response = await graphqlService.client.execute(
+      ProfileSetAutologMutation(
+        variables: ProfileSetAutologArguments(
+          profileId: profileId,
+          autologUrl: autologUrl,
+        ),
+      ),
     );
 
-    graphqlService.client.request(request).listen((response) {
-      if (response.loading) return;
-      if (response.hasErrors) {
-        completer.complete(left(const BaseFailure.notFound()));
-        return;
-      }
-      completer.complete(right(response.data!.profileSetAutolog));
-    });
+    if (response.hasErrors) {
+      return left(const BaseFailure.notFound());
+    }
 
-    return completer.future;
+    return right(response.data!.profileSetAutolog);
   }
 
   @override
-  Future<Either<AuthFailure, GAuthConfirmEmailCodeData_authConfirmEmailCode>> login(
+  Future<Either<AuthFailure, AuthProfile>> login(
     String profileId,
     String email,
   ) async {
@@ -138,7 +122,7 @@ class AuthRepository implements IAuthRepository {
       );
 
       final AuthProfileTokenDto tokenDto = AuthProfileTokenDto.fromJson(response.body);
-      final GAuthConfirmEmailCodeData_authConfirmEmailCode authProfile = tokenDto.toDomain();
+      final AuthProfile authProfile = tokenDto.toDomain();
 
       print(tokenDto.toString());
       print(authProfile.toString());
@@ -158,18 +142,18 @@ class AuthRepository implements IAuthRepository {
   Future<Either<BaseFailure, String>> getProfileIconLink(
     String picture,
   ) async {
-    final completer = Completer<Either<BaseFailure, String>>();
-    final request = GProfileGetIconLinkByPictureReq((b) => b..vars.picture = picture);
+    final response = await graphqlService.client.execute(
+      ProfileGetIconLinkByPictureQuery(
+        variables: ProfileGetIconLinkByPictureArguments(
+          picture: picture,
+        ),
+      ),
+    );
 
-    graphqlService.client.request(request).listen((response) {
-      if (response.loading) return;
-      if (response.hasErrors) {
-        completer.complete(left(const BaseFailure.notFound()));
-        return;
-      }
-      completer.complete(right(response.data!.profileGetIconLinkByPicture));
-    });
+    if (response.hasErrors) {
+      return left(const BaseFailure.notFound());
+    }
 
-    return completer.future;
+    return right(response.data!.profileGetIconLinkByPicture);
   }
 }
