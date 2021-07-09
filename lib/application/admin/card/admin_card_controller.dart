@@ -1,15 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/card/adapters/card_repository_adapter.dart';
-import 'package:dashtech/domain/card/models/card_history.dart';
-import 'package:dashtech/domain/card/models/filters/filter_course.dart';
-import 'package:dashtech/domain/card/models/filters/filter_details.dart';
-import 'package:dashtech/domain/card/models/filters/filter_promo.dart';
-import 'package:dashtech/domain/card/models/filters/filter_scolaryear.dart';
-import 'package:dashtech/domain/card/models/trombi_user.dart';
-import 'package:dashtech/domain/card/models/card.dart' as models;
 import 'package:dashtech/domain/core/failures/base_failure.dart';
-import 'package:dashtech/infrastructure/card/input/filter_details_input.dart';
-import 'package:dashtech/infrastructure/card/input/promo_fetch_input.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/services.dart';
@@ -22,21 +14,21 @@ class AdminCardController extends GetxController {
   final ICardRepository cardRepository = Get.find();
 
   final RxBool isLoading = false.obs;
-  final RxList<TrombiUser> users = RxList([]);
+  final RxList<CardGetUsersByFilters$Query$TrombiUser> users = RxList([]);
 
   final RxMap<Filter, bool> filterIsLoading = RxMap<Filter, bool>({
     Filter.YEARS: false,
     Filter.COURSES: false,
     Filter.PROMOS: false,
   });
-  final RxList<FilterScolaryear> filterYears = RxList([]);
-  final RxList<FilterCourse> filterCourses = RxList([]);
-  final RxList<FilterPromo> filterPromos = RxList([]);
-  final Rxn<FilterScolaryear> filterYear = Rxn(null);
-  final Rxn<FilterCourse> filterCourse = Rxn(null);
-  final Rxn<FilterPromo> filterPromo = Rxn(null);
+  final RxList<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYears = RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetails$Course> filterCourses = RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetails$Promo> filterPromos = RxList([]);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYear = Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$Course> filterCourse = Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$Promo> filterPromo = Rxn(null);
 
-  final RxList<CardHistory> cardHistory = RxList([]);
+  final RxList<CardHistoryByLogin$Query$CardHistory> cardHistory = RxList([]);
 
   @override
   Future<void> onInit() async {
@@ -48,21 +40,20 @@ class AdminCardController extends GetxController {
   Future<void> getFilterByName(Filter filter) async {
     filterIsLoading[filter] = true;
 
-    final Either<BaseFailure, FilterDetails> failOrDetails =
-        await this.cardRepository.getFilterValue(
-              FilterDetailsInput(
-                filter: EnumToString.convertToString(filter).toLowerCase(),
-                scolaryear: filterYear.value == null ? null : filterYear.value!.scolaryear,
-                course: filterCourse.value == null ? null : filterCourse.value!.code,
-              ),
-            );
+    final failOrDetails = await this.cardRepository.getFilterValue(
+          FilterDetailsInput(
+            filter: EnumToString.convertToString(filter).toLowerCase(),
+            scolaryear: filterYear.value == null ? null : filterYear.value!.scolaryear,
+            course: filterCourse.value == null ? null : filterCourse.value!.code,
+          ),
+        );
 
     failOrDetails.fold(
-      (BaseFailure left) {
+      (left) {
         filterIsLoading[filter] = false;
         SnackBarUtils.error(message: 'http_common');
       },
-      (FilterDetails right) {
+      (right) {
         filterIsLoading[filter] = false;
 
         if (right.filterType == "years") {
@@ -79,20 +70,19 @@ class AdminCardController extends GetxController {
   /// Fetch profiles by given filters
   Future<void> fetchProfilesByFilters() async {
     isLoading.value = true;
-    final Either<BaseFailure, List<TrombiUser>> failOrUsers =
-        await this.cardRepository.getUsersByFilters(
-              PromoFetchInput(
-                course: this.filterCourse.value!.code,
-                promo: this.filterPromo.value!.promo,
-              ),
-            );
+    final failOrUsers = await this.cardRepository.getUsersByFilters(
+          PromoFetchInput(
+            course: this.filterCourse.value!.code,
+            promo: this.filterPromo.value!.promo,
+          ),
+        );
 
     failOrUsers.fold(
-      (BaseFailure left) {
+      (left) {
         isLoading.value = false;
         SnackBarUtils.error(message: 'http_common');
       },
-      (List<TrombiUser> right) {
+      (right) {
         isLoading.value = false;
         users.value = right;
       },
@@ -100,23 +90,22 @@ class AdminCardController extends GetxController {
   }
 
   /// Get suer history from login
-  Future<void> getUserCardHistory(TrombiUser user) async {
+  Future<void> getUserCardHistory(CardGetUsersByFilters$Query$TrombiUser user) async {
     cardHistory.clear();
-    final Either<BaseFailure, List<CardHistory>> failOrInfo =
-        await this.cardRepository.getCardHistory(user.login);
+    final failOrInfo = await this.cardRepository.getCardHistory(user.login);
 
     failOrInfo.fold(
-      (BaseFailure left) {
+      (left) {
         SnackBarUtils.error(message: 'http_common');
       },
-      (List<CardHistory> right) {
+      (right) {
         cardHistory.value = right.reversed.toList();
       },
     );
   }
 
   /// Update or create new card by NFC
-  Future<void> updateCardByNFC(TrombiUser user) async {
+  Future<void> updateCardByNFC(CardGetUsersByFilters$Query$TrombiUser user) async {
     NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
     if (availability != NFCAvailability.available) {
       return;
@@ -134,11 +123,10 @@ class AdminCardController extends GetxController {
         return;
       }
 
-      final Either<BaseFailure, models.Card> failOrInfo =
-          await this.cardRepository.updateCard(user.login, tag.id);
+      final failOrInfo = await this.cardRepository.updateCard(user.login, tag.id);
 
       await failOrInfo.fold(
-        (BaseFailure left) async {
+        (left) async {
           left.map(
               unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
               notFound: (_) {},
@@ -151,7 +139,7 @@ class AdminCardController extends GetxController {
               },
               unauthorized: (_) {});
         },
-        (models.Card right) async {
+        (right) async {
           await FlutterNfcKit.finish(
             iosAlertMessage: 'admin_card_associated_to'.trParams(
               {'user': user.title},
@@ -159,10 +147,10 @@ class AdminCardController extends GetxController {
           );
 
           // Set values
-          users.value = users.map((elem) {
+          /*users.value = users.map((elem) {
             if (elem.login == user.login) return elem.copyWith.call(card: right);
             return elem;
-          }).toList();
+          }).toList();*/
 
           // Close bottomsheet and display success
           Get.back();
@@ -182,20 +170,20 @@ class AdminCardController extends GetxController {
   }
 
   /// Remove card by user login
-  Future<void> removeCard(TrombiUser user) async {
+  Future<void> removeCard(CardGetUsersByFilters$Query$TrombiUser user) async {
     final Either<BaseFailure, void> failOrSuccess =
         await this.cardRepository.removeCard(user.login);
 
     failOrSuccess.fold(
-      (BaseFailure left) {
+      (left) {
         SnackBarUtils.error(message: 'http_common');
       },
-      (_) {
+      (right) {
         // Set values
-        users.value = users.map((elem) {
+        /*users.value = users.map((elem) {
           if (elem.login == user.login) return elem.copyWith.call(card: null);
           return elem;
-        }).toList();
+        }).toList();*/
 
         // Close bottomsheet and display success
         Get.back();

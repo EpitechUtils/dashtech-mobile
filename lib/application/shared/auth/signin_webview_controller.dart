@@ -92,16 +92,15 @@ class SigninWebviewController extends GetxController {
     isSyncing.value = true;
     final String profileId = storageService.box.read('profileId');
 
-    final Either<AuthFailure, bool> failureOrYes =
-        await authRepository.setProfileAutolog(profileId, autoLog);
+    final failureOrYes = await authRepository.setProfileAutolog(profileId, autoLog);
     failureOrYes.fold(
-      (AuthFailure left) => left.map(
+      (left) => left.map(
         unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
         notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
         conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
-      (_) {
+      (right) {
         Get.back();
         performLoginFromCurrentProfileId(profileId);
       },
@@ -111,16 +110,16 @@ class SigninWebviewController extends GetxController {
   // Login from current profile id
   void performLoginFromCurrentProfileId(String profileId) async {
     final String profileEmail = storageService.box.read('profileEmail');
-    final Either<AuthFailure, AuthProfile> failureOrYes =
-        await authRepository.login(profileId, profileEmail);
+    final failureOrYes = await authRepository.login(profileId, profileEmail);
+
     failureOrYes.fold(
-      (AuthFailure left) => left.map(
+      (left) => left.map(
         unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
         notFound: (_) => SnackBarUtils.error(message: 'http_profile_not_found'),
         conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
-      (AuthProfile right) => Get.toNamed(Routes.home),
+      (right) => Get.toNamed(Routes.home),
     );
   }
 }

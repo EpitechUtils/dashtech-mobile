@@ -1,8 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/profile/adapters/profile_repository_adapter.dart';
-import 'package:dashtech/domain/profile/models/profile_setting.dart';
-import 'package:dashtech/infrastructure/profile/input/profile_setting_input.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -30,14 +27,13 @@ class SettingsController extends GetxController {
   }
 
   Future<void> _fetchSettings() async {
-    Either<BaseFailure, List<ProfileSetting>> failOrSettings =
-        await this.profileRepository.getSettings();
+    final failOrSettings = await this.profileRepository.getSettings();
 
     failOrSettings.fold(
-      (BaseFailure left) {
+      (left) {
         isLoading.value = false;
       },
-      (List<ProfileSetting> right) {
+      (right) {
         right.forEach((s) {
           fetchedSettings[s.setting] = s.value;
           currentSettings[s.setting] = s.value;
@@ -50,20 +46,19 @@ class SettingsController extends GetxController {
 
   Future<void> saveSettings() async {
     isUpdating.value = true;
-    List<ProfileSettingInput> inputs = [];
-    currentSettings.forEach(
-        (key, value) => inputs.add(ProfileSettingInput(setting: key, value: value.toString())));
+    List<SettingInput> inputs = [];
+    currentSettings
+        .forEach((key, value) => inputs.add(SettingInput(setting: key, value: value.toString())));
 
     print(inputs);
 
-    Either<BaseFailure, List<ProfileSetting>> failOrSavedSettings =
-        await this.profileRepository.updateSettings(inputs);
+    final failOrSavedSettings = await this.profileRepository.updateSettings(inputs);
 
     failOrSavedSettings.fold(
-      (BaseFailure left) {
+      (left) {
         isUpdating.value = false;
       },
-      (List<ProfileSetting> right) {
+      (right) {
         right.forEach((s) {
           fetchedSettings[s.setting] = s.value;
           currentSettings[s.setting] = s.value;

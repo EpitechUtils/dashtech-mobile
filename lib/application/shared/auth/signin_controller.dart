@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:dashtech/domain/auth/failures/auth_failure.dart';
-import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
 import 'package:dashtech/presentation/pages/shared/auth/widgets/sign_in_intranet_webview.dart';
@@ -56,12 +53,11 @@ class SigninController extends GetxController {
   // Send email code by email
   Future<void> sendEmailCode() async {
     isLoading.value = true;
-    final Either<AuthFailure, bool> failureOrYes =
-        await authRepository.sendEmailCode(emailTextController.text.toLowerCase());
+    final failureOrYes = await authRepository.sendEmailCode(emailTextController.text.toLowerCase());
 
     failureOrYes.fold(
-      (AuthFailure left) => SnackBarUtils.error(message: 'http_common'),
-      (bool _) {
+      (left) => SnackBarUtils.error(message: 'http_common'),
+      (right) {
         isLoading.value = false;
         isWaitingForCode.value = true;
       },
@@ -81,10 +77,10 @@ class SigninController extends GetxController {
   void validateVerificationCode(String code) async {
     isLoading.value = true;
 
-    final Either<AuthFailure, AuthProfile> failureOrAuthProfile =
+    final failureOrAuthProfile =
         await authRepository.confirmEmailCode(emailTextController.text.toLowerCase(), code);
     failureOrAuthProfile.fold(
-      (AuthFailure left) {
+      (left) {
         isLoading.value = false;
         left.map(
           unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
@@ -93,7 +89,7 @@ class SigninController extends GetxController {
           unauthorized: (_) => SnackBarUtils.error(message: 'http_profile_expired_code'),
         );
       },
-      (AuthProfile right) async {
+      (right) async {
         isLoading.value = false;
         storageService.box.write('profileId', right.id);
         storageService.box.write('profileEmail', right.email);
@@ -108,10 +104,9 @@ class SigninController extends GetxController {
           return;
         }
 
-        final Either<AuthFailure, AuthProfile> failureOrYes =
-            await authRepository.login(right.id, right.email);
+        final failureOrYes = await authRepository.login(right.id, right.email);
         failureOrYes.fold(
-          (AuthFailure left) {
+          (left) {
             isLoading.value = false;
             left.map(
               unexpected: (_) => SnackBarUtils.error(message: 'http_common'),
@@ -120,7 +115,7 @@ class SigninController extends GetxController {
               unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
             );
           },
-          (AuthProfile right) => Get.toNamed(Routes.home),
+          (right) => Get.toNamed(Routes.home),
         );
       },
     );

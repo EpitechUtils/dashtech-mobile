@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -11,7 +12,7 @@ class StudentActivitiesController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
   final RxBool showShimmer = false.obs;
-  final RxList<PlanningWeekActivity> activities = <PlanningWeekActivity>[].obs;
+  final RxList<PlanningListWeekActivities$Query$PlanningWeekActivity> activities = RxList([]);
 
   late RefreshController refreshController;
 
@@ -30,11 +31,10 @@ class StudentActivitiesController extends GetxController {
   }
 
   Future<void> fetchActivities(bool refresh) async {
-    final Either<BaseFailure, List<PlanningWeekActivity>> failureOrActivities =
-        await planningRepository.getDashActivitiesList();
+    final failureOrActivities = await planningRepository.getDashActivitiesList();
 
     failureOrActivities.fold(
-      (BaseFailure left) {
+      (left) {
         showShimmer.value = false;
         if (refresh) {
           refreshController.refreshFailed();
@@ -43,7 +43,7 @@ class StudentActivitiesController extends GetxController {
 
         SnackBarUtils.error(message: 'http_common'.tr);
       },
-      (List<PlanningWeekActivity> right) {
+      (right) {
         showShimmer.value = false;
         if (refresh) {
           refreshController.refreshCompleted();

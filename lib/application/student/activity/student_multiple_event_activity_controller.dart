@@ -2,6 +2,7 @@ import 'package:dashtech/application/student/activity/student_activity_controlle
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:intl/intl.dart';
@@ -12,14 +13,14 @@ class StudentMultipleEventActivityController extends GetxController {
   final IAuthRepository authRepository = Get.find();
 
   final RxInt currentTabIndex = 0.obs;
-  final Rxn<ActivityDetailsEvent> selectedEvent = Rxn<ActivityDetailsEvent>();
+  final Rxn<PlanningActivityDetails$Query$ActivityDetails$ActivityEvent> selectedEvent = Rxn();
 
   final List<Worker> workers = <Worker>[];
 
   @override
   Future<void> onInit() async {
     _initWorkers();
-    selectedEvent.value = activityController.activity.value!.events.first;
+    selectedEvent.value = activityController.activity.value!.events!.first;
     super.onInit();
   }
 
@@ -36,9 +37,9 @@ class StudentMultipleEventActivityController extends GetxController {
     return dateFormat.format(begin);
   }
 
-  String parseDateWithHm(ActivityDetailsEvent event) {
-    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
-    DateTime end = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.end);
+  String parseDateWithHm(PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event) {
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin!);
+    DateTime end = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.end!);
     DateFormat hMFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
     DateFormat dateFormat = DateFormat.MMMd(Get.locale!.toLanguageTag());
 
@@ -52,24 +53,27 @@ class StudentMultipleEventActivityController extends GetxController {
   }
 
   String? getStudentStatus() {
-    return selectedEvent.value!.user_status;
+    return selectedEvent.value!.userStatus;
   }
 
   bool isStudentRegistered() {
     try {
-      return selectedEvent.value!.already_register != null;
+      return selectedEvent.value!.alreadyRegister != null;
     } catch (ignored) {
       return false;
     }
   }
 
-  String parseActivityRoom({ActivityDetailsEvent? event, bool includeSeats = true}) {
+  String parseActivityRoom({
+    PlanningActivityDetails$Query$ActivityDetails$ActivityEvent? event,
+    bool includeSeats = true,
+  }) {
     String room = "undefined";
-    ActivityDetailsEvent choosed = event == null ? selectedEvent.value! : event;
+    final choosed = event == null ? selectedEvent.value! : event;
     try {
-      room = choosed.location
-              .substring(choosed.location.lastIndexOf('/') + 1, choosed.location.length) +
-          (includeSeats ? (" - " + choosed.nb_inscrits + "/" + choosed.seats) : "");
+      room = choosed.location!
+              .substring(choosed.location!.lastIndexOf('/') + 1, choosed.location!.length) +
+          (includeSeats ? (" - " + choosed.nbInscrits! + "/" + choosed.seats!) : "");
     } catch (ignored) {}
 
     return room;
@@ -82,7 +86,7 @@ class StudentMultipleEventActivityController extends GetxController {
         if (activityController.isAppointment && val == 0) return;
 
         selectedEvent.value = activityController
-            .activity.value!.events[val - (activityController.isAppointment ? 1 : 0)];
+            .activity.value!.events![val - (activityController.isAppointment ? 1 : 0)];
       },
     ));
   }

@@ -1,8 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/domain/planning/models/activity_details.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -11,7 +9,7 @@ import 'package:intl/intl.dart';
 class StudentActivityController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
-  final Rxn<ActivityDetails> activity = Rxn<ActivityDetails>();
+  final Rxn<PlanningActivityDetails$Query$ActivityDetails> activity = Rxn(null);
   final RxBool isLoading = true.obs;
 
   late StudentAppointmentController appointmentController;
@@ -26,15 +24,15 @@ class StudentActivityController extends GetxController {
     isLoading.value = true;
 
     try {
-      final Either<BaseFailure, ActivityDetails> failOrActivity =
-          await this.planningRepository.getActivityDetails(codes);
+      final failOrActivity =
+          await this.planningRepository.getActivityDetails(CodesInput.fromJson(codes));
 
       failOrActivity.fold(
-        (BaseFailure left) {
+        (left) {
           isLoading.value = false;
           SnackBarUtils.error(message: 'http_common');
         },
-        (ActivityDetails right) {
+        (right) {
           isLoading.value = false;
           activity.value = right;
           if (this.isAppointment) appointmentController = Get.find();
@@ -46,19 +44,19 @@ class StudentActivityController extends GetxController {
   }
 
   String? getStudentStatus() {
-    return activity.value!.events[0].user_status;
+    return activity.value!.events![0].userStatus;
   }
 
   bool isStudentRegistered() {
     try {
-      return activity.value!.events[0].already_register != null;
+      return activity.value!.events![0].alreadyRegister != null;
     } catch (ignored) {
       return false;
     }
   }
 
   String parseDate() {
-    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin);
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin!);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
@@ -67,13 +65,13 @@ class StudentActivityController extends GetxController {
   String parseActivityRoom() {
     String room = "undefined";
     try {
-      room = activity.value!.events[0].location.substring(
-              activity.value!.events[0].location.lastIndexOf('/') + 1,
-              activity.value!.events[0].location.length) +
+      room = activity.value!.events![0].location!.substring(
+              activity.value!.events![0].location!.lastIndexOf('/') + 1,
+              activity.value!.events![0].location!.length) +
           " - " +
-          activity.value!.events[0].nb_inscrits +
+          activity.value!.events![0].nbInscrits! +
           "/" +
-          activity.value!.events[0].seats;
+          activity.value!.events![0].seats!;
     } catch (ignored) {}
 
     return room;
@@ -87,5 +85,5 @@ class StudentActivityController extends GetxController {
     return hMFormat.format(dateTime);
   }
 
-  bool get isAppointment => activity.value!.type_code == "rdv";
+  bool get isAppointment => activity.value!.typeCode == "rdv";
 }

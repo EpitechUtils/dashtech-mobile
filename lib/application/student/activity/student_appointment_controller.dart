@@ -1,9 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:dashtech/application/student/activity/student_activity_controller.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/domain/planning/models/activity_rdv_details.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +14,11 @@ class StudentAppointmentController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
   final RxBool isLoading = true.obs;
-  final Rxn<ActivityRdvDetails> appointmentDetails = Rxn<ActivityRdvDetails>();
-  final Rxn<ActivityRdvSlot> groupSlot = Rxn<ActivityRdvSlot>();
-  final Rxn<ActivityRdvSlotBloc> currentSlotBloc = Rxn<ActivityRdvSlotBloc>();
+  final Rxn<PlanningRdvDetails$Query$ActivityRdvDetails> appointmentDetails = Rxn();
+  final Rxn<PlanningRdvDetails$Query$ActivityRdvDetails$ActivityRdvSlotBloc$ActivityRdvSlot>
+      groupSlot = Rxn();
+  final Rxn<PlanningRdvDetails$Query$ActivityRdvDetails$ActivityRdvSlotBloc> currentSlotBloc =
+      Rxn();
 
   Future<void> onInit() async {
     _fetchAppointmentDetails();
@@ -26,28 +27,31 @@ class StudentAppointmentController extends GetxController {
 
   Future<void> _fetchAppointmentDetails() async {
     try {
-      final Either<BaseFailure, ActivityRdvDetails> failOrRdvDetails =
-          await this.planningRepository.getRdvDetails({
-        'scolarYear': activityController.activity.value!.scolaryear,
-        'codeModule': activityController.activity.value!.codemodule,
-        'codeInstance': activityController.activity.value!.codeinstance,
-        'codeActi': activityController.activity.value!.codeacti
-      });
+      final failOrRdvDetails = await this.planningRepository.getRdvDetails(
+            CodesInput.fromJson(
+              {
+                'scolarYear': activityController.activity.value!.scolaryear,
+                'codeModule': activityController.activity.value!.codemodule,
+                'codeInstance': activityController.activity.value!.codeinstance,
+                'codeActi': activityController.activity.value!.codeacti
+              },
+            ),
+          );
 
       failOrRdvDetails.fold(
-        (BaseFailure left) {
+        (left) {
           SnackBarUtils.error(message: 'http_common');
           isLoading.value = false;
         },
-        (ActivityRdvDetails right) {
+        (right) {
           appointmentDetails.value = right;
           if (appointmentDetails.value!.group == null) {
             isLoading.value = false;
             return;
           }
 
-          appointmentDetails.value!.slots.forEach((bloc) {
-            bloc.slots.forEach((slot) {
+          appointmentDetails.value!.slots!.forEach((bloc) {
+            bloc.slots!.forEach((slot) {
               if (slot.code == appointmentDetails.value!.group!.code) groupSlot.value = slot;
             });
           });
@@ -63,12 +67,12 @@ class StudentAppointmentController extends GetxController {
   void changeSlotBlocByEvent(ActivityDetailsEvent event) {
     try {
       currentSlotBloc.value =
-          appointmentDetails.value!.slots.where((bloc) => bloc.codeevent == event.code).first;
+          appointmentDetails.value!.slots!.where((bloc) => bloc.codeevent == event.code).first;
     } catch (ingored) {}
   }
 
   String parseDateOfSlot() {
-    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value!.date);
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(groupSlot.value!.date!);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
@@ -87,9 +91,10 @@ class StudentAppointmentController extends GetxController {
     return Colors.white;
   }
 
-  List<ActivityRdvSlot> getSlotsForEventCode(String code) {
+  List<PlanningRdvDetails$Query$ActivityRdvDetails$ActivityRdvSlotBloc$ActivityRdvSlot>
+      getSlotsForEventCode(String code) {
     try {
-      return appointmentDetails.value!.slots.where((bloc) => bloc.codeevent == code).first.slots;
+      return appointmentDetails.value!.slots!.where((bloc) => bloc.codeevent == code).first.slots!;
     } catch (ignored) {
       return [];
     }
@@ -97,9 +102,9 @@ class StudentAppointmentController extends GetxController {
 
   bool get isRegistered => () {
         try {
-          return appointmentDetails.value!.student_registered != null &&
-              appointmentDetails.value!.student_registered == "true" &&
-              appointmentDetails.value!.student_registered != "false";
+          return appointmentDetails.value!.studentRegistered != null &&
+              appointmentDetails.value!.studentRegistered == "true" &&
+              appointmentDetails.value!.studentRegistered != "false";
         } catch (ignored) {
           return false;
         }
