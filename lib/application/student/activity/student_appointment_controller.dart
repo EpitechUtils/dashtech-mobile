@@ -1,10 +1,7 @@
 import 'package:dashtech/application/student/activity/student_activity_controller.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/domain/planning/models/activity_rdv_details.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
-import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -75,19 +72,6 @@ class StudentAppointmentController extends GetxController {
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
-  }
-
-  Color getSlotColor(ActivityRdvSlot slot) {
-    if (slot.code == null) {
-      return Colors.grey[300]!;
-    }
-
-    if (appointmentDetails.value!.group != null &&
-        slot.code == appointmentDetails.value!.group!.code) {
-      return Color(successColor);
-    }
-
-    return Colors.white;
   }
 
   List<PlanningRdvDetails$Query$ActivityRdvDetails$ActivityRdvSlotBloc$ActivityRdvSlot>

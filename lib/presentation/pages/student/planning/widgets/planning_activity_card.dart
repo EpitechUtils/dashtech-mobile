@@ -1,5 +1,5 @@
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
@@ -11,11 +11,13 @@ import 'package:intl/intl.dart';
 class PlanningActivityCard extends StatelessWidget {
   PlanningActivityCard({required this.activity, required this.index});
 
-  final PlanningActivity activity;
+  final PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity;
   final int index;
   final StudentDashboardController dashboardController = Get.find();
 
-  void goToActivityDetails(PlanningActivity activity) => Get.toNamed(
+  void goToActivityDetails(
+          PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity) =>
+      Get.toNamed(
         Routes.activity_details,
         arguments: {
           'scolarYear': activity.scolaryear,
@@ -42,8 +44,8 @@ class PlanningActivityCard extends StatelessWidget {
             splashColor: Color(greyColor).withOpacity(0.2),
             onPressed: () {},
             child: Icon(
-              activity.event_registered != "false" ? Icons.close : Icons.add,
-              color: activity.event_registered != "false" ? Colors.red : Colors.green,
+              activity.eventRegistered != "false" ? Icons.close : Icons.add,
+              color: activity.eventRegistered != "false" ? Colors.red : Colors.green,
             ),
           ),
         ],
@@ -66,9 +68,9 @@ class PlanningActivityCard extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width / 5,
                     color: ActivityColorUtils.getColorByEventType(
-                      activity.type_code,
+                      activity.typeCode!,
                     ).withOpacity(
-                      activity.event_registered != "false" ? 1 : 0.6,
+                      activity.eventRegistered != "false" ? 1 : 0.6,
                     ),
                     child: Container(
                       child: Column(
@@ -76,13 +78,13 @@ class PlanningActivityCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            hourFormat.format(DateTime.parse(activity.start)),
+                            hourFormat.format(DateTime.parse(activity.start!)),
                             style: TextStyle(
                                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
                           Text(
-                            hourFormat.format(DateTime.parse(activity.end)),
+                            hourFormat.format(DateTime.parse(activity.end!)),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -104,19 +106,19 @@ class PlanningActivityCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                activity.acti_title.toUpperCase(),
+                                activity.actiTitle!.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
-                                  color: activity.event_registered != "false"
+                                  color: activity.eventRegistered != "false"
                                       ? Colors.black
                                       : Colors.grey,
                                 ),
                               ),
                               SizedBox(height: 2),
                               Text(
-                                activity.titlemodule.toUpperCase(),
+                                activity.titlemodule!.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w300, fontSize: 12, color: Colors.grey),
@@ -124,17 +126,17 @@ class PlanningActivityCard extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            activity.room.code.split('/').last +
+                            activity.room!.code.split('/').last +
                                 " (" +
-                                activity.total_students_registered.toString() +
+                                activity.totalStudentsRegistered.toString() +
                                 "/" +
-                                activity.room.seats.toString() +
+                                activity.room!.seats.toString() +
                                 ")",
                             style: TextStyle(
                               color: ActivityColorUtils.getColorByEventType(
-                                activity.type_code,
+                                activity.typeCode!,
                               ).withOpacity(
-                                activity.event_registered != "false" ? 1 : 0.6,
+                                activity.eventRegistered != "false" ? 1 : 0.6,
                               ),
                               fontWeight: FontWeight.w500,
                             ),

@@ -1,5 +1,4 @@
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
@@ -57,7 +56,7 @@ class StudentPlanningController extends GetxController {
 
   void onActivityTap(CalendarTapDetails details) {
     if (details.appointments == null) return;
-    PlanningActivity activity = details.appointments![0];
+    final activity = details.appointments![0];
     Get.toNamed(
       Routes.activity_details,
       arguments: {
