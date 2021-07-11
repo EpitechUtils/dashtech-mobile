@@ -1,5 +1,6 @@
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/domain/planning/models/activity_details.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/appointment_slots_shimmer.dart';
@@ -13,7 +14,7 @@ import 'package:get/get.dart';
 class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
   AvailableSlotsList({required this.event});
 
-  final ActivityDetailsEvent event;
+  final PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
             visible: controller.isLoading.value,
             child: AppointmentSlotsShimmer(),
             replacement: Visibility(
-              visible: controller.getSlotsForEventCode(event.code).isNotEmpty,
+              visible: controller.getSlotsForEventCode(event.code!).isNotEmpty,
               replacement: Card(
                 color: Color(warnColor),
                 margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
@@ -59,7 +60,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
               ),
               child: Column(
                 children: controller
-                    .getSlotsForEventCode(event.code)
+                    .getSlotsForEventCode(event.code!)
                     .map(
                       (slot) => Slidable(
                         actionPane: SlidableBehindActionPane(),
@@ -117,11 +118,11 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                           Text(
                                             "De " +
                                                 controller.activityController
-                                                    .parseActivityTime(slot.date) +
+                                                    .parseActivityTime(slot.date!) +
                                                 " à " +
                                                 controller.activityController.parseActivityTime(
-                                                  slot.date,
-                                                  addMinutes: slot.duration,
+                                                  slot.date!,
+                                                  addMinutes: slot.duration!.toInt(),
                                                 ),
                                             style: Get.textTheme.headline2!.copyWith(
                                               color: Colors.black,
@@ -130,9 +131,9 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                           ),
                                           Text(
                                             slot.master != null
-                                                ? slot.master!.login +
+                                                ? slot.master!.login! +
                                                     ", +" +
-                                                    slot.members.length.toString()
+                                                    slot.members!.length.toString()
                                                 : "Libre",
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,

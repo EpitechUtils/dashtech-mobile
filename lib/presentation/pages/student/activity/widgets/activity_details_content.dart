@@ -8,7 +8,7 @@ class ActivityDetailsContent extends GetView<StudentActivityController> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: controller.activity.value!.nb_planified <= 1,
+      visible: controller.activity.value!.nbPlanified! <= 1,
       child: SingleEventActivity(),
       replacement: MultipleEventActivity(),
     );

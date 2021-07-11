@@ -11,7 +11,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
   Widget build(BuildContext context) {
     return Card(
       color: ActivityColorUtils.getColorByEventType(
-        controller.activity.value!.type_code,
+        controller.activity.value!.typeCode!,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
       child: Container(
@@ -40,7 +40,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.activity.value!.title,
+                          controller.activity.value!.title!,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        controller.parseActivityTime(controller.activity.value!.events[0].begin),
+                        controller.parseActivityTime(controller.activity.value!.events![0].begin!),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
@@ -84,7 +84,7 @@ class ActivityTopCard extends GetView<StudentActivityController> {
                         size: 25,
                       ),
                       Text(
-                        controller.parseActivityTime(controller.activity.value!.events[0].end),
+                        controller.parseActivityTime(controller.activity.value!.events![0].end!),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,

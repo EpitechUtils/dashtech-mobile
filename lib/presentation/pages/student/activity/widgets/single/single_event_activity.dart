@@ -86,7 +86,7 @@ class SingleEventActivity extends GetView<StudentActivityController> {
                     const SizedBox(height: 5),
                     Text(
                       controller.activity.value!.description != null
-                          ? controller.activity.value!.description
+                          ? controller.activity.value!.description!
                           : "",
                       style: Get.textTheme.headline2!.copyWith(
                         color: Color(textColor),
@@ -99,7 +99,7 @@ class SingleEventActivity extends GetView<StudentActivityController> {
               Visibility(
                 visible: controller.isAppointment,
                 child: AvailableSlotsList(
-                  event: controller.activity.value!.events.first,
+                  event: controller.activity.value!.events!.first,
                 ),
               ),
             ],

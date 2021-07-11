@@ -15,7 +15,7 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: controller.activityController.activity.value!.events.length +
+      length: controller.activityController.activity.value!.events!.length +
           (controller.activityController.isAppointment ? 1 : 0),
       initialIndex: controller.currentTabIndex.value,
       child: Scaffold(
@@ -43,8 +43,8 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
               ),
               tabs: <Tab>[
                 if (controller.activityController.isAppointment) Tab(text: 'global_info'.tr),
-                ...controller.activityController.activity.value!.events.map(
-                  (ActivityDetailsEvent event) => Tab(
+                ...controller.activityController.activity.value!.events!.map(
+                  (event) => Tab(
                     text: controller.parseDateWithHm(event),
                   ),
                 )

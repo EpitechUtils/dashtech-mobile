@@ -11,7 +11,7 @@ class CurrentEventTopCard extends GetView<StudentMultipleEventActivityController
   Widget build(BuildContext context) {
     return Card(
       color: ActivityColorUtils.getColorByEventType(
-        controller.activityController.activity.value!.type_code,
+        controller.activityController.activity.value!.typeCode!,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
       child: Container(
@@ -42,7 +42,7 @@ class CurrentEventTopCard extends GetView<StudentMultipleEventActivityController
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.activityController.activity.value!.title,
+                          controller.activityController.activity.value!.title!,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class CurrentEventTopCard extends GetView<StudentMultipleEventActivityController
                       children: <Widget>[
                         Text(
                           controller.activityController
-                              .parseActivityTime(controller.selectedEvent.value!.begin),
+                              .parseActivityTime(controller.selectedEvent.value!.begin!),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,
@@ -90,7 +90,7 @@ class CurrentEventTopCard extends GetView<StudentMultipleEventActivityController
                         ),
                         Text(
                           controller.activityController
-                              .parseActivityTime(controller.selectedEvent.value!.end),
+                              .parseActivityTime(controller.selectedEvent.value!.end!),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,

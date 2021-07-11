@@ -30,8 +30,8 @@ class StudentMultipleEventActivityController extends GetxController {
     super.onClose();
   }
 
-  String parseDate(ActivityDetailsEvent event) {
-    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin);
+  String parseDate(PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event) {
+    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(event.begin!);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);

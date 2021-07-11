@@ -64,7 +64,7 @@ class StudentAppointmentController extends GetxController {
     }
   }
 
-  void changeSlotBlocByEvent(ActivityDetailsEvent event) {
+  void changeSlotBlocByEvent(PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event) {
     try {
       currentSlotBloc.value =
           appointmentDetails.value!.slots!.where((bloc) => bloc.codeevent == event.code).first;

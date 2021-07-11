@@ -18,7 +18,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
           style: Get.textTheme.headline1,
         ),
         Text(
-          StringUtils.capitalize(controller.appointmentDetails.value!.group!.title),
+          StringUtils.capitalize(controller.appointmentDetails.value!.group!.title!),
           style: Get.textTheme.headline2,
         ),
         const SizedBox(height: 5),
@@ -48,7 +48,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                       children: [
                         Text(
                           StringUtils.capitalize(
-                            controller.appointmentDetails.value!.group!.master
+                            controller.appointmentDetails.value!.group!.master!
                                 .split('@')
                                 .first
                                 .split('.')
@@ -61,7 +61,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          controller.appointmentDetails.value!.group!.master,
+                          controller.appointmentDetails.value!.group!.master!,
                           style: Get.textTheme.headline2,
                         ),
                       ],
@@ -83,7 +83,7 @@ class AppointmentGroup extends GetView<StudentAppointmentController> {
           ),
           collapsed: Container(),
           expanded: Column(
-            children: controller.appointmentDetails.value!.group!.members
+            children: controller.appointmentDetails.value!.group!.members!
                 .map(
                   (String memberLogin) => Card(
                     margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
