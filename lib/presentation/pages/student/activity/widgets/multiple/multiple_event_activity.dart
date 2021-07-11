@@ -1,5 +1,4 @@
 import 'package:dashtech/application/student/activity/student_multiple_event_activity_controller.dart';
-import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/appointment_details.dart';
 import 'package:dashtech/presentation/pages/student/activity/widgets/appointment/available_slots_list.dart';

@@ -1,5 +1,4 @@
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
-import 'package:dashtech/domain/planning/models/activity_details.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';

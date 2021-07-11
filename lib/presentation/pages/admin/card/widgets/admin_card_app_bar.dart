@@ -1,10 +1,7 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
-import 'package:dashtech/application/shared/settings/settings_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 
 class AdminCardAppBar extends GetView<AdminCardController> implements PreferredSizeWidget {
   @override

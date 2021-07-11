@@ -1,6 +1,4 @@
-import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
-import 'package:dashtech/domain/card/models/trombi_user.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet_card_detail.dart';

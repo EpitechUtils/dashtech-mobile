@@ -1,7 +1,5 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
-import 'package:dashtech/domain/planning/models/planning_activity.dart';
-import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';

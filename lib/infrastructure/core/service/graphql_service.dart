@@ -1,8 +1,8 @@
 import 'package:artemis/artemis.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dashtech/infrastructure/core/graphql/http_auth_link.dart';
 import 'package:dashtech/infrastructure/core/service/token_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' as getx;
 
 extension GraphQLResponseX on GraphQLResponse {

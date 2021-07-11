@@ -1,6 +1,7 @@
 import 'package:dashtech/domain/auth/enum/intranet_rights.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/infrastructure/core/service/token_service.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/pages/admin/attendance/bindings/admin_attendance_bindings.dart';
 import 'package:dashtech/presentation/pages/admin/card/bindings/admin_card_bindings.dart';
 import 'package:dashtech/presentation/pages/admin/dashboard/bindings/admin_dashboard_bindings.dart';
@@ -11,10 +12,9 @@ import 'package:dashtech/presentation/pages/student/home/bindings/student_home_b
 import 'package:dashtech/presentation/pages/student/home/student_home_page.dart';
 import 'package:dashtech/presentation/pages/student/planning/bindings/student_planning_bindings.dart';
 import 'package:dashtech/presentation/pages/student/profile/bindings/student_profile_bindings.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/widgets.dart';
-import 'package:dashtech/presentation/core/utils/logger_utils.dart';
-import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class RightsMiddleware extends GetMiddleware {

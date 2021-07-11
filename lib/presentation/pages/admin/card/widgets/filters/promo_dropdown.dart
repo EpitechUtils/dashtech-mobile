@@ -1,5 +1,4 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
-import 'package:dashtech/domain/card/models/filters/filter_promo.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';

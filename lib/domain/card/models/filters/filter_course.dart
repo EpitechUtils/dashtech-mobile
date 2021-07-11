@@ -1,4 +1,3 @@
-import 'package:dashtech/domain/card/models/card.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'filter_course.freezed.dart';

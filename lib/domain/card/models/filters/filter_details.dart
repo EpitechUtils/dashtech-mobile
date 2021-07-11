@@ -1,4 +1,3 @@
-import 'package:dashtech/domain/card/models/card.dart';
 import 'package:dashtech/domain/card/models/filters/filter_course.dart';
 import 'package:dashtech/domain/card/models/filters/filter_promo.dart';
 import 'package:dashtech/domain/card/models/filters/filter_scolaryear.dart';

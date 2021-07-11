@@ -5,8 +5,8 @@ import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
+import 'package:get/get.dart';
 
 enum Filter { YEARS, COURSES, PROMOS }
 
