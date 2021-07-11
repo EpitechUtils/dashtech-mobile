@@ -33,10 +33,6 @@ class AppPages {
     GetPage(
       name: Routes.home,
       page: () => Container(),
-      bindings: <Bindings>[
-        HomeBinding(),
-        SettingsBindings(),
-      ],
       middlewares: [
         AuthMiddleware(),
         RightsMiddleware(),

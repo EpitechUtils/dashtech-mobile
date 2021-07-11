@@ -1,6 +1,6 @@
 import 'package:artemis/artemis.dart';
 import 'package:dashtech/infrastructure/core/graphql/http_auth_link.dart';
-import 'package:dashtech/infrastructure/core/service/token_service.dart';
+import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' as getx;
@@ -12,7 +12,7 @@ extension GraphQLResponseX on GraphQLResponse {
 }
 
 class GraphqlService extends getx.GetxService {
-  final TokenService tokenService = getx.Get.find();
+  final AuthService authService = getx.Get.find();
   late ArtemisClient client;
 
   Future<GraphqlService> init() async {
@@ -28,9 +28,9 @@ class GraphqlService extends getx.GetxService {
     final HiveStore store = HiveStore(box);
     final Cache cache = Cache(store: store);*/
     final HttpAuthLink authLink = HttpAuthLink(
-      graphQLEndpoint: '${DotEnv().env['BASE_URL']}/graphql',
+      graphQLEndpoint: '${dotenv.env['BASE_URL']}/graphql',
       getToken: () async {
-        final String? token = tokenService.getToken();
+        final String? token = authService.token();
         if (token == null) return null;
         print(token);
         return 'Bearer $token';

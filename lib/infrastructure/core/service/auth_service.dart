@@ -1,26 +1,24 @@
 import 'dart:async';
 
-import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
-import 'package:dashtech/infrastructure/core/service/http_service.dart';
+import 'package:dashtech/domain/auth/enum/intranet_rights.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/date_utils.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-class TokenService extends GetxService {
+class AuthService extends GetxService {
   final StorageService storageService = Get.find();
-  final HttpService httpService = Get.find();
 
-  Rxn<DateTime> expirationDate = Rxn<DateTime>();
-  RxnString token = RxnString(null);
+  final Rxn<DateTime> expirationDate = Rxn<DateTime>();
+  final RxnString token = RxnString(null);
   late Timer timerExpirationDate;
 
-  List<Worker> workers = <Worker>[];
+  final List<Worker> workers = <Worker>[];
 
-  Future<TokenService> init() async {
+  Future<AuthService> init() async {
     Logger.write('$runtimeType ready!');
     return this;
   }
@@ -39,18 +37,24 @@ class TokenService extends GetxService {
     super.onReady();
   }
 
-  @override
-  void onClose() {
-    workers.forEach((Worker worker) => worker.dispose());
-  }
-
-  void saveToken(String? token) {
-    storageService.box.write('token', token);
-  }
+  void saveToken(String? token) => storageService.box.write('token', token);
 
   String? getToken() {
-    if (!storageService.box.hasData('token')) return null;
-    return storageService.box.read('token');
+    storageService.box.read('token');
+  }
+
+  bool isIntranetAdmin() {
+    final decodedToken = this.decodeToken();
+    if (decodedToken['rights'] == null) return false;
+    bool authorize = false;
+
+    List<String>.from(decodedToken['rights']).forEach((e) {
+      if (EnumToString.convertToString(IntranetRight.global) != e) {
+        authorize = true;
+      }
+    });
+
+    return authorize;
   }
 
   void clearToken() => storageService.box.remove('token');
@@ -81,9 +85,9 @@ class TokenService extends GetxService {
 
   Future<void> _getRefreshToken() async {
     print("Refresh token...");
-    try {
+    /*try {
       final response =
-          await httpService.connect.post(DotEnv().env['BASE_URL']! + '/auth/refresh', null);
+      await httpService.connect.post(dotenv.env['BASE_URL']! + '/auth/refresh', null);
       final tokenDto = AuthProfileTokenDto.fromJson(response.body);
       token.value = tokenDto.accessToken;
       expirationDate.value = tokenDto.expirationTime.toLocal();
@@ -92,7 +96,7 @@ class TokenService extends GetxService {
       if (Get.currentRoute != Routes.signin) {
         Get.offAllNamed(Routes.signin);
       }
-    }
+    }*/
   }
 
   void _initOnceWorkers() {
@@ -104,16 +108,6 @@ class TokenService extends GetxService {
             //clear();
             token == null ? Get.offAllNamed(Routes.signin) : Get.offAllNamed(Routes.home);
           });
-        },
-      ),
-    );
-    workers.add(
-      once(
-        expirationDate,
-        (DateTime? expirationDate) {
-          if (expirationDate != null) {
-            _startTimerForRefreshToken();
-          }
         },
       ),
     );

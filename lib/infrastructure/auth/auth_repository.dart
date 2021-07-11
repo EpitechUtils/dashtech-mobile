@@ -7,18 +7,20 @@ import 'package:dashtech/domain/auth/models/auth_profile.dart';
 import 'package:dashtech/domain/core/failures/base_failure.dart';
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
+import 'package:dashtech/infrastructure/core/provider/auth_provider.connect.dart';
+import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
 import 'package:dashtech/infrastructure/core/service/http_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
-import 'package:dashtech/infrastructure/core/service/token_service.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/status/http_status.dart';
 
 class AuthRepository implements IAuthRepository {
   final GraphqlService graphqlService = Get.find();
   final HttpService httpService = Get.find();
-  final TokenService tokenService = Get.find();
+  final AuthService authService = Get.find();
   final StorageService storageService = Get.find();
+  final AuthProvider authProvider = Get.find();
 
   // Register device with firebase token
   @override
@@ -78,7 +80,16 @@ class AuthRepository implements IAuthRepository {
     );
 
     if (response.hasErrors) {
-      return left(const BaseFailure.notFound());
+      switch (response.statusCode) {
+        case HttpStatus.notFound:
+          return left(const BaseFailure.notFound());
+        case HttpStatus.conflict:
+          return left(const BaseFailure.conflict());
+        case HttpStatus.unauthorized:
+          return left(const BaseFailure.unauthorized());
+        default:
+          return left(const BaseFailure.unexpected());
+      }
     }
 
     return right(response.data!.authConfirmEmailCode!);
@@ -113,27 +124,17 @@ class AuthRepository implements IAuthRepository {
     String email,
   ) async {
     try {
-      final response = await httpService.connect.post(
-        DotEnv().env['BASE_URL']! + '/auth/login',
-        {
-          'profileId': profileId,
-          'email': email,
-        },
-      );
-
-      final AuthProfileTokenDto tokenDto = AuthProfileTokenDto.fromJson(response.body);
+      final AuthProfileTokenDto tokenDto = await authProvider.login(profileId, email);
       final AuthProfile authProfile = tokenDto.toDomain();
 
-      print(tokenDto.toString());
-      print(authProfile.toString());
-
       String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');
-      tokenService.expirationDate.value = tokenDto.expirationTime.toLocal();
-      tokenService.token.value = tokenDto.accessToken;
+      authService.expirationDate(tokenDto.expirationTime.toLocal());
+      authService.token(tokenDto.accessToken);
       storageService.box.write('fullName', fullName);
       storageService.box.write('email', authProfile.email);
       return right(authProfile);
     } catch (e) {
+      print(e);
       return left(const AuthFailure.unexpected());
     }
   }

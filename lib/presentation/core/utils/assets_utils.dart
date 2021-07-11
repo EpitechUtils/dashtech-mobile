@@ -15,8 +15,8 @@ class AssetsUtils {
     if (picture == null) return "";
 
     final StringBuffer buffer = StringBuffer();
-    buffer.writeAll(
-        [DotEnv().env['BASE_URL'], 'userPicture', Uri.encodeQueryComponent(picture)], '/');
+    buffer
+        .writeAll([dotenv.env['BASE_URL'], 'userPicture', Uri.encodeQueryComponent(picture)], '/');
 
     return buffer.toString();
   }
