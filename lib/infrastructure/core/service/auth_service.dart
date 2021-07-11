@@ -39,9 +39,7 @@ class AuthService extends GetxService {
 
   void saveToken(String? token) => storageService.box.write('token', token);
 
-  String? getToken() {
-    storageService.box.read('token');
-  }
+  String? getToken() => storageService.box.read('token');
 
   bool isIntranetAdmin() {
     final decodedToken = this.decodeToken();
