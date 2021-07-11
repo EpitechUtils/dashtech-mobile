@@ -1,6 +1,7 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/card.dart' as models;
 import 'package:dashtech/domain/card/models/card_history.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/shared/history_utils.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 
 class CardHistoryCard extends GetView<AdminCardController> {
-  final CardHistory cardHistory;
+  final CardHistoryByLogin$Query$CardHistory cardHistory;
 
   CardHistoryCard({required this.cardHistory});
 

@@ -2,6 +2,7 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
 import 'package:dashtech/domain/planning/models/planning_week_activity.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
@@ -13,11 +14,13 @@ import 'package:intl/intl.dart';
 class ActivityCard extends StatelessWidget {
   ActivityCard({required this.weekActivity, required this.index});
 
-  final PlanningWeekActivity weekActivity;
+  final PlanningListWeekActivities$Query$PlanningWeekActivity weekActivity;
   final int index;
   final StudentDashboardController dashboardController = Get.find();
 
-  void goToActivityDetails(PlanningActivity activity) => Get.toNamed(
+  void goToActivityDetails(
+          PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity) =>
+      Get.toNamed(
         Routes.activity_details,
         arguments: {
           'scolarYear': activity.scolaryear,
@@ -78,7 +81,10 @@ class ActivityCard extends StatelessWidget {
     );
   }
 
-  _buildCard(BuildContext context, PlanningActivity activity) {
+  _buildCard(
+    BuildContext context,
+    PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity,
+  ) {
     DateFormat hourFormat = DateFormat.Hm('fr_FR');
 
     return Container(
@@ -94,8 +100,8 @@ class ActivityCard extends StatelessWidget {
             splashColor: Color(greyColor).withOpacity(0.2),
             onPressed: () {},
             child: Icon(
-              activity.event_registered != "false" ? Icons.close : Icons.add,
-              color: activity.event_registered != "false" ? Colors.red : Colors.green,
+              activity.eventRegistered != "false" ? Icons.close : Icons.add,
+              color: activity.eventRegistered != "false" ? Colors.red : Colors.green,
             ),
           ),
         ],
@@ -118,9 +124,9 @@ class ActivityCard extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width / 5,
                     color: ActivityColorUtils.getColorByEventType(
-                      activity.type_code,
+                      activity.typeCode!,
                     ).withOpacity(
-                      activity.event_registered != "false" ? 1 : 0.6,
+                      activity.eventRegistered != "false" ? 1 : 0.6,
                     ),
                     child: Container(
                       child: Column(
@@ -128,13 +134,13 @@ class ActivityCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            hourFormat.format(DateTime.parse(activity.start)),
+                            hourFormat.format(DateTime.parse(activity.start!)),
                             style: TextStyle(
                                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
                           Text(
-                            hourFormat.format(DateTime.parse(activity.end)),
+                            hourFormat.format(DateTime.parse(activity.end!)),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -156,19 +162,19 @@ class ActivityCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                activity.acti_title.toUpperCase(),
+                                activity.actiTitle!.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
-                                  color: activity.event_registered != "false"
+                                  color: activity.eventRegistered != "false"
                                       ? Colors.black
                                       : Colors.grey,
                                 ),
                               ),
                               SizedBox(height: 2),
                               Text(
-                                activity.titlemodule.toUpperCase(),
+                                activity.titlemodule!.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w300, fontSize: 12, color: Colors.grey),
@@ -176,17 +182,17 @@ class ActivityCard extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            activity.room.code.split('/').last +
+                            activity.room!.code.split('/').last +
                                 " (" +
-                                activity.total_students_registered.toString() +
+                                activity.totalStudentsRegistered.toString() +
                                 "/" +
-                                activity.room.seats.toString() +
+                                activity.room!.seats.toString() +
                                 ")",
                             style: TextStyle(
                               color: ActivityColorUtils.getColorByEventType(
-                                activity.type_code,
+                                activity.typeCode!,
                               ).withOpacity(
-                                activity.event_registered != "false" ? 1 : 0.6,
+                                activity.eventRegistered != "false" ? 1 : 0.6,
                               ),
                               fontWeight: FontWeight.w500,
                             ),

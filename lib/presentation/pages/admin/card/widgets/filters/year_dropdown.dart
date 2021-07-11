@@ -1,5 +1,6 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/filters/filter_scolaryear.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ class YearDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<FilterScolaryear>(
+      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
         icon: Icon(Icons.keyboard_arrow_down),
         value: controller.filterYear.value,
         iconSize: 24,
@@ -18,7 +19,7 @@ class YearDropdown extends GetView<AdminCardController> {
           height: 1,
           color: Color(primaryColor),
         ),
-        onChanged: (FilterScolaryear? val) {
+        onChanged: (val) {
           controller.filterYear.value = val!;
           controller.filterCourse.value = null;
           controller.filterPromo.value = null;
@@ -29,10 +30,10 @@ class YearDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<FilterScolaryear>>? buildDropdowns() {
+  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>>? buildDropdowns() {
     if (controller.filterIsLoading[Filter.YEARS] == true) {
       return [
-        DropdownMenuItem<FilterScolaryear>(
+        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -47,7 +48,7 @@ class YearDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<FilterScolaryear>(
+      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
         value: null,
         child: Text(
           'select'.tr,
@@ -59,8 +60,8 @@ class YearDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterYears
-          .map<DropdownMenuItem<FilterScolaryear>>(
-            (FilterScolaryear value) => DropdownMenuItem<FilterScolaryear>(
+          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>>(
+            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
               value: value,
               child: Text(
                 value.scolaryear,

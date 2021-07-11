@@ -1,5 +1,6 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/filters/filter_course.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ class CourseDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<FilterCourse>(
+      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$Course>(
           icon: Icon(Icons.keyboard_arrow_down),
           value: controller.filterCourse.value,
           iconSize: 24,
@@ -18,7 +19,7 @@ class CourseDropdown extends GetView<AdminCardController> {
             height: 1,
             color: Color(primaryColor),
           ),
-          onChanged: (FilterCourse? val) {
+          onChanged: (val) {
             controller.filterCourse.value = val!;
             controller.filterPromo.value = null;
             controller.getFilterByName(Filter.PROMOS);
@@ -27,10 +28,10 @@ class CourseDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<FilterCourse>>? buildDropdowns() {
+  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>>? buildDropdowns() {
     if (controller.filterIsLoading[Filter.COURSES] == true) {
       return [
-        DropdownMenuItem<FilterCourse>(
+        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -45,7 +46,7 @@ class CourseDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<FilterCourse>(
+      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
         value: null,
         child: Text(
           'select'.tr,
@@ -57,8 +58,8 @@ class CourseDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterCourses
-          .map<DropdownMenuItem<FilterCourse>>(
-            (FilterCourse value) => DropdownMenuItem<FilterCourse>(
+          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>>(
+            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
               value: value,
               child: Text(
                 value.code,

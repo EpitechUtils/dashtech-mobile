@@ -1,5 +1,6 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/domain/card/models/filters/filter_promo.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ class PromoDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<FilterPromo>(
+      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$Promo>(
         icon: Icon(Icons.keyboard_arrow_down),
         value: controller.filterPromo.value,
         iconSize: 24,
@@ -18,7 +19,7 @@ class PromoDropdown extends GetView<AdminCardController> {
           height: 1,
           color: Color(primaryColor),
         ),
-        onChanged: (FilterPromo? val) {
+        onChanged: (val) {
           controller.filterPromo.value = val!;
           controller.fetchProfilesByFilters();
         },
@@ -27,10 +28,10 @@ class PromoDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<FilterPromo>>? buildDropdowns() {
+  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>>? buildDropdowns() {
     if (controller.filterIsLoading[Filter.PROMOS] == true) {
       return [
-        DropdownMenuItem<FilterPromo>(
+        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -45,7 +46,7 @@ class PromoDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<FilterPromo>(
+      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
         value: null,
         child: Text(
           'select'.tr,
@@ -57,8 +58,8 @@ class PromoDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterPromos
-          .map<DropdownMenuItem<FilterPromo>>(
-            (FilterPromo value) => DropdownMenuItem<FilterPromo>(
+          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>>(
+            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
               value: value,
               child: Text(
                 value.promo,

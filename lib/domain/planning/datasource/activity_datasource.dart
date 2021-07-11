@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:dashtech/domain/planning/models/planning_activity.dart';
+import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/shared/activity_color_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ActivityDataSource extends CalendarDataSource {
-  ActivityDataSource(Map<DateTime, List<PlanningActivity>> source) {
+  ActivityDataSource(
+      Map<DateTime, List<PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity>>
+          source) {
     appointments = [];
     source.forEach((key, value) => appointments!.addAll(value));
   }
