@@ -15,21 +15,20 @@ import 'package:dashtech/presentation/pages/student/home/student_home_page.dart'
 import 'package:dashtech/presentation/pages/student/planning/bindings/student_planning_bindings.dart';
 import 'package:dashtech/presentation/pages/student/profile/bindings/student_profile_bindings.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RightsMiddleware extends GetMiddleware {
+class IntraAdminMiddleware extends GetMiddleware {
   final AuthService authService = Get.find();
   final StorageService storageService = Get.find();
 
   @override
   int get priority => 1;
 
-  /// Check if user can manage attendances
-
-  /*@override
+  @override
   RouteSettings? redirect(String? route) {
-    return isIntranetAdmin() ? null : RouteSettings(name: Routes.signin);
-  }*/
+    return authService.isIntranetAdmin() ? null : RouteSettings(name: Routes.signin);
+  }
 
   @override
   List<Bindings>? onBindingsStart(List<Bindings>? bindings) {
@@ -58,23 +57,6 @@ class RightsMiddleware extends GetMiddleware {
   @override
   GetPageBuilder? onPageBuildStart(GetPageBuilder? page) {
     Logger.write("$runtimeType bindings ready");
-    return page;
-  }
-
-  @override
-  GetPage? onPageCalled(GetPage? page) {
-    if (page != null && page.name == Routes.home) {
-      return authService.isIntranetAdmin()
-          ? GetPage(
-              name: '/home/admin',
-              page: () => AdminHomePage(),
-            )
-          : GetPage(
-              name: '/home/student',
-              page: () => StudentHomePage(),
-            );
-    }
-
     return page;
   }
 }

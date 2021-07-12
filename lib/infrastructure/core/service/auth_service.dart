@@ -104,7 +104,14 @@ class AuthService extends GetxService {
         (String? token) {
           Future<void>.delayed(const Duration(seconds: 3), () {
             //clear();
-            token == null ? Get.offAllNamed(Routes.signin) : Get.offAllNamed(Routes.home);
+
+            if (token == null) {
+              Get.offAllNamed(Routes.signin);
+              return;
+            }
+            this.isIntranetAdmin()
+                ? Get.offAllNamed(Routes.admin)
+                : Get.offAllNamed(Routes.student);
           });
         },
       ),

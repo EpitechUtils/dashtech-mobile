@@ -19,7 +19,7 @@ class ActivityCard extends StatelessWidget {
   void goToActivityDetails(
           PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity) =>
       Get.toNamed(
-        Routes.activity_details,
+        Routes.activityDetails,
         arguments: {
           'scolarYear': activity.scolaryear,
           'codeModule': activity.codemodule,

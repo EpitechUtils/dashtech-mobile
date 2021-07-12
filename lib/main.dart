@@ -1,7 +1,6 @@
 import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/firebase_service.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
-import 'package:dashtech/infrastructure/core/service/http_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/app_widget.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
@@ -24,7 +23,6 @@ Future<void> _initServices() async {
   await Firebase.initializeApp();
   await Get.putAsync(() => StorageService().init());
   await Get.putAsync(() => FirebaseService().init());
-  await Get.putAsync(() => HttpService().init());
   await Get.putAsync(() => AuthService().init());
   await Get.putAsync(() => GraphqlService().init());
   Logger.write('All services started...');

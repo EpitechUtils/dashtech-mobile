@@ -10,14 +10,12 @@ import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/infrastructure/core/provider/auth_provider.connect.dart';
 import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
-import 'package:dashtech/infrastructure/core/service/http_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
 class AuthRepository implements IAuthRepository {
   final GraphqlService graphqlService = Get.find();
-  final HttpService httpService = Get.find();
   final AuthService authService = Get.find();
   final StorageService storageService = Get.find();
   final AuthProvider authProvider = Get.find();

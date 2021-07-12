@@ -58,7 +58,7 @@ class StudentPlanningController extends GetxController {
     if (details.appointments == null) return;
     final activity = details.appointments![0];
     Get.toNamed(
-      Routes.activity_details,
+      Routes.activityDetails,
       arguments: {
         'scolarYear': activity.scolaryear,
         'codeModule': activity.codemodule,

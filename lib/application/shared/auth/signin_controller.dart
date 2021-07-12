@@ -1,4 +1,5 @@
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
+import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
 import 'package:dashtech/presentation/pages/shared/auth/widgets/sign_in_intranet_webview.dart';
@@ -11,6 +12,7 @@ import "package:get/state_manager.dart";
 class SigninController extends GetxController {
   final StorageService storageService = Get.find();
   final IAuthRepository authRepository = Get.find();
+  final AuthService authService = Get.find();
 
   final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
   final GlobalKey<FormBuilderState> signInCodeForm = GlobalKey<FormBuilderState>();
@@ -115,7 +117,9 @@ class SigninController extends GetxController {
               unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
             );
           },
-          (right) => Get.toNamed(Routes.home),
+          (right) => authService.isIntranetAdmin()
+              ? Get.offAllNamed(Routes.admin)
+              : Get.offAllNamed(Routes.student),
         );
       },
     );

@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
-import 'package:dashtech/infrastructure/core/service/http_service.dart';
+import 'package:dashtech/infrastructure/core/provider/intranet_provider.connect.dart';
+import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
@@ -12,31 +13,18 @@ import "package:get/state_manager.dart";
 
 class SigninWebviewController extends GetxController {
   final StorageService storageService = Get.find();
-  final HttpService httpService = Get.find();
+  final AuthService authService = Get.find();
   final IAuthRepository authRepository = Get.find();
+  final IntranetProvider intranetProvider = Get.find();
 
   final RxBool isSyncing = false.obs;
   final RxDouble progress = 0.0.obs;
   final RxString officeLoginUrl = ''.obs;
 
   @override
-  void onInit() {
-    _getOfficeLoginUrl();
-
+  Future<void> onInit() async {
+    officeLoginUrl.value = await intranetProvider.getOfficeURI();
     super.onInit();
-  }
-
-  // Get office url from intranet
-  void _getOfficeLoginUrl() async {
-    final resp = await httpService.connect.get("/admin/autolog?format=json");
-
-    dynamic body = resp.body;
-    print(body);
-    if (body == null || resp.statusCode! >= 500 || resp.body['office_auth_uri'] == null) {
-      return null;
-    }
-
-    officeLoginUrl.value = body['office_auth_uri'];
   }
 
   // When progress load of the page change
@@ -116,7 +104,9 @@ class SigninWebviewController extends GetxController {
         conflict: (_) => SnackBarUtils.error(message: 'http_profile_email_missmatch'),
         unauthorized: (_) => SnackBarUtils.error(message: 'http_common'),
       ),
-      (right) => Get.toNamed(Routes.home),
+      (right) => authService.isIntranetAdmin()
+          ? Get.offAllNamed(Routes.admin)
+          : Get.offAllNamed(Routes.student),
     );
   }
 }
