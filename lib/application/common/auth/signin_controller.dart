@@ -2,7 +2,7 @@ import 'package:dashtech/domain/auth/adapters/auth_repository_adapter.dart';
 import 'package:dashtech/infrastructure/core/service/auth_service.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import "package:dashtech/presentation/core/utils/snack_bar_utils.dart";
-import 'package:dashtech/presentation/pages/common/auth/widgets/sign_in_intranet_webview.dart';
+import 'package:dashtech/presentation/pages/common/auth/sign_in_intranet_webview_page.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -10,12 +10,12 @@ import "package:get/get.dart";
 import "package:get/state_manager.dart";
 
 class SigninController extends GetxController {
+  static final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
+  static final GlobalKey<FormBuilderState> signInCodeForm = GlobalKey<FormBuilderState>();
+
   final StorageService storageService = Get.find();
   final IAuthRepository authRepository = Get.find();
   final AuthService authService = Get.find();
-
-  final GlobalKey<FormBuilderState> signInForm = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormBuilderState> signInCodeForm = GlobalKey<FormBuilderState>();
 
   final RxBool isLoading = false.obs;
   final RxBool isWaitingForCode = false.obs;
@@ -92,20 +92,10 @@ class SigninController extends GetxController {
         );
       },
       (right) async {
-        isLoading.value = false;
         storageService.box.write('profileId', right.id);
         storageService.box.write('profileEmail', right.email);
         if (right.status == "creating") {
-          Get.bottomSheet(
-            SingInIntranetWebview(),
-            backgroundColor: Colors.white,
-            isScrollControlled: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            enableDrag: false,
-            isDismissible: false,
-          );
+          Get.toNamed(Routes.signinWebview);
           return;
         }
 

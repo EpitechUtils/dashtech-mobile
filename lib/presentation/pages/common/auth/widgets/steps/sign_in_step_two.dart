@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 
 class SignInStepTwo extends GetView<SigninController> {
   Future<void> sendEmailCode() async {
-    if (controller.signInForm.currentState!.saveAndValidate()) {
+    if (SigninController.signInForm.currentState!.saveAndValidate()) {
       await controller.sendEmailCode();
     }
   }
@@ -27,10 +27,10 @@ class SignInStepTwo extends GetView<SigninController> {
         children: [
           SvgPicture.asset(
             AssetsUtils.svg('email'),
-            width: Get.width / 3,
+            width: Get.width / (keyboardIsOpen ? 4 : 3),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 30, bottom: 20),
+            margin: const EdgeInsets.only(top: 10, bottom: 20),
             padding: EdgeInsets.symmetric(
               horizontal: Get.width / 12,
             ),

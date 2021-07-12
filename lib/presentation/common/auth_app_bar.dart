@@ -18,6 +18,9 @@ class AuthAppBar extends AppBar {
             ),
           ),
         );
+
+  @override
+  Size get preferredSize => Size.fromHeight(50.0);
 }
 
 class CurvedShape extends ContinuousRectangleBorder {

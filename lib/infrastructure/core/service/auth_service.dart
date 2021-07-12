@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dashtech/domain/auth/enum/intranet_rights.dart';
+import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
+import 'package:dashtech/infrastructure/core/provider/auth_provider.connect.dart';
 import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/date_utils.dart';
 import 'package:dashtech/presentation/core/utils/logger_utils.dart';
@@ -11,6 +13,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthService extends GetxService {
   final StorageService storageService = Get.find();
+  final AuthProvider authProvider = Get.find();
 
   final Rxn<DateTime> expirationDate = Rxn<DateTime>();
   final RxnString token = RxnString(null);
@@ -82,19 +85,18 @@ class AuthService extends GetxService {
   }
 
   Future<void> _getRefreshToken() async {
-    print("Refresh token...");
-    /*try {
-      final response =
-      await httpService.connect.post(dotenv.env['BASE_URL']! + '/auth/refresh', null);
-      final tokenDto = AuthProfileTokenDto.fromJson(response.body);
-      token.value = tokenDto.accessToken;
-      expirationDate.value = tokenDto.expirationTime.toLocal();
-      print("Token refreshed...");
-    } catch (e) {
+    Logger.write("Refresh token...");
+    AuthProfileTokenDto? tokenDto = await authProvider.refresh();
+    if (tokenDto == null) {
       if (Get.currentRoute != Routes.signin) {
         Get.offAllNamed(Routes.signin);
       }
-    }*/
+      return;
+    }
+
+    Logger.write("Token refreshed...");
+    token.value = tokenDto.accessToken;
+    expirationDate.value = tokenDto.expirationTime.toLocal();
   }
 
   void _initOnceWorkers() {
@@ -109,6 +111,7 @@ class AuthService extends GetxService {
               Get.offAllNamed(Routes.signin);
               return;
             }
+
             this.isIntranetAdmin()
                 ? Get.offAllNamed(Routes.admin)
                 : Get.offAllNamed(Routes.student);

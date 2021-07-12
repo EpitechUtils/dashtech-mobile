@@ -14,25 +14,31 @@ class SingInIntranetSyncing extends GetView<SigninWebviewController> {
         right: 15,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Lottie.asset(
             AssetsUtils.animation('fireworks'),
             width: 250,
           ),
-          Text(
-            'synchronization'.tr,
-            textAlign: TextAlign.center,
-            style: Get.textTheme.headline1,
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'synchronization_desc'.tr,
-            textAlign: TextAlign.center,
-            style: Get.textTheme.bodyText1!.copyWith(
-              fontSize: 15,
-              color: const Color(blackColor),
-            ),
-          ),
+          Column(
+            children: [
+              Text(
+                'synchronization'.tr,
+                textAlign: TextAlign.center,
+                style: Get.textTheme.headline1,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'synchronization_desc'.tr,
+                textAlign: TextAlign.center,
+                style: Get.textTheme.bodyText1!.copyWith(
+                  fontSize: 15,
+                  color: const Color(blackColor),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

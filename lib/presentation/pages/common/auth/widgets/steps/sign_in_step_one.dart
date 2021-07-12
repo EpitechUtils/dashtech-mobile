@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class SignInStepOne extends GetView<SigninController> {
   Future<void> sendEmailCode() async {
-    if (controller.signInForm.currentState!.saveAndValidate()) {
+    if (SigninController.signInForm.currentState!.saveAndValidate()) {
       await controller.sendEmailCode();
     }
   }

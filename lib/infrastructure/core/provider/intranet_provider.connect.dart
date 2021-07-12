@@ -1,8 +1,14 @@
 import 'package:dashtech/infrastructure/auth/dto/auth_profile_token_dto.dart';
+import 'package:dashtech/presentation/core/utils/logger_utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 class IntranetProvider extends GetConnect {
+  Future<IntranetProvider> init() async {
+    Logger.write('$runtimeType ready!');
+    return this;
+  }
+
   @override
   void onInit() {
     this.baseUrl = "https://intra.epitech.eu";

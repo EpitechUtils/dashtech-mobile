@@ -11,7 +11,7 @@ class SigninForm extends GetViewWithHook<SigninController> {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: controller.signInForm,
+      key: SigninController.signInForm,
       child: Column(
         children: [
           FormBuilderTextField(

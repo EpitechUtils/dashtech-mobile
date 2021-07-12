@@ -28,30 +28,6 @@ class IntraAdminMiddleware extends GetMiddleware {
   }
 
   @override
-  List<Bindings>? onBindingsStart(List<Bindings>? bindings) {
-    if (bindings == null) bindings = [];
-
-    bindings.add(HomeBinding());
-    bindings.add(SettingsBindings());
-
-    if (authService.isIntranetAdmin()) {
-      Logger.write("Applying bindings for admin");
-      bindings.add(AdminHomeBindings());
-      bindings.add(AdminDashboardBindings());
-      bindings.add(AdminAttendanceBindings());
-      bindings.add(AdminCardBindings());
-    } else {
-      Logger.write("Applying bindings for student");
-      bindings.add(StudentHomeBindings());
-      bindings.add(StudentDashboardBindings());
-      bindings.add(StudentPlanningBindings());
-      bindings.add(StudentProfileBindings());
-    }
-
-    return bindings;
-  }
-
-  @override
   GetPageBuilder? onPageBuildStart(GetPageBuilder? page) {
     Logger.write("$runtimeType bindings ready");
     return page;
