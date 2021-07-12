@@ -22,12 +22,8 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
             height: 50,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                InkWell(
-                  onTap: () => Get.back(),
-                  child: Icon(Icons.close, size: 30, color: Color(0xFF131313)),
-                ),
                 Text(
                   'intranet_signin'.tr,
                   style: TextStyle(
@@ -42,7 +38,7 @@ class SingInIntranetWebview extends GetView<SigninWebviewController> {
           Obx(
             () => controller.progress.value < 1.0
                 ? LinearProgressIndicator(value: controller.progress.value)
-                : Container(),
+                : SizedBox(height: 3),
           ),
           Expanded(
             child: Obx(

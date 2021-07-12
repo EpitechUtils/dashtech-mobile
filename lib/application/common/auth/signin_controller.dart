@@ -99,9 +99,12 @@ class SigninController extends GetxController {
           Get.bottomSheet(
             SingInIntranetWebview(),
             backgroundColor: Colors.white,
+            isScrollControlled: true,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
+            enableDrag: false,
+            isDismissible: false,
           );
           return;
         }
