@@ -3,7 +3,7 @@ import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet.dart';
-import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
+import 'package:dashtech/presentation/common/cached_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';

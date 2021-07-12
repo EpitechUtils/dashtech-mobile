@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
-import 'package:dashtech/presentation/shared/activity_color_utils.dart';
+import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ActivityDataSource extends CalendarDataSource {

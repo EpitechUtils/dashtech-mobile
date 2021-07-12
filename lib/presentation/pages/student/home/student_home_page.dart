@@ -1,12 +1,12 @@
-import 'package:dashtech/application/shared/home/home_controller.dart';
+import 'package:dashtech/application/common/home/home_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:dashtech/presentation/pages/shared/settings/settings_page.dart';
+import 'package:dashtech/presentation/pages/common/settings/settings_page.dart';
 import 'package:dashtech/presentation/pages/student/attendance/widgets/attendance_page.dart';
 import 'package:dashtech/presentation/pages/student/dashboard/student_dashboard_page.dart';
 import 'package:dashtech/presentation/pages/student/home/widgets/bottom_bar_widget.dart';
 import 'package:dashtech/presentation/pages/student/planning/student_planning_page.dart';
-import 'package:dashtech/presentation/shared/get_view_with_hook.dart';
-import 'package:dashtech/presentation/shared/hooks/use_curve_animation.dart';
+import 'package:dashtech/presentation/common/get_view_with_hook.dart';
+import 'package:dashtech/presentation/common/hooks/use_curve_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';

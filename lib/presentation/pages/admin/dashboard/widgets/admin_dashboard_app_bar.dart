@@ -2,7 +2,7 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/admin/dashboard/admin_dashboard_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
-import 'package:dashtech/presentation/shared/cached_circle_avatar.dart';
+import 'package:dashtech/presentation/common/cached_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

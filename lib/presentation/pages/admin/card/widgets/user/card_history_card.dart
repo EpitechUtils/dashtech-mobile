@@ -1,6 +1,6 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
-import 'package:dashtech/presentation/shared/history_utils.dart';
+import 'package:dashtech/presentation/common/history_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

@@ -1,9 +1,9 @@
-import 'package:dashtech/application/shared/home/home_controller.dart';
+import 'package:dashtech/application/common/home/home_controller.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/admin/card/admin_card_page.dart';
 import 'package:dashtech/presentation/pages/admin/dashboard/admin_dashboard_page.dart';
 import 'package:dashtech/presentation/pages/admin/home/widgets/admin_bottom_bar_widget.dart';
-import 'package:dashtech/presentation/pages/shared/settings/settings_page.dart';
+import 'package:dashtech/presentation/pages/common/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

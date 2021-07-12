@@ -16,16 +16,18 @@ class StudentActivityController extends GetxController {
 
   @override
   Future<void> onReady() async {
+    print(Get.arguments);
     _fetchActivity(Get.arguments);
     super.onReady();
   }
 
-  Future<void> _fetchActivity(Map<String, String> codes) async {
+  Future<void> _fetchActivity(Map<String, dynamic> codes) async {
     isLoading.value = true;
 
     try {
-      final failOrActivity =
-          await this.planningRepository.getActivityDetails(CodesInput.fromJson(codes));
+      final failOrActivity = await this.planningRepository.getActivityDetails(
+            CodesInput.fromJson(codes),
+          );
 
       failOrActivity.fold(
         (left) {

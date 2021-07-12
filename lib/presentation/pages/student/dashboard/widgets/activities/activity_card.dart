@@ -3,7 +3,7 @@ import 'package:dashtech/application/student/dashboard/student_dashboard_control
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
-import 'package:dashtech/presentation/shared/activity_color_utils.dart';
+import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
