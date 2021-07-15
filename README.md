@@ -1,29 +1,5 @@
 # Dashtech - Epitech Intranet Mobile
 
-# Table of content
-
-- [1. Requirements](#1-requirements)
-    * [Flutter and their tools versions](#flutter-and-their-tools-versions)
-    * [Install packages dependencies](#install-packages-dependencies)
-    * [Generate freezed and json_serializable files](#generate-freezed-and-json-serializable-files)
-- [2. Development guidelines](#2-development-guidelines)
-    * [2.1. Architecture](#21-architecture)
-    * [2.2 Presentation](#22-presentation)
-    * [2.3 Application](#23-application)
-    * [2.4 Domain](#24-domain)
-    * [2.5 Infrastructure](#25-infrastructure)
-- [3. Production deploy](#3-production-deploy)
-    * [3.1 IOS](#31-ios)
-        + [3.1.1 Build](#311-build)
-        + [3.1.2 Deploy](#312-deploy)
-    * [3.2 Android](#32-android)
-        + [3.2.1 Build](#321-build)
-        + [3.2.2 Deploy](#322-deploy)
-- [4. Git Guidelines](#4-git-guidelines)
-    * [Commit Message Header](#commit-message-header)
-    * [Type](#type)
-
-
 # 1. Requirements
 
 ## Flutter and their tools versions
