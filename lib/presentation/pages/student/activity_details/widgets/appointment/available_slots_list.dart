@@ -1,10 +1,10 @@
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
+import 'package:dashtech/presentation/common/cached_circle_avatar.dart';
+import 'package:dashtech/presentation/common/get_view_with_hook.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:dashtech/presentation/pages/student/activity_details/widgets/appointment/appointment_slots_shimmer.dart';
-import 'package:dashtech/presentation/common/cached_circle_avatar.dart';
-import 'package:dashtech/presentation/common/get_view_with_hook.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -62,8 +62,19 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                     .getSlotsForEventCode(event.code!)
                     .map(
                       (slot) => Slidable(
-                        actionPane: SlidableBehindActionPane(),
-                        secondaryActions: [
+                        endActionPane: ActionPane(
+                          motion: DrawerMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (_) {},
+                              backgroundColor: Color(0xFF7BC043),
+                              foregroundColor: Colors.white,
+                              icon: Icons.archive,
+                              label: 'Archive',
+                            ),
+                          ],
+                        ),
+                        /*secondaryActions: [
                           FlatButton(
                             color: Colors.white,
                             shape: CircleBorder(),
@@ -76,7 +87,7 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                               color: Colors.green,
                             ),
                           ),
-                        ],
+                        ],*/
                         child: Card(
                           color: Colors.white,
                           margin: const EdgeInsets.symmetric(
@@ -96,11 +107,13 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                       child: slot.code != null
                                           ? CachedCircleAvatar(
                                               noPicture: Image.asset(
-                                                AssetsUtils.image('unknown', FileFormat.jpg),
+                                                AssetsUtils.image(
+                                                    'unknown', FileFormat.jpg),
                                                 width: 30,
                                               ),
                                               imagePath:
-                                                  AssetsUtils.profilePicture(slot.master!.login),
+                                                  AssetsUtils.profilePicture(
+                                                      slot.master!.login),
                                               radius: 30,
                                             )
                                           : Icon(
@@ -111,19 +124,25 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             "De " +
                                                 controller.activityController
-                                                    .parseActivityTime(slot.date!) +
+                                                    .parseActivityTime(
+                                                        slot.date!) +
                                                 " à " +
-                                                controller.activityController.parseActivityTime(
+                                                controller.activityController
+                                                    .parseActivityTime(
                                                   slot.date!,
-                                                  addMinutes: slot.duration!.toInt(),
+                                                  addMinutes:
+                                                      slot.duration!.toInt(),
                                                 ),
-                                            style: Get.textTheme.headline2!.copyWith(
+                                            style: Get.textTheme.headline2!
+                                                .copyWith(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -132,7 +151,8 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                             slot.master != null
                                                 ? slot.master!.login! +
                                                     ", +" +
-                                                    slot.members!.length.toString()
+                                                    slot.members!.length
+                                                        .toString()
                                                 : "Libre",
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -144,9 +164,12 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                   ],
                                 ),
                                 slot.code != null &&
-                                        controller.appointmentDetails.value!.group != null &&
+                                        controller.appointmentDetails.value!
+                                                .group !=
+                                            null &&
                                         slot.code ==
-                                            controller.appointmentDetails.value!.group!.code
+                                            controller.appointmentDetails.value!
+                                                .group!.code
                                     ? Container(
                                         margin: const EdgeInsets.only(top: 5),
                                         child: Row(
@@ -160,7 +183,8 @@ class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
                                               "registered_to_this_slot".tr,
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              style: Get.textTheme.headline2!.copyWith(
+                                              style: Get.textTheme.headline2!
+                                                  .copyWith(
                                                 fontStyle: FontStyle.italic,
                                               ),
                                             )

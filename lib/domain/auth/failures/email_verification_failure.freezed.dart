@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'email_verification_failure.dart';
 
@@ -42,6 +43,13 @@ mixin _$EmailVerificationFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? unauthorized,
+    TResult Function()? wrongCode,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? unauthorized,
@@ -57,6 +65,13 @@ mixin _$EmailVerificationFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_WrongCode value)? wrongCode,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -68,8 +83,8 @@ mixin _$EmailVerificationFailure {
 
 /// @nodoc
 abstract class $EmailVerificationFailureCopyWith<$Res> {
-  factory $EmailVerificationFailureCopyWith(
-          EmailVerificationFailure value, $Res Function(EmailVerificationFailure) then) =
+  factory $EmailVerificationFailureCopyWith(EmailVerificationFailure value,
+          $Res Function(EmailVerificationFailure) then) =
       _$EmailVerificationFailureCopyWithImpl<$Res>;
 }
 
@@ -85,14 +100,17 @@ class _$EmailVerificationFailureCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(_Unexpected value, $Res Function(_Unexpected) then) =
+  factory _$UnexpectedCopyWith(
+          _Unexpected value, $Res Function(_Unexpected) then) =
       __$UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$UnexpectedCopyWithImpl<$Res>
+    extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(_Unexpected _value, $Res Function(_Unexpected) _then)
+  __$UnexpectedCopyWithImpl(
+      _Unexpected _value, $Res Function(_Unexpected) _then)
       : super(_value, (v) => _then(v as _Unexpected));
 
   @override
@@ -111,7 +129,8 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unexpected);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unexpected);
   }
 
   @override
@@ -125,6 +144,16 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() wrongCode,
   }) {
     return unexpected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? unauthorized,
+    TResult Function()? wrongCode,
+  }) {
+    return unexpected?.call();
   }
 
   @override
@@ -153,6 +182,16 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_WrongCode value)? wrongCode,
+  }) {
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -172,14 +211,17 @@ abstract class _Unexpected implements EmailVerificationFailure {
 
 /// @nodoc
 abstract class _$UnauthorizedCopyWith<$Res> {
-  factory _$UnauthorizedCopyWith(_Unauthorized value, $Res Function(_Unauthorized) then) =
+  factory _$UnauthorizedCopyWith(
+          _Unauthorized value, $Res Function(_Unauthorized) then) =
       __$UnauthorizedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnauthorizedCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$UnauthorizedCopyWithImpl<$Res>
+    extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$UnauthorizedCopyWith<$Res> {
-  __$UnauthorizedCopyWithImpl(_Unauthorized _value, $Res Function(_Unauthorized) _then)
+  __$UnauthorizedCopyWithImpl(
+      _Unauthorized _value, $Res Function(_Unauthorized) _then)
       : super(_value, (v) => _then(v as _Unauthorized));
 
   @override
@@ -198,7 +240,8 @@ class _$_Unauthorized implements _Unauthorized {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unauthorized);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unauthorized);
   }
 
   @override
@@ -212,6 +255,16 @@ class _$_Unauthorized implements _Unauthorized {
     required TResult Function() wrongCode,
   }) {
     return unauthorized();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? unauthorized,
+    TResult Function()? wrongCode,
+  }) {
+    return unauthorized?.call();
   }
 
   @override
@@ -240,6 +293,16 @@ class _$_Unauthorized implements _Unauthorized {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_WrongCode value)? wrongCode,
+  }) {
+    return unauthorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -259,12 +322,14 @@ abstract class _Unauthorized implements EmailVerificationFailure {
 
 /// @nodoc
 abstract class _$WrongCodeCopyWith<$Res> {
-  factory _$WrongCodeCopyWith(_WrongCode value, $Res Function(_WrongCode) then) =
+  factory _$WrongCodeCopyWith(
+          _WrongCode value, $Res Function(_WrongCode) then) =
       __$WrongCodeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$WrongCodeCopyWithImpl<$Res> extends _$EmailVerificationFailureCopyWithImpl<$Res>
+class __$WrongCodeCopyWithImpl<$Res>
+    extends _$EmailVerificationFailureCopyWithImpl<$Res>
     implements _$WrongCodeCopyWith<$Res> {
   __$WrongCodeCopyWithImpl(_WrongCode _value, $Res Function(_WrongCode) _then)
       : super(_value, (v) => _then(v as _WrongCode));
@@ -285,7 +350,8 @@ class _$_WrongCode implements _WrongCode {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _WrongCode);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _WrongCode);
   }
 
   @override
@@ -299,6 +365,16 @@ class _$_WrongCode implements _WrongCode {
     required TResult Function() wrongCode,
   }) {
     return wrongCode();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? unauthorized,
+    TResult Function()? wrongCode,
+  }) {
+    return wrongCode?.call();
   }
 
   @override
@@ -323,6 +399,16 @@ class _$_WrongCode implements _WrongCode {
     required TResult Function(_WrongCode value) wrongCode,
   }) {
     return wrongCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_WrongCode value)? wrongCode,
+  }) {
+    return wrongCode?.call(this);
   }
 
   @override

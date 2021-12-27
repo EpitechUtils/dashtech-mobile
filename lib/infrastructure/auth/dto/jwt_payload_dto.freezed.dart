@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'jwt_payload_dto.dart';
 
@@ -27,7 +28,7 @@ class _$JwtPayloadDtoTearOff {
     );
   }
 
-  JwtPayloadDto fromJson(Map<String, Object> json) {
+  JwtPayloadDto fromJson(Map<String, Object?> json) {
     return JwtPayloadDto.fromJson(json);
   }
 }
@@ -42,18 +43,21 @@ mixin _$JwtPayloadDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith => throw _privateConstructorUsedError;
+  $JwtPayloadDtoCopyWith<JwtPayloadDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $JwtPayloadDtoCopyWith<$Res> {
-  factory $JwtPayloadDtoCopyWith(JwtPayloadDto value, $Res Function(JwtPayloadDto) then) =
+  factory $JwtPayloadDtoCopyWith(
+          JwtPayloadDto value, $Res Function(JwtPayloadDto) then) =
       _$JwtPayloadDtoCopyWithImpl<$Res>;
   $Res call({String userId, String email});
 }
 
 /// @nodoc
-class _$JwtPayloadDtoCopyWithImpl<$Res> implements $JwtPayloadDtoCopyWith<$Res> {
+class _$JwtPayloadDtoCopyWithImpl<$Res>
+    implements $JwtPayloadDtoCopyWith<$Res> {
   _$JwtPayloadDtoCopyWithImpl(this._value, this._then);
 
   final JwtPayloadDto _value;
@@ -79,17 +83,21 @@ class _$JwtPayloadDtoCopyWithImpl<$Res> implements $JwtPayloadDtoCopyWith<$Res> 
 }
 
 /// @nodoc
-abstract class _$JwtPayloadDtoCopyWith<$Res> implements $JwtPayloadDtoCopyWith<$Res> {
-  factory _$JwtPayloadDtoCopyWith(_JwtPayloadDto value, $Res Function(_JwtPayloadDto) then) =
+abstract class _$JwtPayloadDtoCopyWith<$Res>
+    implements $JwtPayloadDtoCopyWith<$Res> {
+  factory _$JwtPayloadDtoCopyWith(
+          _JwtPayloadDto value, $Res Function(_JwtPayloadDto) then) =
       __$JwtPayloadDtoCopyWithImpl<$Res>;
   @override
   $Res call({String userId, String email});
 }
 
 /// @nodoc
-class __$JwtPayloadDtoCopyWithImpl<$Res> extends _$JwtPayloadDtoCopyWithImpl<$Res>
+class __$JwtPayloadDtoCopyWithImpl<$Res>
+    extends _$JwtPayloadDtoCopyWithImpl<$Res>
     implements _$JwtPayloadDtoCopyWith<$Res> {
-  __$JwtPayloadDtoCopyWithImpl(_JwtPayloadDto _value, $Res Function(_JwtPayloadDto) _then)
+  __$JwtPayloadDtoCopyWithImpl(
+      _JwtPayloadDto _value, $Res Function(_JwtPayloadDto) _then)
       : super(_value, (v) => _then(v as _JwtPayloadDto));
 
   @override
@@ -116,9 +124,11 @@ class __$JwtPayloadDtoCopyWithImpl<$Res> extends _$JwtPayloadDtoCopyWithImpl<$Re
 /// @nodoc
 @JsonSerializable()
 class _$_JwtPayloadDto extends _JwtPayloadDto {
-  const _$_JwtPayloadDto({required this.userId, required this.email}) : super._();
+  const _$_JwtPayloadDto({required this.userId, required this.email})
+      : super._();
 
-  factory _$_JwtPayloadDto.fromJson(Map<String, dynamic> json) => _$_$_JwtPayloadDtoFromJson(json);
+  factory _$_JwtPayloadDto.fromJson(Map<String, dynamic> json) =>
+      _$$_JwtPayloadDtoFromJson(json);
 
   @override
   final String userId;
@@ -133,18 +143,17 @@ class _$_JwtPayloadDto extends _JwtPayloadDto {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _JwtPayloadDto &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+        (other.runtimeType == runtimeType &&
+            other is _JwtPayloadDto &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.email, email));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(email);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(email));
 
   @JsonKey(ignore: true)
   @override
@@ -153,21 +162,24 @@ class _$_JwtPayloadDto extends _JwtPayloadDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_JwtPayloadDtoToJson(this);
+    return _$$_JwtPayloadDtoToJson(this);
   }
 }
 
 abstract class _JwtPayloadDto extends JwtPayloadDto {
-  const factory _JwtPayloadDto({required String userId, required String email}) = _$_JwtPayloadDto;
+  const factory _JwtPayloadDto(
+      {required String userId, required String email}) = _$_JwtPayloadDto;
   const _JwtPayloadDto._() : super._();
 
-  factory _JwtPayloadDto.fromJson(Map<String, dynamic> json) = _$_JwtPayloadDto.fromJson;
+  factory _JwtPayloadDto.fromJson(Map<String, dynamic> json) =
+      _$_JwtPayloadDto.fromJson;
 
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(ignore: true)
-  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith => throw _privateConstructorUsedError;
+  _$JwtPayloadDtoCopyWith<_JwtPayloadDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

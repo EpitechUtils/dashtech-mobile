@@ -6,10 +6,10 @@ PODS:
   - Firebase/Messaging (7.10.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 7.10.0)
-  - firebase_core (1.3.0):
+  - firebase_core (1.10.6):
     - Firebase/CoreOnly (= 7.10.0)
     - Flutter
-  - firebase_messaging (10.0.3):
+  - firebase_messaging (11.2.4):
     - Firebase/Messaging (= 7.10.0)
     - firebase_core
     - Flutter
@@ -81,7 +81,7 @@ PODS:
   - OrderedSet (5.0.0)
   - package_info (0.0.1):
     - Flutter
-  - path_provider (0.0.1):
+  - path_provider_ios (0.0.1):
     - Flutter
   - PromisesObjC (1.2.12)
   - sqflite (0.0.2):
@@ -96,7 +96,7 @@ DEPENDENCIES:
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_nfc_kit (from `.symlinks/plugins/flutter_nfc_kit/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
@@ -129,22 +129,22 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_nfc_kit/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Firebase: fffddd0bab8677d07376538365faa93ff3889b39
-  firebase_core: 7a85b798cd1632202c63a98f81162f06e1fe2c45
-  firebase_messaging: 5498ca381aa3dce9188b84eedd2a2dc287987e83
+  firebase_core: 9daf9ce96b78c7540c1397f49572c634694e1354
+  firebase_messaging: 28b73934232d48299e92efdd8b10bbd1c73a0e72
   FirebaseCore: ec566d917b2195fc2610aeb148dae99f57a788f9
   FirebaseCoreDiagnostics: 5662a3823ffcc0acbaa9a21ba5ed302fac634705
   FirebaseInstallations: bf2ec8dbf36ff4c91af6b9a003d15855757680c1
   FirebaseInstanceID: 5ad92c898e1328b66e8dd58811964d6fe4d334c3
   FirebaseMessaging: 76b3058cef7f339cf10db196e03bbbb2165fb5d7
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_nfc_kit: 965c98c3fa68f5609f1cc89abb968fe1b8ffdbaa
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -153,10 +153,10 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
 
 PODFILE CHECKSUM: 17284ee48b52abff20576ed3e420f122d671f5d6
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

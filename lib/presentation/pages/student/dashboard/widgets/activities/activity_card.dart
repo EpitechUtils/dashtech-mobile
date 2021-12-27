@@ -1,9 +1,9 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
+import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
-import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,8 @@ class ActivityCard extends StatelessWidget {
   final StudentDashboardController dashboardController = Get.find();
 
   void goToActivityDetails(
-          PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity) =>
+          PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity
+              activity) =>
       Get.toNamed(
         Routes.activityDetails,
         arguments: {
@@ -81,15 +82,27 @@ class ActivityCard extends StatelessWidget {
 
   _buildCard(
     BuildContext context,
-    PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity,
+    PlanningListWeekActivities$Query$PlanningWeekActivity$PlanningActivity
+        activity,
   ) {
     DateFormat hourFormat = DateFormat.Hm('fr_FR');
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: Slidable(
-        actionPane: SlidableBehindActionPane(),
-        secondaryActions: [
+        endActionPane: ActionPane(
+          motion: DrawerMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (_) {},
+              backgroundColor: Color(0xFF7BC043),
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archive',
+            ),
+          ],
+        ),
+        /*endActionPane: [
           FlatButton(
             color: Colors.white,
             shape: CircleBorder(),
@@ -99,10 +112,12 @@ class ActivityCard extends StatelessWidget {
             onPressed: () {},
             child: Icon(
               activity.eventRegistered != "false" ? Icons.close : Icons.add,
-              color: activity.eventRegistered != "false" ? Colors.red : Colors.green,
+              color: activity.eventRegistered != "false"
+                  ? Colors.red
+                  : Colors.green,
             ),
           ),
-        ],
+        ],*/
         child: FlatButton(
           color: Colors.white,
           padding: EdgeInsets.zero,
@@ -134,7 +149,9 @@ class ActivityCard extends StatelessWidget {
                           Text(
                             hourFormat.format(DateTime.parse(activity.start!)),
                             style: TextStyle(
-                                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -175,7 +192,9 @@ class ActivityCard extends StatelessWidget {
                                 activity.titlemodule!.toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 12, color: Colors.grey),
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    color: Colors.grey),
                               )
                             ],
                           ),
