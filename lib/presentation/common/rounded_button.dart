@@ -65,6 +65,7 @@ class RoundedButton extends StatelessWidget {
                   )
                 : Text(
                     label,
+                    textAlign: TextAlign.center,
                     style: disabled
                         ? const TextStyle(color: Colors.white)
                         : (!secondary

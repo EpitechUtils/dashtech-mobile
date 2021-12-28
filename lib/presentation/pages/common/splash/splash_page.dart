@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:dashtech/application/common/splash/splash_controller.dart';
 import 'package:dashtech/presentation/common/get_view_with_hook.dart';
 import 'package:dashtech/presentation/common/logo.dart';
@@ -20,9 +19,9 @@ class SplashPage extends GetViewWithHook<SplashController> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.center,
-                  child: FadeInUp(
-                    delay: const Duration(seconds: 1),
-                    child: Logo(size: 60),
+                  child: Logo(
+                    size: 60,
+                    animated: true,
                   ),
                 ),
                 Align(
