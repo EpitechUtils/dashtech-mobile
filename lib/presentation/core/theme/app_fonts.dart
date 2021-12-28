@@ -36,7 +36,7 @@ class FontStyles {
 
   static TextStyle get headline1 => futuraFont.copyWith(
         fontFamily: 'Somatic',
-        fontSize: 26,
+        fontSize: 23,
         color: const Color(textColor),
       );
 }

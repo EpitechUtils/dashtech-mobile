@@ -1,4 +1,3 @@
-import 'package:dashtech/presentation/common/auth_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class AuthLayout extends StatelessWidget {
@@ -13,7 +12,6 @@ class AuthLayout extends StatelessWidget {
       backgroundColor: Colors.white,
       //appBar: AuthAppBar(context),
       bottomNavigationBar: bottomNavigationBar,
-      extendBody: true,
       body: SafeArea(child: child),
     );
   }

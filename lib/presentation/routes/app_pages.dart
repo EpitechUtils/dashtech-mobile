@@ -10,6 +10,8 @@ import 'package:dashtech/presentation/pages/common/auth/sign_in_intranet_webview
 import 'package:dashtech/presentation/pages/common/auth/sign_in_page.dart';
 import 'package:dashtech/presentation/pages/common/home/bindings/home_binding.dart';
 import 'package:dashtech/presentation/pages/common/onboarding/bindings/onboarding_bindings.dart';
+import 'package:dashtech/presentation/pages/common/onboarding/onboarding_import_page.dart';
+import 'package:dashtech/presentation/pages/common/onboarding/onboarding_link_page.dart';
 import 'package:dashtech/presentation/pages/common/onboarding/onboarding_page.dart';
 import 'package:dashtech/presentation/pages/common/settings/bindings/settings_bindings.dart';
 import 'package:dashtech/presentation/pages/common/splash/bindings/splash_binding.dart';
@@ -91,6 +93,16 @@ class AppPages {
     GetPage(
       name: Routes.onboarding,
       page: () => OnboardingPage(),
+      binding: OnboardingBindings(),
+    ),
+    GetPage(
+      name: Routes.onboardingImport,
+      page: () => OnboardingImportPage(),
+      binding: OnboardingBindings(),
+    ),
+    GetPage(
+      name: Routes.onboardingLink,
+      page: () => OnboardingLinkPage(),
       binding: OnboardingBindings(),
     ),
     GetPage(

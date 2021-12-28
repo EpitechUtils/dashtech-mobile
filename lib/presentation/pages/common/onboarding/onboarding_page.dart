@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dashtech/application/common/onboarding/onboarding_controller.dart';
-import 'package:dashtech/application/common/onboarding/widgets/onboarding_carousel_item.dart';
 import 'package:dashtech/presentation/common/layouts/auth_layout.dart';
 import 'package:dashtech/presentation/common/logo.dart';
 import 'package:dashtech/presentation/common/rounded_button.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/pages/common/onboarding/widgets/onboarding_carousel_item.dart';
+import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -92,7 +93,7 @@ class OnboardingPage extends GetView<OnboardingController> {
         child: Wrap(
           children: [
             RoundedButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(Routes.onboardingLink),
               secondary: true,
               label: 'Associer mon compte',
             ),
@@ -117,7 +118,7 @@ class OnboardingPage extends GetView<OnboardingController> {
               ),
             ),
             RoundedButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(Routes.onboardingImport),
               label: 'Importer un compte existant',
             ),
           ],
