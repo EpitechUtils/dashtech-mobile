@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dashtech/application/common/onboarding/onboarding_controller.dart';
+import 'package:dashtech/application/common/onboarding/widgets/onboarding_carousel_item.dart';
 import 'package:dashtech/presentation/common/layouts/auth_layout.dart';
+import 'package:dashtech/presentation/common/logo.dart';
 import 'package:dashtech/presentation/common/rounded_button.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:dashtech/presentation/core/utils/assets_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class OnboardingPage extends GetView<OnboardingController> {
@@ -15,16 +15,20 @@ class OnboardingPage extends GetView<OnboardingController> {
       bottomNavigationBar: _bottomNavigation(context),
       child: Container(
         height: double.infinity,
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 20, top: 30),
         child: Column(
           children: [
+            Logo(),
             Expanded(
               child: CarouselSlider(
                 items: _items(),
                 carouselController: controller.carouselController,
                 options: CarouselOptions(
                   autoPlay: true,
+                  enableInfiniteScroll: false,
                   enlargeCenterPage: true,
+                  aspectRatio: 1,
+                  height: Get.height * 0.4,
                   onPageChanged: (index, reason) {
                     controller.currentIndex(index);
                   },
@@ -63,17 +67,19 @@ class OnboardingPage extends GetView<OnboardingController> {
 
   List<Widget> _items() {
     return [
-      Column(
-        children: [
-          SvgPicture.asset(
-            AssetsUtils.svg('calendar_notif'),
-            width: Get.width * 0.3,
-          ),
-        ],
+      OnboardingCarouselItem(
+        svg: 'calendar_sync_icon',
+        title: 'Synchronisation de ton planning avec iCal ou Google Calendar',
       ),
-      Text('1'),
-      Text('2'),
-      Text('3'),
+      OnboardingCarouselItem(
+        svg: 'notification_icon',
+        title: 'Notifications avant chaque activites, rendus de projets etc...',
+      ),
+      OnboardingCarouselItem(
+        svg: 'student_card_icon',
+        title:
+            'Presences directement dans cette application, plus simple, non ?',
+      ),
     ];
   }
 

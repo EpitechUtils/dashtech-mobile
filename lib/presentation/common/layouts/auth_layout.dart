@@ -11,7 +11,7 @@ class AuthLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AuthAppBar(context),
+      //appBar: AuthAppBar(context),
       bottomNavigationBar: bottomNavigationBar,
       extendBody: true,
       body: SafeArea(child: child),

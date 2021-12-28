@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Logo extends StatelessWidget {
   Logo({
     Key? key,
-    this.size = 40,
+    this.size = 50,
     this.animated = false,
   }) : super(key: key);
 
@@ -19,7 +19,7 @@ class Logo extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Somatic',
           fontWeight: FontWeight.bold,
-          color: Color(blackColor),
+          color: Color(textColor),
           fontSize: size,
         ),
         child: AnimatedTextKit(
@@ -43,7 +43,7 @@ class Logo extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Somatic',
           fontWeight: FontWeight.bold,
-          color: Color(blackColor),
+          color: Color(textColor),
           fontSize: size,
         ),
         children: const <TextSpan>[

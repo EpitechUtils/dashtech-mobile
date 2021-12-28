@@ -8,15 +8,14 @@ final ThemeData lightTheme = ThemeData(
   primaryColor: const Color(primaryColor),
   accentColor: const Color(accentColor),
   buttonColor: const Color(primaryColor),
-  dividerColor: const Color(secondaryBtnColor),
+  dividerColor: const Color(dividerColor),
   fontFamily: 'Avenir',
   appBarTheme: const AppBarTheme(
     centerTitle: true,
   ),
-  brightness: Brightness.dark,
   textTheme: TextTheme(
     button: FontStyles.primaryButton,
-    headline1: FontStyles.hugeTitle,
+    headline1: FontStyles.headline1,
     headline2: FontStyles.title,
     headline3: FontStyles.smallTitle,
     subtitle1: FontStyles.baseFont,
@@ -27,6 +26,9 @@ final ThemeData lightTheme = ThemeData(
   buttonTheme: buttonTheme,
   errorColor: const Color(errorColor),
   inputDecorationTheme: inputTheme,
+  dividerTheme: DividerThemeData(
+    color: Color(secondaryBtnColor),
+  ),
 );
 
 final CardTheme cardTheme = CardTheme(

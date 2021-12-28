@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class FontStyles {
   static const TextStyle futuraFont = TextStyle(
     fontFamily: 'Futura',
+    color: Color(blackColor),
   );
 
   static const TextStyle baseFont = TextStyle(
@@ -33,9 +34,9 @@ class FontStyles {
         color: const Color(textColor),
       );
 
-  static TextStyle get hugeTitle => futuraFont.copyWith(
+  static TextStyle get headline1 => futuraFont.copyWith(
+        fontFamily: 'Somatic',
         fontSize: 26,
-        fontWeight: FontWeight.w900,
         color: const Color(textColor),
       );
 }
