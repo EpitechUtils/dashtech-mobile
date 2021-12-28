@@ -11,9 +11,15 @@ class FontStyles {
     fontSize: 14,
   );
 
-  static TextStyle get titleButton => futuraFont.copyWith(
-        fontSize: 14,
-        color: Colors.white,
+  static TextStyle get primaryButton => futuraFont.copyWith(
+        fontSize: 18,
+        color: Color(secondaryBtnColor),
+        fontWeight: FontWeight.bold,
+      );
+
+  static TextStyle get secondaryButton => futuraFont.copyWith(
+        fontSize: 18,
+        color: Color(primaryBtnColor),
         fontWeight: FontWeight.bold,
       );
 

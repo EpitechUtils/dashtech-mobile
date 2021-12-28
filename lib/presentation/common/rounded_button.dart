@@ -1,7 +1,7 @@
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/theme/app_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
@@ -10,67 +10,44 @@ class RoundedButton extends StatelessWidget {
     required this.label,
     this.height,
     this.fontSize,
-    this.colors,
-    this.isRaised = true,
-    this.noBorder = false,
+    this.color,
+    this.secondary = false,
     this.isLoading = false,
     this.disabled = false,
   }) : super(key: key);
 
-  final List<Color>? colors;
+  final Function onPressed;
   final String label;
   final double? height;
   final double? fontSize;
-  final Function onPressed;
-  final bool isRaised;
-  final bool noBorder;
+  final Color? color;
+  final bool secondary;
   final bool isLoading;
   final bool disabled;
-
-  final List<Color> defaultColors = const [
-    Color(0xff0652dd),
-    Color(0xff075bf6),
-    Color(0xff1e6bf9),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? 50,
+      height: height ?? 60,
       width: MediaQuery.of(context).size.width,
-      child: isRaised ? _raisedButton(context) : _outlineButton(context),
+      child: _raisedButton(context),
     );
   }
 
   Widget _raisedButton(BuildContext context) {
+    Color btnColor = color ??
+        (!secondary ? Color(primaryBtnColor) : Color(secondaryBtnColor));
+
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        gradient: disabled
-            ? const LinearGradient(
-                colors: [
-                  Color(greyColor),
-                  Color(greyColor),
-                ],
-              )
-            : LinearGradient(
-                colors: colors == null ? defaultColors : colors!,
-              ),
-        boxShadow: [
-          BoxShadow(
-            color: disabled
-                ? const Color(greyColor).withOpacity(0.15)
-                : (colors == null ? defaultColors.first : colors!.first).withOpacity(0.35),
-            offset: const Offset(2.0, 3.5),
-            blurRadius: disabled ? 0 : 1.5,
-          ),
-        ],
+        borderRadius: BorderRadius.circular(20.0),
+        color: btnColor,
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          splashColor: Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(10.0),
+          highlightColor: btnColor.withOpacity(0.3),
+          borderRadius: BorderRadius.circular(20.0),
           onTap: () {
             if (!isLoading && !disabled) {
               onPressed();
@@ -88,24 +65,14 @@ class RoundedButton extends StatelessWidget {
                   )
                 : Text(
                     label,
-                    style: disabled ? const TextStyle(color: Colors.white) : Get.textTheme.button,
+                    style: disabled
+                        ? const TextStyle(color: Colors.white)
+                        : (!secondary
+                            ? FontStyles.primaryButton
+                            : FontStyles.secondaryButton),
                   ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _outlineButton(BuildContext context) {
-    return OutlineButton(
-      onPressed: () => onPressed(),
-      textColor: disabled ? const Color(inactiveCardTextColor) : Theme.of(context).primaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Text(
-        isLoading ? 'Loading...' : label,
-        textAlign: TextAlign.center,
       ),
     );
   }

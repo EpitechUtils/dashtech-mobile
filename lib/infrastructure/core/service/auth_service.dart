@@ -104,11 +104,11 @@ class AuthService extends GetxService {
       once(
         token,
         (String? token) {
-          Future<void>.delayed(const Duration(seconds: 3), () {
+          Future<void>.delayed(const Duration(seconds: 5), () {
             //clear();
 
             if (token == null) {
-              Get.offAllNamed(Routes.signin);
+              Get.offAllNamed(Routes.onboarding);
               return;
             }
 

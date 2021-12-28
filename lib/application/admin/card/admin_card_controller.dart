@@ -21,12 +21,18 @@ class AdminCardController extends GetxController {
     Filter.COURSES: false,
     Filter.PROMOS: false,
   });
-  final RxList<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYears = RxList([]);
-  final RxList<CardGetFilterValues$Query$FilterDetails$Course> filterCourses = RxList([]);
-  final RxList<CardGetFilterValues$Query$FilterDetails$Promo> filterPromos = RxList([]);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYear = Rxn(null);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$Course> filterCourse = Rxn(null);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$Promo> filterPromo = Rxn(null);
+  final RxList<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYears =
+      RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetails$Course> filterCourses =
+      RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetails$Promo> filterPromos =
+      RxList([]);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYear =
+      Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$Course> filterCourse =
+      Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetails$Promo> filterPromo =
+      Rxn(null);
 
   final RxList<CardHistoryByLogin$Query$CardHistory> cardHistory = RxList([]);
 
@@ -43,8 +49,10 @@ class AdminCardController extends GetxController {
     final failOrDetails = await this.cardRepository.getFilterValue(
           FilterDetailsInput(
             filter: EnumToString.convertToString(filter).toLowerCase(),
-            scolaryear: filterYear.value == null ? null : filterYear.value!.scolaryear,
-            course: filterCourse.value == null ? null : filterCourse.value!.code,
+            scolaryear:
+                filterYear.value == null ? null : filterYear.value!.scolaryear,
+            course:
+                filterCourse.value == null ? null : filterCourse.value!.code,
           ),
         );
 
@@ -90,7 +98,8 @@ class AdminCardController extends GetxController {
   }
 
   /// Get suer history from login
-  Future<void> getUserCardHistory(CardGetUsersByFilters$Query$TrombiUser user) async {
+  Future<void> getUserCardHistory(
+      CardGetUsersByFilters$Query$TrombiUser user) async {
     cardHistory.clear();
     final failOrInfo = await this.cardRepository.getCardHistory(user.login);
 
@@ -105,7 +114,8 @@ class AdminCardController extends GetxController {
   }
 
   /// Update or create new card by NFC
-  Future<void> updateCardByNFC(CardGetUsersByFilters$Query$TrombiUser user) async {
+  Future<void> updateCardByNFC(
+      CardGetUsersByFilters$Query$TrombiUser user) async {
     NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
     if (availability != NFCAvailability.available) {
       return;
@@ -123,7 +133,8 @@ class AdminCardController extends GetxController {
         return;
       }
 
-      final failOrInfo = await this.cardRepository.updateCard(user.login, tag.id);
+      final failOrInfo =
+          await this.cardRepository.updateCard(user.login, tag.id);
 
       await failOrInfo.fold(
         (left) async {
@@ -135,7 +146,7 @@ class AdminCardController extends GetxController {
                 await FlutterNfcKit.finish(
                     iosErrorMessage: 'admin_card_already_used_by'.trParams(
                   {'login': email},
-                )!);
+                ));
               },
               unauthorized: (_) {});
         },
@@ -143,7 +154,7 @@ class AdminCardController extends GetxController {
           await FlutterNfcKit.finish(
             iosAlertMessage: 'admin_card_associated_to'.trParams(
               {'user': user.title},
-            )!,
+            ),
           );
 
           // Set values
@@ -157,7 +168,7 @@ class AdminCardController extends GetxController {
           SnackBarUtils.success(
             message: 'admin_card_associated_to'.trParams(
               {'user': user.title},
-            )!,
+            ),
           );
         },
       );

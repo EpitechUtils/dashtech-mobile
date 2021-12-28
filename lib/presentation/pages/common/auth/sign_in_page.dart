@@ -1,11 +1,11 @@
+import 'package:dashtech/presentation/common/auth_layout_copy.dart';
 import 'package:dashtech/presentation/pages/common/auth/widgets/sign_in_body.dart';
-import 'package:dashtech/presentation/common/auth_layout.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AuthLayout(
+    return AuthLayoutCopy(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
           return SingleChildScrollView(

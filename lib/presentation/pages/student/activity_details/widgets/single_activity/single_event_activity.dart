@@ -21,7 +21,9 @@ class SingleEventActivity extends GetView<StudentActivityController> {
                 icon: Icon(
                   controller.isStudentRegistered() ? Icons.close : Icons.add,
                   color: Color(
-                    controller.isStudentRegistered() ? errorColor : successColor,
+                    controller.isStudentRegistered()
+                        ? errorColor
+                        : successColor,
                   ),
                 ),
                 iconSize: 30,
@@ -48,7 +50,9 @@ class SingleEventActivity extends GetView<StudentActivityController> {
                   visible: controller.getStudentStatus() != null,
                   child: Card(
                     color: Color(
-                      controller.getStudentStatus() == "present" ? successColor : warnColor,
+                      controller.getStudentStatus() == "present"
+                          ? successColor
+                          : warnColor,
                     ),
                     margin: const EdgeInsets.symmetric(
                       horizontal: 0,
@@ -62,7 +66,7 @@ class SingleEventActivity extends GetView<StudentActivityController> {
                           {
                             'status': controller.getStudentStatus() ?? "",
                           },
-                        )!,
+                        ),
                         textAlign: TextAlign.center,
                         style: Get.textTheme.headline2!.copyWith(
                           color: Colors.white,

@@ -9,6 +9,7 @@ import 'package:dashtech/presentation/pages/common/auth/bindings/signin_binding.
 import 'package:dashtech/presentation/pages/common/auth/sign_in_intranet_webview_page.dart';
 import 'package:dashtech/presentation/pages/common/auth/sign_in_page.dart';
 import 'package:dashtech/presentation/pages/common/home/bindings/home_binding.dart';
+import 'package:dashtech/presentation/pages/common/onboarding/onboarding_page.dart';
 import 'package:dashtech/presentation/pages/common/settings/bindings/settings_bindings.dart';
 import 'package:dashtech/presentation/pages/common/splash/bindings/splash_binding.dart';
 import 'package:dashtech/presentation/pages/common/splash/splash_page.dart';
@@ -87,11 +88,16 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
+      name: Routes.onboarding,
+      page: () => OnboardingPage(),
+    ),
+    GetPage(
       name: Routes.signin,
       page: () => SigninPage(),
       binding: SigninBinding(),
-      transition:
-          Get.previousRoute == Routes.splash ? Transition.rightToLeft : Transition.leftToRight,
+      transition: Get.previousRoute == Routes.splash
+          ? Transition.rightToLeft
+          : Transition.leftToRight,
     ),
     GetPage(
       name: Routes.signinWebview,

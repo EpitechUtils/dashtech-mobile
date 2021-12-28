@@ -1,8 +1,8 @@
 import 'package:dashtech/application/admin/card/admin_card_controller.dart';
 import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
+import 'package:dashtech/presentation/common/rounded_button.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/admin/card/widgets/user/trombi_user_bottomsheet_card_detail.dart';
-import 'package:dashtech/presentation/common/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,19 +50,13 @@ class BottomSheetCardInfo extends GetView<AdminCardController> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: RoundedButton(
                     onPressed: () => controller.updateCardByNFC(user),
-                    colors: [
-                      Color(0xffFFAE00),
-                      Color(0xffDB8E00),
-                    ],
+                    color: Color(warnColor),
                     label: 'admin_card_associate_replace'.tr,
                   ),
                 ),
                 RoundedButton(
                   onPressed: () => controller.removeCard(user),
-                  colors: [
-                    Color(0xffFF3C2B),
-                    Color(0xffDB1F1F),
-                  ],
+                  color: Color(errorColor),
                   label: 'admin_card_associate_delete'.tr,
                 ),
               ],

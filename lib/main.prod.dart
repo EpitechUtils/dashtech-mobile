@@ -14,7 +14,10 @@ import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: 'assets/.env.prod');
+  await dotenv.load(
+    fileName: 'assets/.env.prod',
+    mergeWith: {'FLAVOR': 'PROD'},
+  );
   await _initServices();
   runApp(AppWidget());
 }

@@ -1,5 +1,5 @@
 import 'package:dashtech/application/common/auth/signin_webview_controller.dart';
-import 'package:dashtech/presentation/common/auth_layout.dart';
+import 'package:dashtech/presentation/common/auth_layout_copy.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/pages/common/auth/widgets/sign_in_intranet_syncing.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class SignInIntranetWebviewPage extends GetView<SigninWebviewController> {
   @override
   Widget build(BuildContext context) {
-    return AuthLayout(
+    return AuthLayoutCopy(
       child: Obx(
         () {
           if (controller.officeLoginUrl.value.isEmpty) {

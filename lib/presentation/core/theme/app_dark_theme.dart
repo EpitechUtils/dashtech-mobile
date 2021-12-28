@@ -14,7 +14,7 @@ final ThemeData darkTheme = ThemeData(
     centerTitle: true,
   ),
   textTheme: TextTheme(
-    button: FontStyles.titleButton,
+    button: FontStyles.primaryButton,
     headline1: FontStyles.hugeTitle,
     headline2: FontStyles.title,
     subtitle1: FontStyles.baseFont,

@@ -1,16 +1,17 @@
 import 'package:dashtech/application/student/activity/student_multiple_event_activity_controller.dart';
+import 'package:dashtech/presentation/common/bubble_tab_indicator.dart';
+import 'package:dashtech/presentation/common/colored_tab_bar.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/pages/student/activity_details/widgets/appointment/appointment_details.dart';
 import 'package:dashtech/presentation/pages/student/activity_details/widgets/appointment/available_slots_list.dart';
-import 'package:dashtech/presentation/pages/student/activity_details/widgets/multiple_activities/current_event_top_card.dart';
 import 'package:dashtech/presentation/pages/student/activity_details/widgets/common/activity_details_base_app_bar.dart';
 import 'package:dashtech/presentation/pages/student/activity_details/widgets/common/additional_options_for_activity_fab.dart';
-import 'package:dashtech/presentation/common/bubble_tab_indicator.dart';
-import 'package:dashtech/presentation/common/colored_tab_bar.dart';
+import 'package:dashtech/presentation/pages/student/activity_details/widgets/multiple_activities/current_event_top_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MultipleEventActivity extends GetView<StudentMultipleEventActivityController> {
+class MultipleEventActivity
+    extends GetView<StudentMultipleEventActivityController> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,7 +26,8 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
             tabBar: TabBar(
               onTap: (int newIndex) {
                 if (controller.activityController.isAppointment &&
-                    !controller.activityController.appointmentController.isLoading.value) {
+                    !controller.activityController.appointmentController
+                        .isLoading.value) {
                   controller.currentTabIndex.value = newIndex;
                 }
               },
@@ -41,7 +43,8 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
                 fontWeight: FontWeight.bold,
               ),
               tabs: <Tab>[
-                if (controller.activityController.isAppointment) Tab(text: 'global_info'.tr),
+                if (controller.activityController.isAppointment)
+                  Tab(text: 'global_info'.tr),
                 ...controller.activityController.activity.value!.events!.map(
                   (event) => Tab(
                     text: controller.parseDateWithHm(event),
@@ -70,7 +73,9 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
                         visible: controller.getStudentStatus() != null,
                         child: Card(
                           color: Color(
-                            controller.getStudentStatus() == "present" ? successColor : warnColor,
+                            controller.getStudentStatus() == "present"
+                                ? successColor
+                                : warnColor,
                           ),
                           margin: const EdgeInsets.symmetric(
                             horizontal: 0,
@@ -84,7 +89,7 @@ class MultipleEventActivity extends GetView<StudentMultipleEventActivityControll
                                 {
                                   'status': controller.getStudentStatus() ?? "",
                                 },
-                              )!,
+                              ),
                               textAlign: TextAlign.center,
                               style: Get.textTheme.headline2!.copyWith(
                                 color: Colors.white,

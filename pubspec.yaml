@@ -88,3 +88,6 @@ flutter:
     - family: Futura
       fonts:
         - asset: assets/fonts/Futura.ttf
+    - family: Somatic
+      fonts:
+        - asset: assets/fonts/Somatic.otf

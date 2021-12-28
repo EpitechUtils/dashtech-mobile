@@ -12,10 +12,9 @@ final ThemeData lightTheme = ThemeData(
   fontFamily: 'Avenir',
   appBarTheme: const AppBarTheme(
     centerTitle: true,
-    brightness: Brightness.dark,
   ),
   textTheme: TextTheme(
-    button: FontStyles.titleButton,
+    button: FontStyles.primaryButton,
     headline1: FontStyles.hugeTitle,
     headline2: FontStyles.title,
     headline3: FontStyles.smallTitle,
@@ -27,6 +26,9 @@ final ThemeData lightTheme = ThemeData(
   buttonTheme: buttonTheme,
   errorColor: const Color(errorColor),
   inputDecorationTheme: inputTheme,
+  dividerTheme: DividerThemeData(
+    color: Color(secondaryBtnColor),
+  ),
 );
 
 final CardTheme cardTheme = CardTheme(
