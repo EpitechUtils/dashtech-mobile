@@ -19,7 +19,7 @@ class Logo extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Somatic',
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Color(blackColor),
           fontSize: size,
         ),
         child: AnimatedTextKit(
@@ -28,7 +28,7 @@ class Logo extends StatelessWidget {
               'm0bit3ch',
               speed: Duration(milliseconds: 200),
               textStyle: TextStyle(
-                color: Color(logoColor),
+                color: Color(primaryBtnColor),
               ),
             ),
           ],
@@ -43,14 +43,14 @@ class Logo extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Somatic',
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Color(blackColor),
           fontSize: size,
         ),
         children: const <TextSpan>[
           TextSpan(
             text: 't3ch',
             style: TextStyle(
-              color: Color(logoColor),
+              color: Color(primaryBtnColor),
             ),
           ),
         ],

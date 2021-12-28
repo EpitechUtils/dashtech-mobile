@@ -8,8 +8,7 @@ class AuthAppBar extends AppBar {
           leading: null,
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: Colors.transparent,
-          centerTitle: false,
+          backgroundColor: Colors.white,
           title: Logo(),
         );
 

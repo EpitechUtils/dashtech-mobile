@@ -27,7 +27,6 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Get.key,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      themeMode: ThemeMode.light,
     );
   }
 }
