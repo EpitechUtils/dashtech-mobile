@@ -8,12 +8,14 @@ class YearDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
+      () => DropdownButton<
+          CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>(
         icon: Icon(Icons.keyboard_arrow_down),
         value: controller.filterYear.value,
         iconSize: 24,
         elevation: 16,
-        style: Get.textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+        style: Get.textTheme.subtitle2!
+            .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
         underline: Container(
           height: 1,
           color: Color(primaryColor),
@@ -29,10 +31,14 @@ class YearDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>>? buildDropdowns() {
+  List<
+          DropdownMenuItem<
+              CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>>?
+      buildDropdowns() {
     if (controller.filterIsLoading[Filter.YEARS] == true) {
       return [
-        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
+        DropdownMenuItem<
+            CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -47,7 +53,8 @@ class YearDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
+      DropdownMenuItem<
+          CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>(
         value: null,
         child: Text(
           'select'.tr,
@@ -59,8 +66,11 @@ class YearDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterYears
-          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>>(
-            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$ScolarYear>(
+          .map<
+              DropdownMenuItem<
+                  CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>>(
+            (value) => DropdownMenuItem<
+                CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>(
               value: value,
               child: Text(
                 value.scolaryear,

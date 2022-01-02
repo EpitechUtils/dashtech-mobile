@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CardHistoryCard extends GetView<AdminCardController> {
-  final CardHistoryByLogin$Query$CardHistory cardHistory;
+  final CardHistoryByLogin$Query$CardHistoryEntity cardHistory;
 
   CardHistoryCard({required this.cardHistory});
 
@@ -22,26 +22,26 @@ class CardHistoryCard extends GetView<AdminCardController> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              HistoryUtils.getIconByType(cardHistory.eventType),
+              HistoryUtils.getIconByType(cardHistory.eventType.toString()),
               const SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    HistoryUtils.getEventDescription(cardHistory.eventType).tr,
+                    HistoryUtils.getEventDescription(cardHistory.eventType.toString()).tr,
                     style: Get.textTheme.headline1!.copyWith(
                       fontSize: 15,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    ['word_by'.tr, cardHistory.profile.email].join(" "),
+                    ['word_by'.tr, cardHistory.ownerLogin].join(" "),
                     style: Get.textTheme.headline2!.copyWith(fontSize: 13),
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    ['word_at'.tr, cardHistory.createdAt.toString()].join(" "),
+                    ['word_at'.tr, /*cardHistory.createdAt.toString()*/DateTime.now().toString()].join(" "),
                     style: Get.textTheme.headline2!.copyWith(fontSize: 13),
                   ),
                 ],

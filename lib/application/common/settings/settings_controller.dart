@@ -46,13 +46,14 @@ class SettingsController extends GetxController {
 
   Future<void> saveSettings() async {
     isUpdating.value = true;
-    List<SettingInput> inputs = [];
-    currentSettings
-        .forEach((key, value) => inputs.add(SettingInput(setting: key, value: value.toString())));
+    List<SettingUpdateInput> inputs = [];
+    currentSettings.forEach((key, value) =>
+        inputs.add(SettingUpdateInput(setting: key, value: value.toString())));
 
     print(inputs);
 
-    final failOrSavedSettings = await this.profileRepository.updateSettings(inputs);
+    final failOrSavedSettings =
+        await this.profileRepository.updateSettings(inputs);
 
     failOrSavedSettings.fold(
       (left) {
@@ -98,7 +99,9 @@ class SettingsController extends GetxController {
   }
 
   void toggleBoolSetting(
-      {required String category, required String setting, required bool defaultVal}) {
+      {required String category,
+      required String setting,
+      required bool defaultVal}) {
     bool currentValue = currentSettings['settings.$category.$setting'] != null
         ? _parseBool(currentSettings['settings.$category.$setting'])
         : defaultVal;
@@ -117,7 +120,8 @@ class SettingsController extends GetxController {
     workers.add(ever(
       currentSettings,
       (Map<String, dynamic> s) {
-        if (!isLoading.value) needsUpdate.value = !mapEquals(fetchedSettings, s);
+        if (!isLoading.value)
+          needsUpdate.value = !mapEquals(fetchedSettings, s);
       },
     ));
   }

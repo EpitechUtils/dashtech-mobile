@@ -1,5 +1,4 @@
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/common/cached_circle_avatar.dart';
 import 'package:dashtech/presentation/common/get_view_with_hook.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
@@ -13,7 +12,8 @@ import 'package:get/get.dart';
 class AvailableSlotsList extends GetViewWithHook<StudentAppointmentController> {
   AvailableSlotsList({required this.event});
 
-  final PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event;
+  //final PlanningActivityDetails$Query$ActivityDetails$ActivityEvent event;
+  final dynamic event;
 
   @override
   Widget build(BuildContext context) {

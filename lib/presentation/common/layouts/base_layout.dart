@@ -1,4 +1,5 @@
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
+import 'package:dashtech/presentation/core/utils/keyboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,7 @@ class BaseLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
@@ -30,13 +32,18 @@ class BaseLayout extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Text(
           title,
-          style: Get.textTheme.headline1!
-              .copyWith(fontWeight: FontWeight.bold, fontSize: 26),
+          style: Get.textTheme.headline1!.copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 25,
+          ),
         ),
       ),
       bottomNavigationBar: bottomNavigationBar,
       extendBody: true,
-      body: SafeArea(child: child),
+      body: GestureDetector(
+        onTap: () => KeyboardUtils.hide(context),
+        child: SafeArea(child: child),
+      ),
     );
   }
 }

@@ -1,0 +1,3 @@
+mutation DeviceRegister($platform: String!, $token: String!, $identifier: String!) {
+    deviceRegister(platform: $platform, token: $token, identifier: $identifier)
+}

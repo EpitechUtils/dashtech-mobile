@@ -1,12 +1,15 @@
 import 'dart:ui';
 
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ActivityDataSource extends CalendarDataSource {
   ActivityDataSource(
-    Map<DateTime, List<PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity>> source,
+    Map<
+            DateTime,
+            List< /*PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity*/
+                dynamic>>
+        source,
   ) {
     appointments = [];
     source.forEach((key, value) => appointments!.addAll(value));
@@ -29,7 +32,9 @@ class ActivityDataSource extends CalendarDataSource {
 
   @override
   Color getColor(int index) {
-    return ActivityColorUtils.getColorByEventType(appointments![index].typeCode!).withOpacity(
+    return ActivityColorUtils.getColorByEventType(
+            appointments![index].typeCode!)
+        .withOpacity(
       appointments![index].eventRegistered != "false" ? 1 : 0.6,
     );
   }

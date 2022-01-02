@@ -1,13 +1,4 @@
-import 'dart:async';
-
-import 'package:dartz/dartz.dart';
-import 'package:dashtech/domain/core/failures/base_failure.dart';
-import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
-import 'package:dashtech/infrastructure/core/service/graphql_service.dart';
-import 'package:get/get.dart';
-
-class PlanningRepository implements IPlanningRepository {
+/*class PlanningRepository implements IPlanningRepository {
   final GraphqlService graphqlService = Get.find();
 
   // Get activities list for the week dashboard
@@ -81,4 +72,4 @@ class PlanningRepository implements IPlanningRepository {
 
     return right(response.data!.planningRdvDetails);
   }
-}
+}*/

@@ -31,7 +31,7 @@ class SplashPage extends GetViewWithHook<SplashController> {
                     child: Obx(
                       () => Text(
                         'v${controller.version()} (build ${controller.build()}) - ${controller.flavor()}',
-                        style: Get.textTheme.headline2!.copyWith(fontSize: 13),
+                        style: Get.textTheme.headline2!.copyWith(fontSize: 15),
                       ),
                     ),
                   ),

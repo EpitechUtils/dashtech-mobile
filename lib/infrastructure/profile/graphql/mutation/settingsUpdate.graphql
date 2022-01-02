@@ -1,4 +1,4 @@
-mutation SettingsUpdate($settings: [SettingInput!]!) {
+mutation SettingsUpdate($settings: [SettingUpdateInput!]!) {
     settingsUpdate(settings: $settings) {
         id
         setting

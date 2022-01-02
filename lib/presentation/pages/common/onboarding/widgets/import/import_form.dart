@@ -1,25 +1,42 @@
-import 'package:dashtech/application/common/auth/signin_controller.dart';
+import 'package:dashtech/application/common/onboarding/onboarding_controller.dart';
 import 'package:dashtech/presentation/common/get_view_with_hook.dart';
-import 'package:dashtech/presentation/core/theme/app_colors.dart';
-import 'package:dashtech/presentation/core/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 
-class SigninForm extends GetViewWithHook<SigninController> {
+class ImportForm extends GetViewWithHook<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: SigninController.signInForm,
+      key: OnboardingController.linkForm,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
           FormBuilderTextField(
-            controller: controller.emailTextController,
-            name: "form_email".tr,
+            controller: controller.nameController,
+            name: "form_name".tr,
             autocorrect: false,
             autofocus: true,
+            keyboardType: TextInputType.text,
+            validator: FormBuilderValidators.compose(
+              [
+                FormBuilderValidators.required(
+                  context,
+                  errorText: 'error_form_required'.tr,
+                ),
+              ],
+            ),
+            decoration: const InputDecoration(
+              labelText: "Nom du profil",
+            ),
+          ),
+          const SizedBox(height: 15),
+          FormBuilderTextField(
+            controller: controller.emailController,
+            name: "form_email".tr,
+            autocorrect: false,
+            autofocus: false,
             keyboardType: TextInputType.emailAddress,
             validator: FormBuilderValidators.compose(
               [
@@ -38,27 +55,11 @@ class SigninForm extends GetViewWithHook<SigninController> {
                 )
               ],
             ),
-            decoration: const InputDecoration(
-              labelText: "Email",
-              prefixIcon: Icon(
-                LineIcons.at,
-                color: Color(greyColor),
-              ),
+            decoration: InputDecoration(
+              labelText: "Adresse e-mail",
+              helperText: 'epitech_email_only'.tr,
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                'epitech_email_only'.tr,
-                style: FontStyles.baseFont.copyWith(
-                  color: const Color(greyColor),
-                  fontSize: 13,
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

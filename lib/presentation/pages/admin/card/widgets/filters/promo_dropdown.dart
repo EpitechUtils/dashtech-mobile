@@ -8,12 +8,14 @@ class PromoDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$Promo>(
+      () =>
+          DropdownButton<CardGetFilterValues$Query$FilterDetailsType$PromoType>(
         icon: Icon(Icons.keyboard_arrow_down),
         value: controller.filterPromo.value,
         iconSize: 24,
         elevation: 16,
-        style: Get.textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+        style: Get.textTheme.subtitle2!
+            .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
         underline: Container(
           height: 1,
           color: Color(primaryColor),
@@ -27,10 +29,11 @@ class PromoDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>>? buildDropdowns() {
+  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetailsType$PromoType>>?
+      buildDropdowns() {
     if (controller.filterIsLoading[Filter.PROMOS] == true) {
       return [
-        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
+        DropdownMenuItem<CardGetFilterValues$Query$FilterDetailsType$PromoType>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -45,7 +48,7 @@ class PromoDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
+      DropdownMenuItem<CardGetFilterValues$Query$FilterDetailsType$PromoType>(
         value: null,
         child: Text(
           'select'.tr,
@@ -57,8 +60,11 @@ class PromoDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterPromos
-          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>>(
-            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Promo>(
+          .map<
+              DropdownMenuItem<
+                  CardGetFilterValues$Query$FilterDetailsType$PromoType>>(
+            (value) => DropdownMenuItem<
+                CardGetFilterValues$Query$FilterDetailsType$PromoType>(
               value: value,
               child: Text(
                 value.promo,

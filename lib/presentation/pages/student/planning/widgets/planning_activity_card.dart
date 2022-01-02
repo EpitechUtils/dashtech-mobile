@@ -1,5 +1,4 @@
 import 'package:dashtech/application/student/dashboard/student_dashboard_controller.dart';
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/common/activity_color_utils.dart';
 import 'package:dashtech/presentation/core/theme/app_colors.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
@@ -11,14 +10,14 @@ import 'package:intl/intl.dart';
 class PlanningActivityCard extends StatelessWidget {
   PlanningActivityCard({required this.activity, required this.index});
 
-  final PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity
-      activity;
+  //final PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity activity;
+  final dynamic activity;
   final int index;
   final StudentDashboardController dashboardController = Get.find();
 
   void goToActivityDetails(
-          PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity
-              activity) =>
+          /*PlanningWeekActivities$Query$PlanningWeekActivity$PlanningActivity*/
+          dynamic activity) =>
       Get.toNamed(
         Routes.activityDetails,
         arguments: {

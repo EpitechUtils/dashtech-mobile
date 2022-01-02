@@ -56,8 +56,8 @@ class RoundedButton extends StatelessWidget {
           child: Center(
             child: isLoading
                 ? const SizedBox(
-                    height: 27,
-                    width: 27,
+                    height: 25,
+                    width: 25,
                     child: CircularProgressIndicator(
                       strokeWidth: 3,
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

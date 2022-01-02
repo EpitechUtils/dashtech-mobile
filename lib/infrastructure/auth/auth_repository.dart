@@ -28,8 +28,8 @@ class AuthRepository implements IAuthRepository {
     String platform,
   ) async {
     final response = await graphqlService.client.execute(
-      ProfileRegisterDeviceMutation(
-        variables: ProfileRegisterDeviceArguments(
+      DeviceRegisterMutation(
+        variables: DeviceRegisterArguments(
           identifier: identifier,
           platform: platform,
           token: token,
@@ -41,15 +41,15 @@ class AuthRepository implements IAuthRepository {
       return left(const BaseFailure.notFound());
     }
 
-    return right(response.data!.profileRegisterDevice);
+    return right(response.data!.deviceRegister);
   }
 
   // Send email verification to user
   @override
   Future<Either<BaseFailure, bool>> sendEmailCode(String email) async {
     final response = await graphqlService.client.execute(
-      AuthSendEmailConfirmationQuery(
-        variables: AuthSendEmailConfirmationArguments(
+      UserSendEmailCodeQuery(
+        variables: UserSendEmailCodeArguments(
           email: email,
         ),
       ),
@@ -59,18 +59,19 @@ class AuthRepository implements IAuthRepository {
       return left(const BaseFailure.notFound());
     }
 
-    return right(response.data!.authSendEmailConfirmation);
+    return right(response.data!.userSendEmailCode);
   }
 
   // Validate code sent by email
   @override
-  Future<Either<BaseFailure, AuthConfirmEmailCode$Query$Profile>> confirmEmailCode(
+  Future<Either<BaseFailure, UserConfirmEmailCode$Query$UserEntity>>
+      confirmEmailCode(
     String email,
     String code,
   ) async {
     final response = await graphqlService.client.execute(
-      AuthConfirmEmailCodeQuery(
-        variables: AuthConfirmEmailCodeArguments(
+      UserConfirmEmailCodeQuery(
+        variables: UserConfirmEmailCodeArguments(
           email: email,
           code: code,
         ),
@@ -90,21 +91,21 @@ class AuthRepository implements IAuthRepository {
       }
     }
 
-    return right(response.data!.authConfirmEmailCode!);
+    return right(response.data!.userConfirmEmailCode!);
   }
 
   // Set profile autolog url if user email iss same as intranet logged user
   // TODO: jwt login ?
   @override
   Future<Either<BaseFailure, bool>> setProfileAutolog(
-    String profileId,
-    String autologUrl,
+    String userId,
+    String jwt,
   ) async {
     final response = await graphqlService.client.execute(
-      ProfileSetAutologMutation(
-        variables: ProfileSetAutologArguments(
-          profileId: profileId,
-          autologUrl: autologUrl,
+      UserLinkToIntranetMutation(
+        variables: UserLinkToIntranetArguments(
+          userId: userId,
+          jwtToken: jwt,
         ),
       ),
     );
@@ -113,7 +114,7 @@ class AuthRepository implements IAuthRepository {
       return left(const BaseFailure.notFound());
     }
 
-    return right(response.data!.profileSetAutolog);
+    return right(response.data!.userLinkToIntranet);
   }
 
   @override
@@ -122,7 +123,8 @@ class AuthRepository implements IAuthRepository {
     String email,
   ) async {
     try {
-      final AuthProfileTokenDto tokenDto = await authProvider.login(profileId, email);
+      final AuthProfileTokenDto tokenDto =
+          await authProvider.login(profileId, email);
       final AuthProfile authProfile = tokenDto.toDomain();
 
       String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');
@@ -142,8 +144,8 @@ class AuthRepository implements IAuthRepository {
     String picture,
   ) async {
     final response = await graphqlService.client.execute(
-      ProfileGetIconLinkByPictureQuery(
-        variables: ProfileGetIconLinkByPictureArguments(
+      UserGetIconLinkByPictureQuery(
+        variables: UserGetIconLinkByPictureArguments(
           picture: picture,
         ),
       ),
@@ -153,6 +155,6 @@ class AuthRepository implements IAuthRepository {
       return left(const BaseFailure.notFound());
     }
 
-    return right(response.data!.profileGetIconLinkByPicture);
+    return right(response.data!.userGetIconLinkByPicture);
   }
 }

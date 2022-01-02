@@ -1,11 +1,8 @@
 query CardHistoryByLogin($email: String!) {
     cardHistoryByLogin(email: $email) {
-        createdAt
+        id
         eventType
-        message
-        profile {
-            id
-            email
-        }
+        userId
+        ownerLogin
     }
 }

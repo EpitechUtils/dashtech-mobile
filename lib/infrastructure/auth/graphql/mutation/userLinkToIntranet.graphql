@@ -1,0 +1,3 @@
+mutation UserLinkToIntranet($userId: String!, $jwtToken: String!) {
+    userLinkToIntranet(userId: $userId, jwtToken: $jwtToken)
+}

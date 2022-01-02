@@ -23,7 +23,9 @@ class OnboardingCarouselItem extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: Get.textTheme.headline1,
+            style: Get.textTheme.headline2!.copyWith(
+              fontSize: 20,
+            ),
           ),
         ],
       ),

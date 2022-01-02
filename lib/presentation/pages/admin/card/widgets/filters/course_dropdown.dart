@@ -8,12 +8,14 @@ class CourseDropdown extends GetView<AdminCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => DropdownButton<CardGetFilterValues$Query$FilterDetails$Course>(
+      () => DropdownButton<
+              CardGetFilterValues$Query$FilterDetailsType$CourseType>(
           icon: Icon(Icons.keyboard_arrow_down),
           value: controller.filterCourse.value,
           iconSize: 24,
           elevation: 16,
-          style: Get.textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+          style: Get.textTheme.subtitle2!
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
           underline: Container(
             height: 1,
             color: Color(primaryColor),
@@ -27,10 +29,14 @@ class CourseDropdown extends GetView<AdminCardController> {
     );
   }
 
-  List<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>>? buildDropdowns() {
+  List<
+          DropdownMenuItem<
+              CardGetFilterValues$Query$FilterDetailsType$CourseType>>?
+      buildDropdowns() {
     if (controller.filterIsLoading[Filter.COURSES] == true) {
       return [
-        DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
+        DropdownMenuItem<
+            CardGetFilterValues$Query$FilterDetailsType$CourseType>(
           value: null,
           child: Text(
             'loading'.tr,
@@ -45,7 +51,7 @@ class CourseDropdown extends GetView<AdminCardController> {
     }
 
     return [
-      DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
+      DropdownMenuItem<CardGetFilterValues$Query$FilterDetailsType$CourseType>(
         value: null,
         child: Text(
           'select'.tr,
@@ -57,8 +63,11 @@ class CourseDropdown extends GetView<AdminCardController> {
         ),
       ),
       ...controller.filterCourses
-          .map<DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>>(
-            (value) => DropdownMenuItem<CardGetFilterValues$Query$FilterDetails$Course>(
+          .map<
+              DropdownMenuItem<
+                  CardGetFilterValues$Query$FilterDetailsType$CourseType>>(
+            (value) => DropdownMenuItem<
+                CardGetFilterValues$Query$FilterDetailsType$CourseType>(
               value: value,
               child: Text(
                 value.code,

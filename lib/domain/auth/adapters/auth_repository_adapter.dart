@@ -10,21 +10,27 @@ abstract class IAuthRepository {
     String identifier,
     String platform,
   );
+
   Future<Either<BaseFailure, bool>> sendEmailCode(
     String email,
   );
-  Future<Either<BaseFailure, AuthConfirmEmailCode$Query$Profile>> confirmEmailCode(
+
+  Future<Either<BaseFailure, UserConfirmEmailCode$Query$UserEntity>>
+      confirmEmailCode(
     String email,
     String code,
   );
+
   Future<Either<BaseFailure, bool>> setProfileAutolog(
     String profileId,
     String autologUrl,
   );
+
   Future<Either<AuthFailure, AuthProfile>> login(
     String profileId,
     String email,
   );
+
   Future<Either<BaseFailure, String>> getProfileIconLink(
     String picture,
   );

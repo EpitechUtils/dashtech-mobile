@@ -13,7 +13,8 @@ class ProfileRepository implements IProfileRepository {
   final StorageService storageService = Get.find();
 
   @override
-  Future<Either<BaseFailure, List<SettingsGetAll$Query$Setting>>> getSettings() async {
+  Future<Either<BaseFailure, List<SettingsGetAll$Query$SettingEntity>>>
+      getSettings() async {
     final response = await graphqlService.client.execute(SettingsGetAllQuery());
     if (response.hasErrors) {
       return left(const BaseFailure.unexpected());
@@ -22,8 +23,9 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<BaseFailure, List<SettingsUpdate$Mutation$Setting>>> updateSettings(
-    List<SettingInput> settings,
+  Future<Either<BaseFailure, List<SettingsUpdate$Mutation$SettingEntity>>>
+      updateSettings(
+    List<SettingUpdateInput> settings,
   ) async {
     final response = await graphqlService.client.execute(
       SettingsUpdateMutation(

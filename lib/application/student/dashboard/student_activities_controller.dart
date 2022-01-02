@@ -1,15 +1,15 @@
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class StudentActivitiesController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
   final RxBool showShimmer = false.obs;
-  final RxList<PlanningListWeekActivities$Query$PlanningWeekActivity> activities = RxList([]);
+
+  //final RxList<PlanningListWeekActivities$Query$PlanningWeekActivity> activities = RxList([]);
+  final RxList<dynamic> activities = RxList([]);
 
   late RefreshController refreshController;
 
@@ -28,7 +28,8 @@ class StudentActivitiesController extends GetxController {
   }
 
   Future<void> fetchActivities(bool refresh) async {
-    final failureOrActivities = await planningRepository.getDashActivitiesList();
+    final failureOrActivities =
+        await planningRepository.getDashActivitiesList();
 
     failureOrActivities.fold(
       (left) {

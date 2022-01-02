@@ -13,13 +13,13 @@ class FontStyles {
   );
 
   static TextStyle get primaryButton => futuraFont.copyWith(
-        fontSize: 18,
+        fontSize: 16,
         color: Color(secondaryBtnColor),
         fontWeight: FontWeight.bold,
       );
 
   static TextStyle get secondaryButton => futuraFont.copyWith(
-        fontSize: 18,
+        fontSize: 16,
         color: Color(primaryBtnColor),
         fontWeight: FontWeight.bold,
       );

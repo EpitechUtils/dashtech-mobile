@@ -12,7 +12,8 @@ class CardRepository implements ICardRepository {
   final GraphqlService graphqlService = Get.find();
 
   @override
-  Future<Either<BaseFailure, CardGetFilterValues$Query$FilterDetails>> getFilterValue(
+  Future<Either<BaseFailure, CardGetFilterValues$Query$FilterDetailsType>>
+      getFilterValue(
     FilterDetailsInput filterDetailsInput,
   ) async {
     final response = await graphqlService.client.execute(
@@ -31,7 +32,8 @@ class CardRepository implements ICardRepository {
   }
 
   @override
-  Future<Either<BaseFailure, List<CardGetUsersByFilters$Query$TrombiUser>>> getUsersByFilters(
+  Future<Either<BaseFailure, List<CardGetUsersByFilters$Query$TrombiUserType>>>
+      getUsersByFilters(
     PromoFetchInput filters,
   ) async {
     final response = await graphqlService.client.execute(
@@ -50,7 +52,8 @@ class CardRepository implements ICardRepository {
   }
 
   @override
-  Future<Either<BaseFailure, List<CardHistoryByLogin$Query$CardHistory>>> getCardHistory(
+  Future<Either<BaseFailure, List<CardHistoryByLogin$Query$CardHistoryEntity>>>
+      getCardHistory(
     String login,
   ) async {
     final response = await graphqlService.client.execute(
@@ -69,7 +72,8 @@ class CardRepository implements ICardRepository {
   }
 
   @override
-  Future<Either<BaseFailure, CardUpdateForLogin$Mutation$Card>> updateCard(
+  Future<Either<BaseFailure, CardUpdateForLogin$Mutation$CardEntity>>
+      updateCard(
     String login,
     String nfcTag,
   ) async {

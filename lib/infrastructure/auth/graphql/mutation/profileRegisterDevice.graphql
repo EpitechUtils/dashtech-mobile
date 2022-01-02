@@ -1,3 +1,0 @@
-mutation ProfileRegisterDevice($platform: String!, $token: String!, $identifier: String!) {
-    profileRegisterDevice(platform: $platform, token: $token, identifier: $identifier)
-}

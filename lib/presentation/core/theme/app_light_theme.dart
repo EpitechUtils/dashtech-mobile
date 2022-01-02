@@ -70,31 +70,31 @@ final InputDecorationTheme inputTheme = InputDecorationTheme(
       color: Color(errorColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   border: const UnderlineInputBorder(
     borderSide: BorderSide(
-      color: Color(fillColor),
+      color: Color(secondaryBtnColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   focusedBorder: const UnderlineInputBorder(
     borderSide: BorderSide(
-      color: Color(fillColor),
+      color: Color(secondaryBtnColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   disabledBorder: const UnderlineInputBorder(
     borderSide: BorderSide(
-      color: Color(fillColor),
+      color: Color(secondaryBtnColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   errorBorder: const UnderlineInputBorder(
@@ -102,19 +102,20 @@ final InputDecorationTheme inputTheme = InputDecorationTheme(
       color: Color(errorColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   enabledBorder: const UnderlineInputBorder(
     borderSide: BorderSide(
-      color: Color(fillColor),
+      color: Color(secondaryBtnColor),
     ),
     borderRadius: BorderRadius.all(
-      Radius.circular(10),
+      Radius.circular(15),
     ),
   ),
   filled: true,
   errorStyle: FontStyles.baseFont.copyWith(
     color: const Color(errorColor),
+    fontSize: 14,
   ),
 );

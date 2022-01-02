@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 class TrombiUserDisplay extends GetView<AdminCardController> {
-  final CardGetUsersByFilters$Query$TrombiUser user;
+  final CardGetUsersByFilters$Query$TrombiUserType user;
 
   TrombiUserDisplay(this.user);
 

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomSheetCardInfo extends GetView<AdminCardController> {
-  final CardGetUsersByFilters$Query$TrombiUser user;
+  final CardGetUsersByFilters$Query$TrombiUserType user;
 
   BottomSheetCardInfo(this.user);
 

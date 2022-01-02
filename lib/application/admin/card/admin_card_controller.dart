@@ -14,27 +14,28 @@ class AdminCardController extends GetxController {
   final ICardRepository cardRepository = Get.find();
 
   final RxBool isLoading = false.obs;
-  final RxList<CardGetUsersByFilters$Query$TrombiUser> users = RxList([]);
+  final RxList<CardGetUsersByFilters$Query$TrombiUserType> users = RxList([]);
 
   final RxMap<Filter, bool> filterIsLoading = RxMap<Filter, bool>({
     Filter.YEARS: false,
     Filter.COURSES: false,
     Filter.PROMOS: false,
   });
-  final RxList<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYears =
-      RxList([]);
-  final RxList<CardGetFilterValues$Query$FilterDetails$Course> filterCourses =
-      RxList([]);
-  final RxList<CardGetFilterValues$Query$FilterDetails$Promo> filterPromos =
-      RxList([]);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$ScolarYear> filterYear =
-      Rxn(null);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$Course> filterCourse =
-      Rxn(null);
-  final Rxn<CardGetFilterValues$Query$FilterDetails$Promo> filterPromo =
+  final RxList<CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>
+      filterYears = RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetailsType$CourseType>
+      filterCourses = RxList([]);
+  final RxList<CardGetFilterValues$Query$FilterDetailsType$PromoType>
+      filterPromos = RxList([]);
+  final Rxn<CardGetFilterValues$Query$FilterDetailsType$ScolarYearType>
+      filterYear = Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetailsType$CourseType>
+      filterCourse = Rxn(null);
+  final Rxn<CardGetFilterValues$Query$FilterDetailsType$PromoType> filterPromo =
       Rxn(null);
 
-  final RxList<CardHistoryByLogin$Query$CardHistory> cardHistory = RxList([]);
+  final RxList<CardHistoryByLogin$Query$CardHistoryEntity> cardHistory =
+      RxList([]);
 
   @override
   Future<void> onInit() async {
@@ -99,7 +100,7 @@ class AdminCardController extends GetxController {
 
   /// Get suer history from login
   Future<void> getUserCardHistory(
-      CardGetUsersByFilters$Query$TrombiUser user) async {
+      CardGetUsersByFilters$Query$TrombiUserType user) async {
     cardHistory.clear();
     final failOrInfo = await this.cardRepository.getCardHistory(user.login);
 
@@ -115,7 +116,7 @@ class AdminCardController extends GetxController {
 
   /// Update or create new card by NFC
   Future<void> updateCardByNFC(
-      CardGetUsersByFilters$Query$TrombiUser user) async {
+      CardGetUsersByFilters$Query$TrombiUserType user) async {
     NFCAvailability availability = await FlutterNfcKit.nfcAvailability;
     if (availability != NFCAvailability.available) {
       return;
@@ -181,7 +182,8 @@ class AdminCardController extends GetxController {
   }
 
   /// Remove card by user login
-  Future<void> removeCard(CardGetUsersByFilters$Query$TrombiUser user) async {
+  Future<void> removeCard(
+      CardGetUsersByFilters$Query$TrombiUserType user) async {
     final Either<BaseFailure, void> failOrSuccess =
         await this.cardRepository.removeCard(user.login);
 

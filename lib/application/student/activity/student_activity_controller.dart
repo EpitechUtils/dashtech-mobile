@@ -1,6 +1,5 @@
 import 'package:dashtech/application/student/activity/student_appointment_controller.dart';
 import 'package:dashtech/domain/planning/adapters/planning_repository_adapter.dart';
-import 'package:dashtech/infrastructure/core/graphql/graphql_api.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -9,7 +8,8 @@ import 'package:intl/intl.dart';
 class StudentActivityController extends GetxController {
   final IPlanningRepository planningRepository = Get.find();
 
-  final Rxn<PlanningActivityDetails$Query$ActivityDetails> activity = Rxn(null);
+  //final Rxn<PlanningActivityDetails$Query$ActivityDetails> activity = Rxn(null);
+  final Rxn<dynamic> activity = Rxn(null);
   final RxBool isLoading = true.obs;
 
   late StudentAppointmentController appointmentController;
@@ -26,7 +26,8 @@ class StudentActivityController extends GetxController {
 
     try {
       final failOrActivity = await this.planningRepository.getActivityDetails(
-            CodesInput.fromJson(codes),
+            /*CodesInput.fromJson(codes)*/
+            null,
           );
 
       failOrActivity.fold(
@@ -58,7 +59,8 @@ class StudentActivityController extends GetxController {
   }
 
   String parseDate() {
-    DateTime begin = DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin!);
+    DateTime begin =
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(activity.value!.begin!);
     DateFormat dateFormat = DateFormat.MMMMEEEEd(Get.locale!.toLanguageTag());
 
     return dateFormat.format(begin);
@@ -81,8 +83,9 @@ class StudentActivityController extends GetxController {
 
   String parseActivityTime(String value, {int addMinutes = 0}) {
     DateFormat hMFormat = DateFormat.Hm(Get.locale!.toLanguageTag());
-    DateTime dateTime =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse(value).add(Duration(minutes: addMinutes));
+    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
+        .parse(value)
+        .add(Duration(minutes: addMinutes));
 
     return hMFormat.format(dateTime);
   }

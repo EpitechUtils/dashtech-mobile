@@ -1,3 +1,0 @@
-query ProfileGetIconLinkByPicture($picture: String!) {
-    profileGetIconLinkByPicture(picture: $picture)
-}

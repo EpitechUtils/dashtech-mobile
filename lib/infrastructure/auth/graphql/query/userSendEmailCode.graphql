@@ -1,0 +1,3 @@
+query UserSendEmailCode($email: String!) {
+    userSendEmailCode(email: $email)
+}
