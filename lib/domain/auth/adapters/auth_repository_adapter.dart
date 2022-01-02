@@ -21,13 +21,13 @@ abstract class IAuthRepository {
     String code,
   );
 
-  Future<Either<BaseFailure, bool>> setProfileAutolog(
+  Future<Either<BaseFailure, bool>> linkUserToIntranetProfile(
     String profileId,
-    String autologUrl,
+    String jwtToken,
   );
 
   Future<Either<AuthFailure, AuthProfile>> login(
-    String profileId,
+    String userId,
     String email,
   );
 

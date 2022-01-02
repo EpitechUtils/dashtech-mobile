@@ -19,7 +19,7 @@ class AuthProvider extends GetConnect {
     final response = await this.post(
       '/auth/login',
       {
-        'profileId': profileId,
+        'userId': profileId,
         'email': email,
       },
     );

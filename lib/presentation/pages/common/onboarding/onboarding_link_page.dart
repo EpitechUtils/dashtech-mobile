@@ -23,7 +23,7 @@ class OnboardingLinkPage extends GetView<OnboardingController> {
   }
 
   Future<void> _sendEmailCode() async {
-    if (OnboardingController.linkForm.currentState!.saveAndValidate()) {
+    if (ImportForm.linkForm.currentState!.saveAndValidate()) {
       await controller.sendEmailCode();
     }
   }

@@ -6,10 +6,12 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 class ImportForm extends GetViewWithHook<OnboardingController> {
+  static final GlobalKey<FormBuilderState> linkForm = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: OnboardingController.linkForm,
+      key: linkForm,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [

@@ -5,6 +5,7 @@ abstract class Routes {
   static const String onboarding = '/onboard';
   static const String onboardingImport = '/onboard/import';
   static const String onboardingLink = '/onboard/link';
+  static const String onboardingLinkWebview = '/onboard/link/webview';
   static const String onboardingEmailCode = '/onboard/email_code';
   static const String signin = '/signin';
   static const String signinWebview = '/signin/webview';

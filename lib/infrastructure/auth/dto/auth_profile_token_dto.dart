@@ -10,6 +10,8 @@ class AuthProfileTokenDto with _$AuthProfileTokenDto {
   const factory AuthProfileTokenDto({
     required DateTime expirationTime,
     required String accessToken,
+    required DateTime refreshExpirationTime,
+    required String refreshToken,
   }) = _AuthProfileTokenDto;
 
   factory AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =>
@@ -20,9 +22,9 @@ class AuthProfileTokenDto with _$AuthProfileTokenDto {
   AuthProfile toDomain() {
     final Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
     return AuthProfile(
-      id: decodedToken['profileId'] as String,
+      id: decodedToken['userId'] as String,
       email: decodedToken['email'] as String,
-      status: "login_in",
+      status: "valid",
     );
   }
 }

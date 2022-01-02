@@ -5,19 +5,16 @@ import 'package:dashtech/infrastructure/core/service/storage_service.dart';
 import 'package:dashtech/presentation/core/utils/snack_bar_utils.dart';
 import 'package:dashtech/presentation/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class OnboardingController extends GetxController {
-  static final GlobalKey<FormBuilderState> linkForm = GlobalKey();
-
   final IAuthRepository authRepository = Get.find();
   final StorageService storageService = Get.find();
   final AuthService authService = Get.find();
 
   final RxInt currentIndex = 0.obs;
   final RxBool isLoading = false.obs;
-  final RxBool verificationCodeFormIsValid = false.obs;
+  final RxBool codeFormIsValid = false.obs;
 
   final CarouselController carouselController = CarouselController();
   final TextEditingController nameController = TextEditingController();
@@ -48,6 +45,12 @@ class OnboardingController extends GetxController {
     }
   }
 
+  // Reset the fields
+  void resetFields() {
+    codes.forEach((controller) => controller.text = '');
+    emailController.text = '';
+  }
+
   // Send request to API to validate the verification code previously sent
   void _validateVerificationCode(String code) async {
     isLoading(true);
@@ -70,8 +73,8 @@ class OnboardingController extends GetxController {
       (right) async {
         storageService.box.write('profileId', right.id);
         storageService.box.write('profileEmail', right.email);
-        if (right.status == "creating") {
-          Get.toNamed(Routes.signinWebview);
+        if (right.status == "login_in") {
+          Get.toNamed(Routes.onboardingLinkWebview);
           return;
         }
 
@@ -100,7 +103,7 @@ class OnboardingController extends GetxController {
   void _initEmailCodeVars() {
     codes = List.generate(6, (_) => TextEditingController());
     focusNodes = List.generate(6, (_) => FocusNode());
-    codeWorker = ever(verificationCodeFormIsValid, (bool isValid) {
+    codeWorker = ever(codeFormIsValid, (bool isValid) {
       if (!isValid) {
         //_reset();
         return;

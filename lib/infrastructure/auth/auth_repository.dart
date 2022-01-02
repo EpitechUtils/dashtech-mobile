@@ -91,13 +91,13 @@ class AuthRepository implements IAuthRepository {
       }
     }
 
-    return right(response.data!.userConfirmEmailCode!);
+    return right(response.data!.userConfirmEmailCode);
   }
 
   // Set profile autolog url if user email iss same as intranet logged user
   // TODO: jwt login ?
   @override
-  Future<Either<BaseFailure, bool>> setProfileAutolog(
+  Future<Either<BaseFailure, bool>> linkUserToIntranetProfile(
     String userId,
     String jwt,
   ) async {
@@ -119,12 +119,12 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<Either<AuthFailure, AuthProfile>> login(
-    String profileId,
+    String userId,
     String email,
   ) async {
     try {
       final AuthProfileTokenDto tokenDto =
-          await authProvider.login(profileId, email);
+          await authProvider.login(userId, email);
       final AuthProfile authProfile = tokenDto.toDomain();
 
       String fullName = authProfile.email.split('@')[0].replaceAll('.', ' ');

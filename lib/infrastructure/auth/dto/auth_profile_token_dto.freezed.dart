@@ -22,10 +22,15 @@ class _$AuthProfileTokenDtoTearOff {
   const _$AuthProfileTokenDtoTearOff();
 
   _AuthProfileTokenDto call(
-      {required DateTime expirationTime, required String accessToken}) {
+      {required DateTime expirationTime,
+      required String accessToken,
+      required DateTime refreshExpirationTime,
+      required String refreshToken}) {
     return _AuthProfileTokenDto(
       expirationTime: expirationTime,
       accessToken: accessToken,
+      refreshExpirationTime: refreshExpirationTime,
+      refreshToken: refreshToken,
     );
   }
 
@@ -41,6 +46,8 @@ const $AuthProfileTokenDto = _$AuthProfileTokenDtoTearOff();
 mixin _$AuthProfileTokenDto {
   DateTime get expirationTime => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
+  DateTime get refreshExpirationTime => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +60,11 @@ abstract class $AuthProfileTokenDtoCopyWith<$Res> {
   factory $AuthProfileTokenDtoCopyWith(
           AuthProfileTokenDto value, $Res Function(AuthProfileTokenDto) then) =
       _$AuthProfileTokenDtoCopyWithImpl<$Res>;
-  $Res call({DateTime expirationTime, String accessToken});
+  $Res call(
+      {DateTime expirationTime,
+      String accessToken,
+      DateTime refreshExpirationTime,
+      String refreshToken});
 }
 
 /// @nodoc
@@ -69,6 +80,8 @@ class _$AuthProfileTokenDtoCopyWithImpl<$Res>
   $Res call({
     Object? expirationTime = freezed,
     Object? accessToken = freezed,
+    Object? refreshExpirationTime = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
       expirationTime: expirationTime == freezed
@@ -78,6 +91,14 @@ class _$AuthProfileTokenDtoCopyWithImpl<$Res>
       accessToken: accessToken == freezed
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshExpirationTime: refreshExpirationTime == freezed
+          ? _value.refreshExpirationTime
+          : refreshExpirationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refreshToken: refreshToken == freezed
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -90,7 +111,11 @@ abstract class _$AuthProfileTokenDtoCopyWith<$Res>
           $Res Function(_AuthProfileTokenDto) then) =
       __$AuthProfileTokenDtoCopyWithImpl<$Res>;
   @override
-  $Res call({DateTime expirationTime, String accessToken});
+  $Res call(
+      {DateTime expirationTime,
+      String accessToken,
+      DateTime refreshExpirationTime,
+      String refreshToken});
 }
 
 /// @nodoc
@@ -108,6 +133,8 @@ class __$AuthProfileTokenDtoCopyWithImpl<$Res>
   $Res call({
     Object? expirationTime = freezed,
     Object? accessToken = freezed,
+    Object? refreshExpirationTime = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_AuthProfileTokenDto(
       expirationTime: expirationTime == freezed
@@ -118,6 +145,14 @@ class __$AuthProfileTokenDtoCopyWithImpl<$Res>
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
+      refreshExpirationTime: refreshExpirationTime == freezed
+          ? _value.refreshExpirationTime
+          : refreshExpirationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refreshToken: refreshToken == freezed
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -126,7 +161,10 @@ class __$AuthProfileTokenDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
   const _$_AuthProfileTokenDto(
-      {required this.expirationTime, required this.accessToken})
+      {required this.expirationTime,
+      required this.accessToken,
+      required this.refreshExpirationTime,
+      required this.refreshToken})
       : super._();
 
   factory _$_AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =>
@@ -136,10 +174,14 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
   final DateTime expirationTime;
   @override
   final String accessToken;
+  @override
+  final DateTime refreshExpirationTime;
+  @override
+  final String refreshToken;
 
   @override
   String toString() {
-    return 'AuthProfileTokenDto(expirationTime: $expirationTime, accessToken: $accessToken)';
+    return 'AuthProfileTokenDto(expirationTime: $expirationTime, accessToken: $accessToken, refreshExpirationTime: $refreshExpirationTime, refreshToken: $refreshToken)';
   }
 
   @override
@@ -150,14 +192,20 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
             const DeepCollectionEquality()
                 .equals(other.expirationTime, expirationTime) &&
             const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken));
+                .equals(other.accessToken, accessToken) &&
+            const DeepCollectionEquality()
+                .equals(other.refreshExpirationTime, refreshExpirationTime) &&
+            const DeepCollectionEquality()
+                .equals(other.refreshToken, refreshToken));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(expirationTime),
-      const DeepCollectionEquality().hash(accessToken));
+      const DeepCollectionEquality().hash(accessToken),
+      const DeepCollectionEquality().hash(refreshExpirationTime),
+      const DeepCollectionEquality().hash(refreshToken));
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +222,9 @@ class _$_AuthProfileTokenDto extends _AuthProfileTokenDto {
 abstract class _AuthProfileTokenDto extends AuthProfileTokenDto {
   const factory _AuthProfileTokenDto(
       {required DateTime expirationTime,
-      required String accessToken}) = _$_AuthProfileTokenDto;
+      required String accessToken,
+      required DateTime refreshExpirationTime,
+      required String refreshToken}) = _$_AuthProfileTokenDto;
   const _AuthProfileTokenDto._() : super._();
 
   factory _AuthProfileTokenDto.fromJson(Map<String, dynamic> json) =
@@ -184,6 +234,10 @@ abstract class _AuthProfileTokenDto extends AuthProfileTokenDto {
   DateTime get expirationTime;
   @override
   String get accessToken;
+  @override
+  DateTime get refreshExpirationTime;
+  @override
+  String get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$AuthProfileTokenDtoCopyWith<_AuthProfileTokenDto> get copyWith =>
