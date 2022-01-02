@@ -20,14 +20,17 @@ class BaseLayout extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          splashRadius: 20,
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Color(textColor),
-          ),
-        ),
+        centerTitle: false,
+        leading: Navigator.canPop(context)
+            ? IconButton(
+                onPressed: () => Get.back(),
+                splashRadius: 20,
+                icon: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  color: Color(textColor),
+                ),
+              )
+            : null,
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
